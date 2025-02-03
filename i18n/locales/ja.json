@@ -1,0 +1,11 @@
+{
+  "companyName": "貴社名",
+  "name": "氏名",
+  "phone": "電話番号",
+  "workContent": "事業内容",
+  "cityAddress": "住所（都道府県）",
+  "detailAddress": "住所（市区郡）",
+  "email": "E-mail",
+  "message": "お問い合わせ内容",
+  "submit": "上記内容で送信する"
+}

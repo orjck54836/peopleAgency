@@ -1,0 +1,11 @@
+{
+  "companyName": "貴公司名稱",
+  "name": "姓名",
+  "phone": "電話",
+  "workContent": "事業內容",
+  "cityAddress": "地址（都道府県）",
+  "detailAddress": "地址（市区郡）",
+  "email": "E-mail",
+  "message": "諮詢內容",
+  "submit": "送出"
+}

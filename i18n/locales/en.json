@@ -1,0 +1,11 @@
+{
+  "companyName": "Company Name",
+  "name": "Name",
+  "phone": "Phone",
+  "workContent": "Business Content",
+  "cityAddress": "City Address (Prefecture)",
+  "detailAddress": "Detailed Address (City/Ward/District)",
+  "email": "E-mail",
+  "message": "Inquiry Content",
+  "submit": "Submit"
+}
