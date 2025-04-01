@@ -7,5 +7,9 @@
   "detailAddress": "地址（市区郡）",
   "email": "E-mail",
   "message": "諮詢內容",
-  "submit": "送出"
+  "submit": "送出",
+  "contactMessage": "聯絡我們",
+  "contactButton": "聯絡我們",
+  
+  "frontPageTitle": "每一次的跨越，都有新的可能"
 }

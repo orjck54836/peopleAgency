@@ -7,5 +7,9 @@
   "detailAddress": "Detailed Address (City/Ward/District)",
   "email": "E-mail",
   "message": "Inquiry Content",
-  "submit": "Submit"
+  "submit": "Submit",
+  "contactMessage": "Leave a Message",
+  "contactButton": "contact me",
+
+  "frontPageTitle": "Every leap brings forth new possibilities"
 }

@@ -26,45 +26,16 @@ onMounted(() => {
       <!-- Hero Content -->
       <div class="col-12 col-md-6 col-xl-6 hero-content">
         <div>
-          <h4 class="text-uppercase freelancer">HI, I AM A FREELANCER</h4>
-          <TypeWriter />
+          <h4 class="text-uppercase freelancer">{{ $t('frontPageTitle') }}</h4>
+          <!-- <TypeWriter /> -->
           <p class="description">based in Los Angeles, California.</p>
         </div>
 
         <div class="d-flex gap-4">
-          <a href="#projects" class="btn work-btn text-capitalize btn-secondary"> view my work </a>
-          <a href="#contact" class="btn contact-btn text-capitalize btn-outline-secondary"> contact me </a>
+          <NuxtLink to="/contact" class="btn contact-btn text-capitalize btn-outline-secondary">
+            {{ $t('contactButton') }}
+          </NuxtLink>
         </div>
-      </div>
-
-      <!-- Hero Image -->
-      <div class="col-12 col-md-5 offset-md-1 offset-xxl-2 col-xl-4 d-flex justify-content-center">
-        <div class="img-wrapper">
-          <div class="waves-top">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <img class="img-fluid rounded-circle hero-img" src="/images/hero.png" alt="" />
-          <div class="waves-bottom">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Next Chapter Link -->
-      <div class="col-12">
-        <a href="#about_me" class="d-flex gap-4 align-items-center next-chapter mt-5">
-          <span class="page">01/11</span>
-          <span class="next">Next Chapter</span>
-          <span class="icon">
-            <PhosphorIconArrowElbowRightDown />
-          </span>
-        </a>
       </div>
     </div>
   </section>
@@ -74,6 +45,8 @@ onMounted(() => {
 // hero section
 .hero {
   min-height: 100vh;
+  background-image: url("../img/main-page/image.jpg");
+  background-size: cover;
   &.hero-left-bar {
     min-height: 85vh;
     .next-chapter {

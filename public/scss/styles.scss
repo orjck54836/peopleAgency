@@ -33,18 +33,21 @@ Version: 1.0
 
 */
 :root {
-  --black: 0, 0, 0;
-  --primary: 255, 219, 103;
-  --white: 255, 255, 255;
+  --primary: 215, 169, 140;   /* 淺楓木色 */
+  --secondary: 199, 146, 91;  /* 蜂蜜棕 */
+  --background: 242, 232, 218; /* 米白色 */
+  --contrast: 165, 124, 101;  /* 暖灰木色 */
+  --accent: 227, 183, 120;    /* 淺金棕 */
 }
 
 @import "bootstrap.scss";
 
 // Reset
 body {
+  margin-left: 20px;
   font-family: "Poppins", sans-serif;
-  background-color: rgb(var(--primary));
-  color: rgb(var(--black));
+  background-color: rgb(var(--background)); /* 柔和米白色，讓畫面更乾淨舒適 */
+  color: rgb(var(--contrast)); /* 文字用暖灰木色，溫潤柔和 */
   font-size: 16px;
   overflow-x: hidden;
 }
@@ -75,12 +78,12 @@ h6 {
 }
 @media screen and (min-width: 1750px) {
   .container-fluid {
-    max-width: 1740px;
+    max-width: 95%;
   }
-  .navigation {
-    left: calc((100% - 1680px) / 2 + 1290px);
-    width: 360px;
-  }
+  // .navigation {
+  //   left: calc((100% - 1680px) / 2 + 1290px);
+  //   width: 360px;
+  // }
 }
 
 .grain {
@@ -163,7 +166,7 @@ h6 {
   .line {
     height: 1px;
     width: 140px;
-    background-color: rgb(var(--black));
+    // background-color: rgb(var(--black));
   }
   .arrow-down {
     width: 150px;
@@ -175,7 +178,7 @@ h6 {
     align-items: center;
     transition-duration: 300ms;
     &:hover {
-      background-color: #000;
+      // background-color: #000;
       svg {
         filter: brightness(0) invert(1);
       }
@@ -617,7 +620,7 @@ h6 {
   gap: 20px;
   padding: 12px;
   border-radius: 12px;
-  background-color: rgba(var(--white), 0.1);
+  background-color: rgb(var(--accent)); /* 淺金棕，提升高級感 */
   border: 1px solid rgba(var(--black), 0.1);
   align-items: center;
   transition-duration: 300ms;
@@ -671,7 +674,7 @@ h6 {
         }
       }
       button {
-        background-color: rgb(var(--black));
+        // background-color: rgb(var(--black));
         color: rgb(var(--white));
         padding: 12px 20px;
         border-radius: 4px;
@@ -702,9 +705,23 @@ footer {
   z-index: 10;
   left: 0;
   right: 0;
-  background-color: rgb(var(--primary));
+  // background-color: rgb(var(--primary));
   position: fixed;
   img {
     max-width: 100%;
   }
 }
+
+button {
+  background-color: rgb(var(--primary));  /* 淺楓木色，溫暖自然 */
+  border: 1px solid rgb(var(--contrast)); /* 增加細緻感 */
+  color: rgb(var(--background)); /* 文字與背景形成對比 */
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: rgb(var(--secondary)); /* 滑鼠懸停時變成蜂蜜棕，更有活力 */
+}
+

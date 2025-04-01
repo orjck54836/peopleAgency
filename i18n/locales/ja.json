@@ -7,5 +7,9 @@
   "detailAddress": "住所（市区郡）",
   "email": "E-mail",
   "message": "お問い合わせ内容",
-  "submit": "上記内容で送信する"
+  "submit": "上記内容で送信する",
+  "contactMessage": "お問い合わせ",
+  "contactButton": "お問い合わせ",
+
+  "frontPageTitle": "乗り越えるたびに、新たな可能性が広がる"
 }

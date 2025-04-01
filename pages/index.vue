@@ -11,6 +11,7 @@ const closeNav = () => {
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
   <Navigation :nav-open="navOpen" :close-nav="closeNav" />
 
+  <!-- main content -->
   <main class="container-fluid">
     <div class="row gx-xxl-6">
       <div class="col col-xl-9" data-bs-spy="scroll" data-bs-target="#navigation">
@@ -53,12 +54,6 @@ const closeNav = () => {
         <section id="testimonials" class="testimonials section position-relative">
           <ClientOnly>
             <Testimonials />
-          </ClientOnly>
-        </section>
-        <!-- Contact -->
-        <section id="contact" class="contact section position-relative">
-          <ClientOnly>
-            <Contact />
           </ClientOnly>
         </section>
       </div>

@@ -79,13 +79,13 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <div class="col-12">
+  <!-- <div class="col-12">
     <a href="#how_i_work" class="d-flex gap-4 align-items-center next-chapter">
       <span class="page">07/11</span>
       <span class="next">Next Chapter</span>
       <PhosphorIconArrowElbowRightDown />
     </a>
-  </div>
+  </div> -->
 
   <Teleport to="body">
     <div class="modal fade" id="exampleModal" :tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

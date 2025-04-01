@@ -148,7 +148,7 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <div class="col-12">
+  <!-- <div class="col-12">
     <a href="#fun_facts" class="d-flex gap-4 align-items-center next-chapter">
       <span class="page">04/11</span>
       <span class="next">Next Chapter</span>
@@ -156,7 +156,7 @@ onMounted(() => {
         <PhosphorIconArrowElbowRightDown />
       </span>
     </a>
-  </div>
+  </div> -->
 </template>
 
 <style lang="scss">

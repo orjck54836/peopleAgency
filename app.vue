@@ -66,8 +66,8 @@ useHead({
 </script>
 <template>
   <div>
-    <ColorSwitcher />
-    <Demos />
+    <!-- <ColorSwitcher /> -->
+    <!-- <Demos /> -->
     <NuxtRouteAnnouncer />
     <NuxtPage />
   </div>

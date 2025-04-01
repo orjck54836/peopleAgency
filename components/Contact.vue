@@ -97,8 +97,8 @@ onMounted(() => {
 });
 </script>
 <template>
-  <form ref="form" @submit.prevent="handleSubmit" id="contact-form" class="contact-form">
-    <h4>Leave a Message</h4>
+  <form ref="form" @submit.prevent="handleSubmit" id="contact-form" class="contact-form ">
+    <h4>{{ $t('contactMessage') }}</h4>
     <div class="row g-4 g-xl-5">
       <div class="col-12 contact-input">
         <label for="companyName">{{ $t('companyName') }}</label>
@@ -151,10 +151,6 @@ onMounted(() => {
       </div>
     </div>
   </form>
-
-  <div class="col mt-5 pt-5 next-chapter">
-    <span class="page">11/11</span>
-  </div>
 </template>
 
 <style lang="scss">
@@ -245,20 +241,20 @@ onMounted(() => {
   }
   input,
   textarea {
+    border-radius: 8px;
     margin-top: 20px;
     display: block;
-    background-color: transparent;
-    border: none;
-    padding-bottom: 16px;
+    background-color: rgb(var(--background)); 
+    border: 2px solid rgb(var(--primary));
     width: 100%;
-    border-bottom: 1px solid rgb(var(--black));
+    padding: 10px 15px;
+    font-size: 16px;
     &:focus {
       outline: none;
     }
   }
   textarea {
     height: auto;
-    margin-bottom: 40px;
     @media (min-width: 992px) {
       margin-bottom: 60px;
     }
@@ -266,24 +262,75 @@ onMounted(() => {
   .submit-btn {
     width: 40vw;
     height: 10vh;
-    border-radius: 5%;
-    border: 1px solid rgb(var(--black));
     display: flex;
-    background-color: transparent;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
-    font-weight: 500;
-    &:hover {
-      background-color: #da6111;
-      color: white;
-      svg {
-        filter: brightness(0) invert(1);
-      }
-      .waves-top-md,
-      .waves-bottom-md {
+    background: linear-gradient(145deg, rgba(var(--primary), 0.95), rgba(var(--secondary), 0.9)); 
+    border: 2px solid rgba(var(--contrast), 0.8); /* 增加細緻感 */
+    color: rgb(var(--background)); /* 文字與背景形成對比 */
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 4px 4px 10px rgba(var(--contrast), 0.2), -4px -4px 10px rgba(var(--background), 0.2);
+    
+    /* 添加光暈效果 */
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: radial-gradient(circle, rgba(var(--accent), 0.3) 0%, transparent 80%);
+        transition: all 0.4s ease-in-out;
+        transform: translate(-50%, -75%);
         opacity: 0;
-      }
+    }
+
+    &:hover::before {
+        transform: translate(-50%, 0%);
+        opacity: 1;
+    }
+
+    &:hover {
+        background-color: #be6a10; /* 更明亮的木色 */
+        color: white;
+        box-shadow: 2px 2px 8px rgba(190, 106, 16, 0.5);
+    }
+
+    &:active {
+        transform: scale(0.97); /* 輕微按壓效果 */
+    }
+
+    /* 🔹 SVG 變色 */
+    svg {
+        transition: all 0.3s ease-in-out;
+    }
+
+    &:hover svg {
+        filter: brightness(0) invert(1);
+    }
+
+    /* 🔹 流動波紋動畫 */
+    .waves-top-md,
+    .waves-bottom-md {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(var(--accent), 0.1) 0%, transparent 70%);
+        top: 0;
+        left: 0;
+        opacity: 0.3;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    &:hover .waves-top-md,
+    &:hover .waves-bottom-md {
+        opacity: 0;
     }
   }
 }

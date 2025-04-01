@@ -93,13 +93,13 @@ const containerRef = ref(null);
     </ClientOnly>
 
     <!-- Next Chapter -->
-    <div class="col-12">
+    <!-- <div class="col-12">
       <a href="#attainments" class="d-flex gap-4 align-items-center next-chapter">
         <span class="page">03/11</span>
         <span class="next">Next Chapter</span>
         <PhosphorIconArrowElbowRightDown />
       </a>
-    </div>
+    </div> -->
   </section>
 </template>
 
