@@ -9,6 +9,8 @@ import youtube from "/images/youtube.png";
 import blogDetails from "/images/blog-details.png";
 
 const videoOpen = ref(false);
+const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
 </script>
 
 <template>

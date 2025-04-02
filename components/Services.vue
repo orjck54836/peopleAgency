@@ -48,13 +48,10 @@ const containerRef = ref(null);
 
 <template>
   <section id="services" class="services section position-relative">
-    <!-- Overlay Text -->
-    <!-- Section Title -->
-    <ClientOnly>
-      <SectionOverlayText text="my services" />
-      <SectionTitle subtitle="How I can help your next project" title="What I do" />
-    </ClientOnly>
-
+    <!-- 標題區（service Section） -->
+    <section class="services-section">
+      <h1 class="services-title">{{ $t('ourStoryTitle') }}</h1>
+    </section>
     <!-- Swiper -->
     <ClientOnly>
       <swiper :slides-per-view="1" :space-between="24" loop :autoplay="{ delay: 5000 }" :pagination="{ clickable: true, el: '.service-pagination' }" :breakpoints="{ 768: { slidesPerView: 2, spaceBetween: 24 }, 1550: { slidesPerView: 3, spaceBetween: 24 } }" ref="containerRef" class="swiper service-swiper">
@@ -107,6 +104,27 @@ const containerRef = ref(null);
 /* services section */
 .services {
   margin-top: 60px;
+  /* Services Section */
+  .services-section {
+    text-align: center;
+    padding: 2rem 1rem 2rem;
+    position: relative;
+    background-image: url("../img/about-me/aboutme-title.jpg");
+    background-size: cover;
+  }
+
+  /* 漸層標題設計 */
+  .services-title {
+    font-size: 3rem; /* 可調整字體大小 */
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #675a5a;
+  }
+  .services-subtitle {
+    font-size: 1.25rem;
+    color: #666;
+  }
   @media (min-width: 992px) {
     margin-top: 120px;
   }

@@ -5,7 +5,6 @@ import { onMounted, ref } from "vue";
 import gsap from "gsap";
 import SplitType from "split-type";
 
-// 接收父層傳來的 props
 defineProps<{
   navOpen: boolean;
   toggleNav: () => void;
@@ -14,6 +13,9 @@ defineProps<{
 
 // i18n 設定
 const { locale, locales } = useI18n();
+const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
+const router = useRouter()
 
 // 按鈕動畫
 onMounted(() => {
@@ -45,19 +47,24 @@ const currentLanguageName = computed(() => {
 
 // 切換語言
 const switchLang = (lang: string) => {
-  locale.value = lang;
+  // 1) 改變 locale
+  locale.value = lang
+  // 2) 生成該語系下的當前頁面路徑
+  const path = switchLocalePath(lang)
+  // 3) 若要切換到該路徑 (ex: "/en/contact")
+  router.push(path)
 };
 </script>
 
 <template>
   <header class="header">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-      <NuxtLink to="/" :class="classes">
+      <NuxtLink :to="localePath('/')" :class="classes">
         <img src="/images/logo.png" alt="logo" />
       </NuxtLink>
       <!-- 語言切換下拉選單 -->
       <div class="d-flex align-items-center">
-        <NuxtLink to="/contact" class="contact-btn">
+        <NuxtLink :to="localePath('/contact')" class="contact-btn">
           {{ $t('contactButton') }}
         </NuxtLink>
         <div class="dropdown">

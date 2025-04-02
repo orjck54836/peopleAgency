@@ -2,9 +2,9 @@
 
 <template>
   <section id="about_me" class="about section">
-    <!-- 標題區（Hero Section） -->
-    <section class="hero-section">
-      <h1 class="hero-title">{{ $t('ourStoryTitle') }}</h1>
+    <!-- 標題區（About Section） -->
+    <section class="about-section">
+      <h1 class="about-title">{{ $t('ourStoryTitle') }}</h1>
     </section>
     <!-- About Content -->
     <div class="about-container">
@@ -237,8 +237,8 @@
     border-right: 1px dashed #999;
   }
 
-  /* Hero Section */
-  .hero-section {
+  /* About Section */
+  .about-section {
     text-align: center;
     padding: 2rem 1rem 2rem;
     position: relative;
@@ -247,14 +247,14 @@
   }
 
   /* 漸層標題設計 */
-  .hero-title {
+  .about-title {
     font-size: 3rem; /* 可調整字體大小 */
     position: relative;
     display: inline-block;
     margin-bottom: 1rem;
     color: #675a5a;
   }
-  .hero-subtitle {
+  .about-subtitle {
     font-size: 1.25rem;
     color: #666;
   }
