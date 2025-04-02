@@ -2,23 +2,21 @@
 
 <template>
   <section id="about_me" class="about section">
+    <!-- 標題區（Hero Section） -->
+    <section class="hero-section">
+      <h1 class="hero-title">{{ $t('ourStoryTitle') }}</h1>
+    </section>
     <!-- About Content -->
     <div class="about-container">
-      <!-- 標題區（Hero Section） -->
-      <section class="hero-section">
-        <h1 class="hero-title">關於我們</h1>
-      </section>
       <!-- 公司簡介區 -->
       <section class="intro-section">
         <div class="intro-text">
-          <h2>我們的故事</h2>
+          <h2>{{ $t('ourStory') }}</h2>
           <p>
-            FORMA 起自於「Formosa」的概念也代來自台灣的意涵與對未來可能性的探索。
-            我們致力於跨越文化與地域的界線，連結海外人才與日本企業，並提供全方位的人力與諮詢服務。
+            {{ $t('stortText1') }}
           </p>
           <p>
-            無論是企業的成長需求，還是人才的職涯規劃，
-            我們相信「每一次跨越，都能開啟新的可能」。
+            {{ $t('stortText2') }}
           </p>
         </div>
         <!-- 公司相關圖片 -->
@@ -36,7 +34,7 @@
           <div class="letter-title">F</div>
           <div class="letter-content">
             <h3>Formosa</h3>
-            <p>呼應台灣母公司起源，蘊含多元文化與熱情，成為我們跨文化使命的初衷。</p>
+            <p>{{ $t('title_Formosa') }}</p>
           </div>
         </div>
         <!-- O -->
@@ -44,15 +42,15 @@
           <div class="letter-title">O</div>
           <div class="letter-content">
             <h3>Opportunity</h3>
-            <p>我們致力於為企業與人才打造全新的機遇，將可能性轉化為實際成長。</p>
+            <p>{{ $t('title_Opportunity') }}</p>
           </div>
         </div>
         <!-- R -->
         <div class="acronym-card">
           <div class="letter-title">R</div>
           <div class="letter-content">
-            <h3>Relation / Resource</h3>
-            <p>透過搭建人脈與整合跨國資源，協助客戶跨越文化與地域的界線。</p>
+            <h3>Resource</h3>
+            <p>{{ $t('title_Resource') }}</p>
           </div>
         </div>
         <!-- M -->
@@ -60,15 +58,15 @@
           <div class="letter-title">M</div>
           <div class="letter-content">
             <h3>Momentum</h3>
-            <p>不斷推進、加速成長的動能，是我們與您前行的核心驅力。</p>
+            <p>{{ $t('title_Momentum') }}</p>
           </div>
         </div>
         <!-- A -->
         <div class="acronym-card">
           <div class="letter-title">A</div>
           <div class="letter-content">
-            <h3>Advance / Alliance</h3>
-            <p>與客戶攜手前進，也強調聯盟合作的力量，讓多方夥伴共享成功。</p>
+            <h3>Alliance</h3>
+            <p>{{ $t('title_Alliance') }}</p>
           </div>
         </div>
       </div>
@@ -234,9 +232,9 @@
 
   /* 主容器 */
   .about-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    margin: 10px auto;
+    border-left: 1px dashed #999;
+    border-right: 1px dashed #999;
   }
 
   /* Hero Section */
@@ -268,6 +266,7 @@
     align-items: center;
     gap: 2rem;
     margin: 3rem 0;
+    padding: 10px;
   }
   .intro-text {
     flex: 1;
@@ -281,6 +280,8 @@
   .intro-text p {
     margin-bottom: 1rem;
     color: #555;
+    font-family: Lato, "Noto Sans JP", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    font-size: 1.2rem;
   }
   .intro-image {
     flex: 1;
@@ -384,6 +385,7 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
+    padding: 10px;
   }
 
   .acronym-card {

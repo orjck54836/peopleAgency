@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';
+import { onMounted, ref } from "vue";
+import gsap from "gsap";
+import SplitType from "split-type";
 
 // 接收父層傳來的 props
 defineProps<{
@@ -11,6 +14,20 @@ defineProps<{
 
 // i18n 設定
 const { locale, locales } = useI18n();
+
+// 按鈕動畫
+onMounted(() => {
+  // GSAP animations
+  gsap.from(".img-wrapper", { duration: 1.5, scale: 1.5, ease: "back", delay: 0.3, opacity: 0 });
+  gsap.from(".work-btn", { duration: 1.2, scale: 0, opacity: 0, ease: "bounce" });
+  gsap.from(".contact-btn", { duration: 1.2, scale: 0.5, opacity: 0.5, ease: "bounce" });
+
+  const freelancerChars = new SplitType(".freelancer", { types: "chars" }).chars;
+  const descChars = new SplitType(".description", { types: "chars" }).chars;
+
+  gsap.from(freelancerChars, { duration: 1.5, rotateX: 180, opacity: 0, ease: "bounce", stagger: 0.05 });
+  gsap.from(descChars, { duration: 1, rotateY: 180, stagger: 0.05 });
+});
 
 // 可用語言選單
 const availableLocales = computed(() =>
@@ -38,26 +55,31 @@ const switchLang = (lang: string) => {
       <NuxtLink to="/" :class="classes">
         <img src="/images/logo.png" alt="logo" />
       </NuxtLink>
-
       <!-- 語言切換下拉選單 -->
-      <div class="dropdown">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
-          id="languageDropdown"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {{ currentLanguageName }}
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-          <li v-for="locale in availableLocales" :key="locale.code">
-            <button class="dropdown-item" @click="switchLang(locale.code)">
-              {{ locale.name }}
-            </button>
-          </li>
-        </ul>
+      <div class="d-flex align-items-center">
+        <NuxtLink to="/contact" class="contact-btn">
+          {{ $t('contactButton') }}
+        </NuxtLink>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="languageDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ currentLanguageName }}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+            <li v-for="locale in availableLocales" :key="locale.code">
+              <button class="dropdown-item" @click="switchLang(locale.code)">
+                {{ locale.name }}
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
+      
 
       <button @click="toggleNav" class="bg-transparent border-0 d-xl-none">
         <div :class="{ open: navOpen }" class="nav-icon">
@@ -78,9 +100,42 @@ const switchLang = (lang: string) => {
   left: 0;
   right: 0;
   backdrop-filter: blur(3px);
-  position: fixed;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   img {
     max-width: 100%;
+  }
+  .contact-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: rgb(var(--accent)); /* 淺金棕 */
+    color: rgb(var(--contrast));         /* 暖灰木色文字 */
+    border: none;
+    border-radius: 6px;                  /* 輕微圓角，柔和感 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    /* 提供陰影與立體感 */
+    box-shadow: 0 4px 6px rgba(var(--contrast), 0.2), 
+                inset 0 0 0 rgba(0,0,0,0);
+
+    &:hover {
+      /* 改變背景與加深陰影 */
+      background-color: rgba(var(--accent), 1); 
+      box-shadow: 0 4px 10px rgba(var(--contrast), 0.5);
+    }
+
+    &:active {
+      /* 按下時略微縮小或加深陰影，可看起來更有按壓感 */
+      transform: scale(0.97);
+      box-shadow: 0 2px 4px rgba(var(--contrast), 0.3);
+    }
+    /* 若與淺背景融合度不夠，可加點文字陰影或其他修飾 */
+    text-shadow: 1px 1px 2px rgba(var(--background), 0.5);
   }
   .dropdown-menu {
     background-color: rgb(var(--background)); /* 柔和米白色背景 */

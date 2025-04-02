@@ -12,14 +12,13 @@ const videoOpen = ref(false);
 </script>
 
 <template>
-  <header>
-    <div class="container d-flex flex-wrap gap-4 align-items-center justify-content-between">
+  <Header>
+    <div>
       <NuxtLink to="/">
         <img :src="logo" alt="logo" />
       </NuxtLink>
-      <NuxtLink to="/" class="d-flex align-items-center gap-2"> <PhosphorIconArrowLeft /> Back to Home </NuxtLink>
     </div>
-  </header>
+  </Header>
 
   <!-- main content -->
   <main>

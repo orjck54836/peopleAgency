@@ -5,19 +5,6 @@ import SplitType from "split-type";
 
 // Ensure process.client to avoid running in SSR
 const classes = ref(""); // Optional prop for custom classes
-
-onMounted(() => {
-  // GSAP animations
-  gsap.from(".img-wrapper", { duration: 1.5, scale: 1.5, ease: "back", delay: 0.3, opacity: 0 });
-  gsap.from(".work-btn", { duration: 1.2, scale: 0, opacity: 0, ease: "bounce" });
-  gsap.from(".contact-btn", { duration: 1.2, scale: 0, opacity: 0, ease: "bounce" });
-
-  const freelancerChars = new SplitType(".freelancer", { types: "chars" }).chars;
-  const descChars = new SplitType(".description", { types: "chars" }).chars;
-
-  gsap.from(freelancerChars, { duration: 1.5, rotateX: 180, opacity: 0, ease: "bounce", stagger: 0.05 });
-  gsap.from(descChars, { duration: 1, rotateY: 180, stagger: 0.05 });
-});
 </script>
 
 <template>
@@ -26,15 +13,7 @@ onMounted(() => {
       <!-- Hero Content -->
       <div class="col-12 col-md-6 col-xl-6 hero-content">
         <div>
-          <h4 class="text-uppercase freelancer">{{ $t('frontPageTitle') }}</h4>
-          <!-- <TypeWriter /> -->
-          <p class="description">based in Los Angeles, California.</p>
-        </div>
-
-        <div class="d-flex gap-4">
-          <NuxtLink to="/contact" class="btn contact-btn text-capitalize btn-outline-secondary">
-            {{ $t('contactButton') }}
-          </NuxtLink>
+          <h4 class="freelancer">{{ $t('frontPageTitle') }}</h4>
         </div>
       </div>
     </div>
