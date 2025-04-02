@@ -7,7 +7,6 @@ import SplitType from "split-type";
 
 defineProps<{
   navOpen: boolean;
-  toggleNav: () => void;
   classes?: string;
 }>();
 
@@ -69,7 +68,7 @@ const switchLang = (lang: string) => {
         </NuxtLink>
         <div class="dropdown">
           <button
-            class="btn btn-secondary dropdown-toggle"
+            class="dropdown-toggle"
             type="button"
             id="languageDropdown"
             data-bs-toggle="dropdown"
@@ -86,15 +85,6 @@ const switchLang = (lang: string) => {
           </ul>
         </div>
       </div>
-      
-
-      <button @click="toggleNav" class="bg-transparent border-0 d-xl-none">
-        <div :class="{ open: navOpen }" class="nav-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </button>
     </div>
   </header>
 </template>
@@ -165,7 +155,7 @@ const switchLang = (lang: string) => {
   .dropdown-menu.show {
       opacity: 1;
       visibility: visible;
-      transform: translateX(-50%) translateY(10px);
+      transform: translateX(-10%) translateY(-10px);
   }
 
   /* 🔹 語言選項樣式 */
@@ -222,6 +212,10 @@ const switchLang = (lang: string) => {
   /* 🔹 當選單展開時箭頭旋轉 */
   .dropdown-menu.show + .dropdown-toggle::after {
       transform: rotate(180deg);
+  }
+
+  .dropdown-item:hover {
+    background-color: rgba(var(--primary), 0.2); /* 柔和木質感懸停效果 */
   }
 
   .nav-icon {

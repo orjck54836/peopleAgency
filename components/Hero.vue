@@ -23,7 +23,6 @@ const classes = ref(""); // Optional prop for custom classes
 <style lang="scss">
 // hero section
 .hero {
-  min-height: 100vh;
   background-image: url("../img/main-page/image.jpg");
   background-size: cover;
   &.hero-left-bar {
@@ -38,6 +37,7 @@ const classes = ref(""); // Optional prop for custom classes
   padding-top: 100px;
   @media (min-width: 1400px) {
     padding-top: 200px;
+    min-height: 90vh;
   }
   height: auto;
   .row {

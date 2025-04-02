@@ -41,17 +41,17 @@ onMounted(() => {
   gsap.from(".nav-link", { duration: 0.8, delay: 0.5, opacity: 0, stagger: 0.1 });
 });
 const navItems = reactive([
-  { index: "01", text: "top", href: "#top", active: true },
-  { index: "02", text: "about me", href: "#about_me", active: false },
-  { index: "03", text: "my services", href: "#services", active: false },
-  { index: "04", text: "skills", href: "#attainments", active: false },
-  { index: "05", text: "facts", href: "#fun_facts", active: false },
-  { index: "06", text: "experiences", href: "#experience", active: false },
-  { index: "07", text: "projects", href: "#projects", active: false },
-  { index: "08", text: "how i work", href: "#how_i_work", active: false },
-  { index: "09", text: "blogs", href: "#blogs", active: false },
-  { index: "10", text: "testimonials", href: "#testimonials", active: false },
-  { index: "11", text: "contact", href: "#contact", active: false },
+  { index: "", text: "top", href: "#top", active: true },
+  { index: "", text: "about me", href: "#about_me", active: false },
+  { index: "", text: "my services", href: "#services", active: false },
+  { index: "", text: "skills", href: "#attainments", active: false },
+  { index: "", text: "facts", href: "#fun_facts", active: false },
+  { index: "", text: "experiences", href: "#experience", active: false },
+  { index: "", text: "projects", href: "#projects", active: false },
+  { index: "", text: "how i work", href: "#how_i_work", active: false },
+  { index: "", text: "blogs", href: "#blogs", active: false },
+  { index: "", text: "testimonials", href: "#testimonials", active: false },
+  { index: "", text: "contact", href: "#contact", active: false },
 ]);
 </script>
 
@@ -78,6 +78,7 @@ const navItems = reactive([
 .navigation {
   position: absolute;
   --height: 0;
+  border-left: 1px solid rgb(207, 194, 194);
   @media (max-width: 1200px) {
     &:dir(ltr) {
       transform: translateX(-100%);
