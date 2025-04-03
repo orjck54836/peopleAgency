@@ -6,7 +6,7 @@ defineProps<{
 }>();
 const navLinks = [
   { id: "top", label: "top" },
-  { id: "about_me", label: "about me" },
+  { id: "our_story", label: "about me" },
   { id: "services", label: "my services" },
   { id: "attainments", label: "skills" },
   { id: "fun_facts", label: "facts" },

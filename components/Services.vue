@@ -2,30 +2,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Service data array
-const serviceData = ref([
-  {
-    id: 1,
-    title: "UI/UX Design",
-    description: ["Landing Pages", "User Flow", "Wireframing", "Prototyping", "Mobile App Design"],
-  },
-  {
-    id: 2,
-    title: "Development",
-    description: ["Front-End Development", "Back-End Development", "Full-Stack Development", "Database Management", "API Integration Design"],
-  },
-  {
-    id: 3,
-    title: "Illustration",
-    description: ["Character Design", "Icon Set", "Illustration Guide", "Illustration Set", "Motion Graphic Design"],
-  },
-  {
-    id: 4,
-    title: "App Development",
-    description: ["Android App", "iOS App", "Wireframing", "Prototyping", "Mobile App Design"],
-  },
-]);
-
 // GSAP animation logic
 gsap.registerPlugin(ScrollTrigger);
 onMounted(() => {
@@ -50,53 +26,88 @@ const containerRef = ref(null);
   <section id="services" class="services section position-relative">
     <!-- 標題區（service Section） -->
     <section class="services-section">
-      <h1 class="services-title">{{ $t('ourStoryTitle') }}</h1>
+      <h1 class="services-title">{{ $t('servicesTitle') }}</h1>
     </section>
-    <!-- Swiper -->
-    <ClientOnly>
-      <swiper :slides-per-view="1" :space-between="24" loop :autoplay="{ delay: 5000 }" :pagination="{ clickable: true, el: '.service-pagination' }" :breakpoints="{ 768: { slidesPerView: 2, spaceBetween: 24 }, 1550: { slidesPerView: 3, spaceBetween: 24 } }" ref="containerRef" class="swiper service-swiper">
-        <swiper-slide v-for="service in serviceData" :key="service.id" class="overflow-visible p-3" priority>
-          <div class="service-card">
-            <div class="card-inner"></div>
-            <div class="content">
-              <div class="number-circle">
-                <div class="waves-top-sm">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <h2>{{ service.id }}</h2>
-                <div class="waves-bottom-sm">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-              <h4>{{ service.title }}</h4>
-              <ul class="service-list">
-                <li v-for="(item, index) in service.description" :key="index">
-                  <PhosphorIconCaretDoubleRight />
-                  {{ item }}
-                </li>
-              </ul>
+    <section class="services-content">
+      <div class="services-container">
+        <!-- 一、特定技能人力服務 -->
+        <div class="service-block">
+          <div class="service-icon">
+            <!-- <PhUserFocus /> or any icon you want -->
+            <!-- <img src="/icons/tokutei-icon.png" alt="特定技能icon" /> -->
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">特定技能人力服務</h3>
+            <p class="service-desc">
+              協助外國人(台、越、印尼)通過技能考試、日語學習、簽證申請，並為企業端迅速補足人力空缺。
+            </p>
+            <ul class="service-steps">
+              <li><strong>1. 需求洽談</strong>：了解企業用人條件</li>
+              <li><strong>2. 招募/篩選</strong>：多國人才遴選</li>
+              <li><strong>3. 簽證申請</strong>：文件、考試輔導</li>
+              <li><strong>4. 入職後支援</strong>：追蹤狀況，協助溝通</li>
+            </ul>
+            <div class="extras">
+              <p>如 <strong>日語教學支援</strong>、<strong>住宿協助</strong>、<strong>跨文化培訓</strong>，
+                讓外國人更快融入日本。 
+              </p>
             </div>
           </div>
-        </swiper-slide>
+        </div>
 
-        <div class="service-pagination"></div>
-      </swiper>
-    </ClientOnly>
+        <!-- 二、技人國簽證就職 -->
+        <div class="service-block">
+          <div class="service-icon">
+            <!-- <PhBriefcase /> -->
+            <!-- <img src="/icons/ginojin-icon.png" alt="技人國icon" /> -->
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">技人國簽證就職</h3>
+            <p class="service-desc">
+              為企業提供專業人才(技術・人文知識・國際業務)介紹、簽證輔助。結合多國菁英資源、精準匹配需求。
+            </p>
+            <ul class="service-steps">
+              <li><strong>1. 需求洽談</strong>：確認專業背景要求</li>
+              <li><strong>2. 招募/篩選</strong>：台、越、印尼等地人才庫精選</li>
+              <li><strong>3. 簽證輔助</strong>：技人國簽證文件處理</li>
+              <li><strong>4. 入職後支援</strong>：文化融入與管理建議</li>
+            </ul>
+            <div class="extras">
+              <p>若企業需要更深入國際拓展，我們也可提供 <strong>跨文化顧問</strong> 及
+                <strong>海外連結</strong> 支援。
+              </p>
+            </div>
+          </div>
+        </div>
 
-    <!-- Next Chapter -->
-    <!-- <div class="col-12">
-      <a href="#attainments" class="d-flex gap-4 align-items-center next-chapter">
-        <span class="page">03/11</span>
-        <span class="next">Next Chapter</span>
-        <PhosphorIconArrowElbowRightDown />
-      </a>
-    </div> -->
+        <!-- 三、企業顧問 / 人力諮詢 -->
+        <div class="service-block">
+          <div class="service-icon">
+            <!-- <PhUsers /> -->
+            <!-- <img src="/icons/consult-icon.png" alt="顧問icon" /> -->
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">企業顧問 / 人力諮詢</h3>
+            <p class="service-desc">
+              從招募流程到外國員工管理、文化融合，提供多元專業顧問，協助企業在日本市場穩定成長。
+            </p>
+            <ul class="service-steps">
+              <li><strong>1. 現狀分析</strong>：評估企業人力結構與痛點</li>
+              <li><strong>2. 招募策略</strong>：打造海外人才引進方案</li>
+              <li><strong>3. 管理諮詢</strong>：在留資格維護、社保、日常支援</li>
+              <li><strong>4. 持續追蹤</strong>：定期檢討與調整</li>
+            </ul>
+            <div class="extras">
+              <p>
+                特別著重 <strong>跨文化培訓</strong>、<strong>日語教學</strong>，
+                為外國員工長期留用與企業發展奠定扎實基礎。
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </section>
 </template>
 
@@ -120,10 +131,6 @@ const containerRef = ref(null);
     display: inline-block;
     margin-bottom: 1rem;
     color: #675a5a;
-  }
-  .services-subtitle {
-    font-size: 1.25rem;
-    color: #666;
   }
   @media (min-width: 992px) {
     margin-top: 120px;
@@ -247,6 +254,112 @@ const containerRef = ref(null);
         color: rgb(var(--black));
         svg {
           color: #343330;
+        }
+      }
+    }
+  }
+  
+  .services-content {
+    position: relative;
+    overflow: hidden;
+
+    .services-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .services-container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      text-align: center;
+      border-left: 1px dashed #999;
+      border-right: 1px dashed #999;
+      padding: 10px;
+
+      .services-title {
+        font-size: 2rem;
+        color: rgb(var(--contrast));
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .services-subtitle {
+        font-size: 1.1rem;
+        color: rgba(var(--contrast), 0.8);
+        max-width: 700px;
+        margin: 0.5rem auto 3rem;
+        line-height: 1.6;
+      }
+    }
+
+    .service-block {
+      width: 100%;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(var(--contrast), 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 6px 10px rgba(var(--contrast), 0.15);
+        transform: translateY(-2px);
+      }
+
+      .service-icon {
+        font-size: 3rem;
+        color: rgb(var(--secondary));
+        margin-right: 1rem;
+        flex-shrink: 0;
+
+        img {
+          width: 60px;
+          height: 60px;
+          object-fit: contain;
+        }
+      }
+
+      .service-content {
+        text-align: left;
+        h3.service-title {
+          font-size: 1.4rem;
+          margin-bottom: 0.75rem;
+          font-weight: 600;
+          color: rgb(var(--contrast));
+        }
+        .service-desc {
+          font-size: 1rem;
+          color: rgb(var(--contrast));
+          line-height: 1.6;
+          margin-bottom: 1rem;
+        }
+        .service-steps {
+          list-style: none;
+          margin-bottom: 1rem;
+          padding: 0;
+          li {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            strong {
+              color: rgb(var(--secondary));
+              margin-right: 4px;
+            }
+          }
+        }
+        .extras {
+          p {
+            font-size: 0.9rem;
+            color: rgba(var(--contrast), 0.8);
+            strong {
+              color: rgb(var(--accent));
+            }
+          }
         }
       }
     }

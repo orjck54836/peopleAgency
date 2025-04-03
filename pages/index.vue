@@ -18,44 +18,14 @@ const closeNav = () => {
         <Hero />
         <AboutMe />
         <Services />
-        <!-- Attainments -->
-        <section id="attainments" class="attainments section position-relative">
-          <ClientOnly>
-            <Attainments />
-          </ClientOnly>
-        </section>
-        <!-- Fun facts -->
-        <section id="fun_facts" class="fun_facts section">
-          <ClientOnly>
-            <FunFacts />
-          </ClientOnly>
-        </section>
-        <!-- Experience -->
-        <section id="experience" class="experience section position-relative">
-          <ClientOnly>
-            <Experience />
-          </ClientOnly>
-        </section>
         <!-- Projects -->
-        <section id="projects" class="projects section position-relative">
+        <section id="common_questions" class="projects section position-relative">
           <ClientOnly>
-            <Projects />
-          </ClientOnly>
-        </section>
-        <!-- How I Work -->
-        <section id="how_i_work" class="how-i-work section position-relative">
-          <ClientOnly>
-            <HowIWork />
+            <CommonQuestions />
           </ClientOnly>
         </section>
         <!-- Blogs -->
-        <Blogs />
-        <!-- Testimonials -->
-        <section id="testimonials" class="testimonials section position-relative">
-          <ClientOnly>
-            <Testimonials />
-          </ClientOnly>
-        </section>
+        <!-- <Blogs /> -->
       </div>
     </div>
   </main>

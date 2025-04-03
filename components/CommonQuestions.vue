@@ -53,8 +53,10 @@ onMounted(() => {
 });
 </script>
 <template>
-  <SectionOverlayText text="projects" />
-  <SectionTitle subtitle="Some of my most recent projects" title="My Featured Projects" />
+  <!-- 標題區（service Section） -->
+  <section class="common-questions-section">
+    <h1 class="common-questions-title">{{ $t('commonQuestionTitle') }}</h1>
+  </section>
   <div class="row pb-60 project-list g-4">
     <div v-for="(project, i) in projects" key="{project.name}" @click="currentProject = project" class="col-sm-6 col-lg-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <div class="single-project">
@@ -206,6 +208,14 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
+// common-questions Section
+.common-questions-section {
+  text-align: center;
+  padding: 2rem 1rem 2rem;
+  position: relative;
+  background-image: url("../img/about-me/aboutme-title.jpg");
+  background-size: cover;
+}
 // projects
 .projects {
   padding-top: 60px;
@@ -215,9 +225,6 @@ onMounted(() => {
   }
   .section-title-overlay-text {
     top: 100px;
-  }
-  .project-list {
-    margin-top: 40px;
   }
   .single-project {
     cursor: pointer;
@@ -321,6 +328,11 @@ onMounted(() => {
   .next-chapter {
     padding-top: 80px;
   }
+}
+.project-list {
+  margin-top: 40px;
+  border-left: 1px dashed #999;
+  border-right: 1px dashed #999;
 }
 .right-bar {
   padding: 20px;

@@ -9,7 +9,7 @@ const closeNav = () => {
 
 const navItems = [
   { id: "top", text: "top", isActive: true },
-  { id: "about_me", text: "about me", isActive: false },
+  { id: "our_story", text: "about me", isActive: false },
   { id: "services", text: "my services", isActive: false },
   { id: "attainments", text: "skills", isActive: false },
   { id: "fun_facts", text: "facts", isActive: false },

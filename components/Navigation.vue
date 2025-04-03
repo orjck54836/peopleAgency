@@ -41,17 +41,10 @@ onMounted(() => {
   gsap.from(".nav-link", { duration: 0.8, delay: 0.5, opacity: 0, stagger: 0.1 });
 });
 const navItems = reactive([
-  { index: "", text: "top", href: "#top", active: true },
-  { index: "", text: "about me", href: "#about_me", active: false },
-  { index: "", text: "my services", href: "#services", active: false },
-  { index: "", text: "skills", href: "#attainments", active: false },
-  { index: "", text: "facts", href: "#fun_facts", active: false },
-  { index: "", text: "experiences", href: "#experience", active: false },
-  { index: "", text: "projects", href: "#projects", active: false },
-  { index: "", text: "how i work", href: "#how_i_work", active: false },
+  { index: "", text: "ourStoryTitle", href: "#our_story", active: false },
+  { index: "", text: "servicesTitle", href: "#services", active: false },
+  { index: "", text: "commonQuestionTitle", href: "#common_questions", active: false },
   { index: "", text: "blogs", href: "#blogs", active: false },
-  { index: "", text: "testimonials", href: "#testimonials", active: false },
-  { index: "", text: "contact", href: "#contact", active: false },
 ]);
 </script>
 
@@ -61,7 +54,7 @@ const navItems = reactive([
     <ul>
       <li v-for="(item, index) in navItems" :key="index" @click="closeNav" class="nav-link">
         <a :href="item.href" :class="{ active: item.active }">
-          <span>{{ item.index }}</span> <span class="text">{{ item.text }}</span>
+          <span>{{ item.index }}</span> <span class="text">{{ $t(item.text) }}</span>
         </a>
       </li>
     </ul>
@@ -77,7 +70,7 @@ const navItems = reactive([
 // navigation
 .navigation {
   position: absolute;
-  --height: 0;
+  height: 90%;
   border-left: 1px solid rgb(207, 194, 194);
   @media (max-width: 1200px) {
     &:dir(ltr) {

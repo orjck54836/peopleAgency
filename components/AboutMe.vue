@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section id="about_me" class="about section">
+  <section id="our_story" class="about section">
     <!-- 標題區（About Section） -->
     <section class="about-section">
       <h1 class="about-title">{{ $t('ourStoryTitle') }}</h1>
