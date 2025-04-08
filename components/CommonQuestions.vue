@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import projectOne from "../img/common-questions/worker.jpg";
 import projectTwo from "../img/common-questions/price.jpg";
+import projectThree from "../img/common-questions/visa.jpg";
 import projectDetailsOne from "/images/project-details-1.png";
 import projectDetailsTwo from "/images/project-details-2.png";
 import edumasterBig from "/images/edumaster-big.png";
@@ -11,23 +12,31 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const projects = [
   {
-    name: "關於聘用外國人",
+    name: "僱用外國人流程",
     description: ``,
-    tags: ["design", "frontend", "backend"],
-    category: "E-commerce Platform",
+    // tags: ["design", "frontend", "backend"],
+    category: "對於如何雇用外國人有疑問的人",
     image: projectOne,
     bigImg: techshopBig,
   },
   {
-    name: "關於服務及費用",
+    name: "費用與服務",
     description: ``,
-    tags: ["design", "frontend", "backend"],
-    category: "Online Learning Platform",
+    // tags: ["design", "frontend", "backend"],
+    category: "想了解費用的計算與後續服務",
     image: projectTwo,
     bigImg: edumasterBig,
   },
+  {
+    name: "簽證與法規細節",
+    description: ``,
+    // tags: ["design", "frontend", "backend"],
+    category: "認識關於簽證的內容與細節",
+    image: projectThree,
+    bigImg: edumasterBig,
+  },
 ];
-const currentProject = ref(projects[0]);
+const currentProject = ref(projects[1]);
 
 gsap.registerPlugin(ScrollTrigger);
 onMounted(() => {
@@ -48,12 +57,12 @@ onMounted(() => {
   <section class="common-questions-section">
     <h1 class="common-questions-title">{{ $t('commonQuestionTitle') }}</h1>
   </section>
-  <div class="row pb-60 project-list g-4">
+  <div class="row pb-60 project-list g-4 common-questions-content">
     <div v-for="(project, i) in projects" key="{project.name}" @click="currentProject = project" class="col-sm-6 col-lg-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <div class="single-project">
         <div class="project-card">
           <div class="card-inner"></div>
-          <img :src="project.image" class="img-fluid w-100 card-img h-100" alt="" />
+          <img :src="project.image" class="img-fluid w-100 card-img" alt="" />
           <div class="card-arrow">
             <div class="arrow-inner">
               <PhosphorIconArrowUpRight :size="26" />
@@ -63,11 +72,11 @@ onMounted(() => {
         <div class="project-info">
           <h2>{{ project.name }}</h2>
           <p>{{ project.category }}</p>
-          <div class="tags d-flex align-items-center gap-1">
+          <!-- <div class="tags d-flex align-items-center gap-1">
             <template v-for="tag in project.tags">
               <span>{{ tag }}</span> {{ i < project.tags.length - 1 && "-" }}
             </template>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -139,7 +148,6 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-// common-questions Section
 .common-questions-section {
   text-align: center;
   padding: 2rem 1rem 2rem;
@@ -147,10 +155,18 @@ onMounted(() => {
   background-image: url("../img/about-me/aboutme-title.jpg");
   background-size: cover;
 }
+
+.common-questions-content {
+  margin: 3rem auto;
+  text-align: center;
+  border-left: 1px dashed #999;
+  border-right: 1px dashed #999;
+  padding: 10px;
+}
+
 // projects
 .projects {
   @media (min-width: 1200px) {
-    padding-top: 120px;
     width: 100%;
   }
   .section-title-overlay-text {
@@ -184,6 +200,7 @@ onMounted(() => {
       z-index: 2;
       transition-duration: 300ms;
       transform-origin: left;
+      height: 35vh;
     }
     &::before,
     &::after {
@@ -239,9 +256,9 @@ onMounted(() => {
     }
   }
   .project-info {
-    margin-top: 32px;
+    margin-top: 30px;
     h2 {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 700;
       margin-bottom: 4px;
     }

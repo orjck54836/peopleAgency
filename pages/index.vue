@@ -9,12 +9,12 @@ const closeNav = () => {
 </script>
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
-  <Navigation :nav-open="navOpen" :close-nav="closeNav" />
+  <!-- <Navigation :nav-open="navOpen" :close-nav="closeNav" class="gx-xxl-3"/> -->
 
   <!-- main content -->
   <main class="container-fluid">
-    <div class="row gx-xxl-6">
-      <div class="col col-xl-9" data-bs-spy="scroll" data-bs-target="#navigation">
+    <div class="row">
+      <div class="col-xl-10" data-bs-spy="scroll" data-bs-target="#navigation">
         <Hero />
         <AboutMe />
         <Services />
@@ -27,6 +27,10 @@ const closeNav = () => {
         <!-- Blogs -->
         <!-- <Blogs /> -->
       </div>
+      <div class="col-xl-2">
+        <Navigation :nav-open="navOpen" :close-nav="closeNav" />
+      </div>
     </div>
   </main>
+  <Footer />
 </template>

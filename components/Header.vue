@@ -8,6 +8,7 @@ import SplitType from "split-type";
 defineProps<{
   navOpen: boolean;
   classes?: string;
+  toggleNav: () => void;
 }>();
 
 // i18n 設定
@@ -84,6 +85,9 @@ const switchLang = (lang: string) => {
             </li>
           </ul>
         </div>
+        <button class="menu-btn d-xl-none" @click="toggleNav">
+          <font-awesome-icon icon="fa-list" />
+        </button>
       </div>
     </div>
   </header>

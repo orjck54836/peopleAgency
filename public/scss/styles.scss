@@ -42,9 +42,7 @@ Version: 1.0
 
 @import "bootstrap.scss";
 
-// Reset
 body {
-  margin-left: 20px;
   font-family: "Poppins", sans-serif;
   background-color: rgb(var(--background)); /* 柔和米白色，讓畫面更乾淨舒適 */
   color: rgb(var(--contrast)); /* 文字用暖灰木色，溫潤柔和 */
@@ -77,9 +75,9 @@ h6 {
   z-index: 2;
 }
 @media screen and (min-width: 1750px) {
-  .container-fluid {
-    max-width: 95%;
-  }
+  // .container-fluid {
+  //   max-width: 95%;
+  // }
   // .navigation {
   //   left: calc((100% - 1680px) / 2 + 1290px);
   //   width: 360px;

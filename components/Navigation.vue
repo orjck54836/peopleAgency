@@ -59,6 +59,7 @@ const navItems = reactive([
       </li>
     </ul>
     <div class="contact">
+      <nuxt-link href="mailto:emily@devis.com">xxxxxxxx</nuxt-link>
       <nuxt-link href="mailto:emily@devis.com">emily@devis.com</nuxt-link>
       <nuxt-link href="tel:+420652887351">+420 652 887 351</nuxt-link>
     </div>
@@ -72,36 +73,21 @@ const navItems = reactive([
   position: absolute;
   height: 90%;
   border-left: 1px solid rgb(207, 194, 194);
-  @media (max-width: 1200px) {
-    &:dir(ltr) {
-      transform: translateX(-100%);
-      left: 0;
-    }
-    &:dir(rtl) {
-      transform: translateX(100%);
-      right: 0;
-    }
-    transition-duration: 500ms;
-    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    padding: 20px;
-    top: 0;
-    bottom: 0;
-    max-width: 300px;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-  }
-  &.opened {
-    @media (max-width: 1200px) {
-      transform: translateX(0);
-      position: fixed;
+  /* 小螢幕 (<1200px) 下拉式 */
+  @media (max-width: 1199px) {
+    /* 預設收合: display: none */
+    display: none;
+    position: static; /* 不要 absolute/fixed */
+
+    &.opened {
+      display: block; /* user點Menu後展開 */
       background-color: rgb(var(--primary));
+      padding: 20px;
     }
   }
   @media (min-width: 1200px) {
     position: fixed;
     top: 100px;
-    right: 0;
     &:dir(rtl) {
       left: 0;
       right: auto;

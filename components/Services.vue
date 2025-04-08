@@ -273,7 +273,6 @@ const containerRef = ref(null);
     }
 
     .services-container {
-      max-width: 1200px;
       margin: 3rem auto;
       text-align: center;
       border-left: 1px dashed #999;

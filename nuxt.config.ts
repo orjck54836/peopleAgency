@@ -3,7 +3,14 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  modules: ["nuxt-phosphor-icons", "@nuxtjs/google-fonts", "nuxt-swiper", "@vueuse/nuxt", "@nuxtjs/i18n"],
+  modules: [
+    "nuxt-phosphor-icons",
+    "@nuxtjs/google-fonts",
+    "nuxt-swiper",
+    "@vueuse/nuxt",
+    "@nuxtjs/i18n",
+    '@vesp/nuxt-fontawesome'
+  ],
   app: {
     head: {
       script: [
@@ -41,7 +48,11 @@ export default defineNuxtConfig({
     defaultLocale: 'ja'
   },
   ssr: false,
-  css: ["@/public/scss/styles.scss"],
+  css: ["@/public/scss/styles.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
+  build: {
+    // 讓 Nuxt 在打包時處理 @fortawesome/vue-fontawesome
+    transpile: ['@fortawesome/vue-fontawesome'],
+  },
   googleFonts: {
     families: {
       Poppins: [400, 500, 600, 700],
