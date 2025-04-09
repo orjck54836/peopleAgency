@@ -64,7 +64,28 @@ const navItems = reactive([
       <nuxt-link href="tel:+420652887351">+420 652 887 351</nuxt-link>
     </div>
   </nav>
-  <div v-if="navOpen" @click="closeNav" class="nav-overlay d-xl-none"></div>
+   <!-- 直接在同層渲染 Overlay -->
+   <div v-if="navOpen" class="nav-overlay d-xl-none" @click.self="closeNav">
+      <!-- overlay-content帶有彈出動畫 -->
+      <transition name="slide-up">
+        <div class="overlay-content" v-if="navOpen">
+          <transition-group
+            tag="div"
+            name="slide-up-items"
+            class="overlay-nav-items"
+          >
+            <div
+              class="overlay-item"
+              v-for="(item, index) in navItems"
+              :key="item.text"
+              @click="closeNav"
+            >
+              <a :href="'/' + item.href">{{ $t(item.text) }}</a>
+            </div>
+          </transition-group>
+        </div>
+      </transition>
+  </div>
 </template>
 
 <style lang="scss">
@@ -73,6 +94,7 @@ const navItems = reactive([
   position: absolute;
   height: 90%;
   border-left: 1px solid rgb(207, 194, 194);
+  
   /* 小螢幕 (<1200px) 下拉式 */
   @media (max-width: 1199px) {
     /* 預設收合: display: none */
@@ -218,32 +240,57 @@ const navItems = reactive([
   }
 }
 
-.nav-overlay {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 12;
-  opacity: 0;
-  transition-duration: 500ms;
-  transform: translateX(100%);
-}
+  .nav-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 12;
+    opacity: 0;
+    transition-duration: 500ms;
+    transform: translateX(100%);
 
-.navigation.opened + .nav-overlay {
-  opacity: 1;
-  transform: translateX(0);
-}
-.navigation-left-bar.opened + .nav-overlay {
-  opacity: 1;
-  transform: translateX(0);
-}
-.navigation-sticky.opened + .nav-overlay {
-  opacity: 1;
-  transform: translateX(0);
-}
-.navigation-topbar.opened + .nav-overlay {
-  opacity: 1;
-  transform: translateX(0);
-}
+    .overlay-content {
+      background-color: rgb(var(--primary)); /* 你網站主色 */
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      padding: 1.5rem;
+      opacity: 0.9;
+      color: #fffcf1;
+    }
+
+    .overlay-item {
+      width: 100%;
+      text-align: left;
+      font-size: larger;
+      padding-bottom: 10px;
+      &:hover {
+        border-bottom: 1px solid black; 
+      }
+    }
+  }
+
+  .navigation.opened + .nav-overlay {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .navigation-left-bar.opened + .nav-overlay {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .navigation-sticky.opened + .nav-overlay {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .navigation-topbar.opened + .nav-overlay {
+    opacity: 1;
+    transform: translateX(0);
+  }
 </style>

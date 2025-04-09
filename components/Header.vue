@@ -85,8 +85,8 @@ const switchLang = (lang: string) => {
             </li>
           </ul>
         </div>
-        <button class="menu-btn d-xl-none" @click="toggleNav">
-          <font-awesome-icon icon="fa-list" />
+        <button class="menu-btn" @click="toggleNav">
+          <font-awesome-icon :icon="navOpen ? ['fas', 'x'] : ['fas', 'list']" />
         </button>
       </div>
     </div>
@@ -287,6 +287,32 @@ const switchLang = (lang: string) => {
     -o-transform: rotate(-135deg);
     transform: rotate(-135deg);
     background-color: rgb(var(--white));
+  }
+
+  .menu-btn {
+    display: none;
+    /* 小螢幕 (<1200px) 下拉式 */
+    @media (max-width: 1200px) {
+      /* 固定尺寸，避免因icon大小不同而整個按鈕改變 */
+      width: 48px;
+      height: 48px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      background-color: #fff; /* 依照你的主題色 */
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 8px;
+      cursor: pointer;
+
+      /* transition 幫助 hover 效果 */
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    &:hover {
+      background-color: rgba(0,0,0,0.05);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
   }
 }
 </style>

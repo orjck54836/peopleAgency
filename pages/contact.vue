@@ -8,20 +8,23 @@ import blogVideo from "/images/blog-video.png";
 import youtube from "/images/youtube.png";
 import blogDetails from "/images/blog-details.png";
 
-const videoOpen = ref(false);
-const localePath = useLocalePath();
-const switchLocalePath = useSwitchLocalePath();
+const navOpen = ref(false);
+const toggleNav = () => {
+  navOpen.value = !navOpen.value;
+};
+const closeNav = () => {
+  navOpen.value = false;
+};
 </script>
 
 <template>
-  <Header>
+  <Header :nav-open="navOpen" :toggle-nav="toggleNav">
     <div>
       <NuxtLink to="/">
         <img :src="logo" alt="logo" />
       </NuxtLink>
     </div>
   </Header>
-
   <!-- main content -->
   <main>
     <!-- Blog Details -->
@@ -36,18 +39,8 @@ const switchLocalePath = useSwitchLocalePath();
       </div>
     </div>
   </main>
-  <footer>
-    <div class="contaner">
-      <div class="d-flex justify-content-center gap-3">
-        <p>
-          Copyright @ <span>{{ new Date().getFullYear() }}</span> Portify
-        </p>
-        <p>|</p>
-        <p>Designed By <a href="#">Pixelaxis</a></p>
-      </div>
-    </div>
-  </footer>
-  <ModalVideo channel="youtube" :is-open.sync="videoOpen" video-id="crDWEskuPII" @update:isOpen="videoOpen = $event" />
+  <Navigation :nav-open="navOpen" :close-nav="closeNav" />
+  <Footer />
 </template>
 
 <style lang="scss">
