@@ -7,8 +7,9 @@ defineProps<{
   closeNav: () => void;
 }>();
 
-// Refs
+const route = useRoute()
 const navRef = ref<HTMLElement | null>(null);
+const isContactPage = computed(() => route.path.includes('/contact'))
 
 // Watch and handle class changes
 onMounted(() => {
@@ -49,7 +50,7 @@ const navItems = reactive([
 </script>
 
 <template>
-  <nav ref="navRef" :class="`navigation ${navOpen ? 'opened' : ''}`" id="navigation">
+  <nav v-show="!isContactPage" ref="navRef" :class="`navigation ${navOpen ? 'opened' : ''}`" id="navigation">
     <img src="/images/logo.png" class="mb-4 d-xl-none" alt="logo" />
     <ul>
       <li v-for="(item, index) in navItems" :key="index" @click="closeNav" class="nav-link">
@@ -65,10 +66,10 @@ const navItems = reactive([
     </div>
   </nav>
    <!-- 直接在同層渲染 Overlay -->
-   <div v-if="navOpen" class="nav-overlay d-xl-none" @click.self="closeNav">
+   <div class="nav-overlay d-xl-none" @click.self="closeNav">
       <!-- overlay-content帶有彈出動畫 -->
       <transition name="slide-up">
-        <div class="overlay-content" v-if="navOpen">
+        <div class="overlay-content">
           <transition-group
             tag="div"
             name="slide-up-items"

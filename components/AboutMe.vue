@@ -4,7 +4,7 @@
   <section id="our_story" class="about section">
     <!-- 標題區（About Section） -->
     <section class="about-section">
-      <h1 class="about-title">{{ $t('ourStoryTitle') }}</h1>
+      <h1>{{ $t('ourStoryTitle') }}</h1>
     </section>
     <!-- About Content -->
     <div class="about-container">
@@ -240,20 +240,13 @@
   /* About Section */
   .about-section {
     text-align: center;
-    padding: 2rem 1rem 2rem;
+    padding: 20px;
     position: relative;
-    background-image: url("../img/about-me/aboutme-title.jpg");
+    background-image: url("../img/commonImage/title-background.png");
     background-size: cover;
+    border-radius: 20px;
   }
 
-  /* 漸層標題設計 */
-  .about-title {
-    font-size: 3rem; /* 可調整字體大小 */
-    position: relative;
-    display: inline-block;
-    margin-bottom: 1rem;
-    color: #675a5a;
-  }
   .about-subtitle {
     font-size: 1.25rem;
     color: #666;

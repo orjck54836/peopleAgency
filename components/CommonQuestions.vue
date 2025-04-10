@@ -55,7 +55,7 @@ onMounted(() => {
 <template>
   <!-- 標題區（service Section） -->
   <section class="common-questions-section">
-    <h1 class="common-questions-title">{{ $t('commonQuestionTitle') }}</h1>
+    <h1>{{ $t('commonQuestionTitle') }}</h1>
   </section>
   <div class="row pb-60 project-list g-4 common-questions-content">
     <div v-for="(project, i) in projects" key="{project.name}" @click="currentProject = project" class="col-sm-6 col-lg-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -150,10 +150,11 @@ onMounted(() => {
 <style lang="scss">
 .common-questions-section {
   text-align: center;
-  padding: 2rem 1rem 2rem;
+  padding: 20px;
   position: relative;
-  background-image: url("../img/about-me/aboutme-title.jpg");
+  background-image: url("../img/commonImage/title-background.png");
   background-size: cover;
+  border-radius: 20px;
 }
 
 .common-questions-content {

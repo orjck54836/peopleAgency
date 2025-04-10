@@ -26,7 +26,7 @@ const containerRef = ref(null);
   <section id="services" class="services section position-relative">
     <!-- 標題區（service Section） -->
     <section class="services-section">
-      <h1 class="services-title">{{ $t('servicesTitle') }}</h1>
+      <h1>{{ $t('servicesTitle') }}</h1>
     </section>
     <section class="services-content">
       <div class="services-container">
@@ -118,20 +118,13 @@ const containerRef = ref(null);
   /* Services Section */
   .services-section {
     text-align: center;
-    padding: 2rem 1rem 2rem;
+    padding: 20px;
     position: relative;
-    background-image: url("../img/about-me/aboutme-title.jpg");
+    background-image: url("../img/commonImage/title-background.png");
     background-size: cover;
+    border-radius: 20px;
   }
 
-  /* 漸層標題設計 */
-  .services-title {
-    font-size: 3rem; /* 可調整字體大小 */
-    position: relative;
-    display: inline-block;
-    margin-bottom: 1rem;
-    color: #675a5a;
-  }
   @media (min-width: 992px) {
     margin-top: 120px;
   }
@@ -279,12 +272,6 @@ const containerRef = ref(null);
       border-right: 1px dashed #999;
       padding: 10px;
 
-      .services-title {
-        font-size: 2rem;
-        color: rgb(var(--contrast));
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-      }
       .services-subtitle {
         font-size: 1.1rem;
         color: rgba(var(--contrast), 0.8);
