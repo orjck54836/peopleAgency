@@ -240,7 +240,7 @@
   /* About Section */
   .about-section {
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     position: relative;
     background-image: url("../img/commonImage/title-background.png");
     background-size: cover;

@@ -10,6 +10,12 @@
   "submit": "Submit",
   "contactMessage": "Leave a Message",
   "contactButton": "contact me",
+  "inquiryType": "Inquiry Type",
+  "inquiryOption1": "I want to understand the regulations and procedures for hiring foreign workers",
+  "inquiryOption2": "I want to know about the support services and pricing",
+  "inquiryOption3": "Others",
+  "required": "(Required)",
+  "contactMessageSubTitle": "Thank you for visiting! Please fill out your inquiry or request, and we’ll contact you shortly.",
 
   "frontPageTitle": "Every crossing brings new possibilities",
   "ourStoryTitle": "About us",

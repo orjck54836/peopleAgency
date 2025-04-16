@@ -30,6 +30,7 @@ const closeNav = () => {
       <div class="col-xl-2">
         <Navigation :nav-open="navOpen" :close-nav="closeNav" />
       </div>
+      <ContactIcon />
     </div>
   </main>
   <Footer />

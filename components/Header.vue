@@ -137,6 +137,10 @@ const switchLang = (lang: string) => {
     }
     /* 若與淺背景融合度不夠，可加點文字陰影或其他修飾 */
     text-shadow: 1px 1px 2px rgba(var(--background), 0.5);
+    
+    @media (max-width: 1200px) {
+      display: none;
+    }
   }
   .dropdown-menu {
     background-color: rgb(var(--background)); /* 柔和米白色背景 */
@@ -301,7 +305,7 @@ const switchLang = (lang: string) => {
       align-items: center;
       justify-content: center;
 
-      background-color: #fff; /* 依照你的主題色 */
+      background-color: #e0b080; /* 依照你的主題色 */
       border: 1px solid rgba(0,0,0,0.2);
       border-radius: 8px;
       cursor: pointer;

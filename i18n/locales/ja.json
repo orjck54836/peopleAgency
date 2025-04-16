@@ -10,6 +10,12 @@
   "submit": "上記内容で送信する",
   "contactMessage": "お問い合わせ",
   "contactButton": "お問い合わせ",
+  "inquiryType": "お問い合わせ項目",
+  "inquiryOption1": "外国人労働者を雇用するための規則や手続きについて知りたい",
+  "inquiryOption2": "サポート内容と料金について知りたい",
+  "inquiryOption3": "その他",
+  "required": "(必須)",
+  "contactMessageSubTitle": "この度ご覧いただきありがとうございます!ご要望やご質問を下記のフォームをご入力ください。迅速に折り返しご連絡をさせて頂きます。",
 
   "frontPageTitle": "一歩を踏み出すたび、新たな可能性が広がる",
   "ourStoryTitle": "会社情報",

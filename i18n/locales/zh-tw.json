@@ -10,6 +10,12 @@
   "submit": "送出",
   "contactMessage": "聯絡我們",
   "contactButton": "聯絡我們",
+  "inquiryType": "諮詢類別",
+  "inquiryOption1": "想雇用外籍工作者的相關規範及流程",
+  "inquiryOption2": "想了解支援項目與價錢",
+  "inquiryOption3": "其他",
+  "required": "(必填)",
+  "contactMessageSubTitle": "感謝您的來訪！請填寫您的需求或是任何問題，我們會立即與您聯繫",
   
   "frontPageTitle": "每一次的跨越，都有新的可能",
   "ourStoryTitle": "關於我們",

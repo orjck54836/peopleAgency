@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Define the types for the contact items and social links
 
-// Reactive form data and button state
 const formData = ref({
   companyName: "",
   name: "",
@@ -20,6 +19,7 @@ const formData = ref({
   cityAddress: "",
   detailAddress: "",
   email: "",
+  inquiryType: "",
   message: "",
 });
 
@@ -39,6 +39,7 @@ const handleSubmit = async () => {
       cityAddress: "", 
       detailAddress: "", 
       email: "", 
+      inquiryType: "",
       message: "",
     };
     submitBtn.value = "Success";
@@ -97,241 +98,203 @@ onMounted(() => {
 });
 </script>
 <template>
-  <form ref="form" @submit.prevent="handleSubmit" id="contact-form" class="contact-form ">
-    <h4>{{ $t('contactMessage') }}</h4>
-    <div class="row g-4 g-xl-5">
-      <div class="col-12 contact-input">
-        <label for="companyName">{{ $t('companyName') }}</label>
-        <input type="text" id="companyName" name="companyName" v-model="formData.companyName" placeholder="Your company name" required />
-      </div>
-      <div class="col-12 contact-input">
-        <label for="name">{{ $t('name') }}</label>
-        <input type="text" id="name" name="name" v-model="formData.name" placeholder="Your name" required />
-      </div>
-      <div class="col-12 contact-input">
-        <label for="phone">{{ $t('phone') }}</label>
-        <input type="number" id="phone" name="phone" v-model="formData.phone" placeholder="Your phone"></input>
-      </div>
-      <div class="col-12 contact-input">
-        <label for="workContent">{{ $t('workContent') }}</label>
-        <input type="text" id="workContent" name="workContent" v-model="formData.workContent" placeholder="Your bussiness details"></input>
-      </div>
-      <div class="col-12 contact-input">
-        <label for="cityAddress">{{ $t('cityAddress') }}</label>
-        <input type="text" id="cityAddress" name="cityAddress" v-model="formData.cityAddress" placeholder="Your city"></input>
-      </div>
-      <div class="col-12 contact-input">
-        <label for="detailAddress">{{ $t('detailAddress') }}</label>
-        <input type="text" id="detailAddress" name="detailAddress" v-model="formData.detailAddress" placeholder="Your detailed address"></input>
-      </div>
-      <div class="col-12 contact-input">
-        <label for="email">{{ $t('email') }}</label>
-        <input type="email" id="user_email" name="email" v-model="formData.email" placeholder="Your e-mail" required />
-      </div>
-      <div class="col-12 contact-input">
-        <label for="message">{{ $t('message') }}</label>
-        <textarea id="message" name="message" v-model="formData.message" placeholder="Your message"></textarea>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="submit-btn position-relative">
-          <div class="waves-top-md">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+  <section class="contact-wrapper">
+    <div class="contact-header">
+      <h2>{{ $t('contactMessage') }}</h2>
+      <p class="subtitle">{{ $t('contactMessageSubTitle') }}</p>
+    </div>
+
+    <form ref="form" @submit.prevent="handleSubmit" id="contact-form" class="contact-card">
+      <div class="grid">    
+        <div class="form-group">
+          <label for="companyName">{{ $t('companyName') }}
+            <span class="required">{{ $t('required') }}</span>
+          </label>
+          <input type="text" id="companyName" name="companyName" v-model="formData.companyName" :placeholder="$t('companyName')" required />
+        </div>
+        <div class="form-group">
+          <label for="name">{{ $t('name') }}
+            <span class="required">{{ $t('required') }}</span>
+          </label>
+          <input type="text" id="name" name="name" v-model="formData.name" :placeholder="$t('name')" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">{{ $t('phone') }}</label>
+          <input type="tel" id="phone" name="phone" v-model="formData.phone" :placeholder="$t('phone')" />
+        </div>
+        <div class="form-group">
+          <label for="email">{{ $t('email') }}
+            <span class="required">{{ $t('required') }}</span>
+          </label>
+          <input type="email" id="email" name="email" v-model="formData.email" :placeholder="$t('email')" required />
+        </div>
+        <div class="form-group">
+          <label for="cityAddress">{{ $t('cityAddress') }}</label>
+          <input type="text" id="cityAddress" name="cityAddress" v-model="formData.cityAddress" :placeholder="$t('cityAddress')" />
+        </div>
+        <div class="form-group full">
+          <label for="workContent">{{ $t('workContent') }}</label>
+          <input type="text" id="workContent" name="workContent" v-model="formData.workContent" :placeholder="$t('workContent')" />
+        </div>
+        <div class="form-group full">
+          <label for="message">{{ $t('message') }}</label>
+          <textarea id="message" name="message" rows="5" v-model="formData.message" :placeholder="$t('message')"></textarea>
+        </div>
+        <!-- お問い合わせ項目 -->
+        <div class="form-group full">
+          <label>{{ $t('inquiryType') }}
+            <span class="required">{{ $t('required') }}</span>
+          </label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="inquiryType" value="inquiryOption1" v-model="formData.inquiryType" required />
+              {{ $t('inquiryOption1') }}
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="inquiryType" value="inquiryOption2" v-model="formData.inquiryType" />
+              {{ $t('inquiryOption2') }}
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="inquiryType" value="inquiryOption3" v-model="formData.inquiryType" />
+              {{ $t('inquiryOption3') }}
+            </label>
           </div>
+        </div>
+      </div>
+
+      <div class="submit-wrapper">
+        <button type="submit" class="form-submit-btn">
           {{ submitBtn }}
-          <div class="waves-bottom-md">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
         </button>
       </div>
-    </div>
-  </form>
+    </form>
+  </section>
 </template>
 
+
 <style lang="scss">
-// contact section
-.contact {
-  padding-top: 60px 0;
-  @media (min-width: 1200px) {
-    padding-top: 120px 0;
+.contact-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+
+  label .required {
+    color: #e63946;
+    font-size: 0.875rem;
+    margin-left: 6px;
   }
-  padding-bottom: 40px;
-  .contact-item {
+
+  .radio-group {
     display: flex;
-    align-items: center;
-    gap: 16px;
-    @media (min-width: 992px) {
-      gap: 24px;
-    }
-    .icon-box {
-      height: 60px;
-      width: 60px;
-      @media (min-width: 992px) {
-        width: 80px;
-        height: 80px;
-        svg {
-          font-size: 2.2rem;
-        }
-      }
-      border-radius: 50%;
-      border: 1px solid rgb(var(--black));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      svg {
-        font-size: 1.6rem;
-      }
-    }
-    p {
-      @media (min-width: 992px) {
-        font-size: 20px;
-      }
+    flex-direction: column;
+    margin-top: 0.5rem;
+
+    .radio-option {
+      font-size: 1rem;
       font-weight: 500;
-    }
-  }
-  .social-icons {
-    a {
-      width: 42px;
-      height: 42px;
-      @media (min-width: 992px) {
-        width: 60px;
-        height: 60px;
-        svg {
-          font-size: 32px;
-        }
-      }
-      border-radius: 50%;
-      border: 1px solid rgb(var(--black));
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition-duration: 400ms;
-      &:hover {
-        background-color: #000;
-        color: #fff;
-      }
-      svg {
-        font-size: 24px;
+      gap: 0.5rem;
+      cursor: pointer;
+
+      input[type="radio"] {
+        accent-color: rgb(var(--primary));
+        transform: scale(1.2);
       }
     }
   }
-}
-.contact-form {
-  max-width: 856px;
-  h4 {
-    font-weight: 600;
-    font-size: 28px;
-    margin-bottom: 50px;
-    @media (min-width: 992px) {
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2rem;
       font-weight: 700;
-      font-size: 40px;
-      margin-bottom: 80px;
+    }
+
+    .subtitle {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #333;
+      line-height: 1.6;
+      letter-spacing: 0.25px;
+      padding-left: 0.25rem;
+      text-align: center;
+      text-wrap: balance;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
     }
   }
-  label {
-    font-size: 20px;
-    font-weight: 500;
-    color: rgb(var(--black));
+
+  .contact-card {
+    background: rgba(var(--white), 0.9);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   }
-  input,
-  textarea {
-    border-radius: 8px;
-    margin-top: 20px;
-    display: block;
-    background-color: rgb(var(--background)); 
-    border: 2px solid rgb(var(--primary));
-    width: 100%;
-    padding: 10px 15px;
-    font-size: 16px;
-    &:focus {
-      outline: none;
-    }
-  }
-  textarea {
-    height: auto;
-    @media (min-width: 992px) {
-      margin-bottom: 60px;
-    }
-  }
-  .submit-btn {
-    width: 40vw;
-    height: 10vh;
+
+  .form-group {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(145deg, rgba(var(--primary), 0.95), rgba(var(--secondary), 0.9)); 
-    border: 2px solid rgba(var(--contrast), 0.8); /* 增加細緻感 */
-    color: rgb(var(--background)); /* 文字與背景形成對比 */
-    padding: 12px 18px;
-    border-radius: 12px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 4px 4px 10px rgba(var(--contrast), 0.2), -4px -4px 10px rgba(var(--background), 0.2);
-    
-    /* 添加光暈效果 */
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 300%;
-        height: 300%;
-        background: radial-gradient(circle, rgba(var(--accent), 0.3) 0%, transparent 80%);
-        transition: all 0.4s ease-in-out;
-        transform: translate(-50%, -75%);
-        opacity: 0;
+    flex-direction: column;
+    margin-bottom: 15px;
+    label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
     }
 
-    &:hover::before {
-        transform: translate(-50%, 0%);
-        opacity: 1;
+    input,
+    textarea {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      background: #f9f9f9;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: rgb(var(--primary));
+        outline: none;
+      }
     }
 
-    &:hover {
-        background-color: #be6a10; /* 更明亮的木色 */
-        color: white;
-        box-shadow: 2px 2px 8px rgba(190, 106, 16, 0.5);
-    }
+    &.full {
+      grid-column: span 2;
 
-    &:active {
-        transform: scale(0.97); /* 輕微按壓效果 */
+      @media (max-width: 768px) {
+        grid-column: span 1;
+      }
     }
+  }
 
-    /* 🔹 SVG 變色 */
-    svg {
-        transition: all 0.3s ease-in-out;
-    }
+  .submit-wrapper {
+    margin-top: 2rem;
+    text-align: center;
 
-    &:hover svg {
-        filter: brightness(0) invert(1);
-    }
+    .form-submit-btn {
+      padding: 0.75rem 2rem;
+      background-color: rgb(var(--primary));
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: 0.3s;
 
-    /* 🔹 流動波紋動畫 */
-    .waves-top-md,
-    .waves-bottom-md {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(var(--accent), 0.1) 0%, transparent 70%);
-        top: 0;
-        left: 0;
-        opacity: 0.3;
-        transition: opacity 0.3s ease-in-out;
-    }
+      &:hover {
+        // background-color: darken(rgb(var(--primary)), 10%);
+      }
 
-    &:hover .waves-top-md,
-    &:hover .waves-bottom-md {
-        opacity: 0;
+      &:active {
+        transform: scale(0.97);
+      }
     }
   }
 }
+
 </style>
