@@ -24,8 +24,8 @@ const closeNav = () => {
             <CommonQuestions />
           </ClientOnly>
         </section>
-        <!-- Blogs -->
-        <!-- <Blogs /> -->
+        <!-- VisaType -->
+        <VisaType />
       </div>
       <div class="col-xl-2">
         <Navigation :nav-open="navOpen" :close-nav="closeNav" />

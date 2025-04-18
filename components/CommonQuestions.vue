@@ -72,11 +72,6 @@ onMounted(() => {
         <div class="project-info">
           <h2>{{ project.name }}</h2>
           <p>{{ project.category }}</p>
-          <!-- <div class="tags d-flex align-items-center gap-1">
-            <template v-for="tag in project.tags">
-              <span>{{ tag }}</span> {{ i < project.tags.length - 1 && "-" }}
-            </template>
-          </div> -->
         </div>
       </div>
     </div>

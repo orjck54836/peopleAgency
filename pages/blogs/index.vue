@@ -39,7 +39,7 @@ const topics = [
 ];
 const opened = ref(null);
 import AnimateHeight from "vue-animate-height";
-import { blogData } from "~/public/blogdata";
+import { blogData } from "~/public/visatype";
 import { formatString } from "~/utils/formatString";
 </script>
 <template>

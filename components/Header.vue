@@ -16,7 +16,9 @@ const { locale, locales } = useI18n();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
 const router = useRouter()
+const route = useRoute()
 
+const isContactPage = computed(() => route.path.includes('/contact'))
 // 按鈕動畫
 onMounted(() => {
   // GSAP animations
@@ -64,7 +66,7 @@ const switchLang = (lang: string) => {
       </NuxtLink>
       <!-- 語言切換下拉選單 -->
       <div class="d-flex align-items-center">
-        <NuxtLink :to="localePath('/contact')" class="contact-btn">
+        <NuxtLink v-if="!isContactPage" :to="localePath('/contact')" class="contact-btn">
           {{ $t('contactButton') }}
         </NuxtLink>
         <div class="dropdown">

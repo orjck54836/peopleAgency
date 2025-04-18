@@ -11,46 +11,53 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Define the types for the contact items and social links
 
-const formData = ref({
+const formData = {
   companyName: "",
   name: "",
   phone: "",
   workContent: "",
   cityAddress: "",
-  detailAddress: "",
   email: "",
   inquiryType: "",
   message: "",
-});
+};
 
 const submitBtn = computed(() => t('submit'));
 const config = useRuntimeConfig();
 // Handle form submission
 const form = ref<HTMLFormElement | null>(null);
 const handleSubmit = async () => {
-  submitBtn.value = "Sending...";
   try {
-    await emailjs.sendForm(config.public.SERVICE_ID as string, config.public.TEMPLATE_ID as string, form.value!, { publicKey: config.public.PUBLIC_KEY as string });
-    console.log("SUCCESS!");
-    formData.value = { 
-      companyName: "", 
-      name: "", phone: "", 
-      workContent: "", 
-      cityAddress: "", 
-      detailAddress: "", 
-      email: "", 
-      inquiryType: "",
-      message: "",
-    };
-    submitBtn.value = "Success";
-    setTimeout(() => {
-      submitBtn.value = "Submit";
-    }, 3000);
-  } catch (error) {
-    console.log("FAILED...", error);
-    submitBtn.value = "Submit";
+    console.log(formData);
+    const res = await fetch("https://qedunajx5c.execute-api.ap-northeast-3.amazonaws.com/dev/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        companyName: formData.companyName,
+        name: formData.name,
+        phone: formData.phone,
+        workContent: formData.workContent,
+        cityAddress: formData.cityAddress,
+        email: formData.email,
+        message: formData.message,
+        inquiryType: formData.inquiryType
+      }),
+    });
+
+    const result = await res.json();
+    if (result.success) {
+      alert("已成功送出！");
+    } else {
+      alert("發送失敗：" + result.error);
+    }
+  } catch (err) {
+    console.error("前端送出錯誤", err);
+    alert("發送失敗，請稍後再試");
   }
 };
+
 
 // GSAP animations on mounted
 onMounted(() => {
@@ -163,7 +170,7 @@ onMounted(() => {
       </div>
 
       <div class="submit-wrapper">
-        <button type="submit" class="form-submit-btn">
+        <button type="submit" class="form-submit-btn" @click="handleSubmit">
           {{ submitBtn }}
         </button>
       </div>
@@ -176,7 +183,7 @@ onMounted(() => {
 .contact-wrapper {
   max-width: 960px;
   margin: 0 auto;
-  padding: 4rem 1rem;
+  padding: 1rem 1rem;
 
   label .required {
     color: #e63946;
@@ -223,11 +230,6 @@ onMounted(() => {
       padding-left: 0.25rem;
       text-align: center;
       text-wrap: balance;
-
-      @media (max-width: 768px) {
-        font-size: 1rem;
-        line-height: 1.5;
-      }
     }
   }
 

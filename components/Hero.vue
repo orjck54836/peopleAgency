@@ -70,9 +70,11 @@ onMounted(() => {
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 70vh; /* 不要撐太大，保證一進畫面能看到整個區塊 */
+  min-height: 50vh; /* 不要撐太大，保證一進畫面能看到整個區塊 */
   padding: 4rem 1rem; 
   overflow: hidden;
+  display: flex;
+  align-items: center;
 
   /* 半透明斜角色塊: 只佔左半或部分 */
   .hero-deco-shape {
@@ -89,6 +91,7 @@ onMounted(() => {
 
   .hero-container {
     max-width: 1200px;
+    display: flex;
     margin: 0 auto;
     height: 100%;
     display: flex;
@@ -155,10 +158,6 @@ onMounted(() => {
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       border: 1px solid rgba(0,0,0,0.1);
-
-      @media (min-width: 992px) {
-        max-width: 500px;
-      }
     }
   }
 }

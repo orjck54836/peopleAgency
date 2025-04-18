@@ -9,7 +9,7 @@
   "message": "Inquiry Content",
   "submit": "Submit",
   "contactMessage": "Leave a Message",
-  "contactButton": "contact me",
+  "contactButton": "Contact us",
   "inquiryType": "Inquiry Type",
   "inquiryOption1": "I want to understand the regulations and procedures for hiring foreign workers",
   "inquiryOption2": "I want to know about the support services and pricing",
@@ -29,5 +29,7 @@
   "title_Alliance": "Progressing hand in hand with our clients, we emphasize the power of alliances for shared success.",
 
   "servicesTitle": "Service Information",
-  "commonQuestionTitle": "Common Questions"
+  "commonQuestionTitle": "Common Questions",
+
+  "learnMore": "Learn more"
 }
