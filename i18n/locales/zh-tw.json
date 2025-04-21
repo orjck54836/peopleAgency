@@ -31,5 +31,11 @@
   "servicesTitle": "服務項目",
   "commonQuestionTitle": "常見問題",
 
-  "learnMore": "查看更多"
+  "learnMore": "查看更多",
+
+  "formSuccessTitle": "感謝您的聯絡！",
+  "formSuccessSubtitle": "我們已收到您的訊息，將盡快與您聯繫。",
+  "errorTitle": "送出失敗",
+  "errorSubtitle": "發生錯誤，請稍後再試。",
+  "confirm": "確認"
 }

@@ -8,9 +8,13 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 gsap.registerPlugin(ScrollTrigger);
+const showSuccess = ref(false)
+const showError = ref(false);
 
-// Define the types for the contact items and social links
-
+const handleDialogClose = () => {
+  showSuccess.value = false;
+  showError.value = false;
+};
 const formData = {
   companyName: "",
   name: "",
@@ -48,13 +52,14 @@ const handleSubmit = async () => {
 
     const result = await res.json();
     if (result.success) {
-      alert("已成功送出！");
+      showSuccess.value = true;
+      Object.keys(formData).forEach(key => formData[key] = "");
     } else {
-      alert("發送失敗：" + result.error);
+      showError.value = true;
     }
   } catch (err) {
     console.error("前端送出錯誤", err);
-    alert("發送失敗，請稍後再試");
+    showError.value = true;
   }
 };
 
@@ -170,11 +175,24 @@ onMounted(() => {
       </div>
 
       <div class="submit-wrapper">
-        <button type="submit" class="form-submit-btn" @click="handleSubmit">
+        <button type="submit" class="form-submit-btn">
           {{ submitBtn }}
         </button>
       </div>
     </form>
+    <!-- ✅ 成功視窗 -->
+    <SuccessDialog
+      :show="showSuccess"
+      :title="$t('formSuccessTitle')"
+      :subtitle="$t('formSuccessSubtitle')"
+      @close="handleDialogClose"
+    />
+    <ErrorDialog
+      :show="showError"
+      :title="$t('errorTitle')"
+      :subtitle="$t('errorSubtitle')"
+      @close="handleDialogClose"
+    />
   </section>
 </template>
 

@@ -98,7 +98,7 @@ const navItems = reactive([
   position: absolute;
   height: 90%;
   border-left: 1px solid rgb(207, 194, 194);
-  
+  z-index: 100;
   /* 小螢幕 (<1200px) 下拉式 */
   @media (max-width: 1199px) {
     /* 預設收合: display: none */

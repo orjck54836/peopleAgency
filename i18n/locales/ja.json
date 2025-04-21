@@ -31,5 +31,11 @@
   "servicesTitle": "サービス案内",
   "commonQuestionTitle": "よくあるご質問",
 
-  "learnMore": "詳しくはこちらへ"
+  "learnMore": "詳しくはこちらへ",
+
+  "formSuccessTitle": "お問い合わせありがとうございます！",
+  "formSuccessSubtitle": "メッセージを受け取りました。後ほどご連絡いたします。",
+  "errorTitle": "送信失敗",
+  "errorSubtitle": "エラーが発生しました。しばらくしてからもう一度お試しください。",
+  "confirm": "確認"
 }

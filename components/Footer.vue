@@ -22,7 +22,7 @@
   background-color: #e7bc87;
   color: rgb(var(--contrast));
   padding: 2rem 1rem 1rem;
-
+  
   .footer-bottom {
     text-align: center;
     p {
