@@ -1,218 +1,177 @@
 <template>
-  <div>
-     <div class="wave"></div>
-     <div class="wave"></div>
-     <div class="wave"></div>
-  </div>
-  <section class="hero-section">
-    <!-- 背景圖形由 ::before 製作 -->
-    <div class="hero-content-wrapper">
-      <div class="hero-text">
-        <h5 class="subtitle">每一次的跨越，都有新的可能</h5>
-        <h1 class="title">跨越文化與地域，打造更大未來</h1>
-        <p class="desc">
-          為您搭起通往日本的信任橋梁，無論是外籍雇用、簽證申辦還是制度諮詢，我們提供全方位解決方案。
-        </p>
+<section class="section_hero">
+  <div class="hero">
+    <!-- 圖片 -->
+    <div class="hero_image">
+      <img src="../img/main-page/image.jpg" alt="Hero Image" />
+    </div>
+    <!-- 標語 -->
+    <div>
+      <div class="hero_title">
+        <h1 class="hero_slogan">
+          <span class="fade_word">{{ $t('heroTitle1') }}</span>
+          <span class="fade_word">{{ $t('heroTitle2') }}</span>
+          <span class="fade_word">{{ $t('heroTitle3') }}</span>
+        </h1>
       </div>
-      <div class="hero-image">
-        <img src="../img/main-page/image.jpg" alt="hero" class="hero-img" />
+      <div class="hero_subtitle">
+        <h5>
+          <span class="fade_word">{{ $t('heroSubtitle1') }}</span>
+          <span class="fade_word">{{ $t('heroSubtitle2') }}</span>
+        </h5>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { onMounted } from 'vue'
 import gsap from 'gsap'
 
 onMounted(() => {
-  gsap.from(".hero-text", {
+  gsap.from(".hero_image img", {
+    scale: 1.1,
     opacity: 0,
-    x: -50,
-    duration: 1,
+    y: 30,
+    duration: 1.6,
     ease: "power2.out"
   });
 
-  gsap.from(".hero-img", {
+  gsap.from(".fade_word", {
     opacity: 0,
-    x: 50,
-    duration: 1.2,
-    ease: "power2.out",
-    delay: 0.3
+    y: 30,
+    stagger: 0.4,
+    delay: 0.2,
+    duration: 3,
+    ease: "power3.out"
   });
 });
 </script>
 
 <style scoped lang="scss">
-.hero-section {
-  position: relative;
-  overflow: hidden;
-  padding: 100px 20px;
-  z-index:-1;
-  
-  .hero-content-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    z-index: 1;
-    position: relative;
+@import url('https://fonts.cdnfonts.com/css/gloock');
 
-    @media (max-width: 768px) {
-      flex-direction: column;
-      text-align: center;
-    }
+.section_hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 3rem 1.5rem;
+  position: relative;
+  padding-top: 0;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  z-index: 2;
+
+  @media (max-width: 992px) {
+    gap: 50px;
   }
 
-  .hero-text {
-    flex: 1;
-    max-width: 600px;
-    z-index: 1;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+}
 
-    .subtitle {
-      font-size: 1rem;
-      color: #7f6552;
-      margin-bottom: 1rem;
+.hero_image {
+  height: 40vh;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%) brightness(1.05);
+    border-radius: 24px;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.03);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.hero_title {
+  max-width: 600px;
+  
+  h1.hero_slogan {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    color: #875b32;
+
+    @media (min-width: 1800px) {
+      font-size: 3rem;
     }
 
-    .title {
-      font-size: 2.5rem;
+    @media (max-width: 992px) {
+      font-size: 1.8rem;
+    }
+
+    @media (max-width: 420px) {
+      font-size: 1.3rem;
+    }
+
+    .fade_word {
+      line-height: 1.4;
       font-weight: 700;
-      color: #734c3f;
-      margin-bottom: 1rem;
-      @media (min-width: 768px) {
-        font-size: 3.5rem;
+      font-family: "Urbanist", sans-serif;
+      text-align: left;
+
+      @media (max-width: 768px) {
+        text-align: center;
+      }
+
+      &.highlight {
+        color: #ae6b5a;
+      }
+    }
+  }
+}
+
+.hero_subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #a76e46;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 400;
+    opacity: 0.9;
+    max-width: 500px;
+
+    h5 {
+      font-size: 1rem;
+
+      @media (min-width: 1800px) {
+        font-size: 1.2rem;
+      }
+
+      @media (max-width: 992px) {
+        font-size: 1rem;
+      }
+
+      @media (max-width: 420px) {
+        font-size: 0.9rem;
       }
     }
 
-    .desc {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #4e3d36;
-    }
   }
 
-  .hero-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 500px;
-    z-index: 1;
-
-    .hero-img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    }
-  }
-}
-
-@keyframes floatBg {
-  0% {
-    transform: scale(1) translateY(0);
-  }
-  50% {
-    transform: scale(1.02) translateY(-10px);
-  }
-  100% {
-    transform: scale(1) translateY(0);
-  }
-}
-
-
-
-body {
-    margin: auto;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    overflow: auto;
-    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
-    animation: gradient 15s ease infinite;
-    background-size: 400% 400%;
-    background-attachment: fixed;
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 0%;
-    }
-    50% {
-        background-position: 100% 100%;
-    }
-    100% {
-        background-position: 0% 0%;
-    }
-}
-
-body {
-    margin: auto;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    overflow: auto;
-    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
-    animation: gradient 15s ease infinite;
-    background-size: 400% 400%;
-    background-attachment: fixed;
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 0%;
-    }
-    50% {
-        background-position: 100% 100%;
-    }
-    100% {
-        background-position: 0% 0%;
-    }
-}
-
-.wave {
-    background: rgb(255 255 255 / 25%);
-    border-radius: 1000% 1000% 0 0;
-    position: fixed;
-    width: 200%;
-    height: 12em;
-    animation: wave 10s -3s linear infinite;
-    transform: translate3d(0, 0, 0);
-    opacity: 0.8;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-}
-
-.wave:nth-of-type(2) {
-    bottom: -1.25em;
-    animation: wave 18s linear reverse infinite;
-    opacity: 0.8;
-}
-
-.wave:nth-of-type(3) {
-    bottom: -2.5em;
-    animation: wave 20s -1s reverse infinite;
-    opacity: 0.9;
-}
-
-@keyframes wave {
-    2% {
-        transform: translateX(1);
-    }
-
-    25% {
-        transform: translateX(-25%);
-    }
-
-    50% {
-        transform: translateX(-50%);
-    }
-
-    75% {
-        transform: translateX(-25%);
-    }
-
-    100% {
-        transform: translateX(1);
-    }
-}
 </style>
