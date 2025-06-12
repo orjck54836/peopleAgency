@@ -24,6 +24,7 @@
     "nuxt-swiper": "1.2.2",
     "shuffle-letters": "^1.1.0",
     "split-type": "^0.3.4",
+    "tailwindcss": "^4.1.10",
     "usebootstrap": "^3.5.100",
     "vue": "latest",
     "vue-animate-height": "^1.1.2",

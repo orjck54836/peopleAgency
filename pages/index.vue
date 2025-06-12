@@ -17,15 +17,14 @@ const closeNav = () => {
       <div class="col-xl-10" data-bs-spy="scroll" data-bs-target="#navigation">
         <Hero />
         <AboutMe />
-        <Services />
+        <ServiceType />
+        <!-- <Services /> -->
         <!-- Projects -->
         <section id="common_questions" class="projects section position-relative">
           <ClientOnly>
             <CommonQuestions />
           </ClientOnly>
         </section>
-        <!-- VisaType -->
-        <VisaType />
       </div>
       <div class="col-xl-2">
         <Navigation :nav-open="navOpen" :close-nav="closeNav" />
