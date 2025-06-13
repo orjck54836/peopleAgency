@@ -11,22 +11,45 @@
             <!-- 我們的使命 -->
             <section class="section-card">
                 <div class="card-flex">
-                    <img src="https://picsum.photos/800/600?image=1081" alt="Mission" class="card-image-large" />
-                    <div>
-                        <h2>我們的使命</h2>
-                        <p>
-                            我們致力於打造一個公平、透明且高效率的跨國人力媒合平台。針對雇主，我們提供專業職缺分析與高匹配度人選推薦；對求職者，我們提供履歷優化、簽證輔導、入職前教育訓練等全方位支援，協助雙方建立長期穩定的合作關係。
-                        </p>
+                    <div class="mission-content">
+                        <h2 class="section-title">我們的使命</h2>
+                        <div class="d-flex">
+                            <div>
+                                <div class="mission-block">
+                                    <h3 class="mission-heading">這份工作的意義</h3>
+                                    <p class="mission-text">
+                                        對每位企業雇主而言，我們協助他們找到值得信賴、穩定投入的海外人才；<br />
+                                        對每位外籍求職者而言，我們為他們打開一條合法、安全、有希望的赴日工作之路。<br />
+                                        我們深知，一次成功的就業媒合，背後不只是履歷與面談，更是關乎一個家庭的未來、一個人的夢想實現。
+                                    </p>
+                                </div>
+
+                                <div class="mission-block">
+                                    <h3 class="mission-heading">我們對社會的貢獻</h3>
+                                    <p class="mission-text">
+                                        我們的服務幫助企業補足人力缺口、穩定營運；也促進多元文化交流，帶動地方活力與國際理解。<br /><br />
+                                        透過合法的工作與在地支援，我們幫助他們走出貧困、創造價值，並將經驗與希望帶回原生社會。<br /><br />
+                                        我們相信，真正有價值的國際勞務輸出，是互惠、尊重與共創未來的過程。<br />
+                                        而我們，就是這個正向循環的推動者。
+                                    </p>
+                                </div>
+                            </div>
+                            <img src="https://picsum.photos/800/600?image=1081" alt="Mission"
+                                class="card-image-large" />
+                        </div>
+
                     </div>
+
                 </div>
             </section>
+
 
             <!-- 簽證類型 -->
             <section class="section-card">
                 <div class="card-flex">
-                    <div>
+                    <div class="w-100">
                         <h2>支援的簽證類型</h2>
-                        <div class="d-flex">
+                        <div class="visa-block">
                             <div class="carousel-slider">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
@@ -274,14 +297,15 @@ onMounted(() => {
 .card-flex {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: 2rem;
     flex-wrap: wrap;
 }
 
 .card-image-large {
-    flex-shrink: 0;
-    max-width: 240px;
+    display: block;
+    max-width: 100%;
+    height: auto;
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -406,6 +430,21 @@ onMounted(() => {
     margin-bottom: 0;
 }
 
+.visa-block {
+    display: flex;
+}
+
+@media (max-width: 1200px) {
+    .visa-block {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .visa-description {
+        text-align: center;
+    }
+}
+
 .carousel-slider {
     max-width: 50%;
 }
@@ -418,8 +457,10 @@ onMounted(() => {
 }
 
 .carousel-slider .swiper-slide {
-    width: 220px; /* 設定每張slide固定寬度 */
-    max-width: 50%; /* 手機裝置時不爆版 */
+    width: 220px;
+    /* 設定每張slide固定寬度 */
+    max-width: 50%;
+    /* 手機裝置時不爆版 */
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
     padding: 1rem;
@@ -459,5 +500,42 @@ onMounted(() => {
 
 .visa-description h4 {
     margin-bottom: 10px;
+}
+
+.mission-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid #d6710c;
+    padding-left: 1rem;
+}
+
+.mission-block {
+    background-color: #f9fafb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    margin-bottom: 50px;
+}
+
+.mission-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #d97706;
+    margin-bottom: 0.75rem;
+}
+
+.mission-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #374151;
 }
 </style>
