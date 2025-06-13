@@ -73,7 +73,7 @@ onMounted(() => {
 .white-gradient-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  background: linear-gradient(to right, rgba(188, 177, 177, 0.8), rgba(85, 69, 69, 0.2), rgba(255, 255, 255, 0.2));
 }
 
 .hero {
@@ -120,45 +120,45 @@ onMounted(() => {
   }
 }
 
-.hero_title {
-  max-width: 600px;
-  
-  h1.hero_slogan {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    font-size: 2.2rem;
-    color: #a7703e;
+.hero_slogan {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 2.6rem;
+  font-weight: 800;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+  text-align: left;
 
-    @media (min-width: 1800px) {
-      font-size: 3rem;
-    }
+  color: #68300ae8;
+  text-shadow: 0 1px 3px rgba(249, 249, 249, 0.2);
+  margin-bottom: 2rem;
 
-    @media (max-width: 992px) {
-      font-size: 1.8rem;
-    }
+  @media (min-width: 1800px) {
+    font-size: 3rem;
+  }
 
-    @media (max-width: 420px) {
-      font-size: 1.3rem;
-    }
+  @media (max-width: 992px) {
+    font-size: 1.8rem;
+  }
 
-    .fade_word {
-      line-height: 1.4;
-      font-weight: 700;
-      font-family: "Urbanist", sans-serif;
-      text-align: left;
+  @media (max-width: 420px) {
+    font-size: 1.3rem;
+  }
 
-      @media (max-width: 768px) {
-        text-align: center;
-      }
+  .fade_word {
+    line-height: 1.4;
+    font-weight: 700;
+    font-family: "Urbanist", sans-serif;
+    text-align: left;
 
-      &.highlight {
-        color: #ae6b5a;
-      }
+    @media (max-width: 768px) {
+      text-align: center;
     }
   }
 }
+
 .hero-text-container {
   position: relative;
   padding: 6rem 1.5rem;
@@ -190,9 +190,12 @@ onMounted(() => {
 }
 
 .hero-subtitle {
-  font-size: 1.125rem;
-  color: #4b5563;
+  margin-top: 50px;
+  font-size: 1.35rem;
+  color: #fff;
   margin-bottom: 2rem;
+  font-weight: bolder;
+  text-shadow: 0 1px 3px rgba(210, 127, 18, 0.2);
 }
 
 .hero-buttons {

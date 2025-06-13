@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@fontsource/playfair-display": "^5.2.6",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@mdi/font": "^7.4.47",
@@ -24,6 +25,7 @@
     "nuxt-swiper": "1.2.2",
     "shuffle-letters": "^1.1.0",
     "split-type": "^0.3.4",
+    "swiper": "^11.2.8",
     "tailwindcss": "^4.1.10",
     "usebootstrap": "^3.5.100",
     "vue": "latest",

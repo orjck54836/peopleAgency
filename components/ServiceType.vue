@@ -4,7 +4,7 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-  <section id="blogs" class="section blogs position-relative">
+  <section id="services" class="section services position-relative">
     <!-- 標題區 -->
     <section class="serviceType-section">
       <h1>{{ $t('servicesTitle') }}</h1>

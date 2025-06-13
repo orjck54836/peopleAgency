@@ -9,10 +9,22 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "@vueuse/nuxt",
     "@nuxtjs/i18n",
-    '@vesp/nuxt-fontawesome'
+    '@vesp/nuxt-fontawesome',
   ],
   app: {
     head: {
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Pacifico&display=swap',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap',
+        },
+      ],
       script: [
         {
           src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",

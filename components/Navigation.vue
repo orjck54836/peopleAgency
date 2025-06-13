@@ -48,7 +48,6 @@ const navItems = reactive([
   { index: "", text: "ourStoryTitle", href: "#our_story", active: false },
   { index: "", text: "servicesTitle", href: "#services", active: false },
   { index: "", text: "commonQuestionTitle", href: "#common_questions", active: false },
-  { index: "", text: "blogs", href: "#blogs", active: false },
 ]);
 </script>
 

@@ -1,193 +1,463 @@
 <template>
     <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
     <main class="page-wrapper">
-      <section class="hero">
-        <h1 class="hero-title">日本就業人力引進服務</h1>
-        <p class="hero-subtitle">連結亞洲人才與日本企業，打造高品質、合規且高效率的跨國就業解決方案。</p>
-        <img class="hero-image" src="https://picsum.photos/800/600?image=1080" alt="Japan Employment" />
-      </section>
-  
-      <div class="grid gap-12">
-        <!-- 我們的使命 -->
-        <section class="section-card">
-          <div class="card-flex">
-            <img src="https://picsum.photos/800/600?image=1080" alt="Mission" class="card-image" />
-            <div>
-              <h2>我們的使命</h2>
-              <p>
-                本公司致力於協助台灣與東南亞優秀人才，取得合法簽證並前往日本從事特定領域工作。無論是特定技能簽證（特定技能1號/2號），還是技術・人文知識・國際業務簽證（技人國），我們皆提供從媒合、文件處理到就業後支援的一條龍服務。
-              </p>
+        <section class="hero">
+            <h1 class="hero-title">日本就業人力引進服務</h1>
+            <p class="hero-subtitle">我們連結亞洲人才與日本企業，為雇主找到合適即戰力，也為求職者實現赴日工作的夢想。</p>
+            <img class="hero-image" src="https://picsum.photos/800/600?image=1080" alt="Japan Employment" />
+        </section>
+
+        <div class="grid gap-12">
+            <!-- 我們的使命 -->
+            <section class="section-card">
+                <div class="card-flex">
+                    <img src="https://picsum.photos/800/600?image=1081" alt="Mission" class="card-image-large" />
+                    <div>
+                        <h2>我們的使命</h2>
+                        <p>
+                            我們致力於打造一個公平、透明且高效率的跨國人力媒合平台。針對雇主，我們提供專業職缺分析與高匹配度人選推薦；對求職者，我們提供履歷優化、簽證輔導、入職前教育訓練等全方位支援，協助雙方建立長期穩定的合作關係。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 簽證類型 -->
+            <section class="section-card">
+                <div class="card-flex">
+                    <div>
+                        <h2>支援的簽證類型</h2>
+                        <div class="d-flex">
+                            <div class="carousel-slider">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="item-content">
+                                            特定技能簽證
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="item-content">
+                                            技術・人文知識・國際業務簽證
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="item-content">
+                                            技能実習
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 對應顯示說明內容 -->
+                            <div class="visa-description" style="margin-top: 1.5rem">
+                                <div v-if="currentIndex === 0">
+                                    <h4>特定技能簽證</h4>
+                                    <p>適用於餐飲、建設、照護、農業、製造等產業，需具備實務經驗與日語能力。</p>
+                                </div>
+                                <div v-else-if="currentIndex === 1">
+                                    <h4>技術・人文知識・國際業務簽證</h4>
+                                    <p>適用於工程、設計、IT、會計、國際貿易等專業領域。</p>
+                                </div>
+                                <div v-else-if="currentIndex === 2">
+                                    <h4>技能實習</h4>
+                                    <p>提供來自發展中國家的青年在日本企業進行技能學習與實務訓練的機會。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 國籍範圍 -->
+            <section class="section-card">
+                <h2>主要引進國籍</h2>
+                <p>我們深耕亞洲市場，協助日本企業從以下國家尋找優秀人才，同時也支援這些國家求職者完成赴日夢想：</p>
+                <div class="tag-list">
+                    <span class="tag-item">台灣</span>
+                    <span class="tag-item">越南</span>
+                    <span class="tag-item">印尼</span>
+                </div>
+                <img src="https://picsum.photos/800/600?image=1083" alt="Countries" class="section-image mt-6" />
+            </section>
+
+            <!-- 合作流程 -->
+            <section class="section-card">
+                <h2>企業合作流程</h2>
+                <div class="flow">
+                    <div class="flow__item">
+                        <div class="flow__num"><span>STEP</span></div>
+                        <div class="flow__txt">
+                            <h3 class="ttl">需求確認：</h3>
+                            <p class="detail">由專員與雇主進行一對一諮詢，了解實際職缺內容、工作環境、招募條件（語言程度、專業經歷、文化適應度等），確保找到最合適的人才。</p>
+                        </div>
+                    </div>
+
+                    <div class="flow__item">
+                        <div class="flow__num"><span>STEP</span></div>
+                        <div class="flow__txt">
+                            <h3 class="ttl">合作簽約：</h3>
+                            <p class="detail">雙方簽訂正式合作契約，明訂職缺數量、招募時間、服務內容（如文件準備、教育訓練）、收費項目與權責分工，保障雙方權益。</p>
+                        </div>
+                    </div>
+
+                    <div class="flow__item">
+                        <div class="flow__num"><span>STEP</span></div>
+                        <div class="flow__txt">
+                            <h3 class="ttl">人選推薦與面試：</h3>
+                            <p class="detail">根據企業需求精準篩選候選人，安排線上或實體面試（含履歷與背景檢查），並可提供錄影資料供審核，提升媒合效率。</p>
+                        </div>
+                    </div>
+
+                    <div class="flow__item">
+                        <div class="flow__num"><span>STEP</span></div>
+                        <div class="flow__txt">
+                            <h3 class="ttl">簽證與在留處理：</h3>
+                            <p class="detail">協助辦理所有簽證、在留資格等申請流程，包含翻譯、公證、雇用契約撰寫與行政程序，全程由專員追蹤處理進度。</p>
+                        </div>
+                    </div>
+
+                    <div class="flow__item">
+                        <div class="flow__num"><span>STEP</span></div>
+                        <div class="flow__txt">
+                            <h3 class="ttl">赴日前準備：</h3>
+                            <p class="detail">針對錄取人員提供赴日前的日語訓練、文化適應課程與生活知識指導，並協助安排機票、接機與住宿，確保順利赴任。</p>
+                        </div>
+                    </div>
+
+                    <div class="flow__item">
+                        <div class="flow__num"><span>STEP</span></div>
+                        <div class="flow__txt">
+                            <h3 class="ttl">入職後追蹤：</h3>
+                            <p class="detail">定期與雇主與人才雙方進行溝通回饋，協助處理語言適應、生活輔導、出勤管理等問題，促進穩定的長期就業關係。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- CTA -->
+            <div class="text-center mt-10">
+                <NuxtLink to="/contact">
+                    <button class="cta-button">立即聯絡我們</button>
+                </NuxtLink>
             </div>
-          </div>
-        </section>
-  
-        <!-- 簽證類型 -->
-        <section class="section-card">
-          <div class="card-flex">
-            <img src="https://picsum.photos/800/600?image=1080" alt="Visa Types" class="card-image" />
-            <div>
-              <h2>支援的簽證類型</h2>
-              <ul>
-                <li><strong>特定技能簽證（特定技能1號 / 2號）：</strong> 適用於餐飲、建設、照護、製造業等特定產業。</li>
-                <li><strong>技術・人文知識・國際業務簽證（技人國）：</strong> 適用於工程師、設計師、國際業務等專業人才。</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-  
-        <!-- 國籍範圍 -->
-        <section class="section-card">
-          <h2>主要引進國籍</h2>
-          <p>我們擁有跨國人才網絡，並聚焦以下來源國家：</p>
-          <div class="tag-list">
-            <span class="tag-item">台灣</span>
-            <span class="tag-item">越南</span>
-            <span class="tag-item">印尼</span>
-            <span class="tag-item">菲律賓</span>
-            <span class="tag-item">泰國</span>
-          </div>
-          <img src="https://picsum.photos/800/600?image=1080" alt="Countries" class="section-image mt-6" />
-        </section>
-  
-        <!-- 合作流程 -->
-        <section class="section-card">
-          <h2>企業合作流程</h2>
-          <img src="https://picsum.photos/800/600?image=1080" alt="Process Flow" class="section-image mb-4" />
-          <ol>
-            <li>確認職缺與需求 → 簽訂合作協議</li>
-            <li>人才篩選與初步面談（線上/實體）</li>
-            <li>提交資料 → 簽證文件處理</li>
-            <li>取得在留資格 → 安排赴日行程</li>
-            <li>人員入職 → 持續追蹤與支援</li>
-          </ol>
-        </section>
-  
-        <!-- CTA -->
-        <div class="text-center mt-10">
-          <NuxtLink to="/contact">
-            <button class="cta-button">立即聯絡我們</button>
-          </NuxtLink>
         </div>
-      </div>
     </main>
-  </template>
-  
-  <style scoped>
-  .page-wrapper {
-    max-width: 1040px;
+    <Footer />
+</template>
+
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+import Swiper from 'swiper/bundle'
+import 'swiper/css/bundle'
+
+const currentIndex = ref(0)
+
+onMounted(() => {
+    const swiper = new Swiper('.carousel-slider', {
+        grabCursor: true,
+        watchSlidesProgress: true,
+        loop: true,
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        spaceBetween: 20,
+        initialSlide: 0,
+        on: {
+            progress(e) {
+                const t = e.slides.length
+                for (let r = 0; r < e.slides.length; r += 1) {
+                    const o = e.slides[r]
+                    const s = (e.slides[r] as any).progress
+                    const i = Math.abs(s)
+                    let n = 1
+                    if (i > 1) n = 0.3 * (i - 1) + 1
+                    const l = o.querySelectorAll('.item-content')
+                    const a = s * n * 50 + '%'
+                    const c = 1 - 0.2 * i
+                    const d = t - Math.abs(Math.round(s))
+                    o.style.transform = `translateX(${a}) scale(${c})`
+                    o.style.zIndex = d.toString()
+                    o.style.opacity = (i > 3 ? 0 : 1).toString()
+                    l.forEach((el) => {
+                        (el as HTMLElement).style.opacity = (1 - i / 3).toString()
+                    })
+                }
+            },
+            setTransition(e, t) {
+                for (let r = 0; r < e.slides.length; r += 1) {
+                    const o = e.slides[r]
+                    const s = o.querySelectorAll('.item-content')
+                    o.style.transitionDuration = `${t}ms`
+                    s.forEach((el) => {
+                        (el as HTMLElement).style.transitionDuration = `${t}ms`
+                    })
+                }
+            },
+            slideChange(swiper) {
+                currentIndex.value = swiper.realIndex
+            }
+        }
+    })
+})
+
+</script>
+
+
+<style scoped>
+.page-wrapper {
+    max-width: 90%;
     margin: 0 auto;
     padding: 4rem 1.5rem;
     font-family: 'Noto Sans TC', 'Helvetica Neue', sans-serif;
-    background-color: #f6f8fb;
-  }
-  
-  .hero {
+    background-color: #f8fbff;
+    border-radius: 20px;
+    margin-bottom: 50px;
+}
+
+.hero {
     text-align: center;
     margin-bottom: 3rem;
-  }
-  
-  .hero-title {
-    font-size: 2.5rem;
+}
+
+.hero-title {
+    font-size: 2.8rem;
     font-weight: 800;
     color: #1f2937;
     margin-bottom: 0.5rem;
-  }
-  
-  .hero-subtitle {
+}
+
+.hero-subtitle {
     font-size: 1.2rem;
     color: #4b5563;
     margin-bottom: 1rem;
-  }
-  
-  .hero-image {
-    max-width: 480px;
+}
+
+.hero-image {
+    max-width: 540px;
+    border-radius: 20px;
     margin: 0 auto;
-  }
-  
-  .section-card {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.section-card {
     background-color: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    padding: 2rem 2.5rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    padding: 2.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .section-card:hover {
+    margin-bottom: 20px;
+}
+
+.section-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-  }
-  
-  .section-card h2 {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.section-card h2 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #374151;
+    color: #1f2937;
     margin-bottom: 1rem;
-    border-left: 4px solid #2563eb;
-    padding-left: 0.75rem;
-  }
-  
-  .section-card p,
-  .section-card li {
+    border-left: 5px solid #d6710c;
+    padding-left: 1rem;
+}
+
+.section-card p,
+.section-card li {
     font-size: 1rem;
     line-height: 1.75;
     color: #374151;
-  }
-  
-  .section-card ul,
-  .section-card ol {
+}
+
+.section-card ul,
+.section-card ol {
     margin-left: 1.25rem;
     padding-left: 0.5rem;
-  }
-  
-  .card-flex {
+}
+
+.card-flex {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     gap: 2rem;
     flex-wrap: wrap;
-  }
-  
-  .card-image {
+}
+
+.card-image-large {
     flex-shrink: 0;
-    max-width: 120px;
-  }
-  
-  .section-image {
+    max-width: 240px;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section-image {
     display: block;
     max-width: 100%;
     height: auto;
     margin: 1rem auto 0;
-  }
-  
-  .tag-list {
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.tag-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-top: 1rem;
-  }
-  
-  .tag-item {
+}
+
+.tag-item {
     background-color: #dbeafe;
     color: #1d4ed8;
     padding: 0.5rem 1rem;
     border-radius: 999px;
     font-size: 0.875rem;
     font-weight: 600;
-  }
-  
-  .cta-button {
-    background-color: #2563eb;
+}
+
+.cta-button {
+    background-color: #d6710c;
     color: white;
     font-size: 1.125rem;
     padding: 0.75rem 2rem;
     border: none;
-    border-radius: 999px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .cta-button:hover {
-    background-color: #1e40af;
-  }
-  </style>
-  
+}
+
+.cta-button:hover {
+    background-color: #714110;
+}
+
+.flow {
+    counter-reset: number 0;
+}
+
+.flow__item {
+    margin-bottom: 40px;
+    border-radius: 15px;
+    border: 1px solid #F1F1F1;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.flow__item:last-child {
+    margin-bottom: 0;
+}
+
+.flow__item::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #dd7016;
+    /* 主色調 */
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.flow__item:last-child::after {
+    display: none;
+}
+
+.flow__num {
+    background: rgb(215, 134, 20);
+    color: #FFF;
+    font-family: var(--font-family03);
+    font-weight: bold;
+    font-size: var(--font-size18);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 8%;
+    min-width: 60px;
+    border-radius: 15px 50px 50px 15px;
+}
+
+.flow__num span::after {
+    counter-increment: number 1;
+    content: '0' counter(number);
+    font-size: 2em;
+    display: block;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.flow__txt {
+    width: 92%;
+    max-width: calc(100% - 60px);
+    padding: min(3%, 25px) min(5%, 50px);
+}
+
+.flow__txt h3.ttl {
+    padding: 0;
+    border: 0 !important;
+    font-size: var(--font-size22);
+}
+
+.flow__txt h3.ttl::before {
+    display: none;
+}
+
+.flow__txt p:last-child {
+    margin-bottom: 0;
+}
+
+.carousel-slider {
+    max-width: 50%;
+}
+
+.carousel-slider .swiper-wrapper {
+    display: flex;
+    align-items: center;
+    max-height: 150px;
+    max-width: 100%;
+}
+
+.carousel-slider .swiper-slide {
+    width: 220px; /* 設定每張slide固定寬度 */
+    max-width: 50%; /* 手機裝置時不爆版 */
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-slider .swiper-slide {
+    background: rgba(9, 21, 50, 0.2);
+    border-radius: 25px;
+}
+
+.carousel-slider .swiper-slide.swiper-slide-next,
+.carousel-slider .swiper-slide.swiper-slide-prev {
+    background: rgba(9, 21, 50, 0.75);
+}
+
+.carousel-slider .swiper-slide.swiper-slide-active {
+    background: #0762e5;
+    box-shadow: 0 0 25px 2px rgba(255, 255, 255, 0.7);
+}
+
+.carousel-slider .item-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.visa-description {
+    max-width: 50%;
+    padding-left: 5%;
+}
+
+.visa-description h4 {
+    margin-bottom: 10px;
+}
+</style>
