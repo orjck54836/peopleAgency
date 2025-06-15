@@ -12,7 +12,7 @@ const closeNav = () => {
   <!-- <Navigation :nav-open="navOpen" :close-nav="closeNav" class="gx-xxl-3"/> -->
 
   <!-- main content -->
-  <main class="container-fluid">
+  <main class="container-fluid screen-width">
     <div class="row">
       <div class="col-xl-10" data-bs-spy="scroll" data-bs-target="#navigation">
         <Hero />
@@ -38,5 +38,8 @@ const closeNav = () => {
 <style lang="scss" scoped>
   .bg{
     z-index: -5 !important;
+  }
+  .screen-width {
+    max-width: 95%;
   }
 </style>

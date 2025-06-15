@@ -1,49 +1,10 @@
 <template>
     <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
+    <div class="title">
+        <h1 class="hero-title">就業人力引進</h1>
+    </div>
     <main class="page-wrapper">
-        <section class="hero">
-            <h1 class="hero-title">日本就業人力引進服務</h1>
-            <p class="hero-subtitle">我們連結亞洲人才與日本企業，為雇主找到合適即戰力，也為求職者實現赴日工作的夢想。</p>
-            <img class="hero-image" src="https://picsum.photos/800/600?image=1080" alt="Japan Employment" />
-        </section>
-
         <div class="grid gap-12">
-            <!-- 我們的使命 -->
-            <section class="section-card">
-                <div class="card-flex">
-                    <div class="mission-content">
-                        <h2 class="section-title">我們的使命</h2>
-                        <div class="d-flex">
-                            <div>
-                                <div class="mission-block">
-                                    <h3 class="mission-heading">這份工作的意義</h3>
-                                    <p class="mission-text">
-                                        對每位企業雇主而言，我們協助他們找到值得信賴、穩定投入的海外人才；<br />
-                                        對每位外籍求職者而言，我們為他們打開一條合法、安全、有希望的赴日工作之路。<br />
-                                        我們深知，一次成功的就業媒合，背後不只是履歷與面談，更是關乎一個家庭的未來、一個人的夢想實現。
-                                    </p>
-                                </div>
-
-                                <div class="mission-block">
-                                    <h3 class="mission-heading">我們對社會的貢獻</h3>
-                                    <p class="mission-text">
-                                        我們的服務幫助企業補足人力缺口、穩定營運；也促進多元文化交流，帶動地方活力與國際理解。<br /><br />
-                                        透過合法的工作與在地支援，我們幫助他們走出貧困、創造價值，並將經驗與希望帶回原生社會。<br /><br />
-                                        我們相信，真正有價值的國際勞務輸出，是互惠、尊重與共創未來的過程。<br />
-                                        而我們，就是這個正向循環的推動者。
-                                    </p>
-                                </div>
-                            </div>
-                            <img src="https://picsum.photos/800/600?image=1081" alt="Mission"
-                                class="card-image-large" />
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
-
-
             <!-- 簽證類型 -->
             <section class="section-card">
                 <div class="card-flex">
@@ -89,17 +50,74 @@
                 </div>
             </section>
 
+            <!-- 我們的使命 -->
+            <section class="section-card">
+                <div class="card-flex">
+                    <h2 class="section-title">我們的使命</h2>
+                    <div class="mission-content">
+
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <div class="mission-block">
+                                    <h3 class="mission-heading">這份工作的意義</h3>
+                                    <p class="mission-text">
+                                        對每位企業雇主而言，我們協助他們找到值得信賴、穩定投入的海外人才；<br />
+                                        對每位外籍求職者而言，我們為他們打開一條合法、安全、有希望的赴日工作之路。<br />
+                                        我們深知，一次成功的就業媒合，背後不只是履歷與面談，更是關乎一個家庭的未來、一個人的夢想實現。
+                                    </p>
+                                </div>
+
+                                <div class="mission-block">
+                                    <h3 class="mission-heading">我們對社會的貢獻</h3>
+                                    <p class="mission-text">
+                                        我們的服務幫助企業補足人力缺口、穩定營運；也促進多元文化交流，帶動地方活力與國際理解。<br /><br />
+                                        透過合法的工作與在地支援，我們幫助他們走出貧困、創造價值，並將經驗與希望帶回原生社會。<br /><br />
+                                        我們相信，真正有價值的國際勞務輸出，是互惠、尊重與共創未來的過程。<br />
+                                        而我們，就是這個正向循環的推動者。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <img src="https://picsum.photos/800/600?image=1081" alt="Mission"
+                                class="card-image-large" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- 國籍範圍 -->
             <section class="section-card">
-                <h2>主要引進國籍</h2>
+                <h2>選擇的理由</h2>
                 <p>我們深耕亞洲市場，協助日本企業從以下國家尋找優秀人才，同時也支援這些國家求職者完成赴日夢想：</p>
+
                 <div class="tag-list">
                     <span class="tag-item">台灣</span>
                     <span class="tag-item">越南</span>
                     <span class="tag-item">印尼</span>
                 </div>
-                <img src="https://picsum.photos/800/600?image=1083" alt="Countries" class="section-image mt-6" />
+
+                <div class="foreign-benefits">
+                    <h3 class="benefits-heading">為何選擇外籍人材？</h3>
+                    <ul class="benefits-list">
+                        <li>彌補人手短缺：特定產業（如餐飲、建築、照護）普遍面臨招工困難，外籍人才可穩定支援。</li>
+                        <li>高穩定性與學習意願：多數來日工作的外籍人才具有高度動機，忠誠度與適應力強。</li>
+                        <li>提升職場活力：導入多元文化促進團隊創新，激發新觀點與更具彈性的工作模式。</li>
+                        <li>改善離職率：經過完整培訓與事前說明的候選人，留任率往往優於一般短期人力。</li>
+                    </ul>
+                </div>
+
+                <div class="foreign-safety">
+                    <h3 class="benefits-heading">我們的保障措施</h3>
+                    <ul class="benefits-list">
+                        <li>嚴格篩選流程：不僅重視技能與語言，也關注人格特質與文化適應力。</li>
+                        <li>全程支援制度：從入職文件、簽證辦理到定期追蹤，全由專人協助。</li>
+                        <li>在地生活輔導：協助住宿安排、生活諮詢，降低離職風險。</li>
+                        <li>契約保障清楚：保障雇主與人才雙方權益，避免糾紛與誤解。</li>
+                    </ul>
+                </div>
             </section>
+
 
             <!-- 合作流程 -->
             <section class="section-card">
@@ -223,6 +241,33 @@ onMounted(() => {
 
 
 <style scoped>
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  color: #9e5010;
+  font-weight: bolder;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.hero-title {
+  text-align: center;
+  padding: 0 1rem;
+  position: relative;
+  white-space: nowrap;
+}
+
+.title::before,
+.title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #9e5010;
+    margin: 0 1rem;
+}
+
 .page-wrapper {
     max-width: 90%;
     margin: 0 auto;
@@ -231,31 +276,6 @@ onMounted(() => {
     background-color: #f8fbff;
     border-radius: 20px;
     margin-bottom: 50px;
-}
-
-.hero {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.hero-title {
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: #1f2937;
-    margin-bottom: 0.5rem;
-}
-
-.hero-subtitle {
-    font-size: 1.2rem;
-    color: #4b5563;
-    margin-bottom: 1rem;
-}
-
-.hero-image {
-    max-width: 540px;
-    border-radius: 20px;
-    margin: 0 auto;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
 }
 
 .section-card {
@@ -303,11 +323,9 @@ onMounted(() => {
 }
 
 .card-image-large {
-    display: block;
-    max-width: 100%;
     height: auto;
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+    width: 100%;
 }
 
 .section-image {
@@ -434,17 +452,6 @@ onMounted(() => {
     display: flex;
 }
 
-@media (max-width: 1200px) {
-    .visa-block {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .visa-description {
-        text-align: center;
-    }
-}
-
 .carousel-slider {
     max-width: 50%;
 }
@@ -503,8 +510,8 @@ onMounted(() => {
 }
 
 .mission-content {
+    width: 100%;
     display: flex;
-    flex-direction: column;
     gap: 2rem;
 }
 
@@ -537,5 +544,46 @@ onMounted(() => {
     font-size: 1rem;
     line-height: 1.8;
     color: #374151;
+}
+
+.foreign-benefits,
+.foreign-safety {
+    margin-top: 2rem;
+    background-color: #f9fafb;
+    padding: 1.5rem;
+    border-left: 4px solid #d97706;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.benefits-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #d97706;
+    margin-bottom: 1rem;
+}
+
+.benefits-list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    color: #374151;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+
+@media (max-width: 1200px) {
+    .visa-block {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .visa-description {
+        text-align: center;
+    }
+
+    .mission-content {
+        flex-direction: column;
+    }
 }
 </style>
