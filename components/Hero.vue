@@ -1,11 +1,6 @@
 <template>
   <section class="section_hero">
-    <div class="white-gradient-overlay"></div>
       <div class="hero">
-        <!-- 圖片 -->
-        <!-- <div class="hero_image">
-          <img src="../img/main-page/image.jpg" alt="Hero Image" />
-        </div> -->
         <!-- 標語 -->
         <div class="hero-text-container">
           <div class="hero-text-wrapper">
@@ -19,10 +14,14 @@
               <span class="fade_word">{{ $t('heroSubtitle2') }}</span>
             </p>
             <div class="hero-buttons">
-              <a href="#services" class="btn-primary">了解服務項目</a>
-              <a href="#contact" class="btn-secondary">立即諮詢</a>
+              <a href="#services" class="">服務項目</a>
+              <a href="#contact" class="">立即諮詢</a>
             </div>
           </div>
+        </div>
+        <!-- 圖片 -->
+        <div class="hero_image">
+          <img src="../img/main-page/hero-image.png" alt="Hero Image" />
         </div>
       </div>
   </section>
@@ -59,31 +58,14 @@ onMounted(() => {
   display: flex;
   justify-content: start;
   min-height: 90vh;
-  overflow: hidden;
   position: relative;
   padding-top: 0;
-  background-image: url('../img/main-page/image.jpg');
-  background-size: cover; 
-  background-position: center;
-  border-top-left-radius: 100px;
-  border-top-right-radius: 100px;
-  clip-path: ellipse(100% 90% at 50% 10%);
-}
-
-.white-gradient-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(188, 177, 177, 0.8), rgba(85, 69, 69, 0.2), rgba(255, 255, 255, 0.2));
 }
 
 .hero {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 80px;
-  margin-left: 5%;
-  flex-wrap: wrap;
-  z-index: 2;
 
   @media (max-width: 992px) {
     gap: 50px;
@@ -97,10 +79,7 @@ onMounted(() => {
 }
 
 .hero_image {
-  height: 40vh;
-  overflow: hidden;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  height: 50vh;
 
   img {
     width: 100%;
@@ -124,7 +103,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  font-size: 2.6rem;
+  font-size: 2.2rem;
   font-weight: 800;
   font-family: 'Playfair Display', serif;
   letter-spacing: 0.03em;
@@ -191,7 +170,7 @@ onMounted(() => {
 
 .hero-subtitle {
   margin-top: 50px;
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   color: #fff;
   margin-bottom: 2rem;
   font-weight: bolder;

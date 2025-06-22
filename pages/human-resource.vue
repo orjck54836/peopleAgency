@@ -172,6 +172,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- CTA -->
             <div class="text-center mt-10">
                 <NuxtLink to="/contact">
@@ -189,6 +190,8 @@ import Swiper from 'swiper/bundle'
 import 'swiper/css/bundle'
 
 const currentIndex = ref(0)
+
+
 
 onMounted(() => {
     const swiper = new Swiper('.carousel-slider', {
@@ -242,21 +245,21 @@ onMounted(() => {
 
 <style scoped>
 .title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  color: #9e5010;
-  font-weight: bolder;
-  width: 50%;
-  margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    color: #9e5010;
+    font-weight: bolder;
+    width: 50%;
+    margin: 0 auto;
 }
 
 .hero-title {
-  text-align: center;
-  padding: 0 1rem;
-  position: relative;
-  white-space: nowrap;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+    white-space: nowrap;
 }
 
 .title::before,
@@ -487,7 +490,9 @@ onMounted(() => {
 }
 
 .carousel-slider .swiper-slide.swiper-slide-active {
-    background: #0762e5;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    background: #c8924b;
     box-shadow: 0 0 25px 2px rgba(255, 255, 255, 0.7);
 }
 

@@ -1,40 +1,81 @@
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
-  <main class="mx-auto mb-5 bg-white p-5">
-    <span class="hire text-center d-block mb-1 text-danger">探索日本留學</span>
-    <h2 class="text-center fw-bold mb-2">精選日本語言學校</h2>
-    <p class="mx-auto text-center mb-4 fw-medium">
-      我們為您整理多所優質日本語言學校資訊，協助您根據地區、入學時間與學習目的快速找到理想學校，踏出留學第一步！
-    </p>
-    <!-- 篩選列 -->
-    <div class="d-flex justify-content-center">
-      <section class="d-flex flex-wrap justify-content-center gap-3 mb-5 select-bg">
-        <input v-model="filters.keyword" type="text" placeholder="輸入學校名稱"
-          class="form-control rounded-pill px-3 py-2 w-80" />
-        <div class="d-flex justify-content-center">
-          <select v-model="filters.region" class="form-select rounded-pill px-3 py-2 w-auto">
-            <option value="">全部地區</option>
-            <option v-for="region in regionOptions" :key="region" :value="region">{{ region }}</option>
-          </select>
-          <select v-model="filters.intake" class="form-select rounded-pill px-3 py-2 w-auto">
-            <option value="">全部入學時間</option>
-            <option v-for="month in intakeOptions" :key="month" :value="month">{{ month }} 月</option>
-          </select>
+  <div class="title">
+    <h1 class="hero-title">學校總覽</h1>
+  </div>
+  <main class="page-wrapper">
+    <div class="grid gap-12">
+      <!-- 篩選列 -->
+      <section class="filter-block-section mb-5">
+        <div class="filter-block-container">
+          <div class="select-group">
+            <div class="select-item">
+              <label class="filter-block-label" for="keyword">學校關鍵字</label>
+              <input v-model="filters.keyword" type="text" id="keyword" placeholder="輸入學校名稱或關鍵字"
+                class="form-control keyword-input" />
+            </div>
+            <div class="select-item">
+              <label class="filter-block-label" for="region">地區</label>
+              <select v-model="filters.region" id="region" class="form-select select-control">
+                <option value="">全部地區</option>
+                <option v-for="region in regionOptions" :key="region" :value="region">
+                  {{ region }}
+                </option>
+              </select>
+            </div>
+
+            <div class="select-item">
+              <label class="filter-block-label" for="intake">入學時間</label>
+              <select v-model="filters.intake" id="intake" class="form-select select-control">
+                <option value="">全部入學時間</option>
+                <option v-for="month in intakeOptions" :key="month" :value="month">
+                  {{ month }} 月
+                </option>
+              </select>
+            </div>
+
+            <div class="select-item">
+              <label class="filter-block-label" for="type">學校類型</label>
+              <select v-model="filters.type" id="type" class="form-select select-control">
+                <option value="">全部學校類型</option>
+                <option value="語言學校">語言學校</option>
+                <option value="專門學校">專門學校</option>
+                <option value="大學別科">大學別科</option>
+              </select>
+            </div>
+
+            <div class="select-item">
+              <label class="filter-block-label" for="accommodation">住宿類型</label>
+              <select v-model="filters.accommodation" id="accommodation" class="form-select select-control">
+                <option value="">住宿類型不限</option>
+                <option value="宿舍">宿舍</option>
+                <option value="寄宿家庭">寄宿家庭</option>
+                <option value="自行租屋">自行租屋</option>
+              </select>
+            </div>
+            <!-- 清除按鈕 -->
+            <div class="clear-button-container">
+              <button @click="clearFilters" class="clear-button">
+                清除所有篩選條件
+              </button>
+            </div>
+          </div>
         </div>
       </section>
-    </div>
-    <!-- 卡片區 -->
-    <section class="user-profile d-flex flex-wrap justify-content-center gap-3 overflow-hidden">
-      <section class="card rounded-2 p-4 text-center" v-for="(person, index) in paginatedSchools" :key="index">
-        <img :src="person.image" alt="" class="img-fluid rounded-2 object-fit-cover mx-auto mb-4" />
-        <span class="name fw-semibold d-block">{{ person.name }}</span>
-        <span class="title fw-medium mb-2">{{ person.location }}</span>
-        <span class="d-block text-secondary mb-2" style="font-size: 0.85rem;">
-          入學月份：{{ person.intake.join('月、') }}月
-        </span>
-        <p class="mx-auto text-center line-clamp-2">{{ person.directions }}</p>
-        <div class="mt-3 text-danger fw-semibold small">查看更多 ➔</div>
+      <!-- 卡片區 -->
+      <section class="user-profile d-flex flex-wrap justify-content-center gap-3 overflow-hidden">
+        <section class="card rounded-2 p-4 text-center" v-for="(person, index) in paginatedSchools" :key="index">
+          <img :src="person.image" alt="" class="img-fluid rounded-2 object-fit-cover mx-auto mb-4" />
+          <span class="name fw-semibold d-block">{{ person.name }}</span>
+          <span class="title fw-medium mb-2">{{ person.location }}</span>
+          <span class="d-block text-secondary mb-2" style="font-size: 0.85rem;">
+            入學月份：{{ person.intake.join('月、') }}月
+          </span>
+          <p class="mx-auto text-center line-clamp-2">{{ person.directions }}</p>
+          <div class="mt-3 text-danger fw-semibold small">查看更多 ➔</div>
+        </section>
       </section>
+      <!-- 分頁 -->
       <div class="d-flex justify-content-center mt-5">
         <nav>
           <ul class="pagination">
@@ -54,9 +95,9 @@
           </ul>
         </nav>
       </div>
-
-    </section>
+    </div>
   </main>
+  <Footer />
 </template>
 
 <script lang="ts" setup>
@@ -81,11 +122,12 @@ const totalPages = computed(() => {
   return Math.ceil(filteredSchools.value.length / pageSize)
 })
 
-
 const filters = ref({
   keyword: '',
   region: '',
-  intake: ''
+  intake: '',
+  type: '',
+  accommodation: ''
 })
 
 const regionOptions = ['東京', '大阪', '名古屋', '福岡', '北海道', '神奈川']
@@ -131,6 +173,17 @@ const filteredSchools = computed(() => {
     return keywordMatch && regionMatch && intakeMatch
   })
 })
+
+function clearFilters() {
+  filters.value = {
+    keyword: '',
+    region: '',
+    intake: '',
+    type: '',
+    accommodation: ''
+  }
+  currentPage.value = 1
+}
 </script>
 
 
@@ -141,6 +194,118 @@ const filteredSchools = computed(() => {
 body {
   font-family: 'Montserrat', sans-serif !important;
   background-color: #afacc6 !important;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  color: #9e5010;
+  font-weight: bolder;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.hero-title {
+  text-align: center;
+  padding: 0 1rem;
+  position: relative;
+  white-space: nowrap;
+}
+
+.title::before,
+.title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #9e5010;
+  margin: 0 1rem;
+}
+
+.page-wrapper {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  font-family: 'Noto Sans TC', 'Helvetica Neue', sans-serif;
+  background-color: #f8fbff;
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+
+.filter-block-section {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.filter-block-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+
+  background: linear-gradient(
+    to bottom right,
+    rgba(245, 209, 167, 0.95),
+    rgba(232, 147, 29, 0.5)
+  );
+  backdrop-filter: blur(4px); /* 可選：有玻璃感 */
+}
+
+.keyword-input {
+  padding: 0.75rem 1.25rem;
+  border: 1px solid #d6a267;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.select-group {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: start;
+  align-items: center;
+  max-width: 100%;
+}
+
+.select-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+  margin-right: 10px;
+  width: 15%;
+}
+
+.select-control {
+  border-radius: 999px;
+  border: 1px solid #d6a267;
+  font-size: 0.95rem;
+  background-color: #fff;
+  padding: 0.75rem 1.25rem;
+}
+
+.filter-block-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6b4b1f;
+  padding-left: 0.25rem;
+}
+
+.clear-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.clear-button {
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .line-clamp-2 {
@@ -161,12 +326,6 @@ main {
   margin-top: 5rem;
   max-width: 1200px;
   width: 95%;
-}
-
-main .hire {
-  color: #7f56d9;
-  font-size: 0.975rem;
-  font-weight: 600;
 }
 
 main h2 {
