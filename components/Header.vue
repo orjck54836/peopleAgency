@@ -62,7 +62,7 @@ const switchLang = (lang: string) => {
   <header class="header">
     <div class="container-fluid d-flex align-items-center justify-content-between">
       <NuxtLink :to="localePath('/')" :class="classes">
-        <img src="/images/logo.png" alt="logo" />
+        <img src="../img/logo.png" alt="logo" class="logo-img"/>
       </NuxtLink>
       <!-- 語言切換下拉選單 -->
       <div class="d-flex align-items-center">
@@ -96,6 +96,11 @@ const switchLang = (lang: string) => {
 </template>
 
 <style lang="scss">
+.logo-img {
+  height: 60px;
+  width: 140px;
+  object-fit: cover;
+}
 .header {
   padding: 14px 0;
   width: 100%;
@@ -103,9 +108,11 @@ const switchLang = (lang: string) => {
   left: 0;
   right: 0;
   backdrop-filter: blur(3px);
+  background: linear-gradient(to right, rgba(252,227,186,0.5), rgba(255,232,197,0.5));
   position: sticky;
   top: 0;
   z-index: 1000;
+  opacity: 1;
   img {
     max-width: 100%;
   }

@@ -67,7 +67,7 @@
         <section class="card rounded-2 p-4 text-center" v-for="(person, index) in paginatedSchools" :key="index">
           <img :src="person.image" alt="" class="img-fluid rounded-2 object-fit-cover mx-auto mb-4" />
           <span class="name fw-semibold d-block">{{ person.name }}</span>
-          <span class="title fw-medium mb-2">{{ person.location }}</span>
+          <span class="location-title fw-medium mb-2">{{ person.location }}</span>
           <span class="d-block text-secondary mb-2" style="font-size: 0.85rem;">
             入學月份：{{ person.intake.join('月、') }}月
           </span>
@@ -110,7 +110,7 @@ const toggleNav = () => {
 };
 
 const currentPage = ref(1)
-const pageSize = 4 // 每頁幾筆
+const pageSize = 6 // 每頁幾筆
 
 const paginatedSchools = computed(() => {
   const start = (currentPage.value - 1) * pageSize
@@ -134,6 +134,34 @@ const regionOptions = ['東京', '大阪', '名古屋', '福岡', '北海道', '
 const intakeOptions = ['1', '4', '7', '10']
 
 const team = [
+  {
+    name: 'CBC外語商業專門學校',
+    location: '神奈川',
+    directions: '位於神奈川縣川崎市，半全日制。豐富選修課程及可與日本學生互動。',
+    intake: ['4', '10'],
+    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
+  },
+  {
+    name: '新宿日本語學校',
+    location: '東京',
+    directions: '1975年成立，歷史悠久老字號名校。為日本文部科學省指定認可語言學校。',
+    intake: ['1', '4', '10'],
+    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
+  },
+  {
+    name: '大阪YMCA學院',
+    location: '大阪',
+    directions: '大阪YMCA 學院位於熱鬧的天王寺區，校舍位於YMCA總部內，資源完整。',
+    intake: ['1', '7'],
+    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
+  },
+  {
+    name: 'TERA外語商業學院',
+    location: '大阪',
+    directions: 'TERA外語商業學院、EN日本語學校、SEIKO外語學園是關西知名的語言與商業綜合型學校。',
+    intake: ['4', '10'],
+    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
+  },
   {
     name: 'CBC外語商業專門學校',
     location: '神奈川',
@@ -193,17 +221,16 @@ function clearFilters() {
 
 body {
   font-family: 'Montserrat', sans-serif !important;
-  background-color: #afacc6 !important;
 }
 
 .title {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px;
   color: #9e5010;
   font-weight: bolder;
   width: 50%;
+  padding: 30px;
   margin: 0 auto;
 }
 
@@ -368,7 +395,7 @@ main .user-profile .card:hover {
 
 main .user-profile .card:hover a,
 main .user-profile .card:hover a:visited,
-main .user-profile .card:hover .title,
+main .user-profile .card:hover .location-title,
 main .user-profile .card:hover p {
   color: #fff !important;
 }
@@ -382,7 +409,7 @@ main .user-profile .card .name {
   font-size: 1.125rem;
 }
 
-main .user-profile .card .title {
+main .user-profile .card .location-title {
   color: #7f56d9;
 }
 

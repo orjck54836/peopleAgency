@@ -94,12 +94,22 @@ const navItems = reactive([
 <style lang="scss">
 // navigation
 .navigation {
-  position: absolute;
-  height: 90%;
-  border-left: 1px solid rgb(207, 194, 194);
+  background: linear-gradient(
+    to bottom right,
+    rgba(220, 183, 119, 0.3),
+    rgba(211, 166, 39, 0.25)
+  );
+  backdrop-filter: blur(10px); 
+  width: 15vw;
+  height: 75vh;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   z-index: 100;
+  text-align: center;
+  padding-top: 2%;
+  border-radius: 50px;
   /* 小螢幕 (<1200px) 下拉式 */
-  @media (max-width: 1199px) {
+  @media (max-width: 1200px) {
     /* 預設收合: display: none */
     display: none;
     position: static; /* 不要 absolute/fixed */
@@ -112,7 +122,7 @@ const navItems = reactive([
   }
   @media (min-width: 1200px) {
     position: fixed;
-    top: 100px;
+    top: 15%;
     &:dir(rtl) {
       left: 0;
       right: auto;
@@ -141,30 +151,23 @@ const navItems = reactive([
   }
   ul {
     list-style: none;
-    @media (min-width: 1200px) {
-      width: 300px;
-    }
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
     position: relative;
     li > a {
       color: rgb(var(--black));
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
-      gap: 30px;
       padding-top: 6px;
       padding-bottom: 6px;
       font-size: 20px;
       font-weight: 500;
       &:dir(ltr) {
-        padding-left: 34px;
         border-left: 2px solid transparent;
       }
       &:dir(rtl) {
-        padding-right: 34px;
         border-right: 2px solid transparent;
       }
       transition-duration: 300ms;
@@ -226,13 +229,6 @@ const navItems = reactive([
     }
   }
   .contact {
-    padding-top: 20px;
-    &:dir(ltr) {
-      padding-left: 34px;
-    }
-    &:dir(rtl) {
-      padding-right: 34px;
-    }
     display: flex;
     flex-direction: column;
     gap: 8px;

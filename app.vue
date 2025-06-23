@@ -69,6 +69,15 @@ useHead({
     <!-- <ColorSwitcher /> -->
     <!-- <Demos /> -->
     <NuxtRouteAnnouncer />
-    <NuxtPage />
+    <div class="global-background">
+      <NuxtPage />
+    </div>
   </div>
 </template>
+<style scoped>
+.global-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('./img/background.png');
+}
+</style>

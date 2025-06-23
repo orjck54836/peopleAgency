@@ -1,29 +1,29 @@
 <template>
   <section class="section_hero">
-      <div class="hero">
-        <!-- 標語 -->
-        <div class="hero-text-container">
-          <div class="hero-text-wrapper">
-            <h1 class="hero_slogan">
-              <span class="fade_word">{{ $t('heroTitle1') }}</span>
-              <span class="fade_word">{{ $t('heroTitle2') }}</span>
-              <span class="fade_word">{{ $t('heroTitle3') }}</span>
-            </h1>
-            <p class="hero-subtitle">
-              <span class="fade_word">{{ $t('heroSubtitle1') }}</span>
-              <span class="fade_word">{{ $t('heroSubtitle2') }}</span>
-            </p>
-            <div class="hero-buttons">
-              <a href="#services" class="">服務項目</a>
-              <a href="#contact" class="">立即諮詢</a>
-            </div>
+    <div class="hero">
+      <!-- 標語 -->
+      <div class="hero-text-container">
+        <div class="hero-text-wrapper">
+          <h1 class="hero_slogan">
+            <span class="fade_word">{{ $t('heroTitle1') }}</span>
+            <span class="fade_word">{{ $t('heroTitle2') }}</span>
+            <span class="fade_word">{{ $t('heroTitle3') }}</span>
+          </h1>
+          <p class="hero-subtitle">
+            <span class="fade_word">{{ $t('heroSubtitle1') }}</span>
+            <span class="fade_word">{{ $t('heroSubtitle2') }}</span>
+          </p>
+          <div class="hero-buttons">
+            <a href="#services" class="btn btn-2 btn-2g">服務項目</a>
+            <a href="#contact" class="btn btn-2 btn-2g">立即諮詢</a>
           </div>
         </div>
-        <!-- 圖片 -->
-        <div class="hero_image">
-          <img src="../img/main-page/hero-image.png" alt="Hero Image" />
-        </div>
       </div>
+      <!-- 圖片 -->
+      <div class="hero_image">
+        <img src="../img/main-page/hero-image.png" alt="Hero Image" />
+      </div>
+    </div>
   </section>
 </template>
 
@@ -56,7 +56,7 @@ onMounted(() => {
 
 .section_hero {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   min-height: 90vh;
   position: relative;
   padding-top: 0;
@@ -71,10 +71,9 @@ onMounted(() => {
     gap: 50px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1180px) {
     flex-direction: column;
     text-align: center;
-    gap: 30px;
   }
 }
 
@@ -94,7 +93,7 @@ onMounted(() => {
     transform: scale(1.03);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1180px) {
     width: 100%;
   }
 }
@@ -132,7 +131,7 @@ onMounted(() => {
     font-family: "Urbanist", sans-serif;
     text-align: left;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1180px) {
       text-align: center;
     }
   }
@@ -142,7 +141,7 @@ onMounted(() => {
   position: relative;
   padding: 6rem 1.5rem;
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0 50px;
 }
 
 .hero-text-wrapper {
@@ -154,16 +153,12 @@ onMounted(() => {
   font-weight: 700;
   color: #111827;
   margin-bottom: 1.5rem;
-}
 
-@media (min-width: 768px) {
-  .hero-heading {
+  @media (min-width: 768px) {
     font-size: 3rem;
   }
-}
 
-@media (min-width: 1024px) {
-  .hero-heading {
+  @media (min-width: 1024px) {
     font-size: 3.75rem;
   }
 }
@@ -179,43 +174,70 @@ onMounted(() => {
 
 .hero-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
-}
 
-@media (min-width: 640px) {
-  .hero-buttons {
-    flex-direction: row;
+  @media (max-width: 1180px) {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    justify-self: center;
   }
 }
 
-.btn-primary {
-  background-color: #6366f1;
+
+
+.btn {
+  font-family: 'Noto Sans', sans-serif;
+  border: none;
+  font-size: 1.2rem;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 25px 80px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+/* Button 2 */
+.btn-2 {
+  background: #5f907cd1;
   color: #fff;
-  padding: 0.75rem 2rem;
-  border-radius: 999px;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 5px #e3c6ad;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
 }
 
-.btn-primary:hover {
-  background-color: #4f46e5;
+/* Button 2g */
+.btn-2g {
+  border-radius: 40px;
 }
 
-.btn-secondary {
-  border: 1px solid #d1d5db;
-  color: #1f2937;
-  padding: 0.75rem 2rem;
-  border-radius: 999px;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+.btn-2g:hover {
+  position: relative;
+  top: -3px;
+  box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, .12);
 }
 
-.btn-secondary:hover {
-  background-color: #f3f4f6;
+.btn-2g:active {
+  box-shadow: 0 0 #ab3c3c;
+  top: 6px;
 }
 </style>
