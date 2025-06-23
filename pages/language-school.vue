@@ -423,4 +423,31 @@ main .user-profile .card .social-links a,
 main .user-profile .card .social-links a:visited {
   color: #98a2b3;
 }
+
+@media (max-width: 1200px) {
+  .select-group {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .select-item {
+    width: 100%;
+  }
+
+  .clear-button-container {
+    justify-content: flex-start;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .select-item {
+    width: 100%;
+  }
+
+  .clear-button-container {
+    justify-content: center;
+  }
+}
+
 </style>

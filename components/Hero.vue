@@ -83,7 +83,7 @@ onMounted(() => {
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     filter: grayscale(20%) brightness(1.05);
     border-radius: 24px;
     transition: transform 0.5s ease;
@@ -177,7 +177,7 @@ onMounted(() => {
   flex-direction: row;
   gap: 1rem;
 
-  @media (max-width: 1180px) {
+  @media (max-width: 1200px) {
     display: flex;
     flex-direction: column;
     width: 55%;
@@ -194,7 +194,7 @@ onMounted(() => {
   color: inherit;
   background: none;
   cursor: pointer;
-  padding: 25px 80px;
+  padding: 4% 15%;
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -204,6 +204,10 @@ onMounted(() => {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
+
+  @media (max-width: 1200px) {
+    padding: 5% 20%;
+  }
 }
 
 .btn:after {
