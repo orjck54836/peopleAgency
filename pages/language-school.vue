@@ -97,6 +97,8 @@
       </div>
     </div>
   </main>
+  <ContactIcon />
+  <Navigation :nav-open="navOpen" :close-nav="closeNav" />
   <Footer />
 </template>
 
@@ -107,6 +109,9 @@ import logo from "/images/logo.png";
 const navOpen = ref(false);
 const toggleNav = () => {
   navOpen.value = !navOpen.value;
+};
+const closeNav = () => {
+  navOpen.value = false;
 };
 
 const currentPage = ref(1)

@@ -13,7 +13,7 @@
         <div class="intro-text">
           <!-- <h2>{{ $t('ourStory') }}</h2> -->
           <div class="image-size">
-            <img src="../img/about-me/logo.png" alt="" class="img-fluid">
+            <img src="../img/about-me/logo.png" alt="" class="img-fluid w-75">
           </div>
           <div class="text">
             <p>{{ $t('stortText') }}</p>
@@ -245,10 +245,10 @@
   .intro-text {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     min-width: 280px;
     flex: 1;
     padding: 1.5rem;
+    text-align: center;
 
     h2 {
       font-size: 1.8rem;

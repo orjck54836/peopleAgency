@@ -11,8 +11,8 @@ const route = useRoute()
 const navRef = ref<HTMLElement | null>(null);
 const isContactPage = computed(() => route.path.includes('/contact'))
 const isInternshipPage = computed(() => route.path.includes('/internship'))
-const isSpecifiedSkilledPage = computed(() => route.path.includes('/specified-skilled'))
-const isEngineerPage = computed(() => route.path.includes('/engineer'))
+const isWorkPage = computed(() => route.path.includes('/human-resource'))
+const isSchoolPage = computed(() => route.path.includes('/language-school'))
 
 // Watch and handle class changes
 onMounted(() => {
@@ -52,7 +52,7 @@ const navItems = reactive([
 </script>
 
 <template>
-  <nav v-show="!isContactPage && !isInternshipPage && !isSpecifiedSkilledPage && !isEngineerPage" ref="navRef" :class="`navigation ${navOpen ? 'opened' : ''}`" id="navigation">
+  <nav v-show="!isContactPage && !isInternshipPage && !isWorkPage && !isSchoolPage" ref="navRef" :class="`navigation ${navOpen ? 'opened' : ''}`" id="navigation">
     <img src="/images/logo.png" class="mb-4 d-xl-none" alt="logo" />
     <ul>
       <li v-for="(item, index) in navItems" :key="index" @click="closeNav" class="nav-link">

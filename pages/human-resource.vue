@@ -7,48 +7,59 @@
         <div class="grid gap-12">
             <!-- 簽證類型 -->
             <section class="section-card">
-                <div class="card-flex">
-                    <div class="w-100">
-                        <h2>支援的簽證類型</h2>
-                        <div class="visa-block">
-                            <div class="carousel-slider">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="item-content">
-                                            特定技能簽證
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="item-content">
-                                            技術・人文知識・國際業務簽證
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="item-content">
-                                            技能実習
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 對應顯示說明內容 -->
-                            <div class="visa-description" style="margin-top: 1.5rem">
-                                <div v-if="currentIndex === 0">
-                                    <h4>特定技能簽證</h4>
-                                    <p>適用於餐飲、建設、照護、農業、製造等產業，需具備實務經驗與日語能力。</p>
-                                </div>
-                                <div v-else-if="currentIndex === 1">
-                                    <h4>技術・人文知識・國際業務簽證</h4>
-                                    <p>適用於工程、設計、IT、會計、國際貿易等專業領域。</p>
-                                </div>
-                                <div v-else-if="currentIndex === 2">
-                                    <h4>技能實習</h4>
-                                    <p>提供來自發展中國家的青年在日本企業進行技能學習與實務訓練的機會。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="card-flex">
+          <div class="w-100">
+            <h2>支援的簽證類型</h2>
+            <div class="visa-block">
+              <div class="carousel-slider desktop-only">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="item-content">特定技能簽證</div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="item-content">技術・人文知識・國際業務簽證</div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="item-content">技能実習</div>
+                  </div>
                 </div>
-            </section>
+              </div>
+
+              <!-- Mobile View: List -->
+              <div class="mobile-only visa-list">
+                <div class="visa-item">
+                  <h4>特定技能簽證</h4>
+                  <p>適用於餐飲、建設、照護、農業、製造等產業，需具備實務經驗與日語能力。</p>
+                </div>
+                <div class="visa-item">
+                  <h4>技術・人文知識・國際業務簽證</h4>
+                  <p>適用於工程、設計、IT、會計、國際貿易等專業領域。</p>
+                </div>
+                <div class="visa-item">
+                  <h4>技能實習</h4>
+                  <p>提供來自發展中國家的青年在日本企業進行技能學習與實務訓練的機會。</p>
+                </div>
+              </div>
+
+              <!-- 桌面版對應說明內容 -->
+              <div class="visa-description desktop-only" style="margin-top: 1.5rem">
+                <div v-if="currentIndex === 0">
+                  <h4>特定技能簽證</h4>
+                  <p>適用於餐飲、建設、照護、農業、製造等產業，需具備實務經驗與日語能力。</p>
+                </div>
+                <div v-else-if="currentIndex === 1">
+                  <h4>技術・人文知識・國際業務簽證</h4>
+                  <p>適用於工程、設計、IT、會計、國際貿易等專業領域。</p>
+                </div>
+                <div v-else-if="currentIndex === 2">
+                  <h4>技能實習</h4>
+                  <p>提供來自發展中國家的青年在日本企業進行技能學習與實務訓練的機會。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
             <!-- 我們的使命 -->
             <section class="section-card">
@@ -181,6 +192,8 @@
             </div>
         </div>
     </main>
+    <ContactIcon />
+    <Navigation :nav-open="navOpen" :close-nav="closeNav" />
     <Footer />
 </template>
 
@@ -190,7 +203,13 @@ import Swiper from 'swiper/bundle'
 import 'swiper/css/bundle'
 
 const currentIndex = ref(0)
-
+const navOpen = ref(false);
+const toggleNav = () => {
+  navOpen.value = !navOpen.value;
+};
+const closeNav = () => {
+  navOpen.value = false;
+};
 
 
 onMounted(() => {
@@ -244,6 +263,35 @@ onMounted(() => {
 
 
 <style scoped>
+.desktop-only {
+  display: block;
+}
+.mobile-only {
+  display: none;
+}
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: block;
+  }
+  .visa-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .visa-item {
+    background: #fff8f0;
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    border-left: 5px solid #d6710c;
+  }
+  .visa-item h4 {
+    margin-bottom: 0.5rem;
+    color: #b45309;
+  }
+}
 .title {
     display: flex;
     align-items: center;
@@ -453,10 +501,18 @@ onMounted(() => {
 
 .visa-block {
     display: flex;
+    flex-wrap: wrap; /* 關鍵：允許換行 */
+    justify-content: space-between;
+    gap: 1.5rem; /* 避免重疊緊貼 */
 }
 
 .carousel-slider {
     max-width: 50%;
+
+    /* @media (max-width: 600px) {
+        width: 50%;
+        
+    } */
 }
 
 .carousel-slider .swiper-wrapper {
@@ -468,7 +524,6 @@ onMounted(() => {
 
 .carousel-slider .swiper-slide {
     width: 220px;
-    /* 設定每張slide固定寬度 */
     max-width: 50%;
     /* 手機裝置時不爆版 */
     aspect-ratio: 1 / 1;
@@ -477,6 +532,15 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+
+    @media (max-width: 600px) {
+        max-width: 30vw;
+        aspect-ratio: 1 / 1;
+        padding: 1rem;
+        box-sizing: border-box;
+        font-size: 0.8rem;
+    }
 }
 
 .carousel-slider .swiper-slide {
@@ -507,7 +571,6 @@ onMounted(() => {
 
 .visa-description {
     max-width: 50%;
-    padding-left: 5%;
 }
 
 .visa-description h4 {
@@ -577,7 +640,7 @@ onMounted(() => {
 }
 
 
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
     .visa-block {
         flex-direction: column;
         align-items: center;

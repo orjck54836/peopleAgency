@@ -13,7 +13,7 @@ const localePath = useLocalePath()
       <div class="projcard-container">
         <!-- 日本留/遊學卡片 -->
         <router-link to="/language-school">
-          <div class="projcard projcard-blue">
+          <div class="projcard projcard-school">
             <div class="projcard-innerbox">
               <img class="projcard-img" src="../img/my-services/card_school.png" />
               <div class="projcard-textbox">
@@ -38,7 +38,7 @@ const localePath = useLocalePath()
 
         <!-- 日本工作卡片 -->
         <router-link to="/human-resource">
-          <div class="projcard projcard-red">
+          <div class="projcard projcard-work">
             <div class="projcard-innerbox">
               <img class="projcard-img" src="../img/my-services/card_work.png" />
               <div class="projcard-textbox">
@@ -319,88 +319,28 @@ const localePath = useLocalePath()
   transition: width 0.2s ease;
 }
 
-.projcard-blue .projcard-bar {
-  background-color: #0088FF;
+.projcard-school .projcard-bar {
+  background-color: #f0db66;
 }
 
-.projcard-blue::before {
+.projcard-school::before {
   background-image: linear-gradient(-70deg, #0088FF, transparent 50%);
 }
 
-.projcard-blue:nth-child(2n)::before {
+.projcard-school:nth-child(2n)::before {
   background-image: linear-gradient(-250deg, #0088FF, transparent 50%);
 }
 
-.projcard-red .projcard-bar {
-  background-color: #D62F1F;
+.projcard-work .projcard-bar {
+  background-color: #e7801a;
 }
 
-.projcard-red::before {
+.projcard-work::before {
   background-image: linear-gradient(-70deg, #D62F1F, transparent 50%);
 }
 
-.projcard-red:nth-child(2n)::before {
+.projcard-work:nth-child(2n)::before {
   background-image: linear-gradient(-250deg, #D62F1F, transparent 50%);
-}
-
-.projcard-green .projcard-bar {
-  background-color: #40BD00;
-}
-
-.projcard-green::before {
-  background-image: linear-gradient(-70deg, #40BD00, transparent 50%);
-}
-
-.projcard-green:nth-child(2n)::before {
-  background-image: linear-gradient(-250deg, #40BD00, transparent 50%);
-}
-
-.projcard-yellow .projcard-bar {
-  background-color: #F5AF41;
-}
-
-.projcard-yellow::before {
-  background-image: linear-gradient(-70deg, #F5AF41, transparent 50%);
-}
-
-.projcard-yellow:nth-child(2n)::before {
-  background-image: linear-gradient(-250deg, #F5AF41, transparent 50%);
-}
-
-.projcard-orange .projcard-bar {
-  background-color: #FF5722;
-}
-
-.projcard-orange::before {
-  background-image: linear-gradient(-70deg, #FF5722, transparent 50%);
-}
-
-.projcard-orange:nth-child(2n)::before {
-  background-image: linear-gradient(-250deg, #FF5722, transparent 50%);
-}
-
-.projcard-brown .projcard-bar {
-  background-color: #C49863;
-}
-
-.projcard-brown::before {
-  background-image: linear-gradient(-70deg, #C49863, transparent 50%);
-}
-
-.projcard-brown:nth-child(2n)::before {
-  background-image: linear-gradient(-250deg, #C49863, transparent 50%);
-}
-
-.projcard-grey .projcard-bar {
-  background-color: #424242;
-}
-
-.projcard-grey::before {
-  background-image: linear-gradient(-70deg, #424242, transparent 50%);
-}
-
-.projcard-grey:nth-child(2n)::before {
-  background-image: linear-gradient(-250deg, #424242, transparent 50%);
 }
 
 .projcard-customcolor .projcard-bar {
@@ -418,10 +358,15 @@ const localePath = useLocalePath()
 .projcard-description {
   z-index: 10;
   font-size: 15px;
-  color: #424242;
+  color: #114a0eab;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 20px;
+  line-height: 1.8; // 增加行距讓閱讀更舒服
+  letter-spacing: 0.05em; // 微調字距
+  word-break: break-word; // 避免單字超出邊界
+  margin: 0 auto 1rem; // 置中顯示
+  font-weight: bold;
 }
 
 .projcard-tagbox {
