@@ -176,12 +176,13 @@ onMounted(() => {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  width: 100%;
 
   @media (max-width: 1200px) {
     display: flex;
     flex-direction: column;
-    width: 55%;
     justify-self: center;
+    align-items: center;
   }
 }
 

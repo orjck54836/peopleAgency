@@ -34,11 +34,11 @@ export default defineNuxtConfig({
   },
   i18n: {
     langDir: 'locales',
-    strategy: 'prefix',
+    strategy: 'no_prefix',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      redirectOn: 'root'
+      redirectOn: 'all'
     },
     locales: [
       {
