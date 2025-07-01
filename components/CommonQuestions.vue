@@ -4,8 +4,6 @@ import projectTwo from "../img/common-questions/price.jpg";
 import projectThree from "../img/common-questions/visa.jpg";
 import projectDetailsOne from "/images/project-details-1.png";
 import projectDetailsTwo from "/images/project-details-2.png";
-import edumasterBig from "/images/edumaster-big.png";
-import techshopBig from "/images/techshop-big.png";
 import quickbiteBig from "/images/quickbite-big.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,44 +11,79 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const projects = [
   {
     name: "僱用外國人流程",
-    description: ``,
-    // tags: ["design", "frontend", "backend"],
+    description: "幫助企業了解僱用外籍人員的完整流程，從招募到入職。",
     category: "對於如何雇用外國人有疑問的人",
     image: projectOne,
-    bigImg: techshopBig,
+    faqList: [
+      {
+        q: "這項服務包含哪些範圍？",
+        a: "協助企業進行人力媒合、面試安排、就業契約撰寫、赴日前說明與後續入職輔導。",
+      },
+      {
+        q: "我們公司從未聘用過外國人，可以協助嗎？",
+        a: "當然可以。我們將從制度說明開始，逐步指導公司完成必要程序。",
+      },
+      {
+        q: "語言能力會成為障礙嗎？",
+        a: "我們會事前評估候選人的日語能力，並可提供日語強化方案，協助順利上手。",
+      },
+      {
+        q: "需要多早開始準備？",
+        a: "建議至少提前2~3個月開始，以便配合簽證流程與入職前準備。",
+      },
+    ],
   },
   {
     name: "費用與服務",
-    description: ``,
-    // tags: ["design", "frontend", "backend"],
+    description: "介紹我們的收費模式、後續支援與可選加值服務內容。",
     category: "想了解費用的計算與後續服務",
     image: projectTwo,
-    bigImg: edumasterBig,
+    faqList: [
+      {
+        q: "服務費用怎麼計算？",
+        a: "我們提供「成功收費」與「固定專案費」兩種方案，可依照客戶需求彈性選擇。",
+      },
+      {
+        q: "是否有保證期？",
+        a: "有。若在保證期內離職，可免費重新媒合或按比例退費。",
+      },
+      {
+        q: "有包含入職後支援嗎？",
+        a: "包含，我們提供勞資溝通輔導、日本生活協助、定期關懷等。",
+      },
+      {
+        q: "是否提供語言培訓？",
+        a: "可提供日語線上課程，或依公司需求安排團體訓練。",
+      },
+    ],
   },
   {
     name: "簽證與法規細節",
-    description: ``,
-    // tags: ["design", "frontend", "backend"],
+    description: "針對不同簽證類型、法規限制與常見誤區進行說明與輔導。",
     category: "認識關於簽證的內容與細節",
     image: projectThree,
-    bigImg: edumasterBig,
+    faqList: [
+      {
+        q: "外國人可以申請哪些簽證？",
+        a: "常見為『特定技能』與『技術・人文知識・國際業務』兩種，我們會依個案建議合適類型。",
+      },
+      {
+        q: "簽證有效期限多久？",
+        a: "初期多為1年，視個人條件可續簽至3年、5年。",
+      },
+      {
+        q: "需要準備哪些文件？",
+        a: "包括學歷證明、履歷、職務說明書、聘用合約等；我們會協助全程準備。",
+      },
+      {
+        q: "若簽證申請失敗怎麼辦？",
+        a: "我們會協助了解原因，並可重新申請或提出備案（如轉換簽證類型）。",
+      },
+    ],
   },
 ];
-const currentProject = ref(projects[1]);
 
-gsap.registerPlugin(ScrollTrigger);
-onMounted(() => {
-  gsap.from(".single-project", {
-    opacity: 0,
-    stagger: 0.2,
-    scale: 0,
-    scrollTrigger: {
-      trigger: ".project-list",
-      start: "top 60%",
-      end: "top 20%",
-    },
-  });
-});
+const currentProject = ref(projects[1]);
 </script>
 <template>
   <!-- 標題區（service Section） -->
@@ -58,7 +91,7 @@ onMounted(() => {
     <h1>{{ $t('commonQuestionTitle') }}</h1>
   </section>
   <div class="row pb-60 project-list g-4 common-questions-content">
-    <div v-for="(project, i) in projects" key="{project.name}" @click="currentProject = project" data-bs-toggle="modal"
+    <div v-for="(project, i) in projects" :key="project.name" @click="currentProject = project" data-bs-toggle="modal"
       data-bs-target="#exampleModal">
       <div class="single-project">
         <div class="card-overlay">
@@ -68,7 +101,7 @@ onMounted(() => {
           <img :src="project.image" class="card-img" alt="問題圖片" />
         </div>
         <div class="project-info">
-          <h2>{{ project.name }}</h2>
+          <h3>{{ project.name }}</h3>
           <p>{{ project.category }}</p>
         </div>
       </div>
@@ -83,41 +116,22 @@ onMounted(() => {
             <button type="button" class="btn-close fs-3" data-bs-dismiss="modal" aria-label="Close">
               <PhosphorIconX />
             </button>
-
-            <!-- 可以保留大圖 (如 Big Image) 或換成FAQ Banner -->
-            <img :src="currentProject.bigImg" class="w-100 img-fluid project-details-img rounded-3 mb-4" alt="" />
-
-            <!-- FAQ 區塊 -->
+            <!-- FAQ區塊 -->
             <div class="faq-modal-content">
               <h2 class="modal-faq-title">{{ currentProject.name }}</h2>
               <p class="modal-faq-subtitle">
-                <!-- 若想保留一些簡介或描述 -->
                 {{ currentProject.description }}
               </p>
-
-              <!-- FAQ 實際內容，可用 v-for 或靜態 -->
+              <!-- FAQ內容-->
               <div class="faq-list">
-                <div class="faq-item">
-                  <h3>Q1：這項服務包含哪些範圍？</h3>
-                  <p>A：可協助外國人簽證申請、日語教學、企業招募策略等全套服務。</p>
+                <div class="faq-item" v-for="(item, index) in currentProject.faqList" :key="index">
+                  <h3>Q{{ index + 1 }}：{{ item.q }}</h3>
+                  <p>A：{{ item.a }}</p>
                 </div>
-                <div class="faq-item">
-                  <h3>Q2：需要多長時間處理簽證？</h3>
-                  <p>A：視個案而定，通常 1~3 個月；我們會協助準備文件，加速進程。</p>
-                </div>
-                <div class="faq-item">
-                  <h3>Q3：企業端收費怎麼算？</h3>
-                  <p>A：以成功酬或固定專案費計算，會先與你確認需求再估價。</p>
-                </div>
-                <div class="faq-item">
-                  <h3>Q4：外國人入職後若有離職怎麼辦？</h3>
-                  <p>A：在約定保證期內可免費重新介紹人選或按比例退費，具體視合約內容。</p>
-                </div>
-                <!-- 依需求自行加更多 Q&A -->
               </div>
+
             </div>
             <!-- End FAQ modal content -->
-
           </div> <!-- /modal-body -->
         </div>
       </div>
@@ -142,44 +156,56 @@ onMounted(() => {
   padding: 10px;
 }
 
-// projects
 .projects {
   @media (min-width: 1200px) {
     width: 100%;
   }
 
-  .section-title-overlay-text {
-    top: 100px;
+  .next-chapter {
+    padding-top: 80px;
   }
 
   .single-project {
     position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 16px;
     backdrop-filter: blur(12px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    padding: 1.5rem;
-    transition: all 0.4s ease;
     cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1.5rem;
+    transition: all 0.4s ease;
+    overflow: hidden;
 
-    // hover 效果
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+
     &:hover {
       transform: translateY(-6px) scale(1.02);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 
-      .project-info h2 {
-        color: #f59e0b;
-      }
-
       .card-overlay {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    .card-img {
+      width: 16vw;
+      max-width: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      z-index: 1;
+
+      @media (max-width: 768px) {
+        width: 50vw;
       }
     }
 
@@ -188,9 +214,7 @@ onMounted(() => {
       text-align: left;
       z-index: 2;
 
-      h2 {
-        font-size: 1.6rem;
-        font-weight: 700;
+      h3 {
         margin-bottom: 0.5rem;
         transition: color 0.3s ease;
       }
@@ -199,80 +223,68 @@ onMounted(() => {
         font-size: 0.95rem;
         color: #555;
       }
+
+      @media (max-width: 768px) {
+        text-align: center;
+        margin-left: 0;
+      }
     }
 
     .card-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      gap: 0.5rem;
+      background: rgba(6, 119, 93, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(221, 173, 29, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+      color: #fff;
       font-size: 1.2rem;
       font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       opacity: 0;
-      transform: translateY(100%);
-      transition: all 0.4s ease;
-      z-index: 10; // 確保蓋過圖片與資訊
-    }
+      transform: scale(0.95);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+      z-index: 10;
 
-    .card-img {
-      width: 22vw;
-      border-radius: 12px;
-      object-fit: cover;
-      transition: transform 0.4s ease, filter 0.4s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-      z-index: 1;
-    }
+      span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 1.5rem;
 
-    .project-info {
-      z-index: 2;
-      text-align: left;
+        &::after {
+          content: "→";
+          display: inline-block;
+          transition: transform 0.3s ease;
+        }
 
-      h2 {
-        font-size: 1.4rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: #1f2937;
-        transition: color 0.3s ease;
-      }
-
-      p {
-        font-size: 0.95rem;
-        color: #4b5563;
-        line-height: 1.4;
+        &:hover::after {
+          transform: translateX(5px);
+        }
       }
     }
   }
+}
 
-  .next-chapter {
-    padding-top: 80px;
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.right-bar {
-  padding: 20px;
-
-  @media (min-width: 1200px) {
-    padding: 32px;
-    gap: 24px;
-  }
-
-  border-radius: 12px;
-  border: 1px solid rgba(var(--black), 0.1);
-  background-color: rgba(var(--white), 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  h6 {
-    font-size: 18px;
-  }
-}
-
-// modal
 .modal-dialog {
   overflow-y: auto;
 }
@@ -281,31 +293,40 @@ onMounted(() => {
   background-color: rgba(var(--primary), 0.1);
 
   .modal-body {
-    background-color: rgb(241, 218, 187);
-    max-width: 1296px;
+    background-image: url('../img/common-questions/commonquestions_bg.png');
+    background-size: cover;
+    max-width: 90%;
     height: 100%;
-    border-radius: 12px;
-    margin: 30px auto;
-    position: relative;
+    margin: 30px 10%;
     padding: 16px;
+    border-radius: 12px;
+    position: relative;
 
     @media (min-width: 768px) {
       padding: 32px;
-      width: 100%;
     }
 
     @media (min-width: 1200px) {
       padding: 48px;
-      width: 100%;
     }
 
-    /* 關閉按鈕 */
     .btn-close {
       position: absolute;
       top: 30px;
       right: 30px;
       width: 24px;
       height: 24px;
+      border-radius: 50%;
+      color: rgb(var(--white));
+      background-color: rgb(var(--black));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: rotate(180deg);
+      }
 
       @media (min-width: 1200px) {
         right: 48px;
@@ -313,27 +334,17 @@ onMounted(() => {
         height: 36px;
       }
 
-      border-radius: 50%;
-      color: rgb(var(--white));
-      background-color: rgb(var(--black));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition-duration: 0.3s;
-
-      &:hover {
-        transform: rotate(180deg);
+      @media (max-width: 768px) {
+        top: 10px;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+        font-size: 1rem;
       }
     }
 
-    /* 大圖 */
-    .project-details-img {
-      /* 你原本的樣式可保留 */
-      border-radius: 12px;
-    }
-
-    /* FAQ 區塊 */
     .faq-modal-content {
+      margin-top: 25px;
       text-align: left;
       color: rgb(var(--contrast));
 
@@ -341,7 +352,7 @@ onMounted(() => {
         font-size: 1.8rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        color: rgb(var(--contrast));
+        text-align: center;
       }
 
       .modal-faq-subtitle {
@@ -349,6 +360,7 @@ onMounted(() => {
         color: rgba(var(--contrast), 0.85);
         line-height: 1.6;
         margin-bottom: 1.5rem;
+        text-align: center;
       }
 
       .faq-list {
@@ -372,7 +384,6 @@ onMounted(() => {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: rgb(var(--contrast));
           }
 
           p {
