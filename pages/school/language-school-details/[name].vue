@@ -1,0 +1,433 @@
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { ref } from 'vue'
+
+const route = useRoute()
+const navOpen = ref(false)
+
+const toggleNav = () => (navOpen.value = !navOpen.value)
+const closeNav = () => (navOpen.value = false)
+
+// 假資料，日後可改成 API
+const schools = [
+  {
+    name: 'CBC外語商業專門學校',
+    location: '神奈川',
+    intake: ['4', '10'],
+    type: '專門學校',
+    founded: '2005年',
+    introduction:
+      'CBC外語商業專門學校位於神奈川縣川崎市，提供日語與商業實務結合的課程，擁有豐富的語言教育經驗，致力於培養能於日本社會即戰力的留學生。',
+    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg',
+
+    tuitionDetails: [
+      {
+        duration: '6個月',
+        examFee: '33,000日圓',
+        entryFee: '77,000日圓',
+        tuition: '330,000日圓',
+        total: '440,000日圓'
+      },
+      {
+        duration: '1年',
+        examFee: '33,000日圓',
+        entryFee: '77,000日圓',
+        tuition: '660,000日圓',
+        total: '770,000日圓'
+      },
+      {
+        duration: '1年6個月',
+        examFee: '33,000日圓',
+        entryFee: '77,000日圓',
+        tuition: '990,000日圓',
+        total: '1,100,000日圓'
+      },
+      {
+        duration: '2年',
+        examFee: '33,000日圓',
+        entryFee: '77,000日圓',
+        tuition: '1,320,000日圓',
+        total: '1,430,000日圓'
+      }
+    ],
+
+    dormitory: {
+      type: '學生宿舍（雙人房／單人房）',
+      rent: '45,000 ~ 60,000',
+      misc: '包含水電與管理費、初期入住清潔費用另計',
+      location: '距學校徒步約10分鐘'
+    },
+
+    features: [
+      '上午日文授課（會話、聽解、閱讀）',
+      '下午文化體驗活動（淺草、雷門、橫濱等）',
+      '安排日本學生交流課程與歡迎派對'
+    ],
+
+    date: '2025/8/1 ～ 2025/8/28',
+
+    requirements: [
+      '18歲以上高中畢業（含）',
+      '具備日文初級程度（N5以上尤佳）',
+      '能配合校方安排的團體課程與活動'
+    ]
+  }
+]
+
+const recommendedSchools = [
+  {
+    name: '東京藝術大學（大學院）',
+    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
+  },
+  {
+    name: '華調理製菓專門學校',
+    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
+  },
+  {
+    name: 'CBC外語商業專門學校',
+    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
+  }
+]
+
+const schoolName = decodeURIComponent(route.params.name as string)
+const school = schools.find((s) => s.name === schoolName)
+</script>
+
+<template>
+  <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
+
+  <main class="school-wrapper" v-if="school">
+    <div class="school-layout">
+      <!-- 左側圖片輪播 -->
+      <div class="school-image-section">
+        <img :src="school.image" alt="學校圖片" />
+      </div>
+
+      <!-- 右側內容 -->
+      <div class="school-content-section">
+        <div class="breadcrumbs">學校總覽 ＞ {{ school.name }}</div>
+        <h1 class="school-title">{{ school.name }}</h1>
+
+        <ul class="meta-list">
+          <li><strong>📍 目的地：</strong>日本｜{{ school.area }}｜{{ school.city }}</li>
+          <li><strong>📆 出發日期：</strong>{{ school.startMonth }}</li>
+          <li><strong>🏫 學校：</strong>{{ school.name }}</li>
+          <li><strong>💰 費用合計：</strong>{{ school.tuition }}</li>
+          <li><strong>📄 課程下載：</strong><a href="#">點擊下載</a></li>
+        </ul>
+        <button class="booking-btn">立即預約</button>
+      </div>
+    </div>
+    <section class="feature-layout">
+      <!-- 左側：課程特色 -->
+      <div class="features-section">
+        <div class="detail-block">
+          <h2>🏫 學校基本資料</h2>
+          <ul>
+            <li><strong>學校名稱：</strong>{{ school.name }}</li>
+            <li><strong>地點：</strong>{{ school.location }}</li>
+            <li><strong>可入學月份：</strong>{{ school.intake.join('月、') }}月</li>
+            <li><strong>學校類型：</strong>{{ school.type }}</li>
+            <li><strong>創立年份：</strong>{{ school.founded }}</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h2>📖 學校介紹</h2>
+          <p class="description">{{ school.introduction }}</p>
+        </div>
+        <div class="detail-block">
+          <h2>💰 學費資訊</h2>
+          <div class="table-responsive">
+            <table class="tuition-table">
+              <thead>
+                <tr>
+                  <th>期間</th>
+                  <th>選考料</th>
+                  <th>入學金</th>
+                  <th>學費</th>
+                  <th>合計</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="fee in school.tuitionDetails" :key="fee.duration">
+                  <td>{{ fee.duration }}</td>
+                  <td>{{ fee.examFee }}</td>
+                  <td>{{ fee.entryFee }}</td>
+                  <td>{{ fee.tuition }}</td>
+                  <td>{{ fee.total }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="detail-block">
+          <h2>🏠 宿舍資訊</h2>
+          <ul>
+            <li><strong>住宿類型：</strong>{{ school.dormitory.type }}</li>
+            <li><strong>月租金：</strong>{{ school.dormitory.rent }} 日圓</li>
+            <li><strong>其他費用：</strong>{{ school.dormitory.misc }}</li>
+            <li><strong>地點：</strong>{{ school.dormitory.location }}</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h2>✨ 課程特色</h2>
+          <ul>
+            <li v-for="(item, i) in school.features" :key="i">◆ {{ item }}</li>
+          </ul>
+          <p><strong>📅 課程期間：</strong>{{ school.date }}</p>
+        </div>
+        <div class="detail-block">
+          <h2>📝 報名資格</h2>
+          <ul>
+            <li v-for="(req, i) in school.requirements" :key="i">- {{ req }}</li>
+          </ul>
+        </div>
+      </div>
+      <!-- 右側：推薦學校 -->
+      <aside class="sidebar">
+        <div class="sidebar-header">🎯 其他人正在看...</div>
+        <div class="recommend-card" v-for="(rec, i) in recommendedSchools" :key="i">
+          <img :src="rec.image" alt="推薦學校" class="rec-img" />
+          <h3 class="rec-title">{{ rec.name }}</h3>
+          <NuxtLink :to="`/school/language-school-details/${encodeURIComponent(rec.name)}`" class="rec-button">
+            查看詳情
+          </NuxtLink>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <section v-else class="not-found">
+    <h2>查無學校資料</h2>
+    <p>請確認連結是否正確。</p>
+  </section>
+
+  <ContactIcon />
+  <Navigation :nav-open="navOpen" :close-nav="closeNav" />
+  <Footer />
+</template>
+
+<style lang="scss" scoped>
+.school-wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.school-layout {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.school-image-section {
+  flex: 1 1 40%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.school-image-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.school-content-section {
+  flex: 1 1 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.breadcrumbs {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.school-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #9e5010;
+}
+
+.meta-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.meta-list li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.meta-list a {
+  color: #d67c00;
+  text-decoration: underline;
+}
+
+.booking-btn {
+  padding: 0.75rem;
+  width: 100%;
+  background: linear-gradient(to right, #fa709a, #febb6e);
+  border: none;
+  border-radius: 999px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.booking-btn:hover {
+  opacity: 0.85;
+}
+
+
+
+.not-found {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #c00;
+}
+
+.feature-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 3rem;
+
+  .features-section {
+    background-color: #fffdf7;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    flex: 1 1 65%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(230, 150, 60, 0.1);
+    padding: 2rem;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    .detail-block {
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(230, 150, 60, 0.1);
+      margin-bottom: 10px;
+      width: 100%;
+
+      h2 {
+        font-size: 1.25rem;
+        margin: 1.2rem 0;
+        color: #9e5010;
+      }
+    }
+
+    ul {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .description {
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .table-scale-wrapper {
+      width: 100%;
+      overflow: visible;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tuition-table {
+      width: 100%;
+      max-width: 800px;
+      border-collapse: collapse;
+      font-size: 1rem;
+      transition: transform 0.2s ease;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+      thead {
+        background: linear-gradient(to right, #f7e2c3, #e6b87c);
+        color: #5c3c0d;
+        max-width: 100%;
+
+        th {
+          padding: 0.75rem 1rem;
+          text-align: center;
+          font-weight: 700;
+          border-bottom: 1px solid #e0c29e;
+          font-size: 1rem;
+        }
+      }
+
+      tbody {
+        tr {
+          transition: background 0.2s ease;
+          font-size: 1rem;
+
+          &:nth-child(even) {
+            background-color: #fdf7f0;
+          }
+
+          &:hover {
+            background-color: #fff1db;
+          }
+
+          td {
+            padding: 0.75rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #f0e2d0;
+            color: #444;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sidebar {
+  flex: 1 1 15%;
+  background: linear-gradient(to bottom right, #fff5eb, #ffe2cc);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+
+  .sidebar-header {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #d67c00;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}
+
+.recommend-card {
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.recommend-card:hover {
+  transform: translateY(-4px);
+}
+
+.rec-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.rec-title {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  color: #333;
+}
+</style>

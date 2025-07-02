@@ -78,7 +78,7 @@
 
           <!-- 卡片區 -->
           <section class="user-profile d-flex flex-wrap justify-content-center gap-3 overflow-hidden">
-            <section class="card rounded-2 p-4 text-left" v-for="(person, index) in paginatedSchools" :key="index">
+            <section class="card rounded-2 p-4 text-left" v-for="(person, index) in paginatedSchools" :key="index" @click="goToDetailPage(person.name)">
               <div class="school-img-block">
                 <img :src="person.image" alt="" />
               </div>
@@ -123,7 +123,8 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import logo from "/images/logo.png";
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const navOpen = ref(false);
 const toggleNav = () => {
@@ -141,7 +142,6 @@ const paginatedSchools = computed(() => {
   const end = start + pageSize
   return sortedSchools.value.slice(start, end)
 })
-
 
 const totalPages = computed(() => {
   return Math.ceil(filteredSchools.value.length / pageSize)
@@ -238,6 +238,11 @@ function clearFilters() {
     accommodation: ''
   }
   currentPage.value = 1
+}
+
+function goToDetailPage(schoolName: string) {
+  const encodedName = encodeURIComponent(schoolName) // 避免特殊字元問題
+  router.push(`/school/language-school-details/${encodedName}`)
 }
 </script>
 
