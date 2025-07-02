@@ -12,7 +12,7 @@ const localePath = useLocalePath()
     <div class="serviceType-container">
       <div class="projcard-container">
         <!-- 日本留/遊學卡片 -->
-        <router-link to="/language-school">
+        <router-link to="/school/language-school">
           <div class="projcard projcard-school">
             <div class="projcard-innerbox">
               <img class="projcard-img" src="../img/my-services/card_school.png" />
@@ -25,7 +25,7 @@ const localePath = useLocalePath()
                     我們專注於協助台灣學生前往日本進行短期遊學或長期留學，提供從學校媒合、申請代辦、住宿安排、行前準備到當地支援的一條龍服務。透過我們的專業經驗與在地連結，讓每位學習者都能無縫銜接日本生活，安心成長、拓展國際視野。
                   </div>
                   <div class="projcard-tagbox">
-                    <p to="/language-school" class="button-link">
+                    <p to="/school/language-school" class="button-link">
                       了解更多...
                     </p>
                   </div>

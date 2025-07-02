@@ -5,7 +5,7 @@ export const serviceType = [
     desc: "提供初學者學習日語、進修或準備升學的最佳選擇。無論長短期都有適合的課程",
     tags: ["日語初學", "準備升學", "生活體驗"],
     image: "/images/blog-1.png",
-    path: "/language-school",
+    path: "/school/language-school",
   },
   {
     id: 2,

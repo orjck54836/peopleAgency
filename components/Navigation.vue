@@ -12,7 +12,7 @@ const navRef = ref<HTMLElement | null>(null);
 const isContactPage = computed(() => route.path.includes('/contact'))
 const isInternshipPage = computed(() => route.path.includes('/internship'))
 const isWorkPage = computed(() => route.path.includes('/human-resource'))
-const isSchoolPage = computed(() => route.path.includes('/language-school'))
+const isSchoolPage = computed(() => route.path.includes('/school/language-school'))
 
 // Watch and handle class changes
 onMounted(() => {
