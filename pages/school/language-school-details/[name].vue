@@ -109,10 +109,8 @@ const school = schools.find((s) => s.name === schoolName)
         <h1 class="school-title">{{ school.name }}</h1>
 
         <ul class="meta-list">
-          <li><strong>📍 目的地：</strong>日本｜{{ school.area }}｜{{ school.city }}</li>
-          <li><strong>📆 出發日期：</strong>{{ school.startMonth }}</li>
-          <li><strong>🏫 學校：</strong>{{ school.name }}</li>
-          <li><strong>💰 費用合計：</strong>{{ school.tuition }}</li>
+          <li><strong>📍 目的地：</strong>{{ school.location }}</li>
+          <li><strong>📆 出發日期：</strong>{{ school.intake }}</li>
           <li><strong>📄 課程下載：</strong><a href="#">點擊下載</a></li>
         </ul>
         <button class="booking-btn">立即預約</button>
@@ -122,10 +120,10 @@ const school = schools.find((s) => s.name === schoolName)
       <!-- 左側：課程特色 -->
       <div class="features-section">
         <div class="detail-block">
-          <h2>🏫 學校基本資料</h2>
+          <h2>🏫 基本資料</h2>
           <ul>
             <li><strong>學校名稱：</strong>{{ school.name }}</li>
-            <li><strong>地點：</strong>{{ school.location }}</li>
+            <li><strong>縣市：</strong>{{ school.location }}</li>
             <li><strong>可入學月份：</strong>{{ school.intake.join('月、') }}月</li>
             <li><strong>學校類型：</strong>{{ school.type }}</li>
             <li><strong>創立年份：</strong>{{ school.founded }}</li>
@@ -185,13 +183,16 @@ const school = schools.find((s) => s.name === schoolName)
       </div>
       <!-- 右側：推薦學校 -->
       <aside class="sidebar">
-        <div class="sidebar-header">🎯 其他人正在看...</div>
+        <div class="sidebar-header">熱門學校</div>
         <div class="recommend-card" v-for="(rec, i) in recommendedSchools" :key="i">
           <img :src="rec.image" alt="推薦學校" class="rec-img" />
           <h3 class="rec-title">{{ rec.name }}</h3>
-          <NuxtLink :to="`/school/language-school-details/${encodeURIComponent(rec.name)}`" class="rec-button">
-            查看詳情
-          </NuxtLink>
+          <div class="text-center mb-2">
+            <NuxtLink :to="`/school/language-school-details/${encodeURIComponent(rec.name)}`">
+              查看更多
+            </NuxtLink>
+          </div>
+
         </div>
       </aside>
     </section>
@@ -425,6 +426,7 @@ const school = schools.find((s) => s.name === schoolName)
 }
 
 .rec-title {
+  text-align: center;
   font-size: 1rem;
   font-weight: 600;
   padding: 0.5rem 1rem;
