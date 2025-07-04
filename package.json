@@ -23,7 +23,7 @@
     "apexcharts": "^4.4.0",
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.5",
-    "nuxt": "^3.14.1592",
+    "nuxt": "^3.17.6",
     "nuxt-swiper": "1.2.2",
     "shuffle-letters": "^1.1.0",
     "split-type": "^0.3.4",
@@ -34,6 +34,7 @@
     "vue-animate-height": "^1.1.2",
     "vue-router": "latest",
     "vue3-apexcharts": "^1.8.0",
+    "vue3-carousel-nuxt": "^1.1.6",
     "vuetify": "^3.8.1"
   },
   "devDependencies": {

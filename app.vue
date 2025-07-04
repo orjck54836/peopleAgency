@@ -8,12 +8,14 @@ useHead({
 </script>
 <template>
   <div>
-    <!-- <ColorSwitcher /> -->
-    <!-- <Demos /> -->
-    <NuxtRouteAnnouncer />
-    <div class="global-background">
-      <NuxtPage />
-    </div>
+    <UApp>
+      <!-- <ColorSwitcher /> -->
+      <!-- <Demos /> -->
+      <NuxtRouteAnnouncer />
+      <div class="global-background">
+        <NuxtPage />
+      </div>
+    </UApp>
   </div>
 </template>
 <style scoped>

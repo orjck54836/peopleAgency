@@ -5,6 +5,31 @@ import { ref } from 'vue'
 const route = useRoute()
 const navOpen = ref(false)
 
+const items = [
+  'https://picsum.photos/640/640?random=1',
+  'https://picsum.photos/640/640?random=2',
+  'https://picsum.photos/640/640?random=1',
+]
+
+const carousel = useTemplateRef('carousel')
+const activeIndex = ref(0)
+
+function onClickPrev() {
+  activeIndex.value--
+}
+function onClickNext() {
+  activeIndex.value++
+}
+function onSelect(index: number) {
+  activeIndex.value = index
+}
+
+function select(index: number) {
+  activeIndex.value = index
+
+  carousel.value?.emblaApi?.scrollTo(index)
+}
+
 const toggleNav = () => (navOpen.value = !navOpen.value)
 const closeNav = () => (navOpen.value = false)
 
@@ -99,9 +124,21 @@ const school = schools.find((s) => s.name === schoolName)
   <main class="school-wrapper" v-if="school">
     <div class="school-layout">
       <!-- 左側圖片輪播 -->
-      <div class="school-image-section">
-        <img :src="school.image" alt="學校圖片" />
+      <div class="flex-2 w-full">
+        <UCarousel ref="carousel" v-slot="{ item }" :items="items" class="w-full max-w-xs mx-auto" @select="onSelect">
+          <img :src="item" class="rounded-lg w-100">
+        </UCarousel>
+        <div class="flex gap-1 justify-content-center pt-4 max-w-xs mx-auto">
+          <div v-for="(item, index) in items" :key="index"
+            class="size-11 opacity-25 hover:opacity-100 transition-opacity"
+            :class="{ 'opacity-100': activeIndex === index }" @click="select(index)">
+            <img :src="item" width="44" height="44" class="rounded-lg">
+          </div>
+        </div>
       </div>
+      <!-- <div class="school-image-section">
+        <img :src="school.image" alt="學校圖片" />
+      </div> -->
 
       <!-- 右側內容 -->
       <div class="school-content-section">
@@ -111,7 +148,7 @@ const school = schools.find((s) => s.name === schoolName)
         <ul class="meta-list">
           <li><strong>📍 目的地：</strong>{{ school.location }}</li>
           <li><strong>📆 出發日期：</strong>{{ school.intake }}</li>
-          <li><strong>📄 課程下載：</strong><a href="#">點擊下載</a></li>
+          <li><strong>📄 簡章下載：</strong><a href="#">點擊下載</a></li>
         </ul>
         <button class="booking-btn">立即預約</button>
       </div>
@@ -140,15 +177,17 @@ const school = schools.find((s) => s.name === schoolName)
               <thead>
                 <tr>
                   <th>期間</th>
-                  <th>選考料</th>
+                  <th>入學檢定料</th>
                   <th>入學金</th>
                   <th>學費</th>
+                  <th>設施維持費</th>
                   <th>合計</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="fee in school.tuitionDetails" :key="fee.duration">
                   <td>{{ fee.duration }}</td>
+                  <td>{{ fee.examFee }}</td>
                   <td>{{ fee.examFee }}</td>
                   <td>{{ fee.entryFee }}</td>
                   <td>{{ fee.tuition }}</td>
@@ -285,8 +324,6 @@ const school = schools.find((s) => s.name === schoolName)
   opacity: 0.85;
 }
 
-
-
 .not-found {
   text-align: center;
   padding: 4rem 2rem;
@@ -305,7 +342,7 @@ const school = schools.find((s) => s.name === schoolName)
     flex: 1 1 65%;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(230, 150, 60, 0.1);
-    padding: 2rem;
+    padding: 1rem;
     max-width: 100%;
     box-sizing: border-box;
 
@@ -360,14 +397,14 @@ const school = schools.find((s) => s.name === schoolName)
           text-align: center;
           font-weight: 700;
           border-bottom: 1px solid #e0c29e;
-          font-size: 1rem;
+          font-size: 0.8rem;
         }
       }
 
       tbody {
         tr {
           transition: background 0.2s ease;
-          font-size: 1rem;
+          font-size: 0.8rem;
 
           &:nth-child(even) {
             background-color: #fdf7f0;

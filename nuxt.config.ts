@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/i18n",
     '@vesp/nuxt-fontawesome',
+    '@nuxt/ui',
+    'vue3-carousel-nuxt'
   ],
   app: {
     head: {
@@ -57,10 +59,16 @@ export default defineNuxtConfig({
         file: 'ja.json'
       }
     ],
-    defaultLocale: 'ja'
+    defaultLocale: 'ja',
+    bundle: {
+      optimizeTranslationDirective: false
+    },
   },
   ssr: false,
-  css: ["@/public/scss/styles.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
+  css: ["~/assets/css/style.css","@/public/scss/styles.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
+  ui: {
+    colorMode: false
+  },
   build: {
     // 讓 Nuxt 在打包時處理 @fortawesome/vue-fontawesome
     transpile: ['@fortawesome/vue-fontawesome'],
