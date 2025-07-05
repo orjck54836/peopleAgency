@@ -64,6 +64,10 @@ h6 {
   color: rgb(var(--black));
   margin-bottom: 0;
 }
+/* 行距 */
+h1,h2,li {
+  line-height: 1.75;
+}
 @media screen and (min-width: 1400px) {
   .btn {
     padding: 12px 24px;

@@ -124,9 +124,10 @@ const school = schools.find((s) => s.name === schoolName)
   <main class="school-wrapper" v-if="school">
     <div class="school-layout">
       <!-- 左側圖片輪播 -->
-      <div class="flex-2 w-full">
-        <UCarousel ref="carousel" v-slot="{ item }" :items="items" class="w-full max-w-xs mx-auto" @select="onSelect">
-          <img :src="item" class="rounded-lg w-100">
+      <div class="flex-4 w-full">
+
+        <UCarousel ref="carousel" v-slot="{ item }" :items="items" class="w-full max-w-4xl mx-auto" @select="onSelect">
+          <img :src="item" class="rounded-lg mx-auto">
         </UCarousel>
         <div class="flex gap-1 justify-content-center pt-4 max-w-xs mx-auto">
           <div v-for="(item, index) in items" :key="index"
@@ -142,15 +143,16 @@ const school = schools.find((s) => s.name === schoolName)
 
       <!-- 右側內容 -->
       <div class="school-content-section">
-        <div class="breadcrumbs">學校總覽 ＞ {{ school.name }}</div>
-        <h1 class="school-title">{{ school.name }}</h1>
-
         <ul class="meta-list">
+          <div>
+            <div class="breadcrumbs">學校總覽 ＞ {{ school.name }}</div>
+            <h1 class="school-title">{{ school.name }}</h1>
+          </div>
           <li><strong>📍 目的地：</strong>{{ school.location }}</li>
           <li><strong>📆 出發日期：</strong>{{ school.intake }}</li>
           <li><strong>📄 簡章下載：</strong><a href="#">點擊下載</a></li>
         </ul>
-        <button class="booking-btn">立即預約</button>
+        <button class="booking-btn">立即諮詢</button>
       </div>
     </div>
     <section class="feature-layout">
@@ -248,20 +250,28 @@ const school = schools.find((s) => s.name === schoolName)
 
 <style lang="scss" scoped>
 .school-wrapper {
-  max-width: 1140px;
+  max-width: 50%;
   margin: 0 auto;
   padding: 3rem 1rem;
   font-family: 'Noto Sans TC', sans-serif;
+
+  @media (max-width: 1400px) {
+    max-width: 80%;
+  }
 }
 
 .school-layout {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
 }
 
 .school-image-section {
-  flex: 1 1 40%;
+  flex: 1 1 50%;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -274,10 +284,15 @@ const school = schools.find((s) => s.name === schoolName)
 }
 
 .school-content-section {
-  flex: 1 1 55%;
+  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
+  justify-content: start;
   gap: 1rem;
+
+  @media (max-width: 1200px) {
+    align-items: center;
+  }
 }
 
 .breadcrumbs {
@@ -311,6 +326,7 @@ const school = schools.find((s) => s.name === schoolName)
 .booking-btn {
   padding: 0.75rem;
   width: 100%;
+  max-width: 300px;
   background: linear-gradient(to right, #fa709a, #febb6e);
   border: none;
   border-radius: 999px;

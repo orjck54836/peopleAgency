@@ -120,6 +120,7 @@ const navItems = reactive([
       rgba(220, 183, 119, 0.3),
       rgba(211, 166, 39, 0.25));
   backdrop-filter: blur(10px);
+  // max-width: 300px;
   width: 15vw;
   height: fit-content;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -129,6 +130,7 @@ const navItems = reactive([
   padding-top: 2%;
   padding-bottom: 2%;
   border-radius: 50px;
+  margin: 0 auto;
 
   /* 小螢幕 (<1200px) 下拉式 */
   @media (max-width: 1200px) {
