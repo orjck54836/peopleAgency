@@ -37,6 +37,11 @@
 
   "learnMore": "詳しくはこちらへ",
 
+  "recruitmentForm": "人材紹介",
+  "studyForm": "留学相談",
+  "recruitmentTitle": "企業向け人材紹介フォーム",
+  "studyTitle": "留学相談フォーム",
+  "studyMessage": "留学の計画を簡単にご記入ください",
   "formSuccessTitle": "お問い合わせありがとうございます！",
   "formSuccessSubtitle": "メッセージを受け取りました。後ほどご連絡いたします。",
   "errorTitle": "送信失敗",

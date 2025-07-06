@@ -210,8 +210,8 @@
   /* 主容器 */
   .about-container {
     margin: 10px auto;
-    border-left: 1px dashed #999;
-    border-right: 1px dashed #999;
+    border-left: 1px dashed #ccc;
+    border-right: 1px dashed #ccc;
   }
 
   /* About Section */
@@ -258,6 +258,8 @@
     .image-size {
       height: 50%;
       margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
 
       img {
         object-fit: contain;/* 防止圖片延展 */

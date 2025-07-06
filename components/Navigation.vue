@@ -63,27 +63,17 @@ const navItems = reactive([
       </li>
     </ul>
     <div class="contact">
-      <nuxt-link href="mailto:emily@devis.com">Mail:forma-global@gmail.com</nuxt-link>
-      <nuxt-link href="tel:+420652887351">Tel:+420 652 887 351</nuxt-link>
       <!-- Line 官方帳號 -->
       <div class="line-contact">
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE logo" width="24"
           height="24" />
-        <a href="https://line.me/R/ti/p/@forma_global"
-          target="_blank"
-          rel="noopener noreferrer"
-          style="color: #00b900; font-weight: bold;"
-          >
+        <a href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener noreferrer">
           Line官方帳號
         </a>
       </div>
     </div>
     <div class="google-map-wrapper">
-      <p>
-        🗺️ 公司位置
-      </p>
-      <iframe width="100%" height="200" loading="lazy" allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"
+      <iframe width="100%" height="200" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.939320802105!2d139.76609781525802!3d35.68123628019509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c0b06c34b67%3A0x48e61f729a5c15b6!2z5p2x5Lqs6YO95p2x5Z-O!5e0!3m2!1szh-TW!2sjp!4v1720200000000!5m2!1szh-TW!2sjp"></iframe>
     </div>
   </nav>
@@ -107,10 +97,16 @@ const navItems = reactive([
   width: 90%;
   margin: 10px auto;
   padding: 10px;
-  
-  p {
-    font-size: 1rem;
-    margin: 10px auto;
+}
+
+.line-contact {
+  display: flex;
+  font-weight: bolder;
+  color: #00b900;
+  gap: 2;
+
+  a {
+    margin-left: 10px;
   }
 }
 
@@ -283,8 +279,9 @@ const navItems = reactive([
     flex-direction: column;
     gap: 8px;
     align-items: center;
+
     a {
-      font-size: 18px;
+      font-size: 16px;
       color: rgb(var(--black));
     }
   }

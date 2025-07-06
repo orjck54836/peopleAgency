@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import logo from "/images/logo.png";
-import fb from "/images/fb.png";
-import tt from "/images/tt.png";
-import x from "/images/x.png";
-import sp from "/images/sp.png";
-import blogVideo from "/images/blog-video.png";
-import youtube from "/images/youtube.png";
-import blogDetails from "/images/blog-details.png";
+
 
 const navOpen = ref(false);
 const toggleNav = () => {

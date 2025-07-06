@@ -37,6 +37,11 @@
 
   "learnMore": "Learn more",
 
+  "recruitmentForm": "Recruitment Service",
+  "studyForm": "Study Abroad Consultation",
+  "recruitmentTitle": "Recruitment Inquiry Form",
+  "studyTitle": "Study Abroad Inquiry Form",
+  "studyMessage": "Please briefly describe your study abroad plan",
   "formSuccessTitle": "Thank you for contacting us!",
   "formSuccessSubtitle": "We’ve received your message and will get back to you shortly.",
   "errorTitle": "Submission Failed",

@@ -1,3 +1,104 @@
+<script lang="ts" setup>
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const navOpen = ref(false)
+const toggleNav = () => (navOpen.value = !navOpen.value)
+const closeNav = () => (navOpen.value = false)
+
+const currentPage = ref(1)
+const pageSize = 6
+
+const schools = ref<any[]>([])
+
+const filters = ref({
+  keyword: '',
+  region: '',
+  intake: '',
+  type: '',
+  accommodation: ''
+})
+
+const regionOptions = ['東京', '大阪', '名古屋', '福岡', '北海道', '神奈川']
+const intakeOptions = ['1', '4', '7', '10']
+
+const sortOption = ref('')
+const sortOptions = [
+  { value: '', label: '預設排序' },
+  { value: 'tuition-desc', label: '學費高 ➜ 低' },
+  { value: 'tuition-asc', label: '學費低 ➜ 高' },
+  { value: 'popularity', label: '熱門程度' }
+]
+
+const filteredSchools = computed(() => {
+  return schools.value.filter((school) => {
+    const keywordMatch = !filters.value.keyword || school.name.includes(filters.value.keyword)
+    const regionMatch = !filters.value.region || school.location === filters.value.region
+    const intakeMatch = !filters.value.intake || school.intake.includes(filters.value.intake)
+    return keywordMatch && regionMatch && intakeMatch
+  })
+})
+
+const sortedSchools = computed(() => {
+  const list = [...filteredSchools.value]
+  switch (sortOption.value) {
+    case 'tuition-desc':
+      return list.sort((a, b) => b.tuition - a.tuition)
+    case 'tuition-asc':
+      return list.sort((a, b) => a.tuition - b.tuition)
+    case 'popularity':
+      return list.sort((a, b) => b.popularity - a.popularity)
+    default:
+      return list
+  }
+})
+
+const paginatedSchools = computed(() => {
+  const start = (currentPage.value - 1) * pageSize
+  const end = start + pageSize
+  return sortedSchools.value.slice(start, end)
+})
+
+const totalPages = computed(() => {
+  return Math.ceil(filteredSchools.value.length / pageSize)
+})
+
+function clearFilters() {
+  filters.value = {
+    keyword: '',
+    region: '',
+    intake: '',
+    type: '',
+    accommodation: ''
+  }
+  currentPage.value = 1
+}
+
+function goToDetailPage(schoolName: string) {
+  const encoded = encodeURIComponent(schoolName)
+  router.push(`/school/language-school-details/${encoded}`)
+}
+
+async function fetchSchools() {
+  try {
+    const res = await fetch('https://api.forma-global.com/api/GetSchools')
+    const json = await res.json()
+    if (json.success) {
+      schools.value = json.data.map((s: any) => ({
+        ...s,
+        popularity: Math.floor(Math.random() * 5) + 1,
+        tuition: Number((s.tuitionDetails?.[0]?.total || '0').replace(/[,日圓]/g, '')) || 0
+      }))
+    }
+  } catch (err) {
+    console.error('❌ 無法取得學校資料：', err)
+  }
+}
+
+onMounted(fetchSchools)
+</script>
+
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
   <div class="title">
@@ -78,18 +179,19 @@
 
           <!-- 卡片區 -->
           <section class="user-profile d-flex flex-wrap justify-content-center gap-3 overflow-hidden">
-            <section class="card rounded-2 p-4 text-left" v-for="(person, index) in paginatedSchools" :key="index" @click="goToDetailPage(person.name)">
+            <section class="card rounded-2 p-4 text-left" v-for="(person, index) in paginatedSchools" :key="index"
+              @click="goToDetailPage(person.name)">
               <div class="school-img-block">
                 <img :src="person.image" alt="" />
               </div>
-              <div>
+              <div class="p-4">
                 <span class="name fw-semibold d-block">{{ person.name }}</span>
                 <span class="location-title fw-medium mb-2">{{ person.location }}</span>
                 <span class="d-block text-secondary mb-2">
                   入學月份：{{ person.intake.join('月、') }}月
                 </span>
-                <p>{{ person.directions }}</p>
-                <div class="mt-3 text-danger fw-semibold small">查看更多 ➔</div>
+                <p>{{ person.introduction }}</p>
+                <div class="mt-3 text-danger fw-semibold small text-center">查看更多 ➔</div>
               </div>
             </section>
           </section>
@@ -120,133 +222,6 @@
   <Navigation :nav-open="navOpen" :close-nav="closeNav" />
   <Footer />
 </template>
-
-<script lang="ts" setup>
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-const router = useRouter()
-
-const navOpen = ref(false);
-const toggleNav = () => {
-  navOpen.value = !navOpen.value;
-};
-const closeNav = () => {
-  navOpen.value = false;
-};
-
-const currentPage = ref(1)
-const pageSize = 6 // 每頁幾筆
-
-const paginatedSchools = computed(() => {
-  const start = (currentPage.value - 1) * pageSize
-  const end = start + pageSize
-  return sortedSchools.value.slice(start, end)
-})
-
-const totalPages = computed(() => {
-  return Math.ceil(filteredSchools.value.length / pageSize)
-})
-
-const filters = ref({
-  keyword: '',
-  region: '',
-  intake: '',
-  type: '',
-  accommodation: ''
-})
-
-const regionOptions = ['東京', '大阪', '名古屋', '福岡', '北海道', '神奈川']
-const intakeOptions = ['1', '4', '7', '10']
-
-const team = [
-  {
-    name: 'CBC外語商業專門學校',
-    location: '神奈川',
-    directions: '位於神奈川縣川崎市，半全日制。豐富選修課程及可與日本學生互動。',
-    intake: ['4', '10'],
-    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg',
-    popularity: 2,
-    tuition: 4
-  },
-  {
-    name: '新宿日本語學校',
-    location: '東京',
-    directions: '1975年成立，歷史悠久老字號名校。為日本文部科學省指定認可語言學校。',
-    intake: ['1', '4', '10'],
-    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg',
-    popularity: 3,
-    tuition: 1
-  },
-  {
-    name: '大阪YMCA學院',
-    location: '大阪',
-    directions: '大阪YMCA 學院位於熱鬧的天王寺區，校舍位於YMCA總部內，資源完整。',
-    intake: ['1', '7'],
-    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg',
-    popularity: 1,
-    tuition: 2
-  },
-  {
-    name: 'CBC外語商業專門學校2',
-    location: '神奈川',
-    directions: '位於神奈川縣川崎市，半全日制。豐富選修課程及可與日本學生互動。',
-    intake: ['4', '10'],
-    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg',
-    popularity: 4,
-    tuition: 3
-  }
-]
-
-const sortOption = ref('')
-const sortOptions = [
-  { value: '', label: '預設排序' },
-  { value: 'tuition-desc', label: '學費高 ➜ 低' },
-  { value: 'tuition-asc', label: '學費低 ➜ 高' },
-  { value: 'popularity', label: '熱門程度' }
-]
-
-const sortedSchools = computed(() => {
-  const schools = [...filteredSchools.value]
-  switch (sortOption.value) {
-    case 'tuition-desc':
-      return schools.sort((a, b) => b.tuition - a.tuition)
-    case 'tuition-asc':
-      return schools.sort((a, b) => a.tuition - b.tuition)
-    case 'popularity':
-      return schools.sort((a, b) => a.popularity - b.popularity)
-    default:
-      return schools
-  }
-})
-
-const filteredSchools = computed(() => {
-  return team.filter((school) => {
-    const keywordMatch = !filters.value.keyword || school.name.includes(filters.value.keyword)
-    const regionMatch = !filters.value.region || school.location === filters.value.region
-    const intakeMatch =
-      !filters.value.intake || school.intake.includes(filters.value.intake)
-    return keywordMatch && regionMatch && intakeMatch
-  })
-})
-
-function clearFilters() {
-  filters.value = {
-    keyword: '',
-    region: '',
-    intake: '',
-    type: '',
-    accommodation: ''
-  }
-  currentPage.value = 1
-}
-
-function goToDetailPage(schoolName: string) {
-  const encodedName = encodeURIComponent(schoolName) // 避免特殊字元問題
-  router.push(`/school/language-school-details/${encodedName}`)
-}
-</script>
-
-
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
@@ -409,8 +384,10 @@ body {
 }
 
 .sort-button {
-  flex: 1 1 20%; /* 優先兩個一行，太小就自動換行 */
-  min-width: 120px; /* 防止按鈕太窄 */
+  flex: 1 1 20%;
+  /* 優先兩個一行，太小就自動換行 */
+  min-width: 120px;
+  /* 防止按鈕太窄 */
   padding: 0.6rem;
   font-size: 0.9rem;
   text-align: center;
@@ -493,7 +470,6 @@ body {
   overflow: hidden;
   border-radius: 12px;
   flex-shrink: 0;
-  margin-right: 20px;
 }
 
 .school-img-block img {

@@ -1,122 +1,59 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const route = useRoute()
 const navOpen = ref(false)
 
-const items = [
-  'https://picsum.photos/640/640?random=1',
-  'https://picsum.photos/640/640?random=2',
-  'https://picsum.photos/640/640?random=1',
-]
+const toggleNav = () => (navOpen.value = !navOpen.value)
+const closeNav = () => (navOpen.value = false)
 
 const carousel = useTemplateRef('carousel')
 const activeIndex = ref(0)
 
-function onClickPrev() {
-  activeIndex.value--
-}
-function onClickNext() {
-  activeIndex.value++
-}
 function onSelect(index: number) {
   activeIndex.value = index
 }
 
 function select(index: number) {
   activeIndex.value = index
-
   carousel.value?.emblaApi?.scrollTo(index)
 }
 
-const toggleNav = () => (navOpen.value = !navOpen.value)
-const closeNav = () => (navOpen.value = false)
-
-// 假資料，日後可改成 API
-const schools = [
-  {
-    name: 'CBC外語商業專門學校',
-    location: '神奈川',
-    intake: ['4', '10'],
-    type: '專門學校',
-    founded: '2005年',
-    introduction:
-      'CBC外語商業專門學校位於神奈川縣川崎市，提供日語與商業實務結合的課程，擁有豐富的語言教育經驗，致力於培養能於日本社會即戰力的留學生。',
-    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg',
-
-    tuitionDetails: [
-      {
-        duration: '6個月',
-        examFee: '33,000日圓',
-        entryFee: '77,000日圓',
-        tuition: '330,000日圓',
-        total: '440,000日圓'
-      },
-      {
-        duration: '1年',
-        examFee: '33,000日圓',
-        entryFee: '77,000日圓',
-        tuition: '660,000日圓',
-        total: '770,000日圓'
-      },
-      {
-        duration: '1年6個月',
-        examFee: '33,000日圓',
-        entryFee: '77,000日圓',
-        tuition: '990,000日圓',
-        total: '1,100,000日圓'
-      },
-      {
-        duration: '2年',
-        examFee: '33,000日圓',
-        entryFee: '77,000日圓',
-        tuition: '1,320,000日圓',
-        total: '1,430,000日圓'
-      }
-    ],
-
-    dormitory: {
-      type: '學生宿舍（雙人房／單人房）',
-      rent: '45,000 ~ 60,000',
-      misc: '包含水電與管理費、初期入住清潔費用另計',
-      location: '距學校徒步約10分鐘'
-    },
-
-    features: [
-      '上午日文授課（會話、聽解、閱讀）',
-      '下午文化體驗活動（淺草、雷門、橫濱等）',
-      '安排日本學生交流課程與歡迎派對'
-    ],
-
-    date: '2025/8/1 ～ 2025/8/28',
-
-    requirements: [
-      '18歲以上高中畢業（含）',
-      '具備日文初級程度（N5以上尤佳）',
-      '能配合校方安排的團體課程與活動'
-    ]
-  }
+const items = [
+  'https://picsum.photos/640/640?random=1',
+  'https://picsum.photos/640/640?random=2',
+  'https://picsum.photos/640/640?random=3',
 ]
 
-const recommendedSchools = [
-  {
-    name: '東京藝術大學（大學院）',
-    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
-  },
-  {
-    name: '華調理製菓專門學校',
-    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
-  },
-  {
-    name: 'CBC外語商業專門學校',
-    image: 'https://cms.rhinoshield.app/public/images/ip_page_spongebob_icon_b310ce2b5a.jpg'
-  }
-]
-
+// 從 API 抓取所有學校資料
+const allSchools = ref<any[]>([])
 const schoolName = decodeURIComponent(route.params.name as string)
-const school = schools.find((s) => s.name === schoolName)
+const school = computed(() => allSchools.value.find(s => s.name === schoolName))
+
+const recommendedSchools = ref<any[]>([])
+
+onMounted(async () => {
+  try {
+    const res = await fetch('https://api.forma-global.com/api/GetSchools')
+    const json = await res.json()
+    if (json.success) {
+      allSchools.value = json.data
+
+      // 移除目前學校避免重複
+      const others = allSchools.value.filter(s => s.name !== schoolName)
+
+      // 洗牌後取前3筆
+      recommendedSchools.value = others.sort(() => Math.random() - 0.5).slice(0, 3)
+    } else {
+      console.error('API 回傳失敗')
+    }
+  } catch (err) {
+    console.error('無法取得學校資料：', err)
+  }
+})
 </script>
+
 
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
@@ -125,7 +62,6 @@ const school = schools.find((s) => s.name === schoolName)
     <div class="school-layout">
       <!-- 左側圖片輪播 -->
       <div class="flex-4 w-full">
-
         <UCarousel ref="carousel" v-slot="{ item }" :items="items" class="w-full max-w-4xl mx-auto" @select="onSelect">
           <img :src="item" class="rounded-lg mx-auto">
         </UCarousel>
@@ -137,23 +73,33 @@ const school = schools.find((s) => s.name === schoolName)
           </div>
         </div>
       </div>
-      <!-- <div class="school-image-section">
-        <img :src="school.image" alt="學校圖片" />
-      </div> -->
-
       <!-- 右側內容 -->
       <div class="school-content-section">
         <ul class="meta-list">
           <div>
-            <div class="breadcrumbs">學校總覽 ＞ {{ school.name }}</div>
-            <h1 class="school-title">{{ school.name }}</h1>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+              <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                  <a :href="'/school/language-school'">學校總覽</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{ school.name }}</li>
+              </ol>
+            </nav>
+            <h1 class="school-title mb-2">{{ school.name }}</h1>
           </div>
-          <li><strong>📍 目的地：</strong>{{ school.location }}</li>
-          <li><strong>📆 出發日期：</strong>{{ school.intake }}</li>
+
+          <li><strong>📍 學校地點：</strong>{{ school.location }}</li>
+          <li><strong>📆 開課期間：</strong>{{ school.intake.join('月、') }}月</li>
+          <li><strong>🏫 學校類型：</strong>{{ school.type }}</li>
+          <li><strong>⏳ 課程期間：</strong>{{ school.tuitionDetails.at(-1)?.duration }}</li>
+          <li><strong>👥 招生對象：</strong>{{ school.requirements[0] }}</li>
+          <li><strong>🈶 建議日文程度：</strong>{{ school.requirements[1] }}</li>
           <li><strong>📄 簡章下載：</strong><a href="#">點擊下載</a></li>
         </ul>
+
         <button class="booking-btn">立即諮詢</button>
       </div>
+
     </div>
     <section class="feature-layout">
       <!-- 左側：課程特色 -->
@@ -224,24 +170,24 @@ const school = schools.find((s) => s.name === schoolName)
       </div>
       <!-- 右側：推薦學校 -->
       <aside class="sidebar">
-        <div class="sidebar-header">熱門學校</div>
+        <div class="sidebar-header">更多熱門學校</div>
         <div class="recommend-card" v-for="(rec, i) in recommendedSchools" :key="i">
-          <img :src="rec.image" alt="推薦學校" class="rec-img" />
-          <h3 class="rec-title">{{ rec.name }}</h3>
-          <div class="text-center mb-2">
-            <NuxtLink :to="`/school/language-school-details/${encodeURIComponent(rec.name)}`">
-              查看更多
-            </NuxtLink>
-          </div>
-
+          <NuxtLink :to="`/school/language-school-details/${encodeURIComponent(rec.name)}`">
+            <div><img :src="rec.image" alt="推薦學校" class="rec-img" />
+              <h3 class="rec-title">{{ rec.name }}</h3>
+              <div class="text-center mb-2">
+                查看更多
+              </div>
+            </div>
+          </NuxtLink>
         </div>
       </aside>
     </section>
   </main>
-  <section v-else class="not-found">
+  <!-- <section v-else class="not-found">
     <h2>查無學校資料</h2>
     <p>請確認連結是否正確。</p>
-  </section>
+  </section> -->
 
   <ContactIcon />
   <Navigation :nav-open="navOpen" :close-nav="closeNav" />
@@ -250,7 +196,7 @@ const school = schools.find((s) => s.name === schoolName)
 
 <style lang="scss" scoped>
 .school-wrapper {
-  max-width: 50%;
+  max-width: 70%;
   margin: 0 auto;
   padding: 3rem 1rem;
   font-family: 'Noto Sans TC', sans-serif;

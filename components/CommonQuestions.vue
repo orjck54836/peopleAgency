@@ -151,9 +151,9 @@ const currentProject = ref(projects[1]);
 
 .common-questions-content {
   text-align: center;
-  border-left: 1px dashed #999;
-  border-right: 1px dashed #999;
-  padding: 10px;
+  border-left: 1px dashed #ccc;
+  border-right: 1px dashed #ccc;
+  margin: 10px auto;
 }
 
 .projects {

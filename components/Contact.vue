@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import emailjs from "@emailjs/browser";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,45 +15,55 @@ const handleDialogClose = () => {
   showSuccess.value = false;
   showError.value = false;
 };
-const formData = {
-  companyName: "",
-  name: "",
-  phone: "",
-  workContent: "",
-  cityAddress: "",
-  email: "",
-  inquiryType: "",
-  message: "",
-};
+const selectedFormType = ref<'recruitment' | 'study'>('recruitment')
+
+const formData = reactive<Record<string, any>>({})
+const formTitle = computed(() =>
+  selectedFormType.value === 'recruitment'
+    ? t('recruitmentTitle')
+    : t('studyTitle')
+)
+const formFields = computed(() => {
+  return selectedFormType.value === 'recruitment'
+    ? [
+        { key: 'companyName', label: t('companyName'), required: true },
+        { key: 'name', label: t('name'), required: true },
+        { key: 'phone', label: t('phone') },
+        { key: 'email', label: t('email'), required: true },
+        { key: 'cityAddress', label: t('cityAddress') },
+        { key: 'workContent', label: t('workContent') },
+        { key: 'inquiryType', label: t('inquiryType'), type: 'radio', required: true, options: [
+          { value: 'job_offer', label: t('inquiryOption1') },
+          { value: 'license', label: t('inquiryOption2') },
+          { value: 'other', label: t('inquiryOption3') }
+        ]}
+      ]
+    : [
+        { key: 'name', label: t('name'), required: true },
+        { key: 'email', label: t('email'), required: true },
+        { key: 'phone', label: t('phone') },
+        { key: 'message', label: t('studyMessage'), type: 'textarea' }
+      ]
+})
 
 const submitBtn = computed(() => t('submit'));
 const config = useRuntimeConfig();
 // Handle form submission
 const form = ref<HTMLFormElement | null>(null);
-const handleSubmit = async () => {
+  const handleSubmit = async () => {
   try {
-    console.log(formData);
     const res = await fetch("https://qedunajx5c.execute-api.ap-northeast-3.amazonaws.com/dev/send", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        companyName: formData.companyName,
-        name: formData.name,
-        phone: formData.phone,
-        workContent: formData.workContent,
-        cityAddress: formData.cityAddress,
-        email: formData.email,
-        message: formData.message,
-        inquiryType: formData.inquiryType
-      }),
+      body: JSON.stringify(formData), // ✅ 改這裡
     });
 
     const result = await res.json();
     if (result.success) {
       showSuccess.value = true;
-      Object.keys(formData).forEach(key => formData[key] = "");
+      Object.keys(formData).forEach((key) => (formData[key] = "")); // ✅ 改這裡
     } else {
       showError.value = true;
     }
@@ -64,116 +74,83 @@ const handleSubmit = async () => {
 };
 
 
-// GSAP animations on mounted
-onMounted(() => {
-  gsap.fromTo(
-    ".section-title-overlay-text",
-    { y: "50%" },
-    {
-      y: "-50%",
-      scrollTrigger: {
-        trigger: ".contact",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
+// 根據表單欄位自動初始化 formData，每次切換表單時清空內容
+watch(
+  formFields,
+  (newFields) => {
+    Object.keys(formData).forEach((key) => delete formData[key])
+    for (const field of newFields) {
+      formData[field.key] = ''
     }
-  );
-
-  gsap.from(".submit-btn", {
-    scale: 0,
-    duration: 3.5,
-    ease: "elastic",
-    delay: 0.2,
-    scrollTrigger: {
-      trigger: ".submit-btn",
-    },
-  });
-
-  gsap.from(".contact-item", {
-    scale: 0,
-    duration: 0.8,
-    ease: "back",
-    scrollTrigger: {
-      trigger: ".contact-items",
-    },
-  });
-
-  gsap.from(".contact-input", {
-    opacity: 0,
-    scale: 0,
-    duration: 0.8,
-    scrollTrigger: {
-      trigger: ".contact-input",
-    },
-  });
-});
+  },
+  { immediate: true }
+)
 </script>
 <template>
   <section class="contact-wrapper">
-    <div class="contact-header">
-      <h2>{{ $t('contactMessage') }}</h2>
-      <p class="subtitle">{{ $t('contactMessageSubTitle') }}</p>
+    <h2 class="text-center">{{ formTitle }}</h2>
+    <div class="form-toggle">
+      <button
+        :class="{ active: selectedFormType === 'recruitment' }"
+        @click="selectedFormType = 'recruitment'"
+      >
+        {{ t('recruitmentForm') }}
+      </button>
+      <button
+        :class="{ active: selectedFormType === 'study' }"
+        @click="selectedFormType = 'study'"
+      >
+        {{ t('studyForm') }}
+      </button>
     </div>
+    <form @submit.prevent="handleSubmit" class="contact-card">
+      <div class="grid">
+        <div
+          v-for="field in formFields"
+          :key="field.key"
+          class="form-group"
+          :class="{ full: field.type === 'textarea' || field.type === 'radio' }"
+        >
+          <label :for="field.key">
+            {{ field.label }}
+            <span v-if="field.required" class="required">{{ t('required') }}</span>
+          </label>
 
-    <form ref="form" @submit.prevent="handleSubmit" id="contact-form" class="contact-card">
-      <div class="grid">    
-        <div class="form-group">
-          <label for="companyName">{{ $t('companyName') }}
-            <span class="required">{{ $t('required') }}</span>
-          </label>
-          <input type="text" id="companyName" name="companyName" v-model="formData.companyName" :placeholder="$t('companyName')" required />
-        </div>
-        <div class="form-group">
-          <label for="name">{{ $t('name') }}
-            <span class="required">{{ $t('required') }}</span>
-          </label>
-          <input type="text" id="name" name="name" v-model="formData.name" :placeholder="$t('name')" required />
-        </div>
-        <div class="form-group">
-          <label for="phone">{{ $t('phone') }}</label>
-          <input type="tel" id="phone" name="phone" v-model="formData.phone" :placeholder="$t('phone')" />
-        </div>
-        <div class="form-group">
-          <label for="email">{{ $t('email') }}
-            <span class="required">{{ $t('required') }}</span>
-          </label>
-          <input type="email" id="email" name="email" v-model="formData.email" :placeholder="$t('email')" required />
-        </div>
-        <div class="form-group">
-          <label for="cityAddress">{{ $t('cityAddress') }}</label>
-          <input type="text" id="cityAddress" name="cityAddress" v-model="formData.cityAddress" :placeholder="$t('cityAddress')" />
-        </div>
-        <div class="form-group full">
-          <label for="workContent">{{ $t('workContent') }}</label>
-          <input type="text" id="workContent" name="workContent" v-model="formData.workContent" :placeholder="$t('workContent')" />
-        </div>
-        <div class="form-group full">
-          <label for="message">{{ $t('message') }}</label>
-          <textarea id="message" name="message" rows="5" v-model="formData.message" :placeholder="$t('message')"></textarea>
-        </div>
-        <!-- お問い合わせ項目 -->
-        <div class="form-group full">
-          <label>{{ $t('inquiryType') }}
-            <span class="required">{{ $t('required') }}</span>
-          </label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="inquiryType" value="inquiryOption1" v-model="formData.inquiryType" required />
-              {{ $t('inquiryOption1') }}
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="inquiryType" value="inquiryOption2" v-model="formData.inquiryType" />
-              {{ $t('inquiryOption2') }}
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="inquiryType" value="inquiryOption3" v-model="formData.inquiryType" />
-              {{ $t('inquiryOption3') }}
+          <textarea
+            v-if="field.type === 'textarea'"
+            :id="field.key"
+            :placeholder="field.label"
+            v-model="formData[field.key]"
+            rows="5"
+            :required="field.required"
+          />
+          
+          <div v-else-if="field.type === 'radio'" class="radio-group">
+            <label
+              v-for="option in field.options"
+              :key="option.value"
+              class="radio-option"
+            >
+              <input
+                type="radio"
+                :name="field.key"
+                :value="option.value"
+                v-model="formData[field.key]"
+                :required="field.required"
+              />
+              {{ option.label }}
             </label>
           </div>
+          <input
+            v-else
+            :type="field.type || 'text'"
+            :id="field.key"
+            :placeholder="field.label"
+            v-model="formData[field.key]"
+            :required="field.required"
+          />
         </div>
       </div>
-
       <div class="submit-wrapper">
         <button type="submit" class="form-submit-btn">
           {{ submitBtn }}
@@ -197,7 +174,35 @@ onMounted(() => {
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
+.form-toggle {
+  display: flex;
+  justify-content: center;
+  margin: 2rem auto;
+  gap: 1rem;
+
+  button {
+    width: 50%;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    background: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &.active {
+      background: rgb(var(--primary));
+      color: white;
+      border-color: rgb(var(--primary));
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
 .contact-wrapper {
   max-width: 960px;
   margin: 0 auto;
