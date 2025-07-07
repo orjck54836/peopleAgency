@@ -41,12 +41,14 @@ Version: 1.0
 }
 
 @import "bootstrap.scss";
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Zen+Kurenaido&display=swap');
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Kaisei Decol", serif;
+  font-weight: 400;
+  font-style: normal;
   background-color: rgb(var(--background)); /* 柔和米白色，讓畫面更乾淨舒適 */
   color: rgb(var(--contrast)); /* 文字用暖灰木色，溫潤柔和 */
-  font-size: 16px;
   overflow-x: hidden;
 }
 a {

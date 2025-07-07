@@ -15,7 +15,7 @@
           </p>
           <div class="hero-buttons">
             <a href="#services" class="btn btn-2 btn-2g">服務項目</a>
-            <a href="#contact" class="btn btn-2 btn-2g">立即諮詢</a>
+            <a href="contact" class="btn btn-2 btn-2g">立即諮詢</a>
           </div>
         </div>
       </div>
@@ -102,9 +102,8 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  font-family: 'Playfair Display', serif;
   letter-spacing: 0.03em;
   line-height: 1.3;
   text-align: left;
@@ -128,7 +127,6 @@ onMounted(() => {
   .fade_word {
     line-height: 1.4;
     font-weight: 700;
-    font-family: "Urbanist", sans-serif;
     text-align: left;
 
     @media (max-width: 1180px) {
@@ -165,8 +163,8 @@ onMounted(() => {
 
 .hero-subtitle {
   margin-top: 50px;
-  font-size: 1.2rem;
-  color: #fff;
+  font-size: 1.1rem;
+  color: #ae7c25b7;
   margin-bottom: 2rem;
   font-weight: bolder;
   text-shadow: 0 1px 3px rgba(210, 127, 18, 0.2);
@@ -189,7 +187,6 @@ onMounted(() => {
 
 
 .btn {
-  font-family: 'Noto Sans', sans-serif;
   border: none;
   font-size: 1.2rem;
   color: inherit;

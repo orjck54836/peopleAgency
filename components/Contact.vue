@@ -31,7 +31,7 @@ const formFields = computed(() => {
         { key: 'phone', label: t('phone') },
         { key: 'email', label: t('email'), required: true },
         { key: 'cityAddress', label: t('cityAddress') },
-        { key: 'workContent', label: t('workContent') },
+        { key: 'workContent', label: t('workContent'), type: 'textarea' },
         { key: 'inquiryType', label: t('inquiryType'), type: 'radio', required: true, options: [
           { value: 'job_offer', label: t('inquiryOption1') },
           { value: 'license', label: t('inquiryOption2') },
@@ -50,9 +50,9 @@ const submitBtn = computed(() => t('submit'));
 const config = useRuntimeConfig();
 // Handle form submission
 const form = ref<HTMLFormElement | null>(null);
-  const handleSubmit = async () => {
+const handleSubmit = async () => {
   try {
-    const res = await fetch("https://qedunajx5c.execute-api.ap-northeast-3.amazonaws.com/dev/send", {
+    const res = await fetch("https://api.forma-global.com/api/sendEmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,9 +87,14 @@ watch(
 )
 </script>
 <template>
+  <div class="title">
+    <h1>{{ formTitle }}</h1>
+  </div>
   <section class="contact-wrapper">
-    <h2 class="text-center">{{ formTitle }}</h2>
-    <div class="form-toggle">
+    <div
+      class="form-toggle"
+      :class="{ 'study-active': selectedFormType === 'study' }"
+    >
       <button
         :class="{ active: selectedFormType === 'recruitment' }"
         @click="selectedFormType = 'recruitment'"
@@ -104,7 +109,7 @@ watch(
       </button>
     </div>
     <form @submit.prevent="handleSubmit" class="contact-card">
-      <div class="grid">
+      <div>
         <div
           v-for="field in formFields"
           :key="field.key"
@@ -175,38 +180,91 @@ watch(
 
 
 <style lang="scss" scoped>
-.form-toggle {
+/* === Title Section === */
+.title {
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin: 2rem auto;
-  gap: 1rem;
+  color: #9e5010;
+  font-weight: bolder;
+  width: 50%;
+  padding: 30px;
+  padding-bottom: 0;
+  margin: 0 auto;
+  text-align: center;
+}
 
-  button {
-    width: 50%;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-weight: bold;
-    background: #eee;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    transition: 0.2s ease;
-
-    &.active {
-      background: rgb(var(--primary));
-      color: white;
-      border-color: rgb(var(--primary));
-    }
-
-    &:hover {
-      opacity: 0.9;
-    }
-  }
+.title::before,
+.title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #9e5010;
+  margin: 0 1rem;
 }
 
 .contact-wrapper {
   max-width: 960px;
   margin: 0 auto;
   padding: 1rem 1rem;
+
+  .form-toggle {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 2rem auto;
+    max-width: 360px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    button {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-weight: bold;
+      border: none;
+      background: transparent;
+      color: #555;
+      cursor: pointer;
+      z-index: 1;
+      position: relative;
+      transition: color 0.3s ease;
+
+      &.active {
+        color: #fff;
+      }
+
+      &:hover {
+        color: #fff;
+        transform: scale(1.05);
+      }
+    }
+
+    // 背後滑動效果
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      border-radius: 999px;
+      transition: transform 0.3s ease;
+      z-index: 0;
+      transform: translateX(-50%);
+      background: rgba(var(--primary), 1);
+      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    // 切換位置動畫
+    &.study-active::before {
+      transform: translateX(50%);
+    }
+  }
 
   label .required {
     color: #e63946;

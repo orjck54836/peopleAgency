@@ -126,7 +126,6 @@
 .company-overview {
   margin: 0 auto;
   border-radius: 16px;
-  font-family: "Noto Sans TC", sans-serif;
 
   .company-table {
     border-radius: 12px;
@@ -201,7 +200,6 @@
   }
 
   body {
-    font-family: "Noto Sans TC", Arial, sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #fdfdfd;

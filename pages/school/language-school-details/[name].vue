@@ -199,7 +199,6 @@ onMounted(async () => {
   max-width: 70%;
   margin: 0 auto;
   padding: 3rem 1rem;
-  font-family: 'Noto Sans TC', sans-serif;
 
   @media (max-width: 1400px) {
     max-width: 80%;

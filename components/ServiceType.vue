@@ -300,12 +300,10 @@ const localePath = useLocalePath()
 }
 
 .projcard-title {
-  font-family: 'Voces', 'Open Sans', arial, sans-serif;
   font-size: 24px;
 }
 
 .projcard-subtitle {
-  font-family: 'Voces', 'Open Sans', arial, sans-serif;
   color: #888;
 }
 

@@ -52,7 +52,6 @@ onMounted(() => {
 <style lang="scss">
 .section-title-overlay-text {
   color: rgb(var(--black));
-  font-family: Poppins;
   font-size: 35px;
   @media (min-width: 576px) {
     font-size: 80px;

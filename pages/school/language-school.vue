@@ -227,15 +227,10 @@ onMounted(fetchSchools)
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
 /* === General Typography & Layout === */
-body {
-  font-family: 'Montserrat', sans-serif !important;
-}
-
 .page-wrapper {
   max-width: 90%;
   margin: 0 auto 50px;
   padding: 4rem 1.5rem;
-  font-family: 'Noto Sans TC', 'Helvetica Neue', sans-serif;
   background-color: #f8fbff;
   border-radius: 20px;
 }

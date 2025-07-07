@@ -119,6 +119,7 @@ const navItems = reactive([
   // max-width: 300px;
   width: 15vw;
   height: fit-content;
+  min-height: 55vh;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   z-index: 100;

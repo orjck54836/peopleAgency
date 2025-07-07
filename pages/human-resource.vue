@@ -330,7 +330,6 @@ onMounted(() => {
     max-width: 90%;
     margin: 0 auto;
     padding: 4rem 1.5rem;
-    font-family: 'Noto Sans TC', 'Helvetica Neue', sans-serif;
     background-color: #f8fbff;
     border-radius: 20px;
     margin-bottom: 50px;
@@ -465,7 +464,6 @@ onMounted(() => {
 .flow__num {
     background: rgb(215, 134, 20);
     color: #FFF;
-    font-family: var(--font-family03);
     font-weight: bold;
     font-size: var(--font-size18);
     display: flex;
