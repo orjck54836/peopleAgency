@@ -104,117 +104,135 @@ onMounted(fetchSchools)
   <div class="title">
     <h1 class="hero-title">學校總覽</h1>
   </div>
+  <div class="hero-banner">
+    <img src="../../img/about-me/aboutme-title.jpg" alt="留學主題圖" />
+    <div class="hero-banner-text">
+      <h1>學校總覽</h1>
+      <p>探索日本各地的特色學校，打造你的專屬學習旅程</p>
+    </div>
+  </div>
   <main class="page-wrapper">
-    <div class="grid gap-12">
-      <div class="school-overview-container">
-        <aside class="school-filter-panel">
-          <!-- 篩選列 -->
-          <section class="filter-block-section mb-5">
-            <div class="filter-header">
-              <h2>快速篩選</h2>
-              <p class="filter-subtext">依照地區、入學月份、學校類型等條件，迅速找到最適合你的學校！</p>
-            </div>
-            <div class="filter-block-container">
-              <div class="select-group">
-                <div class="select-item">
-                  <label class="filter-block-label" for="keyword">學校關鍵字</label>
-                  <input v-model="filters.keyword" type="text" id="keyword" placeholder="輸入學校名稱或關鍵字"
-                    class="form-control keyword-input" />
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="region">地區</label>
-                  <select v-model="filters.region" id="region" class="form-select select-control">
-                    <option value="">全部地區</option>
-                    <option v-for="region in regionOptions" :key="region" :value="region">
-                      {{ region }}
-                    </option>
-                  </select>
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="intake">入學時間</label>
-                  <select v-model="filters.intake" id="intake" class="form-select select-control">
-                    <option value="">全部入學時間</option>
-                    <option v-for="month in intakeOptions" :key="month" :value="month">
-                      {{ month }} 月
-                    </option>
-                  </select>
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="type">學校類型</label>
-                  <select v-model="filters.type" id="type" class="form-select select-control">
-                    <option value="">全部學校類型</option>
-                    <option value="語言學校">語言學校</option>
-                    <option value="專門學校">專門學校</option>
-                    <option value="大學別科">大學別科</option>
-                  </select>
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="accommodation">住宿類型</label>
-                  <select v-model="filters.accommodation" id="accommodation" class="form-select select-control">
-                    <option value="">住宿類型不限</option>
-                    <option value="宿舍">宿舍</option>
-                    <option value="寄宿家庭">寄宿家庭</option>
-                    <option value="自行租屋">自行租屋</option>
-                  </select>
-                </div>
-                <!-- 清除按鈕 -->
-                <div class="clear-button-container">
-                  <button @click="clearFilters" class="clear-button">
-                    清除所有篩選條件
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
-        </aside>
+    <!-- 日式質感 + 行銷文案區塊（取代原 intro-text） -->
+    <div class="jp-intro border-0 shadow-sm p-4 p-md-5 mb-4">
+      <span class="jp-intro__petal petal-1" aria-hidden="true"></span>
+      <span class="jp-intro__petal petal-2" aria-hidden="true"></span>
+      <span class="jp-intro__petal petal-3" aria-hidden="true"></span>
 
-        <section class="school-list-panel">
-          <!-- 排序選單 -->
-          <div class="sort-section">
-            <button v-for="option in sortOptions" :key="option.value" @click="sortOption = option.value"
-              :class="['sort-button', { active: sortOption === option.value }]">
-              {{ option.label }}
-            </button>
-          </div>
-
-          <!-- 卡片區 -->
-          <section class="user-profile d-flex flex-wrap justify-content-center gap-3 overflow-hidden">
-            <section class="card rounded-2 p-4 text-left" v-for="(person, index) in paginatedSchools" :key="index"
-              @click="goToDetailPage(person.name)">
-              <div class="school-img-block">
-                <img :src="person.image" alt="" />
+      <p class="mb-0">
+        不只日語，我們帶你走進日本的靈魂。<br />
+        從 <strong>茶道的靜謐</strong>、<strong>和菓子的甜美</strong>、<strong>聲優的舞台光芒</strong>，到 <strong>動畫設計的創意世界</strong>——<br />
+        這裡，每一門課都是一段專屬的故事，一次改變人生的旅程。<br />
+        你的夢想，不該只停留在想像，從現在開始踏上屬於你的日本學習之路。
+      </p>
+    </div>
+    <div>
+      <div class="school-overview-container row">
+        <div class="col-4">
+          <section class="school-filter-panel">
+            <!-- 篩選列 -->
+            <section class="mb-5">
+              <div class="filter-header">
+                <h2>快速篩選</h2>
+                <p class="filter-subtext">依照地區、入學月份、學校類型等條件，迅速找到最適合你的學校！</p>
               </div>
-              <div class="p-4">
-                <span class="name fw-semibold d-block">{{ person.name }}</span>
-                <span class="location-title fw-medium mb-2">{{ person.location }}</span>
-                <span class="d-block text-secondary mb-2">
-                  入學月份：{{ person.intake.join('月、') }}月
-                </span>
-                <p>{{ person.introduction }}</p>
-                <div class="mt-3 text-danger fw-semibold small text-center">查看更多 ➔</div>
+              <div class="filter-block-container flex-wrap gap-3">
+                <div class="select-group">
+                  <div class="select-item">
+                    <label class="filter-block-label" for="keyword">學校關鍵字</label>
+                    <input v-model="filters.keyword" type="text" id="keyword" placeholder="輸入學校名稱或關鍵字"
+                      class="form-control keyword-input" />
+                  </div>
+                  <div class="select-item">
+                    <label class="filter-block-label" for="region">地區</label>
+                    <select v-model="filters.region" id="region" class="form-select select-control">
+                      <option value="">全部地區</option>
+                      <option v-for="region in regionOptions" :key="region" :value="region">
+                        {{ region }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="select-item">
+                    <label class="filter-block-label" for="intake">入學時間</label>
+                    <select v-model="filters.intake" id="intake" class="form-select select-control">
+                      <option value="">全部入學時間</option>
+                      <option v-for="month in intakeOptions" :key="month" :value="month">
+                        {{ month }} 月
+                      </option>
+                    </select>
+                  </div>
+                  <div class="select-item">
+                    <label class="filter-block-label" for="type">學校類型</label>
+                    <select v-model="filters.type" id="type" class="form-select select-control">
+                      <option value="">全部學校類型</option>
+                      <option value="語言學校">語言學校</option>
+                      <option value="專門學校">專門學校</option>
+                      <option value="大學別科">大學別科</option>
+                    </select>
+                  </div>
+                  <div class="select-item">
+                    <label class="filter-block-label" for="accommodation">住宿類型</label>
+                    <select v-model="filters.accommodation" id="accommodation" class="form-select select-control">
+                      <option value="">住宿類型不限</option>
+                      <option value="宿舍">宿舍</option>
+                      <option value="寄宿家庭">寄宿家庭</option>
+                      <option value="自行租屋">自行租屋</option>
+                    </select>
+                  </div>
+                  <div class="clear-button-container">
+                    <button @click="clearFilters" class="clear-button">
+                      清除所有篩選條件
+                    </button>
+                  </div>
+                </div>
               </div>
             </section>
           </section>
-        </section>
-      </div>
-
-      <!-- 分頁 -->
-      <div class="d-flex justify-content-center mt-5">
-        <nav>
-          <ul class="pagination">
-            <li class="page-item" :class="{ disabled: currentPage === 1 }" @click="currentPage > 1 && currentPage--">
-              <a class="page-link" href="#">上一頁</a>
-            </li>
-            <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: currentPage === page }"
-              @click="currentPage = page">
-              <a class="page-link" href="#">{{ page }}</a>
-            </li>
-            <li class="page-item" :class="{ disabled: currentPage === totalPages }"
-              @click="currentPage < totalPages && currentPage++">
-              <a class="page-link" href="#">下一頁</a>
-            </li>
-          </ul>
-        </nav>
+        </div>
+        <div class="col-8">
+          <section class="school-list-panel">
+            <div class="sort-section">
+              <button v-for="option in sortOptions" :key="option.value" @click="sortOption = option.value"
+                :class="['sort-button', { active: sortOption === option.value }]">
+                {{ option.label }}
+              </button>
+            </div>
+            <section class="user-profile d-flex flex-wrap justify-content-center gap-4">
+              <section class="card rounded-4 p-4" v-for="(person, index) in paginatedSchools" :key="index"
+                @click="goToDetailPage(person.name)">
+                <div class="school-img-block">
+                  <img :src="person.image" alt="" />
+                </div>
+                <div class="p-4">
+                  <span class="name fw-semibold d-block">{{ person.name }}</span>
+                  <span class="location-title fw-medium mb-2">{{ person.location }}</span>
+                  <span class="d-block text-secondary mb-2">
+                    入學月份：{{ person.intake.join('月、') }}月
+                  </span>
+                  <p>{{ person.introduction }}</p>
+                  <div class="mt-3 text-danger fw-semibold small text-center">查看更多 ➔</div>
+                </div>
+              </section>
+            </section>
+          </section>
+          <div class="d-flex justify-content-center mt-5">
+            <nav>
+              <ul class="pagination">
+                <li class="page-item" :class="{ disabled: currentPage === 1 }"
+                  @click="currentPage > 1 && currentPage--">
+                  <a class="page-link" href="#">上一頁</a>
+                </li>
+                <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: currentPage === page }"
+                  @click="currentPage = page">
+                  <a class="page-link" href="#">{{ page }}</a>
+                </li>
+                <li class="page-item" :class="{ disabled: currentPage === totalPages }"
+                  @click="currentPage < totalPages && currentPage++">
+                  <a class="page-link" href="#">下一頁</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -225,6 +243,182 @@ onMounted(fetchSchools)
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Yuji+Mai&display=swap');
+
+.jp-intro p,
+.jp-intro strong {
+  font-family: 'Kaisei Tokumin', 'Noto Serif JP', serif;
+}
+.jp-intro {
+  position: relative;
+  overflow: hidden;
+  animation: introFadeUp .7s ease-out both .05s;
+  line-height: 1.9;
+  color: #3e3a39;
+}
+
+/* 文字排版：強調詞彙用和風色 */
+.jp-intro p {
+  font-size: 1.2rem;
+  letter-spacing: .2px;
+}
+
+.jp-intro strong {
+  color: #9c2f2f;
+  /* 侘寂系紅（朱・緋） */
+  font-weight: 600;
+  position: relative;
+}
+
+.jp-intro strong::after {
+  /* 細筆觸底線 */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 6px;
+  background: linear-gradient(90deg, rgba(211, 159, 84, .0), rgba(211, 159, 84, .45), rgba(211, 159, 84, .0));
+  border-radius: 6px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: strokeReveal .8s ease .3s forwards;
+}
+
+/* 櫻花花瓣（極簡形狀），緩慢上浮與旋轉 */
+.jp-intro__petal {
+  --size: 12px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  left: 70%;
+  background: radial-gradient(circle at 30% 30%, #ffd9e1 0 40%, #f7b7c6 60% 100%);
+  border-radius: 60% 40% 60% 40%;
+  opacity: .0;
+  filter: blur(.2px);
+}
+
+.petal-1 {
+  left: 78%;
+  bottom: -6px;
+  animation: petalFloat 7s linear .3s infinite;
+}
+
+.petal-2 {
+  left: 86%;
+  bottom: -10px;
+  animation: petalFloat 8.5s linear 1s infinite;
+  --size: 10px;
+}
+
+.petal-3 {
+  left: 90%;
+  bottom: -8px;
+  animation: petalFloat 6.5s linear .6s infinite;
+  --size: 9px;
+}
+
+/* 動畫定義 */
+@keyframes introFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kintsugiSlide {
+  from {
+    transform: translateX(-12px) scaleY(.96);
+    opacity: .0;
+  }
+
+  60% {
+    transform: translateX(0) scaleY(1.02);
+    opacity: .85;
+  }
+
+  to {
+    transform: translateX(0) scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes strokeReveal {
+  from {
+    transform: scaleX(0);
+    opacity: .4;
+  }
+
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes petalFloat {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: .55;
+  }
+
+  50% {
+    transform: translateY(-52px) translateX(-14px) rotate(80deg);
+    opacity: .45;
+  }
+
+  100% {
+    transform: translateY(-110px) translateX(-26px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.hero-banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.hero-banner-text h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.hero-banner-text p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+
+.d-flex>div {
+  flex: 1;
+}
 
 /* === General Typography & Layout === */
 .page-wrapper {
@@ -313,8 +507,8 @@ onMounted(fetchSchools)
 .filter-block-container {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  padding: 2rem;
+  gap: 1.2rem;
+  padding: 1rem;
   border-radius: 0 0 12px 12px;
   background: linear-gradient(to bottom right, rgba(245, 209, 167, 0.95), rgba(232, 147, 29, 0.5));
   backdrop-filter: blur(4px);
@@ -331,8 +525,7 @@ onMounted(fetchSchools)
 .select-item {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
+  gap: 0.15rem;
 }
 
 .filter-block-label {
@@ -343,7 +536,6 @@ onMounted(fetchSchools)
 
 .select-control,
 .keyword-input {
-  width: 100%;
   padding: 0.75rem 1.25rem;
   border-radius: 999px;
   border: 1px solid #d6a267;
@@ -411,17 +603,8 @@ onMounted(fetchSchools)
   border-color: #c37610;
 }
 
-/* === Card Layout === */
-.school-overview-container {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
 .school-filter-panel {
-  width: 25%;
-  min-width: 250px;
+  width: 100%;
   border-radius: 12px;
 }
 
@@ -499,11 +682,6 @@ onMounted(fetchSchools)
 @media (max-width: 1200px) {
   .select-group {
     flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .clear-button-container {
-    justify-content: flex-start;
   }
 }
 
