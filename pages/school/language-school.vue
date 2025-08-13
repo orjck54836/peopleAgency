@@ -82,7 +82,7 @@ function goToDetailPage(schoolName: string) {
 
 async function fetchSchools() {
   try {
-    const res = await fetch('https://api.forma-global.com/api/GetSchools')
+    const res = await fetch('/api/schools')
     const json = await res.json()
     if (json.success) {
       schools.value = json.data.map((s: any) => ({

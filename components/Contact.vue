@@ -52,18 +52,18 @@ const config = useRuntimeConfig();
 const form = ref<HTMLFormElement | null>(null);
 const handleSubmit = async () => {
   try {
-    const res = await fetch("https://api.forma-global.com/api/SendMail", {
+    const res = await fetch("/api/send-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(formData), // ✅ 改這裡
+      body: JSON.stringify(formData),
     });
 
     const result = await res.json();
     if (result.success) {
       showSuccess.value = true;
-      Object.keys(formData).forEach((key) => (formData[key] = "")); // ✅ 改這裡
+      Object.keys(formData).forEach((key) => (formData[key] = ""));
     } else {
       showError.value = true;
     }

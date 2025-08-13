@@ -1,6 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+  ssr: true,
+  nitro: { preset: 'aws-lambda' }, // 關鍵
+  runtimeConfig: {
+    awsRegion: 'ap-northeast-3',
+    ddb: { languageSchoolsTable: 'language_schools' },
+    sesRegion: 'ap-northeast-3',
+    mailFrom: 'aiden@forma-global.com',
+    mailTo: 'liaiden1213@gmail.com',
+    public: {
+      siteUrl: 'https://www.forma-global.com/' // 可選，前端要用就放這
+    }
+  },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   modules: [

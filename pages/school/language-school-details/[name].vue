@@ -35,7 +35,7 @@ const recommendedSchools = ref<any[]>([])
 
 onMounted(async () => {
   try {
-    const res = await fetch('https://api.forma-global.com/api/GetSchools')
+    const res = await fetch('/api/schools')
     const json = await res.json()
     if (json.success) {
       allSchools.value = json.data

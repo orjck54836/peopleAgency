@@ -11,6 +11,9 @@
     "deploy": "npm run generate && aws s3 sync .output/public s3://forma-global.com --delete"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.864.0",
+    "@aws-sdk/client-ses": "^3.864.0",
+    "@aws-sdk/lib-dynamodb": "^3.864.0",
     "@emailjs/browser": "^4.4.1",
     "@fontsource/playfair-display": "^5.2.6",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
