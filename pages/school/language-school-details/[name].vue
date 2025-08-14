@@ -196,12 +196,12 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .school-wrapper {
-  max-width: 70%;
+  max-width: 95%;
   margin: 0 auto;
   padding: 3rem 1rem;
 
   @media (max-width: 1400px) {
-    max-width: 80%;
+    max-width: 95%;
   }
 }
 
@@ -234,7 +234,8 @@ onMounted(async () => {
   flex-direction: column;
   justify-content: start;
   gap: 1rem;
-
+  padding: 20px 0;
+  
   @media (max-width: 1200px) {
     align-items: center;
   }
@@ -388,7 +389,7 @@ onMounted(async () => {
 }
 
 .sidebar {
-  flex: 1 1 15%;
+  flex: 1 1 5%;
   background: linear-gradient(to bottom right, #fff5eb, #ffe2cc);
   padding: 1.5rem;
   border-radius: 16px;

@@ -4,7 +4,7 @@
         <h1 class="hero-title">就業人力引進</h1>
     </div>
     <main class="page-wrapper">
-        <div class="grid gap-12">
+        <div class="gap-12">
             <!-- 簽證類型 -->
             <section class="section-card">
                 <div class="card-flex">
@@ -60,13 +60,11 @@
                     </div>
                 </div>
             </section>
-
             <!-- 我們的使命 -->
             <section class="section-card">
                 <div class="card-flex">
-                    <h2 class="section-title">我們的使命</h2>
+                    <h2>我們的使命</h2>
                     <div class="mission-content">
-
                         <div class="d-flex justify-content-center">
                             <div>
                                 <div class="mission-block">
@@ -107,7 +105,11 @@
                     <span class="tag-item">越南</span>
                     <span class="tag-item">印尼</span>
                 </div>
-
+                <div class="d-flex justify-center p-2">
+                    <div class="d-flex justify-content-center">
+                        <img src="../img/human-resource/IMG_4567.JPG" alt="Mission" class="foreign-picture" />
+                    </div>
+                </div>
                 <div class="foreign-benefits">
                     <h3 class="benefits-heading">為何選擇外籍人材？</h3>
                     <ul class="benefits-list">
@@ -317,15 +319,6 @@ onMounted(() => {
     white-space: nowrap;
 }
 
-.title::before,
-.title::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background-color: #9e5010;
-    margin: 0 1rem;
-}
-
 .page-wrapper {
     max-width: 90%;
     margin: 0 auto;
@@ -336,26 +329,40 @@ onMounted(() => {
 }
 
 .section-card {
-    background-color: #ffffff;
+    position: relative;
+    background: rgba(255, 255, 255, 0.65);
     border-radius: 20px;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 2.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 20px;
-}
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    margin-bottom: 12px;
 
-.section-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), 0 0 20px rgba(215, 113, 12, 0.15);
+    }
 }
 
 .section-card h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    color: #1f2937;
     margin-bottom: 1rem;
-    border-left: 5px solid #d6710c;
-    padding-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+
+.section-card h2::before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 24px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #d6710c, #fbbf24);
 }
 
 .section-card p,
@@ -379,12 +386,6 @@ onMounted(() => {
     flex-wrap: wrap;
 }
 
-.card-image-large {
-    height: auto;
-    padding: 0 20px;
-    width: 100%;
-}
-
 .section-image {
     display: block;
     max-width: 100%;
@@ -402,16 +403,17 @@ onMounted(() => {
 }
 
 .tag-item {
-    background-color: #dbeafe;
-    color: #1d4ed8;
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #1e3a8a;
+    font-weight: 600;
     padding: 0.5rem 1rem;
     border-radius: 999px;
     font-size: 0.875rem;
-    font-weight: 600;
 }
 
 .cta-button {
-    background-color: #d6710c;
+    background: linear-gradient(135deg, #d6710c, #fbbf24);
+    box-shadow: 0 4px 12px rgba(215, 113, 12, 0.3);
     color: white;
     font-size: 1.125rem;
     padding: 0.75rem 2rem;
@@ -507,15 +509,10 @@ onMounted(() => {
 .visa-block {
     display: flex;
     flex-wrap: wrap;
-    /* 關鍵：允許換行 */
-    justify-content: space-between;
-    gap: 1.5rem;
-    /* 避免重疊緊貼 */
 }
 
 .carousel-slider {
     max-width: 50%;
-
     /* @media (max-width: 600px) {
         width: 50%;
         
@@ -523,10 +520,9 @@ onMounted(() => {
 }
 
 .carousel-slider .swiper-wrapper {
-    display: flex;
-    align-items: center;
-    max-height: 150px;
-    max-width: 100%;
+    position: relative;
+    height: auto;
+    /* 避免超出該區域 */
 }
 
 .carousel-slider .swiper-slide {
@@ -584,10 +580,35 @@ onMounted(() => {
     margin-bottom: 10px;
 }
 
+.card-image-large {
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.card-image-large:hover {
+    transform: scale(1.02);
+}
+
 .mission-content {
-    width: 100%;
     display: flex;
     gap: 2rem;
+    align-items: center;
+
+    /* 預設桌面版：文字左，圖片右 */
+    flex-direction: row;
+
+    /* 小螢幕垂直排列，圖片在上方 */
+    @media (max-width: 1200px) {
+        flex-direction: column-reverse;
+        /* 圖片在文字上方 */
+        text-align: center;
+
+        .card-image-large {
+            max-width: 100%;
+            height: auto;
+        }
+    }
 }
 
 .section-title {
@@ -600,13 +621,15 @@ onMounted(() => {
 }
 
 .mission-block {
-    background-color: #f9fafb;
-    border-left: 4px solid #f59e0b;
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-    margin-bottom: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    border-left: 5px solid transparent;
+    border-image: linear-gradient(180deg, #f59e0b, #fbbf24) 1;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
 }
+
 
 .mission-heading {
     font-size: 1.25rem;
@@ -619,6 +642,11 @@ onMounted(() => {
     font-size: 1rem;
     line-height: 1.8;
     color: #374151;
+}
+
+.foreign-picture {
+    width: 100%;
+    max-width: 600px;
 }
 
 .foreign-benefits,
@@ -656,5 +684,60 @@ onMounted(() => {
     .visa-description {
         text-align: center;
     }
+}
+
+.page-wrapper {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.section-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.section-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #d6710c, #f59e0b);
+    color: white;
+    font-size: 1.125rem;
+    padding: 0.8rem 2.2rem;
+    border-radius: 15px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 15px rgba(215, 113, 12, 0.4);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(215, 113, 12, 0.5);
+}
+
+.flow__num {
+    background: linear-gradient(145deg, #d78614, #fbbf24);
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8%;
+    min-width: 60px;
+    border-radius: 15px 50px 50px 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 </style>

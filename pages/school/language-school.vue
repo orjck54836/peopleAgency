@@ -107,7 +107,6 @@ onMounted(fetchSchools)
   <div class="hero-banner">
     <img src="../../img/school/32810422_m.jpg" alt="留學主題圖" />
     <div class="hero-banner-text">
-      <h1>學校總覽</h1>
       <p>探索日本各地的特色學校，打造你的專屬學習旅程</p>
     </div>
   </div>
@@ -119,17 +118,22 @@ onMounted(fetchSchools)
           <img src="../../img/school/depart.png" alt="">
         </div>
         <!-- 文字 -->
-        <div class="col-lg-7 col-md-12 jp-intro p-4 p-md-5">
-          <span class="jp-intro__petal petal-1" aria-hidden="true"></span>
-          <span class="jp-intro__petal petal-2" aria-hidden="true"></span>
-          <span class="jp-intro__petal petal-3" aria-hidden="true"></span>
-          <p>
-            不只日語，我們帶你走進日本的靈魂。<br />
-            從 <strong>茶道的靜謐</strong>、<strong>和菓子的甜美</strong>、<strong>聲優的舞台光芒</strong>，到
-            <strong>動畫設計的創意世界</strong>——<br />
-            這裡，每一門課都是一段專屬的故事，一次改變人生的旅程。<br />
-            你的夢想，不該只停留在想像，從現在開始踏上屬於你的日本學習之路。
-          </p>
+        <div class="col-lg-7 col-md-12 jp-intro p-4 p-md-5 d-flex">
+          <div>
+            <h1>跨出一步，夢想觸手可及</h1>
+          </div>
+          <div>
+            <span class="jp-intro__petal petal-1" aria-hidden="true"></span>
+            <span class="jp-intro__petal petal-2" aria-hidden="true"></span>
+            <span class="jp-intro__petal petal-3" aria-hidden="true"></span>
+            <p>
+              不只日語，我們帶你走進日本的靈魂。<br />
+              從 <strong>茶道的靜謐</strong>、<strong>和菓子的甜美</strong>、<strong>聲優的舞台光芒</strong>，到
+              <strong>動畫設計的創意世界</strong>——<br />
+              這裡，每一門課都是一段專屬的故事，一次改變人生的旅程。<br />
+              你的夢想，不該只停留在想像，從現在開始踏上屬於你的日本學習之路。
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -266,6 +270,11 @@ onMounted(fetchSchools)
   justify-content: center;
   align-items: center;
   padding: 50px;
+  flex-direction: column;
+}
+
+.jp-intro h1 {
+  padding: 30px;
 }
 
 /* 文字排版：強調詞彙用和風色 */
@@ -420,14 +429,8 @@ onMounted(fetchSchools)
   text-align: center;
 }
 
-.hero-banner-text h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
 .hero-banner-text p {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   opacity: 0.9;
 }
 
@@ -441,16 +444,25 @@ onMounted(fetchSchools)
   max-width: 90%;
   margin: 50px auto;
   padding: 4rem 1.5rem;
-  background-color: #f8fbff;
+  background-image: linear-gradient(rgba(255, 245, 230, 0.8),
+      /* 淡米白 */
+      rgba(248, 225, 210, 0.8)
+      /* 暖粉杏色 */
+    ),
+    url("../../img/school/background.jpg");
+  background-size: contain;
+  background-position: center;
   border-radius: 20px;
 
   .text-picture {
     @media (max-width: 1400px) {
       width: 50%;
     }
+
     @media (max-width: 1200px) {
       width: 40%;
     }
+
     @media (max-width: 950px) {
       width: 80%;
     }
@@ -474,15 +486,6 @@ onMounted(fetchSchools)
   padding: 0 1rem;
   white-space: nowrap;
   position: relative;
-}
-
-.title::before,
-.title::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background-color: #9e5010;
-  margin: 0 1rem;
 }
 
 /* === Filter Panel === */

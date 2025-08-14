@@ -108,12 +108,12 @@
     "serviceProviderAwsCfStackName": "nuxt-nitro-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:ap-northeast-3:593793036921:stack/nuxt-nitro-dev/c1c21750-775a-11f0-b94b-06ed4bd6ecc9",
     "serviceProviderAwsCfStackCreated": "2025-08-12T09:00:13.138Z",
-    "serviceProviderAwsCfStackUpdated": "2025-08-14T05:40:38.685Z",
+    "serviceProviderAwsCfStackUpdated": "2025-08-14T11:02:52.943Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "WebLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:ap-northeast-3:593793036921:function:nuxt-nitro-dev-web:6",
+        "OutputValue": "arn:aws:lambda:ap-northeast-3:593793036921:function:nuxt-nitro-dev-web:7",
         "Description": "Current Lambda function version",
         "ExportName": "sls-nuxt-nitro-dev-WebLambdaFunctionQualifiedArn"
       },

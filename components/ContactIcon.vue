@@ -14,32 +14,44 @@ const localePath = useLocalePath()
 <style lang="scss">
 .floating-contact-btn {
   position: fixed;
-  width: 100px;
-  height: 100px;
-  bottom: 32px;
-  right: 32px;
+  width: 65px;
+  height: 200px;
+  bottom: 50px;
+  right: 0;
   z-index: 1000;
-  text-align: center;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
   padding: 14px 20px;
+  border-radius: 20px 0 0 20px;
+  text-decoration: none;
+
+  /* 玻璃霧面核心設定 */
+  background: rgba(240, 149, 52, 0.451); /* 半透明背景 */
+  backdrop-filter: blur(10px); /* 模糊背景 */
+  -webkit-backdrop-filter: blur(10px); /* Safari 支援 */
+
+  /* 視覺效果 */
+  border: 1px solid rgba(219, 185, 185, 0.3); /* 淡白邊框 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  color: white;
   font-weight: 600;
   font-size: 0.9rem;
-  background-color: rgb(var(--primary));
-  color: white;
-  border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  text-decoration: none;
   transition: transform 0.2s ease, background-color 0.3s ease;
+
+  span {
+    text-align: center;
+    font-size: 1rem;
+  }
 
   svg {
     font-size: 1.2rem;
   }
 
   &:hover {
-    background-color: #be6a10;
-    transform: translateY(-3px);
+    transform: scale(1.05);
+    background: rgba(210, 172, 172, 0.15);
+    color: rgba(197, 92, 36, 0.555);
   }
 
   // 初始動畫狀態

@@ -2,15 +2,13 @@
 useHead({
   title: "株式会社Forma",
   htmlAttrs: {
-    lang: "en",
+    lang: "ja",
   }
 });
 </script>
 <template>
-  <div>
+  <div class="page-wrapper">
     <UApp>
-      <!-- <ColorSwitcher /> -->
-      <!-- <Demos /> -->
       <NuxtRouteAnnouncer />
       <div class="global-background">
         <NuxtPage />
@@ -23,5 +21,8 @@ useHead({
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('./img/background.png');
+  min-height: 100vh; /* 至少撐滿整個視窗高度 */
+  display: flex;
+  flex-direction: column;
 }
 </style>

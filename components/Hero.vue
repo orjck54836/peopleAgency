@@ -19,8 +19,8 @@
           </div>
         </div>
       </div>
-      <!-- 圖片 -->
-      <div class="hero_image">
+      <div class="hero-illustration">
+        <div class="glow-bg"></div><!-- 圖片 -->
         <img src="../img/main-page/hero-image.png" alt="Hero Image" />
       </div>
     </div>
@@ -32,7 +32,7 @@ import { onMounted } from 'vue'
 import gsap from 'gsap'
 
 onMounted(() => {
-  gsap.from(".hero_image img", {
+  gsap.from(".hero-illustration img", {
     scale: 1.1,
     opacity: 0,
     y: 30,
@@ -53,6 +53,29 @@ onMounted(() => {
 
 <style scoped lang="scss">
 @import url('https://fonts.cdnfonts.com/css/gloock');
+.hero-illustration {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.glow-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(236, 137, 56, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.hero-illustration img {
+  position: relative;
+  z-index: 1;
+  width: 80%;
+}
 
 .section_hero {
   display: flex;
@@ -74,27 +97,6 @@ onMounted(() => {
   @media (max-width: 1180px) {
     flex-direction: column;
     text-align: center;
-  }
-}
-
-.hero_image {
-  height: 50vh;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: grayscale(20%) brightness(1.05);
-    border-radius: 24px;
-    transition: transform 0.5s ease;
-  }
-
-  &:hover img {
-    transform: scale(1.03);
-  }
-
-  @media (max-width: 1180px) {
-    width: 100%;
   }
 }
 
@@ -184,8 +186,6 @@ onMounted(() => {
   }
 }
 
-
-
 .btn {
   border: none;
   font-size: 1.2rem;
@@ -217,29 +217,32 @@ onMounted(() => {
   transition: all 0.3s;
 }
 
-/* Button 2 */
 .btn-2 {
-  background: #5f907cd1;
+  background: linear-gradient(145deg, #6fa892, #548571); /* 柔和漸層 */
   color: #fff;
-  box-shadow: 0 5px #e3c6ad;
-  -webkit-transition: none;
-  -moz-transition: none;
-  transition: none;
-}
-
-/* Button 2g */
-.btn-2g {
+  width: 200px;
+  border: none;
   border-radius: 40px;
+  padding: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.15),  /* 外陰影 */
+    inset 0 1px rgba(255, 255, 255, 0.3); /* 內陰影增加光澤感 */
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-.btn-2g:hover {
-  position: relative;
-  top: -3px;
-  box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, .12);
+.btn-2:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 10px 18px rgba(0, 0, 0, 0.2),
+    inset 0 1px rgba(255, 255, 255, 0.3);
 }
 
-.btn-2g:active {
-  box-shadow: 0 0 #ab3c3c;
-  top: 6px;
+.btn-2:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.15) inset;
 }
 </style>

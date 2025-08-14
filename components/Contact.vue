@@ -18,11 +18,6 @@ const handleDialogClose = () => {
 const selectedFormType = ref<'recruitment' | 'study'>('recruitment')
 
 const formData = reactive<Record<string, any>>({})
-const formTitle = computed(() =>
-  selectedFormType.value === 'recruitment'
-    ? t('recruitmentTitle')
-    : t('studyTitle')
-)
 const formFields = computed(() => {
   return selectedFormType.value === 'recruitment'
     ? [
@@ -88,7 +83,7 @@ watch(
 </script>
 <template>
   <div class="title">
-    <h1>{{ formTitle }}</h1>
+    <h1>{{ t('contactMessage') }}</h1>
   </div>
   <section class="contact-wrapper">
     <div
@@ -187,20 +182,10 @@ watch(
   justify-content: center;
   color: #9e5010;
   font-weight: bolder;
-  width: 50%;
   padding: 30px;
   padding-bottom: 0;
   margin: 0 auto;
   text-align: center;
-}
-
-.title::before,
-.title::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background-color: #9e5010;
-  margin: 0 1rem;
 }
 
 .contact-wrapper {
@@ -212,16 +197,31 @@ watch(
     display: flex;
     justify-content: center;
     position: relative;
-    background: rgba(255, 255, 255, 0.12);
+    background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
+);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    outline: 1px solid rgba(0, 0, 0, 0.05);
+    background-image:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08)),
+        url('noise-texture.png');
+    background-blend-mode: overlay;
     border-radius: 999px;
     overflow: hidden;
     margin: 2rem auto;
-    max-width: 360px;
+    max-width: 500px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
+    box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.2), /* 內亮邊 */
+    0 8px 24px rgba(0, 0, 0, 0.1),            /* 外陰影 */
+    0 4px 8px rgba(0, 0, 0, 0.05);            /* 底層陰影 */
+
 
     button {
       flex: 1;
@@ -256,9 +256,15 @@ watch(
       transition: transform 0.3s ease;
       z-index: 0;
       transform: translateX(-50%);
-      background: rgba(var(--primary), 1);
-      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
-    }
+      background-image:
+        linear-gradient(145deg, rgba(var(--primary), 1), rgba(var(--primary), 0.85)),
+        url('noise-texture.png');
+      background-blend-mode: overlay;
+      box-shadow:
+        inset 0 2px 6px rgba(255, 255, 255, 0.55), /* 上方光線 */
+        inset 0 -3px 8px rgba(0, 0, 0, 0.15),      /* 下方陰影 */
+        0 4px 12px rgba(0, 0, 0, 0.15);            /* 外陰影懸浮感 */
+      }
 
     // 切換位置動畫
     &.study-active::before {
@@ -316,7 +322,7 @@ watch(
 
   .contact-card {
     background: rgba(var(--white), 0.9);
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   }
