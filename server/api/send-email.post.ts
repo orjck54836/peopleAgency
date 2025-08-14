@@ -43,16 +43,17 @@ E-mail: ${body.email ?? ''}
     const config = useRuntimeConfig(event)
     const region = config.sesRegion || 'ap-northeast-3'
 
-    const ses = new SESClient({
-        region,
-        // 在本機開發才需要 key；部署到 Lambda 用 IAM 角色即可
-        credentials: process.env.AWS_ACCESS_KEY_ID
-            ? {
-                accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-            }
-            : undefined,
-    })
+    const ses = new SESClient({ region })
+    // const ses = new SESClient({
+    //     region,
+    //     // 在本機開發才需要 key；部署到 Lambda 用 IAM 角色即可
+    //     credentials: process.env.AWS_ACCESS_KEY_ID
+    //         ? {
+    //             accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+    //             secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+    //         }
+    //         : undefined,
+    // })
 
     const Source = config.mailFrom || 'aiden@forma-global.com'
     const ToAddresses = (config.mailTo || 'liaiden1213@gmail.com')

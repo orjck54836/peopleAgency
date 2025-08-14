@@ -7,25 +7,30 @@ provider:
   runtime: nodejs18.x
   memorySize: 1024
   timeout: 15
-  architecture: arm64   # 可選，冷啟更快，與大小無關
+  architecture: arm64
   environment:
     NUXT_AWS_REGION: ap-northeast-3
-    NUXT_SES_REGION: ap-northeast-1   # ← 若你 SES 在東京，改這裡
+    NUXT_SES_REGION: ap-northeast-1
     NUXT_MAIL_FROM: aiden@forma-global.com
     NUXT_MAIL_TO: liaiden1213@gmail.com
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - ses:SendEmail
+        - ses:SendRawEmail
+      Resource: "*"
+
+package:
+  patterns:
+    - '!**'
+    - '.output/server/**'
+    - 'node_modules/vue-bundle-renderer/**'
+    - 'node_modules/@vue/shared/**'
+    - 'package.json'
 
 functions:
   web:
     handler: .output/server/index.handler
     events:
-      - httpApi: '*'     # HTTP API $default stage
-    # package:
-    #   patterns:
-    #     - '!**'                 # 先排除所有東西（關鍵）
-    #     - '.output/server/**'   # 只塞 Nitro server 產物
-
-# （或放在全域層級也行，二選一）
-package:
-  patterns:
-    - '!**'
-    - '.output/server/**'
+      - httpApi: '*'

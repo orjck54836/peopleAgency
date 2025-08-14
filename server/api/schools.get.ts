@@ -2,29 +2,50 @@ import { defineEventHandler, getQuery, createError } from 'h3'
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 import { DynamoDBDocumentClient, ScanCommand } from '@aws-sdk/lib-dynamodb'
 
-export default defineEventHandler(async (event) => {
-  // 讀 query（可選：region、type）
-  const q = getQuery(event) as { region?: string; type?: string; limit?: string }
+// 只在本機才使用明文金鑰；Lambda/雲端一律交給 SDK 的預設憑證鏈
+function getLocalCreds() {
+  const isLocal =
+    process.env.NITRO_DEV === 'true' ||
+    process.env.NODE_ENV === 'development' ||
+    !process.env.AWS_LAMBDA_FUNCTION_NAME // 不在 Lambda 環境
 
-  // 讀 runtimeConfig
-  const config = useRuntimeConfig(event)
-  const region = (config.awsRegion as string) || 'ap-northeast-3'
-  const tableName =
-    (config.ddb?.languageSchoolsTable as string) || process.env.DDB_LANGUAGE_SCHOOLS || 'language_schools'
-
-  // 本機開發才需要 AK/SK；部署到 AWS 用 Lambda 角色
-  const client = new DynamoDBClient({
-    region,
-    credentials: process.env.AWS_ACCESS_KEY_ID
+  if (
+    isLocal &&
+    process.env.AWS_ACCESS_KEY_ID &&
+    process.env.AWS_SECRET_ACCESS_KEY
+  ) {
+    // 本機：可選擇帶 sessionToken（例如使用臨時憑證時）
+    return process.env.AWS_SESSION_TOKEN
       ? {
           accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+          sessionToken: process.env.AWS_SESSION_TOKEN!,
         }
-      : undefined,
+      : {
+          accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+        }
+  }
+  // 雲端：回傳 undefined → 交給 SDK 從 Lambda 角色自動取臨時憑證（含 session token）
+  return undefined
+}
+
+export default defineEventHandler(async (event) => {
+  const q = getQuery(event) as { region?: string; type?: string; limit?: string }
+
+  const config = useRuntimeConfig(event)
+  const region = (config.awsRegion as string) || 'ap-northeast-3'
+  const tableName =
+    (config.ddb?.languageSchoolsTable as string) ||
+    process.env.DDB_LANGUAGE_SCHOOLS ||
+    'language_schools'
+
+  const client = new DynamoDBClient({
+    region,
+    credentials: getLocalCreds(), // ✅ 本機才會有值；Lambda 會是 undefined
   })
   const ddb = DynamoDBDocumentClient.from(client)
 
-  // 基本 Scan（可套條件）
   const filterParts: string[] = []
   const exprValues: Record<string, any> = {}
   const exprNames: Record<string, string> = {}
@@ -40,8 +61,7 @@ export default defineEventHandler(async (event) => {
     exprNames['#type'] = 'type'
   }
 
-  // 你可用 limit 控制最多抓多少筆（避免全表巨大）
-  const hardCap = Math.min(Number(q.limit ?? 1000), 5000) // 安全上限
+  const hardCap = Math.min(Number(q.limit ?? 1000), 5000)
   const items: any[] = []
   let ExclusiveStartKey: Record<string, any> | undefined
 
@@ -54,26 +74,17 @@ export default defineEventHandler(async (event) => {
           ExpressionAttributeValues: Object.keys(exprValues).length ? exprValues : undefined,
           ExpressionAttributeNames: Object.keys(exprNames).length ? exprNames : undefined,
           ExclusiveStartKey,
-          Limit: 1000, // 每頁抓 1000，再自己疊加
+          Limit: 1000,
         })
       )
-
       if (res.Items?.length) items.push(...res.Items)
       ExclusiveStartKey = res.LastEvaluatedKey
-
-      // 超過安全上限就停
       if (items.length >= hardCap) break
     } while (ExclusiveStartKey)
 
-    //（同站其實不需要 CORS；若你仍要）
     setHeader(event, 'Access-Control-Allow-Origin', '*')
     setHeader(event, 'Content-Type', 'application/json')
-
-    return {
-      success: true,
-      count: items.length,
-      data: items,
-    }
+    return { success: true, count: items.length, data: items }
   } catch (e: any) {
     console.error('DynamoDB scan error:', e)
     setHeader(event, 'Access-Control-Allow-Origin', '*')

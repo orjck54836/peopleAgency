@@ -2,7 +2,19 @@
 
 export default defineNuxtConfig({
   ssr: true,
-  nitro: { preset: 'aws-lambda' }, // 關鍵
+  nitro: {
+    preset: 'aws-lambda', // 針對 Lambda 最小化
+    externals: {
+      inline: [],          // 預設會 inline 太多，這裡盡量讓它 require 外部
+    },
+    rollupConfig: {
+      output: {
+        inlineDynamicImports: true,
+      }
+    },
+    minify: true,
+    sourceMap: false
+  },
   runtimeConfig: {
     awsRegion: 'ap-northeast-3',
     ddb: { languageSchoolsTable: 'language_schools' },
