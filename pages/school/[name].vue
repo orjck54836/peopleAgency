@@ -80,7 +80,7 @@ onMounted(async () => {
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                  <a :href="'/school/language-school'">學校總覽</a>
+                  <a :href="'/school'">學校總覽</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">{{ school.name }}</li>
               </ol>
@@ -172,7 +172,7 @@ onMounted(async () => {
       <aside class="sidebar">
         <div class="sidebar-header">更多熱門學校</div>
         <div class="recommend-card" v-for="(rec, i) in recommendedSchools" :key="i">
-          <NuxtLink :to="`/school/language-school-details/${encodeURIComponent(rec.name)}`">
+          <NuxtLink :to="`/school/${encodeURIComponent(rec.name)}`">
             <div><img :src="rec.image" alt="推薦學校" class="rec-img" />
               <h3 class="rec-title">{{ rec.name }}</h3>
               <div class="text-center mb-2">

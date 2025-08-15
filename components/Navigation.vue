@@ -12,7 +12,8 @@ const navRef = ref<HTMLElement | null>(null);
 const isContactPage = computed(() => route.path.includes('/contact'))
 const isInternshipPage = computed(() => route.path.includes('/internship'))
 const isWorkPage = computed(() => route.path.includes('/human-resource'))
-const isSchoolPage = computed(() => route.path.includes('/school/language-school'))
+const isSchoolPage = computed(() => route.path.includes('/school'))
+const isinformation = computed(() => route.path.includes('/information'))
 
 // Watch and handle class changes
 onMounted(() => {
@@ -47,12 +48,13 @@ onMounted(() => {
 const navItems = reactive([
   { index: "", text: "ourStoryTitle", href: "#our_story", active: false },
   { index: "", text: "servicesTitle", href: "#services", active: false },
+  { index: "", text: "informationTitle", href: "#information", active: false },
   { index: "", text: "commonQuestionTitle", href: "#common_questions", active: false },
 ]);
 </script>
 
 <template>
-  <nav v-show="!isContactPage && !isInternshipPage && !isWorkPage && !isSchoolPage" ref="navRef"
+  <nav v-show="!isContactPage && !isInternshipPage && !isWorkPage && !isSchoolPage && !isinformation" ref="navRef"
     :class="`navigation ${navOpen ? 'opened' : ''}`" id="navigation">
     <img src="/images/logo.png" class="mb-4 d-xl-none" alt="logo" />
     <ul>

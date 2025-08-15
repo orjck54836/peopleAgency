@@ -213,7 +213,6 @@ const closeNav = () => {
     navOpen.value = false;
 };
 
-
 onMounted(() => {
     const swiper = new Swiper('.carousel-slider', {
         grabCursor: true,

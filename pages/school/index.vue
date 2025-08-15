@@ -77,7 +77,7 @@ function clearFilters() {
 
 function goToDetailPage(schoolName: string) {
   const encoded = encodeURIComponent(schoolName)
-  router.push(`/school/language-school-details/${encoded}`)
+  router.push(`/school/${encoded}`)
 }
 
 async function fetchSchools() {

@@ -18,8 +18,7 @@ const closeNav = () => {
         <Hero />
         <AboutMe />
         <ServiceType />
-        <!-- <Services /> -->
-        <!-- Projects -->
+        <Information />
         <section id="common_questions" class="projects section position-relative">
           <ClientOnly>
             <CommonQuestions />
@@ -36,11 +35,11 @@ const closeNav = () => {
 </template>
 
 <style lang="scss" scoped>
-  .bg{
-    z-index: -5 !important;
-  }
+.bg {
+  z-index: -5 !important;
+}
 
-  .container-fluid {
-    width: 95%;
-  }
+.container-fluid {
+  width: 95%;
+}
 </style>
