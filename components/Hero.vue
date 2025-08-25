@@ -1,248 +1,265 @@
 <template>
-  <section class="section_hero">
-    <div class="hero">
-      <!-- 標語 -->
-      <div class="hero-text-container">
-        <div class="hero-text-wrapper">
-          <h1 class="hero_slogan">
-            <span class="fade_word">{{ $t('heroTitle1') }}</span>
-            <span class="fade_word">{{ $t('heroTitle2') }}</span>
-            <span class="fade_word">{{ $t('heroTitle3') }}</span>
-          </h1>
-          <p class="hero-subtitle">
-            <span class="fade_word">{{ $t('heroSubtitle1') }}</span>
-            <span class="fade_word">{{ $t('heroSubtitle2') }}</span>
-          </p>
-          <div class="hero-buttons">
-            <a href="#services" class="btn btn-2 btn-2g">服務項目</a>
-            <a href="contact" class="btn btn-2 btn-2g">立即諮詢</a>
-          </div>
-        </div>
-      </div>
-      <div class="hero-illustration">
-        <div class="glow-bg"></div><!-- 圖片 -->
-        <img src="../img/main-page/hero-image.png" alt="Hero Image" />
-      </div>
+  <div class="hero-section">
+    <!-- 標題區 -->
+    <div class="hero-text">
+      <h1 class="hero-title">跨越國界，連結未來</h1>
+      <p class="hero-subtitle">人力仲介x日本特色遊學x台灣華語教育</p>
+      <p class="hero-slogan">We connect talents, cultures, and dreams.</p>
     </div>
-  </section>
+    <!-- 圖片區 -->
+    <div class="gallery-wrapper">
+      <ul class="gallery">
+        <li v-for="item in items" :key="item.id" :data-pos="item.pos" :style="{ backgroundImage: `url(${item.url})` }"
+          @click="shuffle(item)"></li>
+      </ul>
+    </div>
+    <!-- 圖片簡介區 -->
+    <div class="hero-description">
+      <h3>{{ currentItem.title }}</h3>
+      <p>{{ currentItem.desc }}</p>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
-import gsap from 'gsap'
+import { reactive } from "vue"
 
-onMounted(() => {
-  gsap.from(".hero-illustration img", {
-    scale: 1.1,
-    opacity: 0,
-    y: 30,
-    duration: 1.6,
-    ease: "power2.out"
-  });
+const items = reactive([
+  {
+    id: 0,
+    pos: 0,
+    url: "/images/hero/work.jpg",
+    title: "人力仲介",
+    desc: "協助日本企業媒合優秀外籍人才，嚴格篩選並全程支援，確保穩定的就業關係。"
+  },
+  {
+    id: 1,
+    pos: 1,
+    url: "/images/hero/school.jpg",
+    title: "日本特色遊學",
+    desc: "連結日本語言學校與特色課程，打造最符合需求的學習體驗。"
+  },
+  {
+    id: 2,
+    pos: 2,
+    url: "/images/hero/foreigner.jpg",
+    title: "台灣華語教育",
+    desc: "在台灣提供專業中文課程，讓留學生與外籍人才快速適應環境。"
+  }
+])
 
-  gsap.from(".fade_word", {
-    opacity: 0,
-    y: 30,
-    stagger: 0.4,
-    delay: 0.2,
-    duration: 3,
-    ease: "power3.out"
-  });
-});
+// 計算目前被選中的圖片（pos=1 通常是中間的主圖）
+const currentItem = computed(() => items.find(i => i.pos === 1) || items[0])
+
+function shuffle(item) {
+  const heroPos = Math.floor(items.length / 2)
+  const hero = items.findIndex(({ pos }) => pos === heroPos)
+  const target = items.findIndex(({ id }) => id === item.id)
+    ;[items[target].pos, items[hero].pos] = [items[hero].pos, items[target].pos]
+}
 </script>
 
-<style scoped lang="scss">
-@import url('https://fonts.cdnfonts.com/css/gloock');
-.hero-illustration {
-  position: relative;
-  display: flex;
-  justify-content: center;
+<style>
+:root {
+  --width: min(500px, 90vw);
 }
+</style>
 
-.glow-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(236, 137, 56, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.hero-illustration img {
-  position: relative;
-  z-index: 1;
-  width: 80%;
-}
-
-.section_hero {
-  display: flex;
-  justify-content: center;
-  min-height: 90vh;
-  position: relative;
-  padding-top: 0;
-}
-
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  @media (max-width: 992px) {
-    gap: 50px;
-  }
-
-  @media (max-width: 1180px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-.hero_slogan {
+<style scoped>
+.hero-section {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-size: 2.5rem;
+  align-items: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  height: 100vh;
+}
+
+/* 文字區域 */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 20vh;
+}
+
+.hero-title {
+  font-size: 2rem;
   font-weight: 800;
-  letter-spacing: 0.03em;
-  line-height: 1.3;
-  text-align: left;
-
-  color: #68300ae8;
-  text-shadow: 0 1px 3px rgba(249, 249, 249, 0.2);
-  margin-bottom: 2rem;
-
-  @media (min-width: 1800px) {
-    font-size: 3rem;
-  }
-
-  @media (max-width: 992px) {
-    font-size: 1.8rem;
-  }
-
-  @media (max-width: 420px) {
-    font-size: 1.3rem;
-  }
-
-  .fade_word {
-    line-height: 1.4;
-    font-weight: 700;
-    text-align: left;
-
-    @media (max-width: 1180px) {
-      text-align: center;
-    }
-  }
-}
-
-.hero-text-container {
-  position: relative;
-  padding: 6rem 1.5rem;
-  max-width: 1280px;
-  margin: 0 50px;
-}
-
-.hero-text-wrapper {
-  max-width: 40rem;
-}
-
-.hero-heading {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 1.5rem;
-
-  @media (min-width: 768px) {
-    font-size: 3rem;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 3.75rem;
-  }
+  color: #d92d2d;
+  margin-bottom: 0.5rem;
 }
 
 .hero-subtitle {
-  margin-top: 50px;
-  font-size: 1.1rem;
-  color: #ae7c25b7;
-  margin-bottom: 2rem;
-  font-weight: bolder;
-  text-shadow: 0 1px 3px rgba(210, 127, 18, 0.2);
-}
-
-.hero-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  width: 100%;
-
-  @media (max-width: 1200px) {
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-    align-items: center;
-  }
-}
-
-.btn {
-  border: none;
   font-size: 1.2rem;
-  color: inherit;
-  background: none;
-  cursor: pointer;
-  padding: 4% 15%;
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  outline: none;
-  position: relative;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
 
-  @media (max-width: 1200px) {
-    padding: 5% 20%;
+.hero-slogan {
+  font-size: 1rem;
+  font-style: italic;
+  color: #666;
+}
+
+.gallery-wrapper {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery {
+  position: relative;
+  width: var(--width);
+  height: calc(var(--width) / 3);
+  /* 給一個高度讓容器能置中 */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gallery li {
+  position: absolute;
+  /* ✅ 改成絕對定位，全部疊在中心 */
+  top: 50%;
+  left: 50%;
+  width: calc(var(--width) / 5);
+  aspect-ratio: 1;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.6);
+  transition: transform 0.8s;
+  transform-origin: center center;
+  /* ✅ 以中心為基準 */
+  min-width: 350px;
+  height: 25vh;
+}
+
+/* =====================
+   每個 data-pos 的位置
+   ===================== */
+.gallery li[data-pos="0"] {
+  transform: translate(-50%, -50%) translateX(100%) scale(1.4);
+  z-index: 1;
+}
+
+.gallery li[data-pos="1"] {
+  transform: translate(-50%, -50%) translateX(0%) scale(1.8);
+  z-index: 10;
+}
+
+.gallery li[data-pos="2"] {
+  transform: translate(-50%, -50%) translateX(-100%) scale(1.4);
+  z-index: 5;
+}
+
+/* .gallery li[data-pos="3"] {
+  transform: translate(-50%, -50%) translateX(80%) scale(1.4);
+  z-index: 5;
+}
+.gallery li[data-pos="4"] {
+  transform: translate(-50%, -50%) translateX(160%) scale(1);
+  z-index: 1;
+} */
+
+/* 中間比較亮 */
+.gallery li::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.gallery li[data-pos="0"]::after,
+.gallery li[data-pos="2"]::after,
+.gallery li[data-pos="3"]::after,
+.gallery li[data-pos="4"]::after {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.gallery li[data-pos="1"]::after {
+  background-color: transparent;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --width: min(320px, 90vw);
+    /* 📌 整組縮小 */
+  }
+
+  .gallery-wrapper {
+    height: 35vh;
+  }
+
+  .gallery li {
+    width: calc(var(--width) / 3);
+    /* 每張圖佔比較多 */
+  }
+
+  .gallery li[data-pos="0"] {
+    transform: translate(-50%, -50%) translateX(100%) scale(1.3);
+    z-index: 1;
+  }
+
+  .gallery li[data-pos="1"] {
+    transform: translate(-50%, -50%) translateX(0%) scale(1.8);
+    z-index: 10;
+  }
+
+  .gallery li[data-pos="2"] {
+    transform: translate(-50%, -50%) translateX(-100%) scale(1.3);
+    z-index: 5;
+  }
+
+  /* .gallery li[data-pos="3"] {
+    transform: translate(-50%, -50%) translateX(50%) scale(1.1);
+  }
+  .gallery li[data-pos="4"] {
+    transform: translate(-50%, -50%) translateX(100%) scale(0.9);
+  } */
+
+  .gallery li {
+    min-width: 200px;
+    height: 15vh;
   }
 }
 
-.btn:after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-}
+@media (max-width: 600px) {
+  .hero-text {
+    height: 25vh;
+  }
 
-.btn-2 {
-  background: linear-gradient(145deg, #6fa892, #548571); /* 柔和漸層 */
-  color: #fff;
-  width: 200px;
-  border: none;
-  border-radius: 40px;
-  padding: 20px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  box-shadow:
-    0 6px 12px rgba(0, 0, 0, 0.15),  /* 外陰影 */
-    inset 0 1px rgba(255, 255, 255, 0.3); /* 內陰影增加光澤感 */
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
+  .gallery-wrapper {
+    height: 45vh;
+  }
 
-.btn-2:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 10px 18px rgba(0, 0, 0, 0.2),
-    inset 0 1px rgba(255, 255, 255, 0.3);
-}
+  .gallery li {
+    min-width: 150px;
+    height: 12vh;
+  }
 
-.btn-2:active {
-  transform: translateY(1px);
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.15) inset;
+  .gallery li {
+    width: calc(var(--width) / 3);
+    /* 每張圖佔比較多 */
+  }
+
+  .gallery li[data-pos="0"] {
+    transform: translate(-50%, -50%) translateX(100%) scale(1.5);
+    z-index: 1;
+  }
+
+  .gallery li[data-pos="1"] {
+    transform: translate(-50%, -50%) translateX(0%) scale(2);
+    z-index: 10;
+  }
+
+  .gallery li[data-pos="2"] {
+    transform: translate(-50%, -50%) translateX(-100%) scale(1.5);
+    z-index: 5;
+  }
 }
 </style>

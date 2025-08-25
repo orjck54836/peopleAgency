@@ -107,7 +107,7 @@
                 </div>
                 <div class="d-flex justify-center p-2">
                     <div class="d-flex justify-content-center">
-                        <img src="../img/human-resource/IMG_4567.JPG" alt="Mission" class="foreign-picture" />
+                        <img src="../img/human_resource/IMG_4567.JPG" alt="Mission" class="foreign-picture" />
                     </div>
                 </div>
                 <div class="foreign-benefits">
@@ -139,7 +139,7 @@
                     <div class="flow__item">
                         <div class="flow__num"><span>STEP</span></div>
                         <div class="flow__txt">
-                            <h3 class="ttl">需求確認：</h3>
+                            <h3 class="ttl">需求確認</h3>
                             <p class="detail">由專員與雇主進行一對一諮詢，了解實際職缺內容、工作環境、招募條件（語言程度、專業經歷、文化適應度等），確保找到最合適的人才。</p>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                     <div class="flow__item">
                         <div class="flow__num"><span>STEP</span></div>
                         <div class="flow__txt">
-                            <h3 class="ttl">合作簽約：</h3>
+                            <h3 class="ttl">合作簽約</h3>
                             <p class="detail">雙方簽訂正式合作契約，明訂職缺數量、招募時間、服務內容（如文件準備、教育訓練）、收費項目與權責分工，保障雙方權益。</p>
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                     <div class="flow__item">
                         <div class="flow__num"><span>STEP</span></div>
                         <div class="flow__txt">
-                            <h3 class="ttl">人選推薦與面試：</h3>
+                            <h3 class="ttl">人選推薦與面試</h3>
                             <p class="detail">根據企業需求精準篩選候選人，安排線上或實體面試（含履歷與背景檢查），並可提供錄影資料供審核，提升媒合效率。</p>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                     <div class="flow__item">
                         <div class="flow__num"><span>STEP</span></div>
                         <div class="flow__txt">
-                            <h3 class="ttl">簽證與在留處理：</h3>
+                            <h3 class="ttl">簽證與在留處理</h3>
                             <p class="detail">協助辦理所有簽證、在留資格等申請流程，包含翻譯、公證、雇用契約撰寫與行政程序，全程由專員追蹤處理進度。</p>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                     <div class="flow__item">
                         <div class="flow__num"><span>STEP</span></div>
                         <div class="flow__txt">
-                            <h3 class="ttl">赴日前準備：</h3>
+                            <h3 class="ttl">赴日前準備</h3>
                             <p class="detail">針對錄取人員提供赴日前的日語訓練、文化適應課程與生活知識指導，並協助安排機票、接機與住宿，確保順利赴任。</p>
                         </div>
                     </div>
@@ -179,7 +179,7 @@
                     <div class="flow__item">
                         <div class="flow__num"><span>STEP</span></div>
                         <div class="flow__txt">
-                            <h3 class="ttl">入職後追蹤：</h3>
+                            <h3 class="ttl">入職後追蹤</h3>
                             <p class="detail">定期與雇主與人才雙方進行溝通回饋，協助處理語言適應、生活輔導、出勤管理等問題，促進穩定的長期就業關係。</p>
                         </div>
                     </div>
@@ -263,7 +263,7 @@ onMounted(() => {
 </script>
 
 
-<style scoped>
+<style scoped> 
 .desktop-only {
     display: block;
 }
@@ -272,43 +272,16 @@ onMounted(() => {
     display: none;
 }
 
-@media (max-width: 768px) {
-    .desktop-only {
-        display: none !important;
-    }
-
-    .mobile-only {
-        display: block;
-    }
-
-    .visa-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .visa-item {
-        background: #fff8f0;
-        padding: 1rem 1.2rem;
-        border-radius: 10px;
-        border-left: 5px solid #d6710c;
-    }
-
-    .visa-item h4 {
-        margin-bottom: 0.5rem;
-        color: #b45309;
-    }
-}
-
 .title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    color: #9e5010;
-    font-weight: bolder;
-    width: 50%;
-    margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  color: #9e5010;
+  font-weight: bolder;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .hero-title {
@@ -471,7 +444,7 @@ onMounted(() => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 8%;
+    width: 5%;
     min-width: 60px;
     border-radius: 15px 50px 50px 15px;
 }
@@ -479,7 +452,7 @@ onMounted(() => {
 .flow__num span::after {
     counter-increment: number 1;
     content: '0' counter(number);
-    font-size: 2em;
+    font-size: 1.5em;
     display: block;
     text-align: center;
     line-height: 1.2;
@@ -506,8 +479,9 @@ onMounted(() => {
 }
 
 .visa-block {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .carousel-slider {
@@ -610,15 +584,6 @@ onMounted(() => {
     }
 }
 
-.section-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #1f2937;
-    margin-bottom: 1.5rem;
-    border-left: 5px solid #d6710c;
-    padding-left: 1rem;
-}
-
 .mission-block {
     background: rgba(255, 255, 255, 0.8);
     border-left: 5px solid transparent;
@@ -671,18 +636,6 @@ onMounted(() => {
     color: #374151;
     font-size: 1rem;
     line-height: 1.75;
-}
-
-
-@media (max-width: 1600px) {
-    .visa-block {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .visa-description {
-        text-align: center;
-    }
 }
 
 .page-wrapper {
@@ -738,5 +691,99 @@ onMounted(() => {
     min-width: 60px;
     border-radius: 15px 50px 50px 15px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1600px) {
+    .visa-block {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .visa-description {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    .visa-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .visa-item {
+        background: #fff8f0;
+        padding: 1rem 1.2rem;
+        border-radius: 10px;
+        border-left: 5px solid #d6710c;
+    }
+
+    .visa-item h4 {
+        margin-bottom: 0.5rem;
+        color: #b45309;
+    }
+    .title {
+        width: 100%;   /* 手機全寬 */
+        padding: 20px 10px;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;  /* 手機字體縮小 */
+        white-space: normal; /* 換行 */
+    }
+
+    .mission-content {
+        gap: 1rem;
+        text-align: left;
+    }
+
+    .mission-block {
+        padding: 1rem;
+    }
+
+    .card-image-large {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .visa-block {
+        flex-direction: column;
+        align-items: stretch; /* 滿版 */
+    }
+
+    .visa-description {
+        max-width: 100%;
+        margin-top: 1rem;
+    }
+
+    .flow__item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flow__num {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        min-width: auto;
+    }
+
+    .flow__txt {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .flow__txt h3.ttl {
+        text-align: center;
+    }
 }
 </style>

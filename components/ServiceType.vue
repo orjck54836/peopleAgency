@@ -37,7 +37,7 @@ const localePath = useLocalePath()
         </router-link>
 
         <!-- 日本工作卡片 -->
-        <router-link to="/human-resource">
+        <router-link to="/human_resource">
           <div class="projcard projcard-work">
             <div class="projcard-innerbox">
               <img class="projcard-img" src="../img/my-services/card_work.png" />
@@ -49,7 +49,7 @@ const localePath = useLocalePath()
                   我們致力於引進外籍人力（包含東南亞與台灣）赴日工作，提供特定技能、技術實習與其他就業媒合方案。從人才甄選、文件準備、簽證協助到工作後在日支援，我們打造一套完整安全的流程，協助企業穩定用工、人才安心就業。
                 </div>
                 <div class="projcard-tagbox">
-                  <p to="/human-resource" class="button-link">
+                  <p to="/human_resource" class="button-link">
                     了解更多...
                   </p>
                 </div>

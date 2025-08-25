@@ -16,7 +16,6 @@ const closeNav = () => {
     <div class="row">
       <div class="col-xl-10" data-bs-spy="scroll" data-bs-target="#navigation">
         <Hero />
-        <AboutMe />
         <ServiceType />
         <Information />
         <section id="common_questions" class="projects section position-relative">

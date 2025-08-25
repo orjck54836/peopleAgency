@@ -1,6 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const navOpen = ref(false);
+  const toggleNav = () => {
+    navOpen.value = !navOpen.value;
+  };
+  const closeNav = () => {
+    navOpen.value = false;
+  };
+</script>
 
 <template>
+  <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
   <section id="our_story" class="about section">
     <!-- 標題 -->
     <section class="about-section">
@@ -13,7 +22,7 @@
         <div class="intro-text">
           <!-- <h2>{{ $t('ourStory') }}</h2> -->
           <div class="image-size">
-            <img src="../img/about-me/logo.png" alt="" class="img-fluid w-75">
+            <img src="../../img/about-me/logo.png" alt="" class="img-fluid w-75">
           </div>
           <div class="text">
             <p>{{ $t('stortText') }}</p>
@@ -81,6 +90,9 @@
       </section>
     </div>
   </section>
+  <ContactIcon />
+  <Navigation :nav-open="navOpen" :close-nav="closeNav" />
+  <Footer />
 </template>
 
 
