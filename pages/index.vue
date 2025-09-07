@@ -37,8 +37,4 @@ const closeNav = () => {
 .bg {
   z-index: -5 !important;
 }
-
-.container-fluid {
-  width: 95%;
-}
 </style>

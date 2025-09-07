@@ -9,7 +9,7 @@ defineProps<{
 
 const route = useRoute()
 const navRef = ref<HTMLElement | null>(null);
-  const hiddenPaths = [
+const hiddenPaths = [
   '/contact',
   '/internship',
   '/human_resource',
@@ -60,8 +60,7 @@ const navItems = reactive([
 </script>
 
 <template>
-  <nav v-show="!hideNav" ref="navRef"
-    :class="`navigation ${navOpen ? 'opened' : ''}`" id="navigation">
+  <nav v-show="!hideNav" ref="navRef" :class="`navigation ${navOpen ? 'opened' : ''}`" id="navigation">
     <img src="/images/logo.png" class="mb-4 d-xl-none" alt="logo" />
     <ul>
       <li v-for="(item, index) in navItems" :key="index" @click="closeNav" class="nav-link">
@@ -92,7 +91,9 @@ const navItems = reactive([
       <div class="overlay-content">
         <transition-group tag="div" name="slide-up-items" class="overlay-nav-items">
           <div class="overlay-item" v-for="(item, index) in navItems" :key="item.text" @click="closeNav">
-            <a :href="'/' + item.href">{{ $t(item.text) }}</a>
+            <a :href="item.href" :class="{ active: item.active }">
+              <span>{{ item.index }}</span> <span class="text">{{ $t(item.text) }}</span>
+            </a>
           </div>
         </transition-group>
       </div>

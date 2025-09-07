@@ -64,26 +64,15 @@ export default defineNuxtConfig({
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      redirectOn: 'all'
+      redirectOn: 'root'
     },
     locales: [
-      {
-        code: 'en',
-        iso: 'en-US',
-        file: 'en.json'
-      },
-      {
-        code: 'zh-tw',
-        iso: 'zh-TW',
-        file: 'zh-tw.json'
-      },
-      {
-        code: 'ja',
-        iso: 'ja-JP',
-        file: 'ja.json'
-      }
+      { code: 'en', iso: 'en-US', file: 'en.json' },
+      { code: 'zh', iso: 'zh-TW', file: 'zh.json' },
+      { code: 'ja', iso: 'ja-JP', file: 'ja.json' }
     ],
-    defaultLocale: 'ja',
+    defaultLocale: 'zh',
+    fallbackLocale: 'zh',
     bundle: {
       optimizeTranslationDirective: false
     },

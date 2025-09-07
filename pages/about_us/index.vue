@@ -12,15 +12,13 @@
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
   <section id="our_story" class="about section">
     <!-- 標題 -->
-    <section class="about-section">
-      <h1>{{ $t('ourStoryTitle') }}</h1>
-    </section>
-
+    <div class="title">
+      <h1 class="hero-title">{{ $t('ourStoryTitle') }}</h1>
+    </div>
     <div class="about-container">
       <!-- 公司簡介與核心價值 -->
       <section class="intro-section">
         <div class="intro-text">
-          <!-- <h2>{{ $t('ourStory') }}</h2> -->
           <div class="image-size">
             <img src="../../img/about-me/logo.png" alt="" class="img-fluid w-75">
           </div>
@@ -28,6 +26,7 @@
             <p>{{ $t('stortText') }}</p>
           </div>
         </div>
+
         <!-- 核心價值 -->
         <div class="core-values">
           <ul class="core-values-list">
@@ -55,36 +54,67 @@
         </div>
       </section>
 
-      <!-- 公司資訊表格 -->
+      <!-- 公司資訊：日本 & 台灣 -->
       <section class="company-overview">
-        <div class="company-table">
-          <div class="row">
-            <div class="cell label">公司名稱</div>
-            <div class="cell value">Forma株式会社</div>
-          </div>
-          <div class="row">
-            <div class="cell label">代表者</div>
-            <div class="cell value">代表取締役 李 嘉皓</div>
-          </div>
-          <div class="row">
-            <div class="cell label">事業內容</div>
-            <div class="cell value">
-              有料職業介紹事業、特定技能仲介、留學代辦事業、語言學校媒合
-              <br />
-              職業介紹許可（有料）：13-ユ-987654
+        <div class="company-table-container">
+          <!-- 日本公司 -->
+          <div class="company-table">
+            <h2 class="company-title">日本公司</h2>
+            <div class="row">
+              <div class="cell label">公司名稱</div>
+              <div class="cell value">株式会社Forma</div>
+            </div>
+            <div class="row">
+              <div class="cell label">代表者</div>
+              <div class="cell value">李 嘉皓</div>
+            </div>
+            <div class="row">
+              <div class="cell label">事業內容</div>
+              <div class="cell value">人力仲介服務、國際人材派遣、留學代辦</div>
+            </div>
+            <div class="row">
+              <div class="cell label">公司地址</div>
+              <div class="cell value">即將公開</div>
+            </div>
+            <div class="row">
+              <div class="cell label">聯絡方式</div>
+              <div class="cell value">即將公開</div>
+            </div>
+            <div class="row">
+              <div class="cell label">支援語言</div>
+              <div class="cell value">中文、日文、英文</div>
             </div>
           </div>
-          <div class="row">
-            <div class="cell label">公司地址</div>
-            <div class="cell value">〒160-0023 東京都新宿区西新宿1-1-1 Forma大樓5F</div>
-          </div>
-          <div class="row">
-            <div class="cell label">聯絡方式</div>
-            <div class="cell value">info@forma.co.jp / 03-1234-5678</div>
-          </div>
-          <div class="row">
-            <div class="cell label">支援語言</div>
-            <div class="cell value">中文、日文、英文、越南文、印尼文</div>
+
+          <!-- 台灣公司 -->
+          <div class="company-table">
+            <h2 class="company-title">台灣公司</h2>
+            <div class="row">
+              <div class="cell label">公司名稱</div>
+              <div class="cell value">新福爾摩莎國際有限公司</div>
+            </div>
+            <div class="row">
+              <div class="cell label">代表者</div>
+              <div class="cell value">李 政南</div>
+            </div>
+            <div class="row">
+              <div class="cell label">事業內容</div>
+              <div class="cell value">
+                人力仲介服務、國際人材派遣、留學代辦
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell label">公司地址</div>
+              <div class="cell value">台中市西區利民里市府路39號9樓之1</div>
+            </div>
+            <div class="row">
+              <div class="cell label">聯絡方式</div>
+              <div class="cell value">04-22233958</div>
+            </div>
+            <div class="row">
+              <div class="cell label">支援語言</div>
+              <div class="cell value">中文、日文、英文、越南文</div>
+            </div>
           </div>
         </div>
       </section>
@@ -94,7 +124,6 @@
   <Navigation :nav-open="navOpen" :close-nav="closeNav" />
   <Footer />
 </template>
-
 
 <style lang="scss">
 .core-values {
@@ -134,15 +163,29 @@
   }
 }
 
-
-.company-overview {
-  margin: 0 auto;
-  border-radius: 16px;
+/* 新增：公司卡片雙欄式 */
+.company-table-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
 
   .company-table {
+    flex: 1;
+    min-width: 320px;
+    max-width: 600px;
     border-radius: 12px;
-    overflow: hidden;
     padding: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+    .company-title {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #7b4215;
+    }
 
     .row {
       display: flex;
@@ -162,14 +205,14 @@
 
       .label {
         background: #f3e4d4;
-        width: 20%;
+        width: 30%;
         font-weight: bold;
         color: #5e4028;
       }
 
       .value {
         background: #fff;
-        width: 80%;
+        width: 70%;
         color: #333;
         line-height: 1.6;
       }
@@ -177,23 +220,9 @@
   }
 
   @media (max-width: 768px) {
-    .company-table .row {
-      flex-direction: column;
-
-      .label,
-      .value {
-        width: 100%;
-        padding: 0.75rem 1rem;
-      }
-
-      .label {
-        background: #f3e4d4;
-        border-bottom: 1px solid #e0cdb5;
-      }
-    }
+    flex-direction: column;
   }
 }
-
 
 .about {
   position: relative;
@@ -219,19 +248,27 @@
 
   /* 主容器 */
   .about-container {
+    max-width: 90%;
     margin: 10px auto;
-    border-left: 1px dashed #ccc;
-    border-right: 1px dashed #ccc;
   }
 
-  /* About Section */
-  .about-section {
+  /* === Title Section === */
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9e5010;
+    font-weight: bolder;
+    width: 50%;
+    padding: 30px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
     text-align: center;
-    padding: 15px;
+    padding: 0 1rem;
+    white-space: nowrap;
     position: relative;
-    background-image: url("../img/commonImage/title-background.png");
-    background-size: cover;
-    border-radius: 20px;
   }
 
   .about-subtitle {
@@ -272,7 +309,7 @@
       justify-content: center;
 
       img {
-        object-fit: contain;/* 防止圖片延展 */
+        object-fit: contain;
       }
     }
 
@@ -281,12 +318,12 @@
 
       p {
         color: #114a0eab;
-        max-width: 700px; // 限制段落寬度，控制每行字數
-        text-align: justify; // 讓左右對齊（等寬感）
-        line-height: 1.8; // 增加行距讓閱讀更舒服
-        letter-spacing: 0.05em; // 微調字距
-        word-break: break-word; // 避免單字超出邊界
-        margin: 0 auto 1rem; // 置中顯示
+        max-width: 700px;
+        text-align: justify;
+        line-height: 1.8;
+        letter-spacing: 0.05em;
+        word-break: break-word;
+        margin: 0 auto 1rem;
         font-weight: bold;
       }
     }

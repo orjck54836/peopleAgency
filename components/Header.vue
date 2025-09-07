@@ -12,7 +12,7 @@ defineProps<{
 }>();
 
 // i18n 設定
-const { locale, locales } = useI18n();
+const { setLocale, locale, locales } = useI18n();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
 const router = useRouter()
@@ -37,7 +37,7 @@ onMounted(() => {
 const availableLocales = computed(() =>
   locales.value.map((l) => ({
     code: l.code,
-    name: l.code === 'en' ? 'English' : l.code === 'zh-tw' ? '繁體中文' : '日本語'
+    name: l.code === 'en' ? 'English' : l.code === 'zh' ? '繁體中文' : '日本語'
   }))
 );
 
@@ -48,14 +48,11 @@ const currentLanguageName = computed(() => {
 });
 
 // 切換語言
-const switchLang = (lang: string) => {
-  // 1) 改變 locale
-  locale.value = lang
-  // 2) 生成該語系下的當前頁面路徑
+const switchLang = async (lang: string) => {
+  await setLocale(lang)   // ✅ 正確做法，會自動寫入 i18n_redirected cookie
   const path = switchLocalePath(lang)
-  // 3) 若要切換到該路徑 (ex: "/en/contact")
   router.push(path)
-};
+}
 </script>
 
 <template>

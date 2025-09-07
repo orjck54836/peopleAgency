@@ -17,11 +17,27 @@
   "required": "(Required)",
   "contactMessageSubTitle": "Thank you for visiting! Please fill out your inquiry or request, and we’ll contact you shortly.",
 
-  "heroTitle1": "Connecting Global Needs",
-  "heroTitle2": "Starts Right Here",
-  "heroTitle3": "Your Bridge to the Right Direction",
-  "heroSubtitle1": "Looking for the right talent or the right stage? It starts here — we move forward with you.",
-  "heroSubtitle2": "Every step you take here comes with our full support.",
+  "hero_page": {
+    "title": "Japan Employment Agency・Study Abroad・Mandarin Education in Taiwan",
+    "subtitle": "Foreign Talent Placement | Specified Skilled Worker Visa | Japanese Study Abroad",
+    "slogan": "Connecting talents, cultures, and dreams.",
+
+    "work": {
+      "alt": "Japan employment agency foreign workers specified skilled visa",
+      "title": "Japan Employment Agency",
+      "desc": "We help Japanese companies recruit foreign talents, specializing in Specified Skilled Worker and Technical Intern visas. From recruitment, document preparation, to visa support, we ensure a smooth process for both employers and employees."
+    },
+    "study": {
+      "alt": "Japanese study abroad agency language school programs",
+      "title": "Japanese Study Abroad",
+      "desc": "We partner with unique Japanese language schools to offer short-term study programs, specialized courses, and cultural experiences. Whether for language learning or academic advancement, we provide tailored study abroad solutions."
+    },
+    "chinese": {
+      "alt": "Mandarin education in Taiwan Chinese courses daily conversation",
+      "title": "Mandarin Education in Taiwan",
+      "desc": "We provide professional Mandarin courses in Taiwan, focusing on practical communication and workplace Chinese. Our programs help foreign students and job seekers adapt quickly to life and work in Taiwan."
+    }
+  },
 
   "ourStoryTitle": "About us",
   "ourStory": "Company Profile",
@@ -51,105 +67,69 @@
   "errorSubtitle": "An error occurred. Please try again later.",
   "confirm": "Confirm",
 
-  "intershipTitle": "Technical Internship Program",
-  "intershipWhat": "What is the Technical Internship?",
-  "intershipDescription": "The Technical Internship Program is an international cooperation system designed to allow young people from developing countries to acquire technical skills and knowledge in Japan and later contribute to the development of their home country's industries. Japanese companies also benefit from stable and motivated foreign human resources.",
-  "intershipPurpose": "Program Objectives",
-  "intershipPeriod": "Internship Duration and Industries",
-  "intershipPeriodDescription": "The internship period ranges from a minimum of 1 year to a maximum of 5 years, classified as Type 1 (1 year), Type 2 (up to 3 years), and Type 3 (extension up to 5 years). Applicable industries include:",
-  "intershipEmployerTitle": "Employer Responsibilities",
-  "intershipFlowTitle": "Implementation Process",
-  "intershipBenefitTitle": "Why Choose Us",
-  "intershipCTA": "Free Consultation: Start Planning Your Internship Deployment",
-  "intershipPurpose1": "Provide technical training and future opportunities for foreign talent",
-  "intershipPurpose2": "Fill labor shortages in Japanese companies, especially SMEs",
-  "intershipPurpose3": "Build trust and cooperation between international companies and workers",
-  "intershipPeriod1": "Manufacturing (food processing, metal machinery, etc.)",
-  "intershipPeriod2": "Agriculture and livestock industry",
-  "intershipPeriod3": "Construction and civil engineering",
-  "intershipPeriod4": "Caregiving and nursing (requires N3 Japanese or above)",
-  "intershipEmployer1": "Provide working conditions and wages equivalent to Japanese employees",
-  "intershipEmployer2": "Arrange accommodation and daily support (e.g. bank account, transportation)",
-  "intershipEmployer3": "Support supervision agency inspections and reports",
-  "intershipEmployer4": "Prohibit job transfers and forced labor; ensure human rights",
-  "intershipFlow1": "Initial consultation and requirement confirmation",
-  "intershipFlow2": "Candidate recommendation from Vietnam, Philippines, or Indonesia",
-  "intershipFlow3": "Interview (online available) + skill and language screening",
-  "intershipFlow4": "Pre-departure training and visa processing",
-  "intershipFlow5": "Official assignment and support begins",
-  "intershipBenefit1": "Bilingual support with knowledge of Japanese & Vietnamese systems",
-  "intershipBenefit2": "Direct collaboration with local supervisory agencies ensures stability",
-  "intershipBenefit3": "Language assistance after deployment (Chinese or Japanese)",
-  "intershipBenefit4": "Ongoing tracking and emergency response services",
-
-  "specifiedSkillTitle": "Specified Skilled Worker Program",
-  "specifiedSkillWhat": "What is Specified Skilled Worker?",
-  "specifiedSkillDescription": "The Specified Skilled Worker program is a residency status that allows foreigners with certain skills and Japanese proficiency to work mid-to-long term in Japan to address labor shortages in specific industries.",
-  "specifiedSkillPurpose": "Purpose of the Program",
-  "specifiedSkillPurpose1": "Provide career opportunities in Japan for skilled foreign workers",
-  "specifiedSkillPurpose2": "Solve structural labor shortages",
-  "specifiedSkillPurpose3": "Strengthen long-term employment and retention systems",
-  "specifiedSkillPeriod": "Applicable Industries and Categories",
-  "specifiedSkillPeriodDescription": "The program covers 14 key industries such as:",
-  "specifiedSkillPeriod1": "Construction, shipbuilding, agriculture, food service, hospitality, etc.",
-  "specifiedSkillPeriod2": "Caregiving, cleaning, electronics and IT",
-  "specifiedSkillPeriod3": "Machinery, metalworking, auto maintenance, etc.",
-  "specifiedSkillPeriod4": "Some fields require skill tests and at least N4 level Japanese",
-  "specifiedSkillEmployerTitle": "Employer Responsibilities",
-  "specifiedSkillEmployer1": "Provide legal working conditions and fair treatment",
-  "specifiedSkillEmployer2": "Assist with visa application and renewal",
-  "specifiedSkillEmployer3": "Arrange accommodation and daily life support",
-  "specifiedSkillEmployer4": "Participate in pre-departure and post-arrival training programs",
-  "specifiedSkillFlowTitle": "Implementation Flow",
-  "specifiedSkillFlow1": "Consultation to confirm job type and headcount",
-  "specifiedSkillFlow2": "Recruit candidates from overseas",
-  "specifiedSkillFlow3": "Interview those who pass skills & language tests",
-  "specifiedSkillFlow4": "Arrange visa and pre-departure training",
-  "specifiedSkillFlow5": "Assign to employer and provide ongoing support",
-  "specifiedSkillBenefitTitle": "Why Choose Us",
-  "specifiedSkillBenefit1": "Extensive experience in placement with stable processes",
-  "specifiedSkillBenefit2": "Bilingual support for smooth employer-staff communication",
-  "specifiedSkillBenefit3": "Familiar with Japanese procedures and quick troubleshooting",
-  "specifiedSkillBenefit4": "Long-term support to reduce turnover rate",
-  "specifiedSkillCTA": "Free Consultation: Learn about the Specified Skilled Worker system",
-
-  "engineerTitle": "Engineer/Specialist in Humanities/International Services Visa",
-  "engineerWhat": "What is the Engineer Visa?",
-  "engineerDescription": "The Engineer/Specialist in Humanities/International Services Visa allows skilled foreign professionals to work in Japan in areas such as engineering, business, and international affairs. Common roles include engineers, accountants, translators, and consultants.",
-  "engineerRequirementTitle": "Application Requirements",
-  "engineerRequirement1": "Bachelor’s degree or higher in a relevant field",
-  "engineerRequirement2": "Or at least 10 years of relevant work experience",
-  "engineerRequirement3": "Language proficiency or certifications may be required",
-  "engineerJobTypeTitle": "Suitable Job Types",
-  "engineerJobType1": "System Engineer / Software Developer",
-  "engineerJobType2": "International Trade / Marketing Consultant",
-  "engineerJobType3": "Accounting / Finance / Legal Advisor",
-  "engineerJobType4": "Translator / Educator / Overseas Business",
-  "engineerPurpose": "Purpose of the System",
-  "engineerPurpose1": "Attract global professionals with advanced expertise",
-  "engineerPurpose2": "Strengthen R&D and international competitiveness",
-  "engineerPurpose3": "Promote cultural exchange and globalization",
-  "engineerField": "Eligible Job Fields",
-  "engineerFieldDescription": "This visa covers a range of professions including:",
-  "engineerField1": "Engineering (IT, manufacturing, construction)",
-  "engineerField2": "Humanities (marketing, accounting, education)",
-  "engineerField3": "International services (translation, trade, global business)",
-  "engineerField4": "Bachelor's degree or equivalent work experience required",
-  "engineerEmployerTitle": "Employer Responsibilities",
-  "engineerEmployer1": "Provide legal employment with fair working conditions",
-  "engineerEmployer2": "Assist with visa application and renewal",
-  "engineerEmployer3": "Comply with immigration regulations",
-  "engineerEmployer4": "Support smooth integration and living arrangements",
-  "engineerFlowTitle": "Introduction Process",
-  "engineerFlow1": "Define job requirements and suitable visa type",
-  "engineerFlow2": "Source candidates from Japan and overseas",
-  "engineerFlow3": "Conduct interviews and assess qualifications",
-  "engineerFlow4": "Apply for Certificate of Eligibility (COE)",
-  "engineerFlow5": "Onboard talent and provide follow-up support",
-  "engineerBenefitTitle": "Why Choose Us?",
-  "engineerBenefit1": "Deep understanding of Japanese and Taiwanese systems",
-  "engineerBenefit2": "Talent matching from entry-level to senior positions",
-  "engineerBenefit3": "Visa strategy and manpower planning support",
-  "engineerBenefit4": "Post-hire support and cultural guidance",
-  "engineerCTA": "Free Consultation for Engineer Visa Solutions"
+  "hero": {
+    "title": "Taiwan-Japan Talent Exchange & Employment Agency",
+    "subtitle": "Taiwan professional manpower agency managing foreign talent employment in Japan"
+  },
+  "visa": {
+    "title": "Supported Japanese Visa Types",
+    "subtitle": "Managed by Taiwan agency, assisting Asian talent with employment and study visas in Japan",
+    "special": {
+      "title": "Specified Skilled Worker Visa",
+      "desc": "Introduced by the Japanese government to address labor shortages in 12 industries including food service, construction, caregiving, agriculture, and manufacturing. Applicants must pass skill tests and have Japanese proficiency (N4 or above).",
+      "alt": "Japan Specified Skilled Worker Visa 12 industries food construction caregiving agriculture manufacturing"
+    },
+    "engineer": {
+      "title": "Engineer / Specialist in Humanities / International Services Visa",
+      "desc": "For professionals in engineering, IT, accounting, design, trade, and marketing. This is a long-term work visa requiring relevant education or professional experience.",
+      "alt": "Japan Engineer Humanities International Services Visa IT engineering design accounting trade marketing"
+    },
+    "intern": {
+      "title": "Technical Intern Training",
+      "desc": "For young people from developing countries to learn and practice skills in Japan, usually 1-5 years. After completion, they may return home or transition to the Specified Skilled Worker visa.",
+      "alt": "Japan Technical Intern Training foreign talent skill learning program"
+    }
+  },
+  "cooperation": {
+    "title": "Why Work With Us?",
+    "q1": "Looking for a reliable partner for foreign talent placement?",
+    "q2": "Struggling with complex international labor procedures?",
+    "core": "Cooperation Core",
+    "nodes": {
+      "node1": { "title": "Professional Background", "desc": "Legally registered manpower agency in Taiwan with years of cooperation with Southeast Asian sending organizations." },
+      "node2": { "title": "Single Window", "desc": "Unified management by a Taiwan company, reducing cross-border communication and administrative risks." },
+      "node3": { "title": "Diverse Talent", "desc": "Covers Taiwan, Vietnam, Indonesia, and more, quickly matching various industry needs." },
+      "node4": { "title": "Full Support", "desc": "Visa, Japanese education, and pre-/post-departure life guidance in a complete one-stop service." },
+      "node5": { "title": "Trust & Assurance", "desc": "Comprehensive contracts to protect the rights of employers and partners." }
+    }
+  },
+  "foreign": {
+    "title": "Why Choose Foreign Talent?",
+    "imageAlt": "Why choose foreign talent Japan employment Taiwan-Japan exchange",
+    "employer": {
+      "title": "Value for Employers",
+      "point1": "Address labor shortages: Foreign workers fill gaps in industries such as food, construction, and caregiving.",
+      "point2": "Enhance skills: Professionals in IT, engineering, design, and accounting support core business operations.",
+      "point3": "Cultural diversity: Bring diverse backgrounds to foster innovation and global perspectives.",
+      "point4": "Stability & loyalty: High retention rates and strong motivation make foreign talent key assets."
+    },
+    "jobseeker": {
+      "title": "Advantages for Job Seekers",
+      "point1": "Legal & transparent: Managed by Taiwan agency, ensuring compliance and safety.",
+      "point2": "Full support: Visa application, Japanese training, and pre-/post-arrival guidance.",
+      "point3": "Wide options: Opportunities in labor, professional fields, study, and internships.",
+      "point4": "Peace of mind: Formal contracts protect job seekers’ rights in Japan."
+    }
+  },
+  "flow": {
+    "title": "Corporate Cooperation Process",
+    "subtitle": "※ Entire process supervised by Taiwan agency to ensure stability and trust",
+    "steps": [
+      { "title": "Requirement Confirmation", "desc": "Confirm job needs with employers and match suitable talent." },
+      { "title": "Contract Signing", "desc": "Contracts signed with candidates/partners to protect rights." },
+      { "title": "Candidate Recommendation & Interview", "desc": "Recommend qualified talent and arrange interviews." },
+      { "title": "Visa Application & Preparation", "desc": "Assist with visas, language and cultural training, and guidance." },
+      { "title": "Post-Employment Follow-up", "desc": "Monitor employment status and provide support for language and daily issues." }
+    ]
+  }
 }

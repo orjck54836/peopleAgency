@@ -235,7 +235,7 @@ onMounted(async () => {
   justify-content: start;
   gap: 1rem;
   padding: 20px 0;
-  
+
   @media (max-width: 1200px) {
     align-items: center;
   }

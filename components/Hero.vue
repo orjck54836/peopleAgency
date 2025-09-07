@@ -2,9 +2,9 @@
   <div class="hero-section">
     <!-- 標題 -->
     <div class="hero-text">
-      <h1 class="hero-title">跨越國界，連結未來</h1>
-      <p class="hero-subtitle">人力仲介x日本特色遊學x台灣華語教育</p>
-      <p class="hero-slogan">We connect talents, cultures, and dreams.</p>
+      <h1 class="hero-title">{{ $t('hero_page.title') }}</h1>
+      <p class="hero-subtitle">{{ $t('hero_page.subtitle') }}</p>
+      <p class="hero-slogan">{{ $t('hero_page.slogan') }}</p>
     </div>
 
     <!-- ✅ 包裹一層，保持和文字距離 -->
@@ -15,6 +15,8 @@
               :key="item.id"
               :data-pos="item.pos"
               :style="{ backgroundImage: `url(${item.url})` }"
+              :aria-label="$t(item.alt)"
+              role="img"
               @click="shuffle(item)">
           </li>
         </ul>
@@ -23,36 +25,39 @@
     
     <!-- 簡介 -->
     <div class="hero-description">
-      <h3>{{ currentItem.title }}</h3>
-      <p>{{ currentItem.desc }}</p>
+      <h3>{{ $t(currentItem.title) }}</h3>
+      <p>{{ $t(currentItem.desc) }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive } from "vue"
+import { reactive, computed } from "vue"
 
 const items = reactive([
   {
     id: 0,
     pos: 0,
     url: "/images/hero/work.jpg",
-    title: "人力仲介",
-    desc: "協助日本企業媒合優秀外籍人才，嚴格篩選並全程支援，確保穩定的就業關係。"
+    alt: "hero_page.work.alt",
+    title: "hero_page.work.title",
+    desc: "hero_page.work.desc"
   },
   {
     id: 1,
     pos: 1,
     url: "/images/hero/school.jpg",
-    title: "日本特色遊學",
-    desc: "連結日本語言學校與特色課程，打造最符合需求的學習體驗。"
+    alt: "hero_page.study.alt",
+    title: "hero_page.study.title",
+    desc: "hero_page.study.desc"
   },
   {
     id: 2,
     pos: 2,
     url: "/images/hero/chinese.jpg",
-    title: "台灣華語教育",
-    desc: "在台灣提供專業中文課程，讓留學生與外籍人才快速適應環境。"
+    alt: "hero_page.chinese.alt",
+    title: "hero_page.chinese.title",
+    desc: "hero_page.chinese.desc"
   }
 ])
 
@@ -63,18 +68,18 @@ function shuffle(item) {
   const heroPos = Math.floor(items.length / 2)
   const hero = items.findIndex(({ pos }) => pos === heroPos)
   const target = items.findIndex(({ id }) => id === item.id)
-    ;[items[target].pos, items[hero].pos] = [items[hero].pos, items[target].pos]
+  ;[items[target].pos, items[hero].pos] = [items[hero].pos, items[target].pos]
 }
 </script>
+
+
 <style>
 :root {
   --width: min(500px, 90vw);
 }
 </style>
 <style>
-
 .hero-section {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,7 +89,7 @@ function shuffle(item) {
 }
 
 .hero-title {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 900;
   background: rgba(230, 73, 21, 0.591);
   -webkit-background-clip: text;
@@ -129,8 +134,9 @@ function shuffle(item) {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  max-height: 300px;
-  background: rgba(255, 255, 255, 0.265); /* 半透明卡片感 */
+  max-height: 200px;
+  background: rgba(255, 255, 255, 0.265);
+  /* 半透明卡片感 */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 5px;
@@ -140,26 +146,34 @@ function shuffle(item) {
   animation: fadeUp 0.8s ease forwards;
   transform: translateY(20px);
   opacity: 0;
-  width: 80%;
+  width: 50%;
   border-radius: 5px;
 }
 
 .hero-description h3 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  background: rgb(211, 56, 56);
+  background: rgba(229, 179, 132, 0.799);
   color: white;
-  margin-bottom: 0.6rem;
   letter-spacing: 1px;
-  padding: 1vh 5vw;
+  padding: 0.5vh 5vw;
   border-radius: 0 0 10px 10px;
 }
 
 .hero-description p {
+  font-size: 1.2rem;
+  flex: 1;
+  /* 佔滿剩餘空間 */
+  display: flex;
+  align-items: center;
+  /* 垂直置中 */
+  justify-content: center;
+  /* 水平置中 */
   font-size: 1rem;
   line-height: 1.6;
   color: #333;
   max-width: 600px;
+  padding: 0.5vh 5vw;
 }
 
 /* 入場動畫 */
@@ -176,6 +190,7 @@ function shuffle(item) {
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -183,20 +198,29 @@ function shuffle(item) {
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
 }
 
 @keyframes blink {
-  50% { border-color: transparent }
+  50% {
+    border-color: transparent
+  }
 }
 
 .gallery-wrapper {
   width: 100%;
-  position: relative; /* absolute 以這裡為基準 */
+  position: relative;
+  /* absolute 以這裡為基準 */
   aspect-ratio: 16/9;
   max-width: 1000px;
-  height: 40vh;   /* 📌 桌機時給個相對高度 */
+  height: 40vh;
+  /* 📌 桌機時給個相對高度 */
   margin: 2rem 0;
 }
 
@@ -235,17 +259,17 @@ function shuffle(item) {
 }
 
 .gallery li[data-pos="0"] {
-  transform: translate(-50%, -50%) translateX(80%) scale(1.2);
+  transform: translate(-50%, -50%) translateX(80%) scale(1);
   z-index: 1;
 }
 
 .gallery li[data-pos="1"] {
-  transform: translate(-50%, -50%) translateX(0%) scale(1.6);
+  transform: translate(-50%, -50%) translateX(0%) scale(1.4);
   z-index: 10;
 }
 
 .gallery li[data-pos="2"] {
-  transform: translate(-50%, -50%) translateX(-80%) scale(1.2);
+  transform: translate(-50%, -50%) translateX(-80%) scale(1);
   z-index: 5;
 }
 
@@ -269,6 +293,10 @@ function shuffle(item) {
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2rem;
+  }
+
+  .hero-description {
+    width: 100%;
   }
 
   .hero-description h3 {
@@ -297,25 +325,39 @@ function shuffle(item) {
 }
 
 @media (max-width: 600px) {
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .hero-slogan {
+    font-size: 0.8rem;
+  }
+
+  .gallery-wrapper {
+    height: 30vh;
+  }
+
   .gallery li {
     width: calc(var(--width) / 3);
     /* 每張圖佔比較多 */
-    min-width: 150px;   /* ✅ 小螢幕更彈性 */
-    max-width: 90vw;    /* ✅ 不會超過螢幕 */
+    min-width: 150px;
+    /* ✅ 小螢幕更彈性 */
+    max-width: 90vw;
+    /* ✅ 不會超過螢幕 */
   }
 
   .gallery li[data-pos="0"] {
-    transform: translate(-50%, -50%) translateX(70%) scale(1.2);
+    transform: translate(-50%, -50%) translateX(70%) scale(1);
     z-index: 1;
   }
 
   .gallery li[data-pos="1"] {
-    transform: translate(-50%, -50%) translateX(0%) scale(1.6);
+    transform: translate(-50%, -50%) translateX(0%) scale(1.4);
     z-index: 10;
   }
 
   .gallery li[data-pos="2"] {
-    transform: translate(-50%, -50%) translateX(-70%) scale(1.2);
+    transform: translate(-50%, -50%) translateX(-70%) scale(1);
     z-index: 5;
   }
 }
