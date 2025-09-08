@@ -20,16 +20,33 @@ const filters = ref({
   accommodation: ''
 })
 
-const regionOptions = ['東京', '大阪', '名古屋', '福岡', '北海道', '神奈川']
-const intakeOptions = ['1', '4', '7', '10']
+import { useI18n } from "vue-i18n"
 
-const sortOption = ref('')
-const sortOptions = [
-  { value: '', label: '預設排序' },
-  { value: 'tuition-desc', label: '學費高 ➜ 低' },
-  { value: 'tuition-asc', label: '學費低 ➜ 高' },
-  { value: 'popularity', label: '熱門程度' }
+const { t } = useI18n()
+
+const regionOptions = [
+  { value: "tokyo", label: t("schoolOverview.region.tokyo") },
+  { value: "osaka", label: t("schoolOverview.region.osaka") },
+  { value: "nagoya", label: t("schoolOverview.region.nagoya") },
+  { value: "fukuoka", label: t("schoolOverview.region.fukuoka") },
+  { value: "hokkaido", label: t("schoolOverview.region.hokkaido") },
+  { value: "kanagawa", label: t("schoolOverview.region.kanagawa") }
 ]
+
+const intakeOptions = [
+  { value: "1", label: `1 ${t("schoolOverview.month")}` },
+  { value: "4", label: `4 ${t("schoolOverview.month")}` },
+  { value: "7", label: `7 ${t("schoolOverview.month")}` },
+  { value: "10", label: `10 ${t("schoolOverview.month")}` }
+]
+
+const sortOption = ref("")
+const sortOptions = computed(() => [
+  { value: "", label: t("schoolOverview.sort.default") },
+  { value: "tuition-desc", label: t("schoolOverview.sort.tuitionDesc") },
+  { value: "tuition-asc", label: t("schoolOverview.sort.tuitionAsc") },
+  { value: "popularity", label: t("schoolOverview.sort.popularity") }
+])
 
 const filteredSchools = computed(() => {
   return schools.value.filter((school) => {
@@ -102,12 +119,12 @@ onMounted(fetchSchools)
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
   <div class="title">
-    <h1 class="hero-title">學校總覽</h1>
+    <h1 class="hero-title">{{ $t('schoolOverview.title') }}</h1>
   </div>
   <div class="hero-banner">
-    <img src="../../img/school/32810422_m.jpg" alt="留學主題圖" />
+    <img src="/img/school/32810422_m.jpg" :alt="$t('schoolOverview.heroAlt')" />
     <div class="hero-banner-text">
-      <p>探索日本各地的特色學校，打造你的專屬學習旅程</p>
+      <p>{{ $t('schoolOverview.heroText') }}</p>
     </div>
   </div>
   <main class="page-wrapper">
@@ -115,83 +132,78 @@ onMounted(fetchSchools)
       <div class="row justify-content-center align-items-center">
         <!-- 圖片 -->
         <div class="col-lg-3 mb-3 mb-md-0 p-4 text-picture">
-          <img src="../../img/school/depart.png" alt="">
+          <img src="/img/school/depart.png" :alt="$t('schoolOverview.departAlt')" />
         </div>
         <!-- 文字 -->
         <div class="col-lg-7 col-md-12 jp-intro p-4 p-md-5 d-flex">
           <div>
-            <h1>跨出一步，夢想觸手可及</h1>
+            <h1>{{ $t('schoolOverview.introTitle') }}</h1>
           </div>
           <div>
             <span class="jp-intro__petal petal-1" aria-hidden="true"></span>
             <span class="jp-intro__petal petal-2" aria-hidden="true"></span>
             <span class="jp-intro__petal petal-3" aria-hidden="true"></span>
-            <p>
-              不只日語，我們帶你走進日本的靈魂。<br />
-              從 <strong>茶道的靜謐</strong>、<strong>和菓子的甜美</strong>、<strong>聲優的舞台光芒</strong>，到
-              <strong>動畫設計的創意世界</strong>——<br />
-              這裡，每一門課都是一段專屬的故事，一次改變人生的旅程。<br />
-              你的夢想，不該只停留在想像，從現在開始踏上屬於你的日本學習之路。
-            </p>
+            <p>{{ $t('schoolOverview.introDesc') }}</p>
           </div>
         </div>
       </div>
     </div>
+
     <div class="school-overview-container row">
       <div class="col-lg-4">
         <section class="school-filter-panel">
-          <!-- 篩選列 -->
           <section class="mb-5">
             <div class="filter-header">
-              <h2>快速篩選</h2>
-              <p class="filter-subtext">依照地區、入學月份、學校類型等條件，迅速找到最適合你的學校！</p>
+              <h2>{{ $t('schoolOverview.filterTitle') }}</h2>
+              <p class="filter-subtext">{{ $t('schoolOverview.filterSubtitle') }}</p>
             </div>
             <div class="filter-block-container flex-wrap gap-3">
               <div class="select-group">
                 <div class="select-item">
-                  <label class="filter-block-label" for="keyword">學校關鍵字</label>
-                  <input v-model="filters.keyword" type="text" id="keyword" placeholder="輸入學校名稱或關鍵字"
-                    class="form-control keyword-input" />
+                  <label class="filter-block-label" for="keyword">{{ $t('schoolOverview.keywordLabel') }}</label>
+                  <input v-model="filters.keyword" type="text" id="keyword"
+                    :placeholder="$t('schoolOverview.keywordPlaceholder')" class="form-control keyword-input" />
                 </div>
                 <div class="select-item">
-                  <label class="filter-block-label" for="region">地區</label>
+                  <label class="filter-block-label" for="region">{{ $t('schoolOverview.regionLabel') }}</label>
                   <select v-model="filters.region" id="region" class="form-select select-control">
-                    <option value="">全部地區</option>
+                    <option value="">{{ $t('schoolOverview.allRegions') }}</option>
                     <option v-for="region in regionOptions" :key="region" :value="region">
                       {{ region }}
                     </option>
                   </select>
                 </div>
                 <div class="select-item">
-                  <label class="filter-block-label" for="intake">入學時間</label>
+                  <label class="filter-block-label" for="intake">{{ $t('schoolOverview.intakeLabel') }}</label>
                   <select v-model="filters.intake" id="intake" class="form-select select-control">
-                    <option value="">全部入學時間</option>
+                    <option value="">{{ $t('schoolOverview.allIntakes') }}</option>
                     <option v-for="month in intakeOptions" :key="month" :value="month">
-                      {{ month }} 月
+                      {{ month }} {{ $t('schoolOverview.month') }}
                     </option>
                   </select>
                 </div>
                 <div class="select-item">
-                  <label class="filter-block-label" for="type">學校類型</label>
+                  <label class="filter-block-label" for="type">{{ $t('schoolOverview.typeLabel') }}</label>
                   <select v-model="filters.type" id="type" class="form-select select-control">
-                    <option value="">全部學校類型</option>
-                    <option value="語言學校">語言學校</option>
-                    <option value="專門學校">專門學校</option>
-                    <option value="大學別科">大學別科</option>
+                    <option value="">{{ $t('schoolOverview.allTypes') }}</option>
+                    <option value="語言學校">{{ $t('schoolOverview.langSchool') }}</option>
+                    <option value="專門學校">{{ $t('schoolOverview.vocSchool') }}</option>
+                    <option value="大學別科">{{ $t('schoolOverview.univPrep') }}</option>
                   </select>
                 </div>
                 <div class="select-item">
-                  <label class="filter-block-label" for="accommodation">住宿類型</label>
+                  <label class="filter-block-label" for="accommodation">{{ $t('schoolOverview.accommodationLabel')
+                  }}</label>
                   <select v-model="filters.accommodation" id="accommodation" class="form-select select-control">
-                    <option value="">住宿類型不限</option>
-                    <option value="宿舍">宿舍</option>
-                    <option value="寄宿家庭">寄宿家庭</option>
-                    <option value="自行租屋">自行租屋</option>
+                    <option value="">{{ $t('schoolOverview.allAccommodations') }}</option>
+                    <option value="宿舍">{{ $t('schoolOverview.dorm') }}</option>
+                    <option value="寄宿家庭">{{ $t('schoolOverview.homestay') }}</option>
+                    <option value="自行租屋">{{ $t('schoolOverview.rent') }}</option>
                   </select>
                 </div>
                 <div class="clear-button-container">
                   <button @click="clearFilters" class="clear-button">
-                    清除所有篩選條件
+                    {{ $t('schoolOverview.clearFilters') }}
                   </button>
                 </div>
               </div>
@@ -211,37 +223,20 @@ onMounted(fetchSchools)
             <section class="card rounded-4 p-4" v-for="(person, index) in paginatedSchools" :key="index"
               @click="goToDetailPage(person.name)">
               <div class="school-img-block">
-                <img :src="person.image" alt="" />
+                <img :src="person.image" :alt="`${person.name} 日本留學 學校介紹`" />
               </div>
               <div class="p-4">
                 <span class="name fw-semibold d-block">{{ person.name }}</span>
                 <span class="location-title fw-medium mb-2">{{ person.location }}</span>
                 <span class="d-block text-secondary mb-2">
-                  入學月份：{{ person.intake.join('月、') }}月
+                  {{ $t('schoolOverview.intakeMonth') }}：{{ person.intake.join('月、') }}月
                 </span>
                 <p>{{ person.introduction }}</p>
-                <div class="mt-3 text-danger fw-semibold small text-center">查看更多 ➔</div>
+                <div class="mt-3 text-danger fw-semibold small text-center">{{ $t('schoolOverview.moreDetail') }}</div>
               </div>
             </section>
           </section>
         </section>
-        <div class="d-flex justify-content-center mt-5">
-          <nav>
-            <ul class="pagination">
-              <li class="page-item" :class="{ disabled: currentPage === 1 }" @click="currentPage > 1 && currentPage--">
-                <a class="page-link" href="#">上一頁</a>
-              </li>
-              <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: currentPage === page }"
-                @click="currentPage = page">
-                <a class="page-link" href="#">{{ page }}</a>
-              </li>
-              <li class="page-item" :class="{ disabled: currentPage === totalPages }"
-                @click="currentPage < totalPages && currentPage++">
-                <a class="page-link" href="#">下一頁</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
       </div>
     </div>
   </main>
@@ -249,6 +244,7 @@ onMounted(fetchSchools)
   <Navigation :nav-open="navOpen" :close-nav="closeNav" />
   <Footer />
 </template>
+
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");

@@ -79,10 +79,10 @@ const navItems = reactive([
         </a>
       </div>
     </div>
-    <div class="google-map-wrapper">
+    <!-- <div class="google-map-wrapper">
       <iframe width="100%" height="200" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.939320802105!2d139.76609781525802!3d35.68123628019509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c0b06c34b67%3A0x48e61f729a5c15b6!2z5p2x5Lqs6YO95p2x5Z-O!5e0!3m2!1szh-TW!2sjp!4v1720200000000!5m2!1szh-TW!2sjp"></iframe>
-    </div>
+    </div> -->
   </nav>
   <!-- 直接在同層渲染 Overlay -->
   <div class="nav-overlay d-xl-none" @click.self="closeNav">
@@ -128,14 +128,14 @@ const navItems = reactive([
   // max-width: 300px;
   width: 15vw;
   height: fit-content;
-  min-height: 55vh;
+  min-height: 75vh;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   z-index: 100;
   text-align: center;
   padding-top: 2%;
   padding-bottom: 2%;
-  border-radius: 50px;
+  border-radius: 20px;
   margin: 0 auto;
 
   /* 小螢幕 (<1200px) 下拉式 */
@@ -203,9 +203,8 @@ const navItems = reactive([
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
-      padding-top: 6px;
-      padding-bottom: 6px;
-      font-size: 20px;
+      padding: 0.5vh 0;
+      font-size: 2rem;
       font-weight: 500;
 
       &:dir(ltr) {
@@ -331,7 +330,7 @@ const navItems = reactive([
     padding-bottom: 10px;
 
     &:hover {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid rgb(163, 48, 24);
     }
   }
 }

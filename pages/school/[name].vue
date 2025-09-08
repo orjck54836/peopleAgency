@@ -63,16 +63,17 @@ onMounted(async () => {
       <!-- 左側圖片輪播 -->
       <div class="flex-4 w-full">
         <UCarousel ref="carousel" v-slot="{ item }" :items="items" class="w-full max-w-4xl mx-auto" @select="onSelect">
-          <img :src="item" class="rounded-lg mx-auto">
+          <img :src="item" class="rounded-lg mx-auto" :alt="`${school.name} 日本留學 學校圖片`" />
         </UCarousel>
         <div class="flex gap-1 justify-content-center pt-4 max-w-xs mx-auto">
           <div v-for="(item, index) in items" :key="index"
             class="size-11 opacity-25 hover:opacity-100 transition-opacity"
             :class="{ 'opacity-100': activeIndex === index }" @click="select(index)">
-            <img :src="item" width="44" height="44" class="rounded-lg">
+            <img :src="item" width="44" height="44" class="rounded-lg" :alt="`${school.name} 校園環境縮圖`" />
           </div>
         </div>
       </div>
+
       <!-- 右側內容 -->
       <div class="school-content-section">
         <ul class="meta-list">
@@ -80,110 +81,116 @@ onMounted(async () => {
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                  <a :href="'/school'">學校總覽</a>
+                  <NuxtLink to="/school">{{ $t('schoolDetail.breadcrumb') }}</NuxtLink>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">{{ school.name }}</li>
               </ol>
             </nav>
-            <h1 class="school-title mb-2">{{ school.name }}</h1>
+            <h1 class="school-title mb-2">{{ school.name }}｜{{ $t('schoolDetail.titleSuffix') }}</h1>
           </div>
 
-          <li><strong>📍 學校地點：</strong>{{ school.location }}</li>
-          <li><strong>📆 開課期間：</strong>{{ school.intake.join('月、') }}月</li>
-          <li><strong>🏫 學校類型：</strong>{{ school.type }}</li>
-          <li><strong>⏳ 課程期間：</strong>{{ school.tuitionDetails.at(-1)?.duration }}</li>
-          <li><strong>👥 招生對象：</strong>{{ school.requirements[0] }}</li>
-          <li><strong>🈶 建議日文程度：</strong>{{ school.requirements[1] }}</li>
-          <li><strong>📄 簡章下載：</strong><a href="#">點擊下載</a></li>
+          <li><strong>{{ $t('schoolDetail.location') }}</strong>{{ school.location }}</li>
+          <li><strong>{{ $t('schoolDetail.intake') }}</strong>{{ school.intake.join('月、') }}月</li>
+          <li><strong>{{ $t('schoolDetail.type') }}</strong>{{ school.type }}</li>
+          <li><strong>{{ $t('schoolDetail.duration') }}</strong>{{ school.tuitionDetails.at(-1)?.duration }}</li>
+          <li><strong>{{ $t('schoolDetail.target') }}</strong>{{ school.requirements[0] }}</li>
+          <li><strong>{{ $t('schoolDetail.japaneseLevel') }}</strong>{{ school.requirements[1] }}</li>
+          <li><strong>{{ $t('schoolDetail.brochure') }}</strong><a href="#">{{ $t('schoolDetail.download') }}</a></li>
         </ul>
 
-        <button class="booking-btn">立即諮詢</button>
+        <button class="booking-btn">{{ $t('schoolDetail.consultBtn') }}</button>
       </div>
-
     </div>
+
     <section class="feature-layout">
       <!-- 左側：課程特色 -->
       <div class="features-section">
         <div class="detail-block">
-          <h2>🏫 基本資料</h2>
+          <h2>{{ $t('schoolDetail.basicInfo') }}</h2>
           <ul>
-            <li><strong>學校名稱：</strong>{{ school.name }}</li>
-            <li><strong>縣市：</strong>{{ school.location }}</li>
-            <li><strong>可入學月份：</strong>{{ school.intake.join('月、') }}月</li>
-            <li><strong>學校類型：</strong>{{ school.type }}</li>
-            <li><strong>創立年份：</strong>{{ school.founded }}</li>
+            <li><strong>{{ $t('schoolDetail.schoolName') }}</strong>{{ school.name }}</li>
+            <li><strong>{{ $t('schoolDetail.city') }}</strong>{{ school.location }}</li>
+            <li><strong>{{ $t('schoolDetail.intake') }}</strong>{{ school.intake.join('月、') }}月</li>
+            <li><strong>{{ $t('schoolDetail.type') }}</strong>{{ school.type }}</li>
+            <li><strong>{{ $t('schoolDetail.founded') }}</strong>{{ school.founded }}</li>
           </ul>
         </div>
+
         <div class="detail-block">
-          <h2>📖 學校介紹</h2>
+          <h2>{{ $t('schoolDetail.introduction') }}</h2>
           <p class="description">{{ school.introduction }}</p>
         </div>
+
         <div class="detail-block">
-          <h2>💰 學費資訊</h2>
+          <h2>{{ $t('schoolDetail.tuitionInfo') }}</h2>
           <div class="table-responsive">
             <table class="tuition-table">
               <thead>
                 <tr>
-                  <th>期間</th>
-                  <th>入學檢定料</th>
-                  <th>入學金</th>
-                  <th>學費</th>
-                  <th>設施維持費</th>
-                  <th>合計</th>
+                  <th>{{ $t('schoolDetail.period') }}</th>
+                  <th>{{ $t('schoolDetail.examFee') }}</th>
+                  <th>{{ $t('schoolDetail.entryFee') }}</th>
+                  <th>{{ $t('schoolDetail.tuition') }}</th>
+                  <th>{{ $t('schoolDetail.facilityFee') }}</th>
+                  <th>{{ $t('schoolDetail.total') }}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="fee in school.tuitionDetails" :key="fee.duration">
                   <td>{{ fee.duration }}</td>
                   <td>{{ fee.examFee }}</td>
-                  <td>{{ fee.examFee }}</td>
                   <td>{{ fee.entryFee }}</td>
                   <td>{{ fee.tuition }}</td>
+                  <td>{{ fee.facility }}</td>
                   <td>{{ fee.total }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
+
         <div class="detail-block">
-          <h2>🏠 宿舍資訊</h2>
+          <h2>{{ $t('schoolDetail.dormInfo') }}</h2>
           <ul>
-            <li><strong>住宿類型：</strong>{{ school.dormitory.type }}</li>
-            <li><strong>月租金：</strong>{{ school.dormitory.rent }} 日圓</li>
-            <li><strong>其他費用：</strong>{{ school.dormitory.misc }}</li>
-            <li><strong>地點：</strong>{{ school.dormitory.location }}</li>
+            <li><strong>{{ $t('schoolDetail.dormType') }}</strong>{{ school.dormitory.type }}</li>
+            <li><strong>{{ $t('schoolDetail.dormRent') }}</strong>{{ school.dormitory.rent }} 日圓</li>
+            <li><strong>{{ $t('schoolDetail.dormMisc') }}</strong>{{ school.dormitory.misc }}</li>
+            <li><strong>{{ $t('schoolDetail.dormLocation') }}</strong>{{ school.dormitory.location }}</li>
           </ul>
         </div>
+
         <div class="detail-block">
-          <h2>✨ 課程特色</h2>
+          <h2>{{ $t('schoolDetail.features') }}</h2>
           <ul>
             <li v-for="(item, i) in school.features" :key="i">◆ {{ item }}</li>
           </ul>
-          <p><strong>📅 課程期間：</strong>{{ school.date }}</p>
+          <p><strong>{{ $t('schoolDetail.courseDuration') }}</strong>{{ school.date }}</p>
         </div>
+
         <div class="detail-block">
-          <h2>📝 報名資格</h2>
+          <h2>{{ $t('schoolDetail.requirements') }}</h2>
           <ul>
             <li v-for="(req, i) in school.requirements" :key="i">- {{ req }}</li>
           </ul>
         </div>
       </div>
+
       <!-- 右側：推薦學校 -->
       <aside class="sidebar">
-        <div class="sidebar-header">更多熱門學校</div>
+        <div class="sidebar-header">{{ $t('schoolDetail.moreSchools') }}</div>
         <div class="recommend-card" v-for="(rec, i) in recommendedSchools" :key="i">
           <NuxtLink :to="`/school/${encodeURIComponent(rec.name)}`">
-            <div><img :src="rec.image" alt="推薦學校" class="rec-img" />
+            <div>
+              <img :src="rec.image" :alt="`${rec.name} 日本留學 推薦學校`" class="rec-img" />
               <h3 class="rec-title">{{ rec.name }}</h3>
-              <div class="text-center mb-2">
-                查看更多
-              </div>
+              <div class="text-center mb-2">{{ $t('schoolDetail.viewMore') }}</div>
             </div>
           </NuxtLink>
         </div>
       </aside>
     </section>
   </main>
+
   <!-- <section v-else class="not-found">
     <h2>查無學校資料</h2>
     <p>請確認連結是否正確。</p>

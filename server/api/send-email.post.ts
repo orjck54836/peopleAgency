@@ -3,13 +3,25 @@ import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
 export default defineEventHandler(async (event) => {
     const body = await readBody<{
         inquiryType?: string
+        // 共用欄位
         name?: string
         email?: string
-        companyName?: string
         phone?: string
+        message?: string
+        // 招聘用
+        companyName?: string
         workContent?: string
         cityAddress?: string
-        message?: string
+        // 留學用
+        dob?: string
+        nationality?: string
+        gender?: string
+        studyStart?: string
+        programType?: string
+        budget?: string
+        preferredCity?: string
+        needDorm?: string
+        emergencyContact?: string
     }>(event)
 
     // 基本驗證
@@ -22,22 +34,31 @@ export default defineEventHandler(async (event) => {
     const formType = isRecruiting ? '人才介紹表單' : '留學諮詢表單'
 
     const textBody = isRecruiting
-        ? `📄 【${formType}】
+        ? `【${formType}】
 
-公司名稱: ${body.companyName ?? ''}
-姓名: ${body.name ?? ''}
-電話: ${body.phone ?? ''}
-E-mail: ${body.email ?? ''}
-地址: ${body.cityAddress ?? ''}
-事業內容: ${body.workContent ?? ''}
-諮詢類別: ${body.inquiryType ?? ''}
-補充說明: ${body.message ?? ''}`
-        : `📄 【${formType}】
+        公司名稱: ${body.companyName ?? ''}
+        姓名: ${body.name ?? ''}
+        電話: ${body.phone ?? ''}
+        E-mail: ${body.email ?? ''}
+        地址: ${body.cityAddress ?? ''}
+        事業內容: ${body.workContent ?? ''}
+        諮詢類別: ${body.inquiryType ?? ''}
+        補充說明: ${body.message ?? ''}`
+                : `【${formType}】
 
-姓名: ${body.name ?? ''}
-電話: ${body.phone ?? ''}
-E-mail: ${body.email ?? ''}
-留學計畫: ${body.message ?? ''}`
+        姓名: ${body.name ?? ''}
+        電話: ${body.phone ?? ''}
+        E-mail: ${body.email ?? ''}
+        出生日期: ${body.dob ?? ''}
+        國籍: ${body.nationality ?? ''}
+        性別: ${body.gender ?? ''}
+        預計出國時間: ${body.studyStart ?? ''}
+        課程類型: ${body.programType ?? ''}
+        預算範圍: ${body.budget ?? ''}
+        希望地區: ${body.preferredCity ?? ''}
+        是否需要宿舍: ${body.needDorm ?? ''}
+        緊急聯絡人: ${body.emergencyContact ?? ''}
+        補充說明: ${body.message ?? ''}`
 
     // 讀取環境變數（建議放 nuxt.config.ts -> runtimeConfig）
     const config = useRuntimeConfig(event)

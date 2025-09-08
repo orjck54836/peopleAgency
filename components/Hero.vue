@@ -7,22 +7,21 @@
       <p class="hero-slogan">{{ $t('hero_page.slogan') }}</p>
     </div>
 
-    <!-- ✅ 包裹一層，保持和文字距離 -->
+    <!-- 圖片展示區 -->
     <div class="gallery-container">
       <div class="gallery-wrapper">
-        <ul class="gallery">
-          <li v-for="item in items"
-              :key="item.id"
-              :data-pos="item.pos"
-              :style="{ backgroundImage: `url(${item.url})` }"
-              :aria-label="$t(item.alt)"
-              role="img"
-              @click="shuffle(item)">
-          </li>
-        </ul>
+        <div
+          v-for="item in items"
+          :key="item.id"
+          class="gallery-item"
+          :data-pos="item.pos"
+          @click="shuffle(item)"
+        >
+          <img :src="item.url" :alt="$t(item.alt)" />
+        </div>
       </div>
     </div>
-    
+
     <!-- 簡介 -->
     <div class="hero-description">
       <h3>{{ $t(currentItem.title) }}</h3>
@@ -134,7 +133,7 @@ function shuffle(item) {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  max-height: 200px;
+
   background: rgba(255, 255, 255, 0.265);
   /* 半透明卡片感 */
   backdrop-filter: blur(12px);
@@ -146,8 +145,9 @@ function shuffle(item) {
   animation: fadeUp 0.8s ease forwards;
   transform: translateY(20px);
   opacity: 0;
-  width: 50%;
+  width: 60%;
   border-radius: 5px;
+  min-width: 350px;
 }
 
 .hero-description h3 {
@@ -173,7 +173,7 @@ function shuffle(item) {
   line-height: 1.6;
   color: #333;
   max-width: 600px;
-  padding: 0.5vh 5vw;
+  padding: 1.5vw;
 }
 
 /* 入場動畫 */
@@ -216,11 +216,9 @@ function shuffle(item) {
 .gallery-wrapper {
   width: 100%;
   position: relative;
-  /* absolute 以這裡為基準 */
   aspect-ratio: 16/9;
   max-width: 1000px;
   height: 40vh;
-  /* 📌 桌機時給個相對高度 */
   margin: 2rem 0;
 }
 
@@ -231,134 +229,101 @@ function shuffle(item) {
   width: 100%;
 }
 
-.gallery {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.gallery li {
+.gallery-item {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(var(--width) / 5);
-  aspect-ratio: 1;
   cursor: pointer;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.6);
   transition: transform 0.8s;
   transform-origin: center center;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.6);
   min-width: 350px;
   height: 25vh;
   max-width: 90vw;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-.gallery li[data-pos="0"] {
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 位置控制 */
+.gallery-item[data-pos="0"] {
   transform: translate(-50%, -50%) translateX(80%) scale(1);
   z-index: 1;
 }
 
-.gallery li[data-pos="1"] {
+.gallery-item[data-pos="1"] {
   transform: translate(-50%, -50%) translateX(0%) scale(1.4);
   z-index: 10;
 }
 
-.gallery li[data-pos="2"] {
+.gallery-item[data-pos="2"] {
   transform: translate(-50%, -50%) translateX(-80%) scale(1);
   z-index: 5;
 }
 
-.gallery li::after {
+/* 側邊圖片暗化 */
+.gallery-item[data-pos="0"]::after,
+.gallery-item[data-pos="2"]::after {
   content: "";
   position: absolute;
   inset: 0;
+  background: rgba(0, 0, 0, 0.4);
 }
 
-.gallery li[data-pos="0"]::after,
-.gallery li[data-pos="2"]::after,
-.gallery li[data-pos="3"]::after,
-.gallery li[data-pos="4"]::after {
-  background-color: rgba(0, 0, 0, 0.4);
+.gallery-item[data-pos="1"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
 }
 
-.gallery li[data-pos="1"]::after {
-  background-color: transparent;
-}
-
+/* RWD */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-description {
-    width: 100%;
-  }
-
-  .hero-description h3 {
-    font-size: 1rem;
-  }
-
-  .gallery li[data-pos="0"] {
-    transform: translate(-50%, -50%) translateX(60%) scale(1.6);
-    z-index: 1;
-  }
-
-  .gallery li[data-pos="1"] {
-    transform: translate(-50%, -50%) translateX(0%) scale(2);
-    z-index: 10;
-  }
-
-  .gallery li[data-pos="2"] {
-    transform: translate(-50%, -50%) translateX(-60%) scale(1.6);
-    z-index: 5;
-  }
-
-  .gallery li {
+  .gallery-item {
     min-width: 200px;
     height: 20vh;
+  }
+
+  .gallery-item[data-pos="0"] {
+    transform: translate(-50%, -50%) translateX(60%) scale(1.6);
+  }
+
+  .gallery-item[data-pos="1"] {
+    transform: translate(-50%, -50%) translateX(0%) scale(2);
+  }
+
+  .gallery-item[data-pos="2"] {
+    transform: translate(-50%, -50%) translateX(-60%) scale(1.6);
   }
 }
 
 @media (max-width: 600px) {
-  .hero-subtitle {
-    font-size: 0.9rem;
-  }
-
-  .hero-slogan {
-    font-size: 0.8rem;
-  }
-
   .gallery-wrapper {
     height: 30vh;
   }
 
-  .gallery li {
-    width: calc(var(--width) / 3);
-    /* 每張圖佔比較多 */
+  .gallery-item {
     min-width: 150px;
-    /* ✅ 小螢幕更彈性 */
-    max-width: 90vw;
-    /* ✅ 不會超過螢幕 */
+    height: 20vh;
   }
 
-  .gallery li[data-pos="0"] {
+  .gallery-item[data-pos="0"] {
     transform: translate(-50%, -50%) translateX(70%) scale(1);
-    z-index: 1;
   }
 
-  .gallery li[data-pos="1"] {
+  .gallery-item[data-pos="1"] {
     transform: translate(-50%, -50%) translateX(0%) scale(1.4);
-    z-index: 10;
   }
 
-  .gallery li[data-pos="2"] {
+  .gallery-item[data-pos="2"] {
     transform: translate(-50%, -50%) translateX(-70%) scale(1);
-    z-index: 5;
   }
 }
+
 </style>

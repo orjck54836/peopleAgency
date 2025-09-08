@@ -5,34 +5,34 @@
 <template>
   <section id="our_story" class="information section">
     <section class="information-section">
-      <h1>{{ $t('informationTitle') }}</h1>
+      <h1>{{ $t('information.title') }}</h1>
     </section>
     <div class="information-container">
       <section class="intro-section">
         <div class="tagline">
-          <p>就職・留学・外国人採用情報がここに！</p>
-          <p>あなたの次の一歩をサポートします。</p>
+          <p>{{ $t('information.tagline1') }}</p>
+          <p>{{ $t('information.tagline2') }}</p>
         </div>
         <div class="intro-text">
           <div class="text">
-            <img src="../img/information/2661118.png" alt="" class="img-fluid">
-            <p>
-              想知道更多關於日本工作、雇用外國人，以及留學的最新情報嗎？  
-              點擊下方按鈕，即可瀏覽我們為您整理的完整資訊，
-              包含日本就業市場動態、企業雇用政策、留學申請流程與在日生活指南，
-              幫助您一次掌握在日本發展所需的關鍵知識！
-            </p>
+            <img 
+              src="/img/information/2661118.png" 
+              :alt="$t('information.alt')" 
+              class="img-fluid"
+            >
+            <p>{{ $t('information.desc') }}</p>
           </div>
         </div>
         <div class="info-btn">
-          <router-link to="/information" >
-            {{ $t('learnMore') }}
+          <router-link to="/information">
+            {{ $t('information.learnMore') }}
           </router-link>
         </div>
       </section>
     </div>
   </section>
 </template>
+
 
 <style lang="scss" scoped>
 .tagline {
@@ -134,6 +134,7 @@
         word-break: break-word;
         font-weight: bold;
         font-size: 1rem;
+        max-width: 500px;
       }
     }
   }

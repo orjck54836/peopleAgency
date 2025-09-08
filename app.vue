@@ -3,7 +3,13 @@ useHead({
   title: "株式会社Forma",
   htmlAttrs: {
     lang: "ja",
-  }
+  },
+  link: [
+    { rel: 'icon', type: 'image/png', href: '/favicon.png' },  // 16x16 or 32x32
+  ],
+  meta: [
+    { name: 'theme-color', content: '#ffffff' }
+  ]
 });
 </script>
 <template>

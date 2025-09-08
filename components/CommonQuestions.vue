@@ -1,138 +1,98 @@
 <script setup lang="ts">
-import projectOne from "../img/common-questions/worker.jpg";
-import projectTwo from "../img/common-questions/price.jpg";
-import projectThree from "../img/common-questions/visa.jpg";
-import projectDetailsOne from "/images/project-details-1.png";
-import projectDetailsTwo from "/images/project-details-2.png";
-import quickbiteBig from "/images/quickbite-big.png";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import projectOne from "/images/common-questions/worker.jpg";
+import projectTwo from "/images/common-questions/price.jpg";
+import projectThree from "/images/common-questions/visa.jpg";
 
 const projects = [
   {
-    name: "僱用外國人流程",
-    description: "幫助企業了解僱用外籍人員的完整流程，從招募到入職。",
-    category: "對於如何雇用外國人有疑問的人",
+    name: "commonQuestions.worker.title",
+    description: "commonQuestions.worker.desc",
+    category: "commonQuestions.worker.category",
     image: projectOne,
+    alt: "commonQuestions.worker.alt",
     faqList: [
-      {
-        q: "這項服務包含哪些範圍？",
-        a: "協助企業進行人力媒合、面試安排、就業契約撰寫、赴日前說明與後續入職輔導。",
-      },
-      {
-        q: "我們公司從未聘用過外國人，可以協助嗎？",
-        a: "當然可以。我們將從制度說明開始，逐步指導公司完成必要程序。",
-      },
-      {
-        q: "語言能力會成為障礙嗎？",
-        a: "我們會事前評估候選人的日語能力，並可提供日語強化方案，協助順利上手。",
-      },
-      {
-        q: "需要多早開始準備？",
-        a: "建議至少提前2~3個月開始，以便配合簽證流程與入職前準備。",
-      },
-    ],
+      { q: "commonQuestions.worker.q1", a: "commonQuestions.worker.a1" },
+      { q: "commonQuestions.worker.q2", a: "commonQuestions.worker.a2" },
+      { q: "commonQuestions.worker.q3", a: "commonQuestions.worker.a3" },
+      { q: "commonQuestions.worker.q4", a: "commonQuestions.worker.a4" }
+    ]
   },
   {
-    name: "費用與服務",
-    description: "介紹我們的收費模式、後續支援與可選加值服務內容。",
-    category: "想了解費用的計算與後續服務",
+    name: "commonQuestions.price.title",
+    description: "commonQuestions.price.desc",
+    category: "commonQuestions.price.category",
     image: projectTwo,
+    alt: "commonQuestions.price.alt",
     faqList: [
-      {
-        q: "服務費用怎麼計算？",
-        a: "我們提供「成功收費」與「固定專案費」兩種方案，可依照客戶需求彈性選擇。",
-      },
-      {
-        q: "是否有保證期？",
-        a: "有。若在保證期內離職，可免費重新媒合或按比例退費。",
-      },
-      {
-        q: "有包含入職後支援嗎？",
-        a: "包含，我們提供勞資溝通輔導、日本生活協助、定期關懷等。",
-      },
-      {
-        q: "是否提供語言培訓？",
-        a: "可提供日語線上課程，或依公司需求安排團體訓練。",
-      },
-    ],
+      { q: "commonQuestions.price.q1", a: "commonQuestions.price.a1" },
+      { q: "commonQuestions.price.q2", a: "commonQuestions.price.a2" },
+      { q: "commonQuestions.price.q3", a: "commonQuestions.price.a3" },
+      { q: "commonQuestions.price.q4", a: "commonQuestions.price.a4" }
+    ]
   },
   {
-    name: "簽證與法規細節",
-    description: "針對不同簽證類型、法規限制與常見誤區進行說明與輔導。",
-    category: "認識關於簽證的內容與細節",
+    name: "commonQuestions.visa.title",
+    description: "commonQuestions.visa.desc",
+    category: "commonQuestions.visa.category",
     image: projectThree,
+    alt: "commonQuestions.visa.alt",
     faqList: [
-      {
-        q: "外國人可以申請哪些簽證？",
-        a: "常見為『特定技能』與『技術・人文知識・國際業務』兩種，我們會依個案建議合適類型。",
-      },
-      {
-        q: "簽證有效期限多久？",
-        a: "初期多為1年，視個人條件可續簽至3年、5年。",
-      },
-      {
-        q: "需要準備哪些文件？",
-        a: "包括學歷證明、履歷、職務說明書、聘用合約等；我們會協助全程準備。",
-      },
-      {
-        q: "若簽證申請失敗怎麼辦？",
-        a: "我們會協助了解原因，並可重新申請或提出備案（如轉換簽證類型）。",
-      },
-    ],
-  },
+      { q: "commonQuestions.visa.q1", a: "commonQuestions.visa.a1" },
+      { q: "commonQuestions.visa.q2", a: "commonQuestions.visa.a2" },
+      { q: "commonQuestions.visa.q3", a: "commonQuestions.visa.a3" },
+      { q: "commonQuestions.visa.q4", a: "commonQuestions.visa.a4" }
+    ]
+  }
 ];
 
-const currentProject = ref(projects[1]);
+const currentProject = ref(projects[0]);
 </script>
+
 <template>
-  <!-- 標題區（service Section） -->
+  <!-- 標題區 -->
   <section class="common-questions-section">
-    <h1>{{ $t('commonQuestionTitle') }}</h1>
+    <h1>{{ $t('commonQuestions.title') }}</h1>
   </section>
+
+  <!-- 問題列表 -->
   <div class="row pb-60 project-list g-4 common-questions-content">
-    <div v-for="(project, i) in projects" :key="project.name" @click="currentProject = project" data-bs-toggle="modal"
+    <div v-for="(project, i) in projects" :key="i" @click="currentProject = project" data-bs-toggle="modal"
       data-bs-target="#exampleModal">
       <div class="single-project">
         <div class="card-overlay">
-          <span>瞭解更多</span>
+          <span>{{ $t('commonQuestions.more') }}</span>
         </div>
         <div>
-          <img :src="project.image" class="card-img" alt="問題圖片" />
+          <img :src="project.image" class="card-img" :alt="$t(project.alt)" />
         </div>
         <div class="project-info">
-          <h3>{{ project.name }}</h3>
-          <p>{{ project.category }}</p>
+          <h3>{{ $t(project.name) }}</h3>
+          <p>{{ $t(project.category) }}</p>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
   <Teleport to="body">
-    <div class="modal fade" id="exampleModal" :tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
           <div class="modal-body">
-            <!-- 關閉按鈕 -->
-            <button type="button" class="btn-close fs-3" data-bs-dismiss="modal" aria-label="Close">
-              <PhosphorIconX />
-            </button>
-            <!-- FAQ區塊 -->
+            <!-- 關閉 -->
+            <button type="button" class="btn-close fs-3" data-bs-dismiss="modal" aria-label="Close" />
+            <!-- FAQ -->
             <div class="faq-modal-content">
-              <h2 class="modal-faq-title">{{ currentProject.name }}</h2>
-              <p class="modal-faq-subtitle">
-                {{ currentProject.description }}
-              </p>
-              <!-- FAQ內容-->
+              <h2 class="modal-faq-title">{{ $t(currentProject.name) }}</h2>
+              <p class="modal-faq-subtitle">{{ $t(currentProject.description) }}</p>
               <div class="faq-list">
                 <div class="faq-item" v-for="(item, index) in currentProject.faqList" :key="index">
-                  <h3>Q{{ index + 1 }}：{{ item.q }}</h3>
-                  <p>A：{{ item.a }}</p>
+                  <h3>Q{{ index + 1 }}：{{ $t(item.q) }}</h3>
+                  <p>A：{{ $t(item.a) }}</p>
                 </div>
               </div>
-
             </div>
-            <!-- End FAQ modal content -->
-          </div> <!-- /modal-body -->
+          </div>
         </div>
       </div>
     </div>
@@ -173,7 +133,6 @@ const currentProject = ref(projects[1]);
     gap: 1.5rem;
     padding: 1.5rem;
     background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 16px;
     backdrop-filter: blur(12px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -236,12 +195,9 @@ const currentProject = ref(projects[1]);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      background: rgba(6, 119, 93, 0.6);
+      background: rgba(211, 137, 33, 0.6);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(221, 173, 29, 0.2);
-      border-radius: 16px;
       box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
       color: #fff;
       font-size: 1.2rem;
@@ -293,11 +249,12 @@ const currentProject = ref(projects[1]);
   background-color: rgba(var(--primary), 0.1);
 
   .modal-body {
-    background-image: url('../img/common-questions/commonquestions_bg.png');
+    background-image: url('/images/common-questions/commonquestions_bg.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
     max-width: 90%;
     height: 100%;
-    margin: 30px 10%;
+    margin: 30px;
     padding: 16px;
     border-radius: 12px;
     position: relative;
@@ -344,7 +301,6 @@ const currentProject = ref(projects[1]);
     }
 
     .faq-modal-content {
-      margin-top: 25px;
       text-align: left;
       color: rgb(var(--contrast));
 
@@ -361,6 +317,7 @@ const currentProject = ref(projects[1]);
         line-height: 1.6;
         margin-bottom: 1.5rem;
         text-align: center;
+        padding: 5px;
       }
 
       .faq-list {
@@ -369,7 +326,7 @@ const currentProject = ref(projects[1]);
         gap: 1.5rem;
 
         .faq-item {
-          background-color: #fff;
+          background-color: #f6d09b96;
           padding: 1rem 1.2rem;
           border-radius: 10px;
           box-shadow: 0 4px 6px rgba(var(--contrast), 0.15);

@@ -35,6 +35,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     '@vesp/nuxt-fontawesome',
     '@nuxt/ui',
+    '@vite-pwa/nuxt',
     'vue3-carousel-nuxt'
   ],
   app: {

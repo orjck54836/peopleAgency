@@ -7,7 +7,7 @@ const localePath = useLocalePath()
   <section id="services" class="section services position-relative">
     <!-- 標題區 -->
     <section class="serviceType-section">
-      <h1>{{ $t('servicesTitle') }}</h1>
+      <h1>{{ $t('services.title') }}</h1>
     </section>
     <div class="serviceType-container">
       <div>
@@ -15,22 +15,25 @@ const localePath = useLocalePath()
         <router-link to="/school">
           <div class="projcard projcard-school">
             <div class="projcard-innerbox">
-              <img class="projcard-img" src="../img/my-services/card_school.png" />
+              <img 
+                class="projcard-img" 
+                src="/img/my-services/card_school.png" 
+                :alt="$t('services.school.alt')" 
+              />
               <div class="projcard-textbox">
-                <div class="projcard-title">日本留／遊學</div>
-                <div class="projcard-subtitle">「協助台灣學生踏上實現日本夢想的第一步。」</div>
+                <div class="projcard-title">{{ $t('services.school.title') }}</div>
+                <div class="projcard-subtitle">{{ $t('services.school.subtitle') }}</div>
                 <div class="projcard-bar"></div>
                 <div>
                   <div class="projcard-description">
-                    我們專注於協助台灣學生前往日本進行短期遊學或長期留學，提供從學校媒合、申請代辦、住宿安排、行前準備到當地支援的一條龍服務。透過我們的專業經驗與在地連結，讓每位學習者都能無縫銜接日本生活，安心成長、拓展國際視野。
+                    {{ $t('services.school.desc') }}
                   </div>
                   <div class="projcard-tagbox">
                     <p to="/school" class="button-link">
-                      了解更多...
+                      {{ $t('services.more') }}
                     </p>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -40,17 +43,21 @@ const localePath = useLocalePath()
         <router-link to="/human_resource">
           <div class="projcard projcard-work">
             <div class="projcard-innerbox">
-              <img class="projcard-img" src="../img/my-services/card_work.png" />
+              <img 
+                class="projcard-img" 
+                src="/img/my-services/card_work.png" 
+                :alt="$t('services.work.alt')" 
+              />
               <div class="projcard-textbox">
-                <div class="projcard-title">日本工作</div>
-                <div class="projcard-subtitle">「連結亞洲人才與日本企業，創造雙贏的就業機會。」</div>
+                <div class="projcard-title">{{ $t('services.work.title') }}</div>
+                <div class="projcard-subtitle">{{ $t('services.work.subtitle') }}</div>
                 <div class="projcard-bar"></div>
                 <div class="projcard-description">
-                  我們致力於引進外籍人力（包含東南亞與台灣）赴日工作，提供特定技能、技術實習與其他就業媒合方案。從人才甄選、文件準備、簽證協助到工作後在日支援，我們打造一套完整安全的流程，協助企業穩定用工、人才安心就業。
+                  {{ $t('services.work.desc') }}
                 </div>
                 <div class="projcard-tagbox">
                   <p to="/human_resource" class="button-link">
-                    了解更多...
+                    {{ $t('services.more') }}
                   </p>
                 </div>
               </div>
@@ -61,7 +68,6 @@ const localePath = useLocalePath()
     </div>
   </section>
 </template>
-
 
 <style lang="scss" scoped>
 .serviceType-section {

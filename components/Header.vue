@@ -59,7 +59,7 @@ const switchLang = async (lang: string) => {
   <header class="header">
     <div class="container-fluid d-flex align-items-center justify-content-between">
       <NuxtLink :to="localePath('/')" :class="classes">
-        <img src="../img/logo.png" alt="logo" class="logo-img"/>
+        <img src="../img/logo.png" alt="logo" class="logo-img" />
       </NuxtLink>
       <!-- 語言切換下拉選單 -->
       <div class="d-flex align-items-center">
@@ -67,13 +67,8 @@ const switchLang = async (lang: string) => {
           {{ $t('contactButton') }}
         </NuxtLink>
         <div class="dropdown">
-          <button
-            class="dropdown-toggle"
-            type="button"
-            id="languageDropdown"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
+          <button class="dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown"
+            aria-expanded="false">
             {{ currentLanguageName }}
           </button>
           <ul class="dropdown-menu" aria-labelledby="languageDropdown">
@@ -98,6 +93,7 @@ const switchLang = async (lang: string) => {
   width: 140px;
   object-fit: cover;
 }
+
 .header {
   padding: 14px 0;
   width: 100%;
@@ -105,34 +101,39 @@ const switchLang = async (lang: string) => {
   left: 0;
   right: 0;
   backdrop-filter: blur(3px);
-  background: linear-gradient(to right, rgba(252,227,186,0.5), rgba(255,232,197,0.5));
+  background: linear-gradient(to right, rgba(252, 227, 186, 0.5), rgba(255, 232, 197, 0.5));
   position: sticky;
   top: 0;
   z-index: 1000;
   opacity: 1;
+
   img {
     max-width: 100%;
   }
+
   .contact-btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
     text-align: center;
     font-size: 1rem;
     font-weight: 600;
-    background-color: rgb(var(--accent)); /* 淺金棕 */
-    color: rgb(var(--contrast));         /* 暖灰木色文字 */
+    background-color: rgb(var(--accent));
+    /* 淺金棕 */
+    color: rgb(var(--contrast));
+    /* 暖灰木色文字 */
     border: none;
-    border-radius: 6px;                  /* 輕微圓角，柔和感 */
+    border-radius: 6px;
+    /* 輕微圓角，柔和感 */
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
     /* 提供陰影與立體感 */
-    box-shadow: 0 4px 6px rgba(var(--contrast), 0.2), 
-                inset 0 0 0 rgba(0,0,0,0);
+    box-shadow: 0 4px 6px rgba(var(--contrast), 0.2),
+      inset 0 0 0 rgba(0, 0, 0, 0);
 
     &:hover {
       /* 改變背景與加深陰影 */
-      background-color: rgba(var(--accent), 1); 
+      background-color: rgba(var(--accent), 1);
       box-shadow: 0 4px 10px rgba(var(--contrast), 0.5);
     }
 
@@ -141,95 +142,109 @@ const switchLang = async (lang: string) => {
       transform: scale(0.97);
       box-shadow: 0 2px 4px rgba(var(--contrast), 0.3);
     }
+
     /* 若與淺背景融合度不夠，可加點文字陰影或其他修飾 */
     text-shadow: 1px 1px 2px rgba(var(--background), 0.5);
-    
+
     @media (max-width: 1200px) {
       display: none;
     }
   }
+
   .dropdown-menu {
-    background-color: rgb(var(--background)); /* 柔和米白色背景 */
-    border: 2px solid rgba(var(--contrast), 0.2); /* 細緻的邊框 */
-    border-radius: 10px; /* 圓角，讓畫面更柔和 */
+    background-color: rgb(var(--background));
+    /* 柔和米白色背景 */
+    border: 2px solid rgba(var(--contrast), 0.2);
+    /* 細緻的邊框 */
+    border-radius: 10px;
+    /* 圓角，讓畫面更柔和 */
     box-shadow: 4px 4px 12px rgba(var(--contrast), 0.15), -4px -4px 12px rgba(var(--background), 0.2);
-    overflow: hidden; /* 防止圓角溢出 */
+    overflow: hidden;
+    /* 防止圓角溢出 */
     padding: 10px 0;
     min-width: 180px;
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-10px);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: block;
   }
 
   /* 🔹 顯示選單時的動畫 */
   .dropdown-menu.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-10%) translateY(-10px);
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
   }
 
   /* 🔹 語言選項樣式 */
   .dropdown-menu li {
-      list-style: none;
-      padding: 8px 15px;
-      font-size: 1rem;
-      color: rgb(var(--contrast)); /* 文字用暖灰色 */
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-      text-align: center;
+    list-style: none;
+    padding: 8px 15px;
+    font-size: 1rem;
+    color: rgb(var(--contrast));
+    /* 文字用暖灰色 */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
   }
 
   /* 🔹 選單懸停時的效果 */
   .dropdown-menu li:hover {
-      background-color: rgba(var(--primary), 0.2); /* 柔和木質感懸停效果 */
-      color: rgb(var(--secondary)); /* 變成較深的木色 */
-      border-radius: 8px;
+    background-color: rgba(var(--primary), 0.2);
+    /* 柔和木質感懸停效果 */
+    color: rgb(var(--secondary));
+    /* 變成較深的木色 */
+    border-radius: 8px;
   }
 
   /* 🔹 選中的語言 */
   .dropdown-menu li.active {
-      font-weight: bold;
-      color: rgb(var(--secondary)); /* 蜂蜜棕 */
+    font-weight: bold;
+    color: rgb(var(--secondary));
+    /* 蜂蜜棕 */
   }
 
   /* 🔹 下拉箭頭（美化開關按鈕） */
   .dropdown-toggle {
-      background-color: transparent;
-      border: none;
-      color: rgb(var(--contrast));
-      font-size: 1.1rem;
-      font-weight: bold;
-      cursor: pointer;
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.3s ease-in-out;
+    background-color: transparent;
+    border: none;
+    color: rgb(var(--contrast));
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease-in-out;
   }
 
   /* 🔹 滑鼠懸停時變化 */
   .dropdown-toggle:hover {
-      color: rgb(var(--secondary)); /* 深一點的木質色 */
+    color: rgb(var(--secondary));
+    /* 深一點的木質色 */
   }
 
-  /* 🔹 選單箭頭動畫 */
+  /* 箭頭預設 */
   .dropdown-toggle::after {
-      content: "▼";
-      font-size: 0.8rem;
-      transition: transform 0.3s ease-in-out;
+    content: "▼";
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
   }
 
-  /* 🔹 當選單展開時箭頭旋轉 */
-  .dropdown-menu.show + .dropdown-toggle::after {
-      transform: rotate(180deg);
+  /* 展開時箭頭旋轉 */
+  .dropdown.show .dropdown-toggle::after {
+    transform: rotate(180deg);
   }
+
 
   .dropdown-item:hover {
-    background-color: rgba(var(--primary), 0.2); /* 柔和木質感懸停效果 */
+    background-color: rgba(var(--primary), 0.2);
+    /* 柔和木質感懸停效果 */
   }
 
   .nav-icon {
@@ -246,6 +261,7 @@ const switchLang = async (lang: string) => {
     transition: 0.5s ease-in-out;
     cursor: pointer;
     z-index: 15;
+
     span {
       display: block;
       position: absolute;
@@ -264,6 +280,7 @@ const switchLang = async (lang: string) => {
       transition: 0.25s ease-in-out;
     }
   }
+
   .nav-icon span:nth-child(1) {
     top: 0px;
   }
@@ -301,6 +318,7 @@ const switchLang = async (lang: string) => {
 
   .menu-btn {
     display: none;
+
     /* 小螢幕 (<1200px) 下拉式 */
     @media (max-width: 1200px) {
       /* 固定尺寸，避免因icon大小不同而整個按鈕改變 */
@@ -311,17 +329,19 @@ const switchLang = async (lang: string) => {
       align-items: center;
       justify-content: center;
 
-      background-color: #e0b080; /* 依照你的主題色 */
-      border: 1px solid rgba(0,0,0,0.2);
+      background-color: #e0b080;
+      /* 依照你的主題色 */
+      border: 1px solid rgba(0, 0, 0, 0.2);
       border-radius: 8px;
       cursor: pointer;
 
       /* transition 幫助 hover 效果 */
       transition: background-color 0.3s, box-shadow 0.3s;
     }
+
     &:hover {
-      background-color: rgba(0,0,0,0.05);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      background-color: rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
   }
 }

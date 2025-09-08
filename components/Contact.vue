@@ -18,7 +18,7 @@ const handleDialogClose = () => {
 const selectedFormType = ref<'recruitment' | 'study'>('recruitment')
 
 const formData = reactive<Record<string, any>>({})
-const formFields = computed(() => {
+  const formFields = computed(() => {
   return selectedFormType.value === 'recruitment'
     ? [
         { key: 'companyName', label: t('companyName'), required: true },
@@ -37,6 +37,30 @@ const formFields = computed(() => {
         { key: 'name', label: t('name'), required: true },
         { key: 'email', label: t('email'), required: true },
         { key: 'phone', label: t('phone') },
+        { key: 'dob', label: t('dob'), type: 'date', required: true }, // 出生日期
+        { key: 'nationality', label: t('nationality'), required: true }, // 國籍
+        { key: 'gender', label: t('gender'), type: 'radio', required: true, options: [
+          { value: 'male', label: t('male') },
+          { value: 'female', label: t('female') },
+          { value: 'other', label: t('other') }
+        ]},
+        { key: 'studyStart', label: t('studyStart'), type: 'date', required: true }, // 預計出國時間
+        { key: 'programType', label: t('programType'), type: 'radio', required: true, options: [
+          { value: 'language', label: t('programLanguage') },
+          { value: 'vocational', label: t('programVocational') },
+          { value: 'university', label: t('programUniversity') }
+        ]},
+        { key: 'budget', label: t('budget'), type: 'radio', options: [
+          { value: 'low', label: t('budgetLow') },
+          { value: 'medium', label: t('budgetMedium') },
+          { value: 'high', label: t('budgetHigh') }
+        ]},
+        { key: 'preferredCity', label: t('preferredCity') }, // 希望地區
+        { key: 'needDorm', label: t('needDorm'), type: 'radio', options: [
+          { value: 'yes', label: t('yes') },
+          { value: 'no', label: t('no') }
+        ]},
+        { key: 'emergencyContact', label: t('emergencyContact') }, // 緊急聯絡人
         { key: 'message', label: t('studyMessage'), type: 'textarea' }
       ]
 })

@@ -16,6 +16,26 @@
   "inquiryOption3": "Others",
   "required": "(Required)",
   "contactMessageSubTitle": "Thank you for visiting! Please fill out your inquiry or request, and we’ll contact you shortly.",
+  "dob": "Date of Birth",
+  "nationality": "Nationality",
+  "gender": "Gender",
+  "male": "Male",
+  "female": "Female",
+  "other": "Other",
+  "studyStart": "Planned Departure Date",
+  "programType": "Program Type",
+  "programLanguage": "Language Course",
+  "programVocational": "Vocational School",
+  "programUniversity": "University",
+  "budget": "Budget Range",
+  "budgetLow": "Below 500,000",
+  "budgetMedium": "500,000 - 1,000,000",
+  "budgetHigh": "Above 1,000,000",
+  "preferredCity": "Preferred City",
+  "needDorm": "Need Dormitory",
+  "yes": "Yes",
+  "no": "No",
+  "emergencyContact": "Emergency Contact",
 
   "hero_page": {
     "title": "Japan Employment Agency・Study Abroad・Mandarin Education in Taiwan",
@@ -37,6 +57,165 @@
       "title": "Mandarin Education in Taiwan",
       "desc": "We provide professional Mandarin courses in Taiwan, focusing on practical communication and workplace Chinese. Our programs help foreign students and job seekers adapt quickly to life and work in Taiwan."
     }
+  },
+
+  "services": {
+    "title": "Study Abroad in Japan・Work in Japan・Agency Services",
+    "more": "Learn more...",
+
+    "school": {
+      "alt": "Japan study abroad agency short-term programs Taiwanese students",
+      "title": "Study Abroad in Japan",
+      "subtitle": "Helping Taiwanese students take the first step toward their Japan dream",
+      "desc": "We specialize in assisting Taiwanese students to study in Japan for both short-term and long-term programs. Our services include school matching, application support, accommodation, pre-departure preparation, and local assistance, ensuring a smooth transition into Japanese life and culture."
+    },
+    "work": {
+      "alt": "Japan employment agency Specified Skilled Worker foreign labor",
+      "title": "Work in Japan",
+      "subtitle": "Connecting Asian talents with Japanese companies for win-win employment",
+      "desc": "We focus on introducing foreign workers (from Taiwan and Southeast Asia) to Japan, specializing in Specified Skilled Worker visas, Technical Intern programs, and employment matching. From candidate selection, documentation, visa support to post-arrival assistance, we provide a safe and complete process for both employers and employees."
+    }
+  },
+
+  "information": {
+    "title": "Information",
+    "tagline1": "Jobs, study abroad, and foreign recruitment information all here!",
+    "tagline2": "Supporting your next step in Japan.",
+    "alt": "Japan job market information study abroad process foreign worker policies",
+    "desc": "Want to learn more about working in Japan, company hiring policies for foreign workers, and study abroad opportunities? Explore our complete guide covering Japan’s job market trends, Specified Skilled Worker visas, study abroad applications, and daily life in Japan.",
+    "learnMore": "Learn more..."
+  },
+
+  "commonQuestions": {
+    "title": "FAQ",
+    "more": "Learn more",
+
+    "worker": {
+      "title": "Hiring Foreign Workers Process",
+      "desc": "Helping companies understand the full process of employing foreign workers, from recruitment to onboarding, including staffing, visa application, and local support in Japan.",
+      "category": "For companies with questions about hiring foreigners in Japan",
+      "alt": "foreign worker hiring process Japan employment",
+      "q1": "What does this service include?",
+      "a1": "We support companies with talent matching, interview arrangements, employment contract drafting, pre-departure orientation, and onboarding assistance.",
+      "q2": "Our company has never hired foreigners before. Can you help?",
+      "a2": "Yes, we guide companies step by step, starting from explaining the system and completing the necessary procedures.",
+      "q3": "Will language skills be a barrier?",
+      "a3": "We evaluate candidates’ Japanese language proficiency in advance and can arrange language training programs to ensure smooth adaptation.",
+      "q4": "How early should we start preparing?",
+      "a4": "We recommend starting at least 2–3 months in advance to match visa processing and pre-employment preparation."
+    },
+
+    "price": {
+      "title": "Costs and Services",
+      "desc": "Introducing pricing models, included services, and optional add-ons so companies clearly understand the cost of hiring foreign talent.",
+      "category": "For companies wanting to know pricing models and service details",
+      "alt": "foreign worker recruitment cost Japan HR agency",
+      "q1": "How are service fees calculated?",
+      "a1": "We offer both success-based fees and fixed project fees, depending on client needs.",
+      "q2": "Is there a guarantee period?",
+      "a2": "Yes. If the employee leaves within the guarantee period, we provide free replacement matching or partial refunds.",
+      "q3": "Does the service include post-employment support?",
+      "a3": "Yes, we provide labor-management communication, lifestyle support in Japan, and regular follow-up.",
+      "q4": "Do you provide language training?",
+      "a4": "Yes, we can provide online Japanese courses or arrange group training according to company needs."
+    },
+
+    "visa": {
+      "title": "Visa and Legal Details",
+      "desc": "Explaining visa types such as Specified Skilled Worker and Engineer/Specialist in Humanities/International Services, with complete application guidance and FAQ.",
+      "category": "For companies or workers wanting to understand Japanese visa requirements",
+      "alt": "Japan visa application Specified Skilled Worker Engineer Humanities",
+      "q1": "What types of visas can foreigners apply for?",
+      "a1": "Common types include Specified Skilled Worker and Engineer/Specialist in Humanities/International Services. We recommend the most suitable type depending on the case.",
+      "q2": "How long is the visa valid?",
+      "a2": "Initial validity is usually 1 year, and can be extended to 3 or 5 years depending on the applicant.",
+      "q3": "What documents are required?",
+      "a3": "Academic certificates, CV, job description, employment contract, etc. We provide full support throughout the preparation.",
+      "q4": "What if the visa application is rejected?",
+      "a4": "We analyze the reason and assist with reapplication or recommend alternative visa options."
+    }
+  },
+
+  "schoolOverview": {
+    "region": {
+      "tokyo": "Tokyo",
+      "osaka": "Osaka",
+      "nagoya": "Nagoya",
+      "fukuoka": "Fukuoka",
+      "hokkaido": "Hokkaido",
+      "kanagawa": "Kanagawa"
+    },
+    "sort": {
+      "default": "Default Sort",
+      "tuitionDesc": "Tuition High ➜ Low",
+      "tuitionAsc": "Tuition Low ➜ High",
+      "popularity": "Popularity"
+    },
+    "title": "Japan Study Abroad School Overview",
+    "heroAlt": "Japan study abroad main visual",
+    "heroText": "Explore schools across Japan and design your personalized learning journey",
+    "departAlt": "Study abroad departure illustration",
+    "introTitle": "Take the first step, dreams within reach",
+    "introDesc": "Beyond Japanese language, experience the essence of Japan. From the tranquility of tea ceremony, the sweetness of wagashi, the brilliance of voice acting, to the creativity of anime design—each course is a story, a journey that changes lives. Start your path to study in Japan today.",
+    "filterTitle": "Quick Filter",
+    "filterSubtitle": "Find the best school for you by filtering region, intake month, and type!",
+    "keywordLabel": "School Keyword",
+    "keywordPlaceholder": "Enter school name or keyword",
+    "regionLabel": "Region",
+    "allRegions": "All Regions",
+    "intakeLabel": "Intake Month",
+    "allIntakes": "All Intakes",
+    "month": "Month",
+    "typeLabel": "School Type",
+    "allTypes": "All Types",
+    "langSchool": "Language School",
+    "vocSchool": "Vocational School",
+    "univPrep": "University Preparatory",
+    "accommodationLabel": "Accommodation Type",
+    "allAccommodations": "All Accommodation",
+    "dorm": "Dormitory",
+    "homestay": "Homestay",
+    "rent": "Private Rental",
+    "clearFilters": "Clear All Filters",
+    "intakeMonth": "Intake",
+    "moreDetail": "See more ➔"
+  },
+
+  "schoolDetail": {
+    "breadcrumb": "School Overview",
+    "titleSuffix": "School Introduction & Study Abroad Information",
+    "location": "Location:",
+    "intake": "Enrollment Period:",
+    "type": "School Type:",
+    "duration": "Course Duration:",
+    "target": "Target Students:",
+    "japaneseLevel": "Recommended Japanese Level:",
+    "brochure": "Brochure Download:",
+    "download": "Download",
+    "consultBtn": "Inquire Now",
+
+    "basicInfo": "Basic Information",
+    "schoolName": "School Name:",
+    "city": "City:",
+    "founded": "Founded Year:",
+    "introduction": "School Introduction",
+    "tuitionInfo": "Tuition Information",
+    "period": "Period",
+    "examFee": "Examination Fee",
+    "entryFee": "Admission Fee",
+    "tuition": "Tuition",
+    "facilityFee": "Facility Maintenance Fee",
+    "total": "Total",
+    "dormInfo": "Dormitory Information",
+    "dormType": "Accommodation Type:",
+    "dormRent": "Monthly Rent:",
+    "dormMisc": "Other Fees:",
+    "dormLocation": "Location:",
+    "features": "Program Features",
+    "courseDuration": "Course Duration:",
+    "requirements": "Admission Requirements",
+    "moreSchools": "More Popular Schools",
+    "viewMore": "View More"
   },
 
   "ourStoryTitle": "About us",
