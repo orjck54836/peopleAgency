@@ -72,7 +72,7 @@ const localePath = useLocalePath()
 <style lang="scss" scoped>
 .serviceType-section {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   background-image: url("../img/commonImage/title-background.png");
   background-size: cover;
   border-radius: 20px;

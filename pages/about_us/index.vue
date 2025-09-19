@@ -62,7 +62,7 @@
             <h2 class="company-title">日本公司</h2>
             <div class="row">
               <div class="cell label">公司名稱</div>
-              <div class="cell value">株式会社Forma</div>
+              <div class="cell value">Forma台湾人材紹介</div>
             </div>
             <div class="row">
               <div class="cell label">代表者</div>

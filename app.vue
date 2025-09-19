@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 useHead({
-  title: "株式会社Forma",
+  title: "Forma台湾人材紹介",
   htmlAttrs: {
     lang: "ja",
   },
@@ -9,6 +9,20 @@ useHead({
   ],
   meta: [
     { name: 'theme-color', content: '#ffffff' }
+  ],
+  script: [
+    {
+      src: "https://www.googletagmanager.com/gtag/js?id=G-RKNCTYCV3V",
+      async: true
+    },
+    {
+      children: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-RKNCTYCV3V');
+      `
+    },
   ]
 });
 </script>

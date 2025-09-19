@@ -36,9 +36,11 @@ export default defineNuxtConfig({
     '@vesp/nuxt-fontawesome',
     '@nuxt/ui',
     '@vite-pwa/nuxt',
-    'vue3-carousel-nuxt'
+    'vue3-carousel-nuxt',
+    '@nuxt/content'
   ],
   app: {
+    baseURL: '/',
     head: {
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

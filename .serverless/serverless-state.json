@@ -126,7 +126,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-ap-northeast-3-561efd32-c539",
-                "S3Key": "serverless/nuxt-nitro/dev/1757306361679-2025-09-08T04:39:21.679Z/nuxt-nitro.zip"
+                "S3Key": "serverless/nuxt-nitro/dev/1757353006999-2025-09-08T17:36:46.999Z/nuxt-nitro.zip"
               },
               "Handler": ".output/server/index.handler",
               "Runtime": "nodejs18.x",
@@ -155,14 +155,14 @@
               "WebLogGroup"
             ]
           },
-          "WebLambdaVersion7goSrALizrv0FWnR0X5qabusEZuIvxzFgr9D7qYg": {
+          "WebLambdaVersionCsDTJ1ocJJhlajOAiO7nLhLa2jr81xstjk9tKOsQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "WebLambdaFunction"
               },
-              "CodeSha256": "YOWW69XBuI3fe77DCKKi/GvrqN3mhlNLlzg1d/NC248="
+              "CodeSha256": "jj1RVnx7Yxp5IxVBNQJ/+bhjeg5UCmaIGKsjASUrzk4="
             }
           },
           "HttpApi": {
@@ -268,7 +268,7 @@
           "WebLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "WebLambdaVersion7goSrALizrv0FWnR0X5qabusEZuIvxzFgr9D7qYg"
+              "Ref": "WebLambdaVersionCsDTJ1ocJJhlajOAiO7nLhLa2jr81xstjk9tKOsQ"
             },
             "Export": {
               "Name": "sls-nuxt-nitro-dev-WebLambdaFunctionQualifiedArn"
@@ -328,7 +328,7 @@
         "timeout": 15,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "WebLambdaVersion7goSrALizrv0FWnR0X5qabusEZuIvxzFgr9D7qYg"
+        "versionLogicalId": "WebLambdaVersionCsDTJ1ocJJhlajOAiO7nLhLa2jr81xstjk9tKOsQ"
       }
     },
     "configValidationMode": "warn",
@@ -350,7 +350,7 @@
         "artifactsS3KeyDirname": "serverless/nuxt-nitro/dev/code-artifacts",
         "deploymentBucket": "serverless-framework-deployments-ap-northeast-3-561efd32-c539",
         "artifact": "/Users/aiden/Downloads/portify/portify/.serverless/nuxt-nitro.zip",
-        "artifactDirectoryName": "serverless/nuxt-nitro/dev/1757306361679-2025-09-08T04:39:21.679Z"
+        "artifactDirectoryName": "serverless/nuxt-nitro/dev/1757353006999-2025-09-08T17:36:46.999Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -362,7 +362,7 @@
     "artifact": "/Users/aiden/Downloads/portify/portify/.serverless/nuxt-nitro.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/nuxt-nitro/dev/1757306361679-2025-09-08T04:39:21.679Z",
+    "artifactDirectoryName": "serverless/nuxt-nitro/dev/1757353006999-2025-09-08T17:36:46.999Z",
     "artifact": "nuxt-nitro.zip"
   }
 }

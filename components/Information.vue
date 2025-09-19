@@ -59,17 +59,6 @@
 .information {
   position: relative;
   z-index: 3;
-  padding: 15px;
-
-  @media (min-width: 1200px) {
-    padding-top: 120px;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
 
   /* 主容器 */
   .information-container {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import projectOne from "/images/common-questions/worker.jpg";
-import projectTwo from "/images/common-questions/price.jpg";
-import projectThree from "/images/common-questions/visa.jpg";
+import projectOne from "/img/common-questions/worker.jpg";
+import projectTwo from "/img/common-questions/price.jpg";
+import projectThree from "/img/common-questions/visa.jpg";
 
 const projects = [
   {
@@ -104,7 +104,7 @@ const currentProject = ref(projects[0]);
   text-align: center;
   padding: 20px;
   position: relative;
-  background-image: url("../img/commonImage/title-background.png");
+  background-image: url("/img/commonImage/title-background.png");
   background-size: cover;
   border-radius: 20px;
 }
@@ -249,7 +249,7 @@ const currentProject = ref(projects[0]);
   background-color: rgba(var(--primary), 0.1);
 
   .modal-body {
-    background-image: url('/images/common-questions/commonquestions_bg.jpg');
+    background-image: url('/img/common-questions/commonquestions_bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     max-width: 90%;

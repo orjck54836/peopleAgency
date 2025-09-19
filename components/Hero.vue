@@ -17,7 +17,7 @@
           :data-pos="item.pos"
           @click="shuffle(item)"
         >
-          <img :src="item.url" :alt="$t(item.alt)" />
+          <img :src="item.url" :alt="$t(item.alt)"/>
         </div>
       </div>
     </div>
@@ -32,12 +32,15 @@
 
 <script setup>
 import { reactive, computed } from "vue"
+import workImg from '@/public/images/hero/work.jpg'
+import schoolImg from '@/public/images/hero/school.jpg'
+import chineseImg from '@/public/images/hero/chinese.jpg'
 
 const items = reactive([
   {
     id: 0,
     pos: 0,
-    url: "/images/hero/work.jpg",
+    url: workImg,
     alt: "hero_page.work.alt",
     title: "hero_page.work.title",
     desc: "hero_page.work.desc"
@@ -45,7 +48,7 @@ const items = reactive([
   {
     id: 1,
     pos: 1,
-    url: "/images/hero/school.jpg",
+    url: schoolImg,
     alt: "hero_page.study.alt",
     title: "hero_page.study.title",
     desc: "hero_page.study.desc"
@@ -53,7 +56,7 @@ const items = reactive([
   {
     id: 2,
     pos: 2,
-    url: "/images/hero/chinese.jpg",
+    url: chineseImg,
     alt: "hero_page.chinese.alt",
     title: "hero_page.chinese.title",
     desc: "hero_page.chinese.desc"
@@ -153,11 +156,27 @@ function shuffle(item) {
 .hero-description h3 {
   font-size: 1.4rem;
   font-weight: 700;
-  background: rgba(229, 179, 132, 0.799);
-  color: white;
+  background: linear-gradient(
+    145deg,
+    rgba(229, 179, 132, 0.95),
+    rgba(200, 140, 90, 0.9)
+  ); /* 漸層增加層次 */
+  color: #f9ece8 !important;
   letter-spacing: 1px;
   padding: 0.5vh 5vw;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 12px 12px;
+
+  /* 立體效果 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 
+              inset 0 -2px 4px rgba(255, 255, 255, 0.2); 
+
+  /* 邊框細節 */
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(152, 133, 133, 0.2);
+
+  /* 動態感 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hero-description p {
@@ -171,7 +190,7 @@ function shuffle(item) {
   /* 水平置中 */
   font-size: 1rem;
   line-height: 1.6;
-  color: #333;
+  color: #897373;
   max-width: 600px;
   padding: 1.5vw;
 }
@@ -291,15 +310,15 @@ function shuffle(item) {
   }
 
   .gallery-item[data-pos="0"] {
-    transform: translate(-50%, -50%) translateX(60%) scale(1.6);
+    transform: translate(-50%, -50%) translateX(60%) scale(1);
   }
 
   .gallery-item[data-pos="1"] {
-    transform: translate(-50%, -50%) translateX(0%) scale(2);
+    transform: translate(-50%, -50%) translateX(0%) scale(1.4);
   }
 
   .gallery-item[data-pos="2"] {
-    transform: translate(-50%, -50%) translateX(-60%) scale(1.6);
+    transform: translate(-50%, -50%) translateX(-60%) scale(1);
   }
 }
 

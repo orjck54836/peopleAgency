@@ -34,10 +34,10 @@ const regionOptions = [
 ]
 
 const intakeOptions = [
-  { value: "1", label: `1 ${t("schoolOverview.month")}` },
-  { value: "4", label: `4 ${t("schoolOverview.month")}` },
-  { value: "7", label: `7 ${t("schoolOverview.month")}` },
-  { value: "10", label: `10 ${t("schoolOverview.month")}` }
+  { value: "1", label: `1` },
+  { value: "4", label: `4` },
+  { value: "7", label: `7` },
+  { value: "10", label: `10` }
 ]
 
 const sortOption = ref("")
@@ -168,8 +168,8 @@ onMounted(fetchSchools)
                   <label class="filter-block-label" for="region">{{ $t('schoolOverview.regionLabel') }}</label>
                   <select v-model="filters.region" id="region" class="form-select select-control">
                     <option value="">{{ $t('schoolOverview.allRegions') }}</option>
-                    <option v-for="region in regionOptions" :key="region" :value="region">
-                      {{ region }}
+                    <option v-for="region in regionOptions" :key="region" :value="region.label">
+                      {{ region.label }}
                     </option>
                   </select>
                 </div>
@@ -177,8 +177,8 @@ onMounted(fetchSchools)
                   <label class="filter-block-label" for="intake">{{ $t('schoolOverview.intakeLabel') }}</label>
                   <select v-model="filters.intake" id="intake" class="form-select select-control">
                     <option value="">{{ $t('schoolOverview.allIntakes') }}</option>
-                    <option v-for="month in intakeOptions" :key="month" :value="month">
-                      {{ month }} {{ $t('schoolOverview.month') }}
+                    <option v-for="month in intakeOptions" :key="month" :value="month.label">
+                      {{ month.label }} {{ $t('schoolOverview.month') }}
                     </option>
                   </select>
                 </div>
