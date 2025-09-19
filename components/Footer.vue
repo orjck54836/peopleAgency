@@ -4,7 +4,7 @@
   <footer class="site-footer">
     <!-- 底部版權或備註 -->
     <div class="footer-bottom">
-      <p>Copyright © Forma台湾人材紹介 All Rights Reserved.</p>
+      <p>Copyright © FORMA台湾人材紹介 All Rights Reserved.</p>
     </div>
   </footer>
 </template>

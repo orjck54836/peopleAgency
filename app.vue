@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 useHead({
-  title: "Forma台湾人材紹介",
+  title: "FORMA台湾人材紹介",
   htmlAttrs: {
     lang: "ja",
   },
