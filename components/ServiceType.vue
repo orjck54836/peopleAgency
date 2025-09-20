@@ -12,7 +12,7 @@ const localePath = useLocalePath()
     <div class="serviceType-container">
       <div>
         <!-- 日本留/遊學卡片 -->
-        <router-link to="/school">
+        <!-- <router-link to="/school">
           <div class="projcard projcard-school">
             <div class="projcard-innerbox">
               <img 
@@ -37,7 +37,7 @@ const localePath = useLocalePath()
               </div>
             </div>
           </div>
-        </router-link>
+        </router-link> -->
 
         <!-- 日本工作卡片 -->
         <router-link to="/human_resource">

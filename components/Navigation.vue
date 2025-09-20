@@ -52,7 +52,7 @@ onMounted(() => {
 });
 const navItems = reactive([
   { index: "", text: "ourStoryTitle", href: "/about_us", active: false },
-  { index: "", text: "schoolTitle", href: "/school", active: false },
+  // { index: "", text: "schoolTitle", href: "/school", active: false },
   { index: "", text: "humanResourceTitle", href: "/human_resource", active: false },
   { index: "", text: "informationTitle", href: "/information", active: false },
   { index: "", text: "commonQuestionTitle", href: "#common_questions", active: false },
@@ -70,12 +70,13 @@ const navItems = reactive([
       </li>
     </ul>
     <div class="contact">
+
       <!-- Line 官方帳號 -->
-      <div class="line-contact">
+      <div class="line-contact nav-link">
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE logo" width="24"
           height="24" />
         <a href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener noreferrer">
-          Line官方帳號
+          Line Account
         </a>
       </div>
     </div>
@@ -93,6 +94,14 @@ const navItems = reactive([
           <div class="overlay-item" v-for="(item, index) in navItems" :key="item.text" @click="closeNav">
             <a :href="item.href" :class="{ active: item.active }">
               <span>{{ item.index }}</span> <span class="text">{{ $t(item.text) }}</span>
+            </a>
+          </div>
+          <!-- 手機版 Line 官方帳號 -->
+          <div class="overlay-line-contact">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE logo" width="24"
+              height="24" />
+            <a href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener noreferrer">
+              Line Account
             </a>
           </div>
         </transition-group>
@@ -288,6 +297,7 @@ const navItems = reactive([
     flex-direction: column;
     gap: 8px;
     align-items: center;
+    padding: 20px;
 
     a {
       font-size: 16px;
@@ -321,11 +331,25 @@ const navItems = reactive([
     padding: 1.5rem;
     opacity: 0.9;
     color: #fffcf1;
+
+    .overlay-line-contact {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      color: #00b900;
+
+      a {
+        color: inherit;
+        font-size: 18px;
+      }
+    }
   }
 
   .overlay-item {
     width: 100%;
-    text-align: left;
+    text-align: center;
     font-size: larger;
     padding-bottom: 10px;
 
@@ -334,6 +358,7 @@ const navItems = reactive([
     }
   }
 }
+
 
 .navigation.opened+.nav-overlay {
   opacity: 1;

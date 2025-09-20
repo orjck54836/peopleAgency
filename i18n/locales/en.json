@@ -79,12 +79,16 @@
 
   "information": {
     "title": "Information",
+    "subtitle": "Talent Introduction × Taiwan Study Abroad × Japan Study Abroad｜Professional insights and practical guides to help you seize cross-border opportunities",
     "tagline1": "Jobs, study abroad, and foreign recruitment information all here!",
     "tagline2": "Supporting your next step in Japan.",
     "alt": "Japan job market information study abroad process foreign worker policies",
     "desc": "Want to learn more about working in Japan, company hiring policies for foreign workers, and study abroad opportunities? Explore our complete guide covering Japan’s job market trends, Specified Skilled Worker visas, study abroad applications, and daily life in Japan.",
     "learnMore": "Learn more...",
-    "search": "Keyword search..."
+    "search": "Keyword search...",
+    "toc": "Table of Contents",
+    "readMore": "Read more →",
+    "noResults": "No search results found."
   },
 
   "commonQuestions": {

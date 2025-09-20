@@ -80,7 +80,7 @@ const currentProject = ref(projects[0]);
         <div class="modal-content">
           <div class="modal-body">
             <!-- 關閉 -->
-            <button type="button" class="btn-close fs-3" data-bs-dismiss="modal" aria-label="Close" />
+            <button type="button" class="btn-close fs-6" data-bs-dismiss="modal" aria-label="Close" />
             <!-- FAQ -->
             <div class="faq-modal-content">
               <h2 class="modal-faq-title">{{ $t(currentProject.name) }}</h2>
@@ -247,6 +247,7 @@ const currentProject = ref(projects[0]);
 
 .modal-content {
   background-color: rgba(var(--primary), 0.1);
+  align-items: center;
 
   .modal-body {
     background-image: url('/img/common-questions/commonquestions_bg.jpg');
@@ -268,35 +269,28 @@ const currentProject = ref(projects[0]);
     }
 
     .btn-close {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      width: 24px;
-      height: 24px;
       border-radius: 50%;
       color: rgb(var(--white));
-      background-color: rgb(var(--black));
+      background-color: rgb(213, 127, 20);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: transform 0.3s ease;
+      padding: 15px;
 
       &:hover {
         transform: rotate(180deg);
       }
 
       @media (min-width: 1200px) {
-        right: 48px;
         width: 36px;
         height: 36px;
       }
 
       @media (max-width: 768px) {
-        top: 10px;
-        right: 10px;
-        width: 24px;
-        height: 24px;
-        font-size: 1rem;
+        width: 15px;
+        height: 15px;
+        font-size: 0.5rem;
       }
     }
 
@@ -352,5 +346,7 @@ const currentProject = ref(projects[0]);
       }
     }
   }
+  
 }
+
 </style>

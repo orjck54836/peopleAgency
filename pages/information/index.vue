@@ -41,36 +41,28 @@ useSeoMeta({
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
   <section class="container py-12 max-w-6xl mx-auto">
-    <!-- 頁面標題 -->
-    <h1 class="text-4xl font-extrabold mb-6 text-center text-gray-900 tracking-wide">
-      情報專欄
-    </h1>
+    <div class="title">
+      <!-- 頁面標題 -->
+      <h1 class="text-4xl font-extrabold mb-6 text-center tracking-wide">
+        {{ $t('informationTitle') }}
+      </h1>
+      <p class="subtitle">{{ $t('information.subtitle') }}</p>
+    </div>
 
     <!-- 搜尋欄 -->
     <div class="flex justify-end mb-10">
-      <input
-        v-model="searchQuery"
-        type="text"
-        :placeholder="t('information.search')"
-        class="w-full max-w-lg px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-      />
+      <input v-model="searchQuery" type="text" :placeholder="t('information.search')"
+        class="w-full max-w-lg px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
     </div>
 
     <!-- 卡片列表 -->
     <div v-if="filteredArticles?.length" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <article
-        v-for="post in filteredArticles"
-        :key="post._id"
-        class="article-card border rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all bg-white flex flex-col"
-      >
+      <article v-for="post in filteredArticles" :key="post._id"
+        class="article-card border rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all bg-white flex flex-col">
         <!-- 封面圖片 -->
         <NuxtLink :to="post.path">
-          <img
-            v-if="post.meta?.cover"
-            :src="post.meta.cover"
-            :alt="post.title"
-            class="article-cover w-full h-52 object-cover"
-          />
+          <img v-if="post.meta?.cover" :src="post.meta.cover" :alt="post.title"
+            class="article-cover w-full h-52 object-cover" />
         </NuxtLink>
 
         <!-- 文字區塊 -->
@@ -90,18 +82,15 @@ useSeoMeta({
           </p>
 
           <div class="mt-auto pt-4">
-            <NuxtLink
-              :to="post.path"
-              class="text-indigo-600 text-sm font-medium hover:underline"
-            >
-              続きを読む →
+            <NuxtLink :to="post.path" class="text-indigo-600 text-sm font-medium hover:underline">
+              {{ $t('information.readMore') }}
             </NuxtLink>
           </div>
         </div>
       </article>
     </div>
 
-    <p v-else class="text-center text-gray-500">検索結果が見つかりません。</p>
+    <p v-else class="text-center text-gray-500">{{ $t('information.noResults') }}</p>
   </section>
 
   <ContactIcon />
@@ -110,10 +99,41 @@ useSeoMeta({
 </template>
 
 <style scoped>
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9e5010;
+  font-weight: bolder;
+  padding: 30px;
+  padding-bottom: 0;
+  margin: 0 auto;
+  text-align: center;
+  flex-direction: column;
+}
+
+/* 副標題 */
+.subtitle {
+  font-size: 1rem;
+  color: #4b5563;
+  text-align: center;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  animation: fadeIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+}
+
 /* 卡片 hover 效果 */
 .article-card {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
 .article-card:hover {
   transform: translateY(-4px);
 }
@@ -122,6 +142,7 @@ useSeoMeta({
 .article-cover {
   transition: transform 0.4s ease;
 }
+
 .article-card:hover .article-cover {
   transform: scale(1.05);
 }
@@ -133,6 +154,7 @@ useSeoMeta({
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;

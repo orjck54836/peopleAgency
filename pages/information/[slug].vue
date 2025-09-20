@@ -48,7 +48,7 @@ useSeoMeta({
             fill="currentColor">
             <path d="M4 6h12M4 10h12M4 14h12" />
           </svg>
-          目次
+          {{ $t('information.toc') }}
         </h2>
         <ul class="space-y-2">
           <li v-for="link in article.body.toc.links" :key="link.id" class="group">
@@ -66,7 +66,7 @@ useSeoMeta({
       <ContentRenderer :value="article" />
     </article>
 
-    <div v-else class="text-center text-gray-500">文章未找到</div>
+    <div v-else class="text-center text-gray-500">{{ $t('information.noResults') }}</div>
   </section>
 
   <ContactIcon />
@@ -105,10 +105,9 @@ useSeoMeta({
 .prose h2 {
   font-size: 1.75rem;
   font-weight: 700;
-  margin-top: 2.5rem;
-  margin-bottom: 1.2em;
-  border-left: 6px solid #4f46e5;
-  padding-left: 12px;
+  margin-top: 1rem;
+  margin-bottom: 1em;
+  border-left: 6px solid #dd810f;
 }
 
 /* H3 */

@@ -91,13 +91,14 @@ function shuffle(item) {
 }
 
 .hero-title {
-  font-size: 3rem;
-  font-weight: 900;
-  background: rgba(230, 73, 21, 0.591);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  animation: fadeInDown 1s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9e5010;
+  font-weight: bolder;
+  padding: 30px;
+  padding-bottom: 0;
+  margin: 0 auto;
   text-align: center;
 }
 
