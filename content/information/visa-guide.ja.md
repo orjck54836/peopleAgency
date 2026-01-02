@@ -4,7 +4,7 @@ description: "外国人施工管理職を雇用する企業が知っておくべ
 date: "2025-08-15"
 author: "FORMA台湾人材紹介"
 tags: ["施工管理", "在留資格", "外国人雇用", "建設業", "特定技能", "技人国ビザ"]
-cover: "/images/information/visa-guide/visa.jpg"
+cover: "../images/information/visa-guide/visa.jpg"
 ---
 
 # 施工管理で外国人雇用する際に必要な在留資格とは？
@@ -56,7 +56,7 @@ cover: "/images/information/visa-guide/visa.jpg"
 ## 外国人施工管理に利用される主な在留資格
 
 ### 技術・人文知識・国際業務（技人国ビザ）
-![技人国ビザ 外国人施工管理 在留資格 建設業 採用手続き](/images/information/visa-guide/engineer.jpg)
+![技人国ビザ 外国人施工管理 在留資格 建設業 採用手続き](../images/information/visa-guide/engineer.jpg)
 
 ---
 
@@ -68,7 +68,7 @@ cover: "/images/information/visa-guide/visa.jpg"
 ---
 
 ### 特定技能2号（建設分野）
-![特定技能2号 外国人施工管理 在留資格 建設業 外国人雇用](/images/information/visa-guide/factory.jpg)
+![特定技能2号 外国人施工管理 在留資格 建設業 外国人雇用](../images/information/visa-guide/factory.jpg)
 
 ---
 
@@ -80,7 +80,7 @@ cover: "/images/information/visa-guide/visa.jpg"
 
 ## 採用までの流れ
 
-![施工管理 在留資格 外国人雇用 採用手続き COE 建設業](/images/information/visa-guide/apply.jpg)
+![施工管理 在留資格 外国人雇用 採用手続き COE 建設業](../images/information/visa-guide/apply.jpg)
 
 ---
 
@@ -111,7 +111,7 @@ cover: "/images/information/visa-guide/visa.jpg"
 ---
 
 ## まとめ
-![施工管理 外国人雇用 在留資格 建設業 外国人施工管理 まとめ](/images/information/visa-guide/conclusion.jpg)
+![施工管理 外国人雇用 在留資格 建設業 外国人施工管理 まとめ](../images/information/visa-guide/conclusion.jpg)
 
 ---
 施工管理職で外国人を採用する際には、必ず**正しい在留資格**を理解しておく必要があります。  

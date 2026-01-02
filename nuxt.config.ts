@@ -80,7 +80,6 @@ export default defineNuxtConfig({
       optimizeTranslationDirective: false
     },
   },
-  ssr: false,
   css: ["~/assets/css/style.css","@/public/scss/styles.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
   ui: {
     colorMode: false

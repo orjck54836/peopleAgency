@@ -4,7 +4,7 @@ description: "解析台灣人才的優勢、日本企業的需求，以及雇用
 date: "2025-09-20"
 author: "FORMA台湾人材紹介"
 tags: ["台灣人才", "日本就業", "在留資格", "特定技能", "技人國簽證", "跨國人材介紹"]
-cover: "/images/information/taiwan-talent/101.jpg"
+cover: "../images/information/taiwan-talent/101.jpg"
 ---
 
 # 為什麼日本企業越來越重視台灣人才？
@@ -16,7 +16,7 @@ cover: "/images/information/taiwan-talent/101.jpg"
 
 ## 台灣人才的三大優勢
 
-![台灣人才 在日本就業 優勢 語言能力 跨國人材介紹](/images/information/taiwan-talent/worker.jpg)
+![台灣人才 在日本就業 優勢 語言能力 跨國人材介紹](../images/information/taiwan-talent/worker.jpg)
 
 ---
 1. **語言能力強**  
@@ -35,7 +35,7 @@ cover: "/images/information/taiwan-talent/101.jpg"
 
 ## 哪些產業需要台灣人才？
 
-![台灣人材 在日本 IT 建設 觀光 介護 需求](/images/information/taiwan-talent/rapid.jpg)
+![台灣人材 在日本 IT 建設 觀光 介護 需求](../images/information/taiwan-talent/rapid.jpg)
 
 ---
 - **IT 與工程**：系統開發、網路維運、AI 應用等高需求領域。  
@@ -69,7 +69,7 @@ cover: "/images/information/taiwan-talent/101.jpg"
 
 ## 日本企業雇用台灣人才的好處
 
-![台灣人才赴日工作 流程 在留資格 COE 求職步驟](/images/information/taiwan-talent/taipei-station.jpg)
+![台灣人才赴日工作 流程 在留資格 COE 求職步驟](../images/information/taiwan-talent/taipei-station.jpg)
 
 ---
 
@@ -80,7 +80,7 @@ cover: "/images/information/taiwan-talent/101.jpg"
 ---
 
 ## 結論
-![台灣人材 日本就業 跨國人材介紹 優勢總結](/images/information/taiwan-talent/conclusion.jpg)
+![台灣人材 日本就業 跨國人材介紹 優勢總結](../images/information/taiwan-talent/conclusion.jpg)
 
 ---
 台灣人才正逐漸成為日本企業解決人材不足的重要力量。  

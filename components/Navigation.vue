@@ -16,6 +16,7 @@ const hiddenPaths = [
   '/school',
   '/information',
   '/about_us',
+  '/study_taiwan'
 ]
 
 const hideNav = computed(() => hiddenPaths.some(path => route.path.includes(path)))
@@ -54,6 +55,7 @@ const navItems = reactive([
   { index: "", text: "ourStoryTitle", href: "/about_us", active: false },
   // { index: "", text: "schoolTitle", href: "/school", active: false },
   { index: "", text: "humanResourceTitle", href: "/human_resource", active: false },
+  { index: "", text: "studyTaiwanTitle", href: "/study_taiwan", active: false },
   { index: "", text: "informationTitle", href: "/information", active: false },
   { index: "", text: "commonQuestionTitle", href: "#common_questions", active: false },
 ]);

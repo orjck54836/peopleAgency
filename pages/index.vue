@@ -12,7 +12,7 @@ const closeNav = () => {
   <!-- <Navigation :nav-open="navOpen" :close-nav="closeNav" class="gx-xxl-3"/> -->
 
   <!-- main content -->
-  <main class="container-fluid">
+  <main class="container-fluid width">
     <div class="row">
       <div class="col-xl-10" data-bs-spy="scroll" data-bs-target="#navigation">
         <Hero />
@@ -24,7 +24,7 @@ const closeNav = () => {
           </ClientOnly>
         </section>
       </div>
-      <div class="col-xl-2">
+      <div class="col-xl-2 d-flex justify-center">
         <Navigation :nav-open="navOpen" :close-nav="closeNav" />
       </div>
     </div>
@@ -36,5 +36,10 @@ const closeNav = () => {
 <style lang="scss" scoped>
 .bg {
   z-index: -5 !important;
+}
+
+.width {
+  width: 90%;
+  margin: auto;
 }
 </style>

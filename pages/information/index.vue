@@ -61,7 +61,7 @@ useSeoMeta({
         class="article-card border rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all bg-white flex flex-col">
         <!-- 封面圖片 -->
         <NuxtLink :to="post.path">
-          <img v-if="post.meta?.cover" :src="post.meta.cover" :alt="post.title"
+          <img v-if="post.meta?.cover" :src="String(post.meta.cover)" :alt="post.title"
             class="article-cover w-full h-52 object-cover" />
         </NuxtLink>
 

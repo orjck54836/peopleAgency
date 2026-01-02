@@ -4,7 +4,7 @@ description: "Exploring the strengths of Taiwanese professionals, the demands of
 date: "2025-09-20"
 author: "FORMA Taiwan Talent Agency"
 tags: ["Taiwanese talent", "Work in Japan", "Visa requirements", "Specified Skilled Worker", "Engineer Visa", "Cross-border recruitment"]
-cover: "/images/information/taiwan-talent/101.jpg"
+cover: "../images/information/taiwan-talent/101.jpg"
 ---
 
 # Why Japanese Companies Are Paying More Attention to Taiwanese Talent
@@ -18,7 +18,7 @@ This article explores their strengths, the industries in demand, and the hiring 
 
 ## Three Key Strengths of Taiwanese Talent
 
-![Taiwanese talent working in Japan - strengths language skills cross-border recruitment](/images/information/taiwan-talent/worker.jpg)
+![Taiwanese talent working in Japan - strengths language skills cross-border recruitment](../images/information/taiwan-talent/worker.jpg)
 
 ---
 
@@ -39,7 +39,7 @@ This article explores their strengths, the industries in demand, and the hiring 
 
 ## Industries Seeking Taiwanese Professionals
 
-![Industries hiring Taiwanese talent in Japan IT construction tourism care](/images/information/taiwan-talent/rapid.jpg)
+![Industries hiring Taiwanese talent in Japan IT construction tourism care](../images/information/taiwan-talent/rapid.jpg)
 
 ---
 
@@ -75,7 +75,7 @@ This article explores their strengths, the industries in demand, and the hiring 
 
 ## Benefits for Japanese Companies Hiring Taiwanese Talent
 
-![Taiwanese talent recruitment Japan benefits international workforce](/images/information/taiwan-talent/taipei-station.jpg)
+![Taiwanese talent recruitment Japan benefits international workforce](../images/information/taiwan-talent/taipei-station.jpg)
 
 ---
 
@@ -86,7 +86,7 @@ This article explores their strengths, the industries in demand, and the hiring 
 ---
 
 ## Conclusion
-![Taiwanese talent in Japan cross-border recruitment summary](/images/information/taiwan-talent/conclusion.jpg)
+![Taiwanese talent in Japan cross-border recruitment summary](../images/information/taiwan-talent/conclusion.jpg)
 
 ---
 

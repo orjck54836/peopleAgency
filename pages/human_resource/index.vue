@@ -537,7 +537,7 @@ const nodes = computed(() => {
 .flow-section {
   background-image: url('../../public/images/human_resource/flow_background.jpg');
   background-size: contain;
-  padding: 5rem 2rem;
+  padding: 8rem 2rem !important;
   text-align: center;
 }
 

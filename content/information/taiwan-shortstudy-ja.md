@@ -4,7 +4,7 @@ description: "台湾短期留学プログラムでは、台中の語学センタ
 date: "2025-09-21"
 author: "FORMA台湾人材紹介"
 tags: ["台湾短期留学", "中国語学習", "台湾文化体験", "留学台湾", "短期コース", "台中語学センター"]
-cover: "/images/information/taiwan-shortstudy/temple.jpg"
+cover: "../images/information/taiwan-shortstudy/temple.jpg"
 ---
 
 # 台湾短期留学｜語学学習 × 文化体験  
@@ -16,7 +16,7 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 
 ## 少人数制の中国語学習  
 
-![台湾短期留学 中国語 少人数制 クラス体験](/images/information/taiwan-shortstudy/class.jpg)  
+![台湾短期留学 中国語 少人数制 クラス体験](../images/information/taiwan-shortstudy/class.jpg)  
 
 ---
 
@@ -31,7 +31,7 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 
 語学習得は教室だけではありません。生活と文化に触れることで、中国語をより自然に身につけられます。  
 
-![台湾短期留学 春聯書き 台湾文化体験](/images/information/taiwan-shortstudy/tea.jpg)  
+![台湾短期留学 春聯書き 台湾文化体験](../images/information/taiwan-shortstudy/tea.jpg)  
 
 ---
 
@@ -44,7 +44,7 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 
 ## 対象者  
 
-![台湾短期留学 学生 台湾文化交流](/images/information/taiwan-shortstudy/airport.jpg)  
+![台湾短期留学 学生 台湾文化交流](../images/information/taiwan-shortstudy/airport.jpg)  
 
 ---
 
@@ -65,7 +65,7 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 
 ## まとめ  
 
-![台湾短期留学 中国語 台湾文化体験 結論](/images/information/taiwan-shortstudy/conclusion.jpg)  
+![台湾短期留学 中国語 台湾文化体験 結論](../images/information/taiwan-shortstudy/conclusion.jpg)  
 
 ---
 **台湾短期留学**は語学学習と文化交流を同時に実現できる最良の機会です。  

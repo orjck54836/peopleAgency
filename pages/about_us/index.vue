@@ -91,7 +91,7 @@
             <h2 class="company-title">台灣公司</h2>
             <div class="row">
               <div class="cell label">公司名稱</div>
-              <div class="cell value">新福爾摩莎國際有限公司</div>
+              <div class="cell value">薪火相傳福爾摩莎國際有限公司</div>
             </div>
             <div class="row">
               <div class="cell label">代表者</div>

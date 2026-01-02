@@ -23,7 +23,7 @@ useSeoMeta({
   <section class="container py-4 max-w-3xl mx-auto">
     <article v-if="article" class="prose prose-lg lg:prose-xl prose-indigo mx-auto">
       <!-- 封面圖 (大圖固定) -->
-      <img v-if="article.meta?.cover" :src="String(article.meta?.cover)" :alt="String(article.title || '')"
+      <img v-if="article.meta?.cover" :src="`${article.meta?.cover}`" :alt="String(article.title || '')"
         class="rounded-xl shadow-md mb-8 w-full max-h-[420px] object-cover" />
 
       <!-- H1 標題 -->
@@ -74,7 +74,7 @@ useSeoMeta({
   <Footer />
 </template>
 
-<style scoped>
+<style>
 .prose {
   font-family: "Noto Serif JP", "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
   color: #2c2c2c;

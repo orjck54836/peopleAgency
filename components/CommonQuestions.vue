@@ -5,42 +5,55 @@ import projectThree from "/img/common-questions/visa.jpg";
 
 const projects = [
   {
-    name: "commonQuestions.worker.title",
-    description: "commonQuestions.worker.desc",
-    category: "commonQuestions.worker.category",
+    name: "commonQuestions.cooperation.title",
+    description: "commonQuestions.cooperation.desc",
+    category: "commonQuestions.cooperation.category",
     image: projectOne,
-    alt: "commonQuestions.worker.alt",
+    alt: "commonQuestions.cooperation.alt",
     faqList: [
-      { q: "commonQuestions.worker.q1", a: "commonQuestions.worker.a1" },
-      { q: "commonQuestions.worker.q2", a: "commonQuestions.worker.a2" },
-      { q: "commonQuestions.worker.q3", a: "commonQuestions.worker.a3" },
-      { q: "commonQuestions.worker.q4", a: "commonQuestions.worker.a4" }
+      { q: "commonQuestions.cooperation.q1", a: "commonQuestions.cooperation.a1" },
+      { q: "commonQuestions.cooperation.q2", a: "commonQuestions.cooperation.a2" },
+      { q: "commonQuestions.cooperation.q3", a: "commonQuestions.cooperation.a3" },
+      { q: "commonQuestions.cooperation.q4", a: "commonQuestions.cooperation.a4" },
+      { q: "commonQuestions.cooperation.q5", a: "commonQuestions.cooperation.a5" },
+      { q: "commonQuestions.cooperation.q6", a: "commonQuestions.cooperation.a6" },
+      { q: "commonQuestions.cooperation.q7", a: "commonQuestions.cooperation.a7" },
+      { q: "commonQuestions.cooperation.q8", a: "commonQuestions.cooperation.a8" },
+      { q: "commonQuestions.cooperation.q9", a: "commonQuestions.cooperation.a9" },
     ]
   },
   {
-    name: "commonQuestions.price.title",
-    description: "commonQuestions.price.desc",
-    category: "commonQuestions.price.category",
+    name: "commonQuestions.resources.title",
+    description: "commonQuestions.resources.desc",
+    category: "commonQuestions.resources.category",
     image: projectTwo,
-    alt: "commonQuestions.price.alt",
+    alt: "commonQuestions.resources.alt",
     faqList: [
-      { q: "commonQuestions.price.q1", a: "commonQuestions.price.a1" },
-      { q: "commonQuestions.price.q2", a: "commonQuestions.price.a2" },
-      { q: "commonQuestions.price.q3", a: "commonQuestions.price.a3" },
-      { q: "commonQuestions.price.q4", a: "commonQuestions.price.a4" }
+      { q: "commonQuestions.resources.q1", a: "commonQuestions.resources.a1" },
+      { q: "commonQuestions.resources.q2", a: "commonQuestions.resources.a2" },
+      { q: "commonQuestions.resources.q3", a: "commonQuestions.resources.a3" },
+      { q: "commonQuestions.resources.q4", a: "commonQuestions.resources.a4" },
+      { q: "commonQuestions.resources.q5", a: "commonQuestions.resources.a5" },
+      { q: "commonQuestions.resources.q6", a: "commonQuestions.resources.a6" },
+      { q: "commonQuestions.resources.q7", a: "commonQuestions.resources.a7" },
+      { q: "commonQuestions.resources.q8", a: "commonQuestions.resources.a8" },
     ]
   },
   {
-    name: "commonQuestions.visa.title",
-    description: "commonQuestions.visa.desc",
-    category: "commonQuestions.visa.category",
+    name: "commonQuestions.scope.title",
+    description: "commonQuestions.scope.desc",
+    category: "commonQuestions.scope.category",
     image: projectThree,
-    alt: "commonQuestions.visa.alt",
+    alt: "commonQuestions.scope.alt",
     faqList: [
-      { q: "commonQuestions.visa.q1", a: "commonQuestions.visa.a1" },
-      { q: "commonQuestions.visa.q2", a: "commonQuestions.visa.a2" },
-      { q: "commonQuestions.visa.q3", a: "commonQuestions.visa.a3" },
-      { q: "commonQuestions.visa.q4", a: "commonQuestions.visa.a4" }
+      { q: "commonQuestions.scope.q1", a: "commonQuestions.scope.a1" },
+      { q: "commonQuestions.scope.q2", a: "commonQuestions.scope.a2" },
+      { q: "commonQuestions.scope.q3", a: "commonQuestions.scope.a3" },
+      { q: "commonQuestions.scope.q4", a: "commonQuestions.scope.a4" },
+      { q: "commonQuestions.scope.q5", a: "commonQuestions.scope.a5" },
+      { q: "commonQuestions.scope.q6", a: "commonQuestions.scope.a6" },
+      { q: "commonQuestions.scope.q7", a: "commonQuestions.scope.a7" },
+      { q: "commonQuestions.scope.q8", a: "commonQuestions.scope.a8" },
     ]
   }
 ];
@@ -51,7 +64,7 @@ const currentProject = ref(projects[0]);
 <template>
   <!-- 標題區 -->
   <section class="common-questions-section">
-    <h1>{{ $t('commonQuestions.title') }}</h1>
+    <h2>{{ $t('commonQuestions.title') }}</h2>
   </section>
 
   <!-- 問題列表 -->
@@ -102,7 +115,7 @@ const currentProject = ref(projects[0]);
 <style lang="scss">
 .common-questions-section {
   text-align: center;
-  padding: 20px;
+  padding: 5px;
   position: relative;
   background-image: url("/img/commonImage/title-background.png");
   background-size: cover;
@@ -250,15 +263,12 @@ const currentProject = ref(projects[0]);
   align-items: center;
 
   .modal-body {
-    background-image: url('/img/common-questions/commonquestions_bg.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    max-width: 90%;
-    height: 100%;
-    margin: 30px;
+    background-color: #fffaf7;
+    margin: 5%;
     padding: 16px;
-    border-radius: 12px;
+    border-radius: 5px;
     position: relative;
+    overflow: auto;
 
     @media (min-width: 768px) {
       padding: 32px;
@@ -271,7 +281,6 @@ const currentProject = ref(projects[0]);
     .btn-close {
       border-radius: 50%;
       color: rgb(var(--white));
-      background-color: rgb(213, 127, 20);
       display: flex;
       align-items: center;
       justify-content: center;

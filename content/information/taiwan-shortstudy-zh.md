@@ -4,7 +4,7 @@ description: "透過與台中語言中心合作的短期遊學課程，結合小
 date: "2025-09-21"
 author: "FORMA台湾人材紹介"
 tags: ["台灣短期遊學", "中文學習", "台灣文化體驗", "留學台灣", "短期課程", "台中語言中心"]
-cover: "/images/information/taiwan-shortstudy/temple.jpg"
+cover: "../images/information/taiwan-shortstudy/temple.jpg"
 ---
 
 # 台灣短期遊學｜語言學習 × 文化體驗  
@@ -15,8 +15,7 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 ---
 
 ## 小班制中文教學  
-
-![台灣短期遊學 中文課程 小班制 教室體驗](/images/information/taiwan-shortstudy/class.jpg)  
+![台灣短期遊學 中文課程 小班制 教室體驗](../images/information/taiwan-shortstudy/class.jpg)  
 
 ---
 
@@ -34,7 +33,7 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 語言學習不只是課本，更要融入當地生活。  
 在短期遊學課程中，我們與合作語言中心安排了多元的**台灣文化體驗活動**：  
 
-![台灣短期遊學 寫春聯 中文體驗](/images/information/taiwan-shortstudy/tea.jpg)  
+![台灣短期遊學 寫春聯 中文體驗](../images/information/taiwan-shortstudy/tea.jpg)  
 
 ---
 
@@ -49,7 +48,7 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 
 ## 課程適合對象  
 
-![台灣短期遊學 文化交流 學生體驗](/images/information/taiwan-shortstudy/airport.jpg)  
+![台灣短期遊學 文化交流 學生體驗](../images/information/taiwan-shortstudy/airport.jpg)  
 
 ---
 
@@ -71,7 +70,7 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 
 ## 結語  
 
-![台灣短期遊學 中文學習與文化體驗 結論](/images/information/taiwan-shortstudy/conclusion.jpg)  
+![台灣短期遊學 中文學習與文化體驗 結論](../images/information/taiwan-shortstudy/conclusion.jpg)  
 
 ---
 

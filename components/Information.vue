@@ -5,7 +5,7 @@
 <template>
   <section id="our_story" class="information section">
     <section class="information-section">
-      <h1>{{ $t('information.title') }}</h1>
+      <h2>{{ $t('information.title') }}</h2>
     </section>
     <div class="information-container">
       <section class="intro-section">
@@ -70,7 +70,7 @@
   /* 標題區 */
   .information-section {
     text-align: center;
-    padding: 15px;
+    padding: 5px;
     background-image: url("../img/commonImage/title-background.png");
     background-size: cover;
     border-radius: 20px;

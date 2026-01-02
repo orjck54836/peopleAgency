@@ -4,7 +4,7 @@ description: "台湾人材の強み、日本企業のニーズ、採用プロセ
 date: "2025-09-20"
 author: "FORMA台湾人材紹介"
 tags: ["台湾人材", "日本就業", "在留資格", "特定技能", "技人国ビザ", "国際人材紹介"]
-cover: "/images/information/taiwan-talent/101.jpg"
+cover: "../images/information/taiwan-talent/101.jpg"
 ---
 
 # なぜ日本企業は台湾人材をますます重視しているのか？
@@ -18,7 +18,7 @@ cover: "/images/information/taiwan-talent/101.jpg"
 
 ## 台湾人材の3つの強み
 
-![台湾人材 日本就職 強み 語学力 国際人材紹介](/images/information/taiwan-talent/worker.jpg)
+![台湾人材 日本就職 強み 語学力 国際人材紹介](../images/information/taiwan-talent/worker.jpg)
 
 ---
 
@@ -38,7 +38,7 @@ cover: "/images/information/taiwan-talent/101.jpg"
 
 ## 台湾人材が求められる産業分野
 
-![台湾人材 日本 IT 建設 介護 観光 需要](/images/information/taiwan-talent/rapid.jpg)
+![台湾人材 日本 IT 建設 介護 観光 需要](../images/information/taiwan-talent/rapid.jpg)
 
 ---
 
@@ -72,7 +72,7 @@ cover: "/images/information/taiwan-talent/101.jpg"
 
 ## 日本企業が台湾人材を雇用するメリット
 
-![台湾人材 日本就業 メリット 採用 国際人材](/images/information/taiwan-talent/taipei-station.jpg)
+![台湾人材 日本就業 メリット 採用 国際人材](../images/information/taiwan-talent/taipei-station.jpg)
 
 ---
 
@@ -84,7 +84,7 @@ cover: "/images/information/taiwan-talent/101.jpg"
 ---
 
 ## まとめ
-![台湾人材 日本就業 国際人材交流 メリット総括](/images/information/taiwan-talent/conclusion.jpg)
+![台湾人材 日本就業 国際人材交流 メリット総括](../images/information/taiwan-talent/conclusion.jpg)
 
 ---
 

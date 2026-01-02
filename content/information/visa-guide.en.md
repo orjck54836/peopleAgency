@@ -4,7 +4,7 @@ description: "An in-depth guide for companies hiring foreign construction manage
 date: "2025-08-15"
 author: "FORMA Taiwan Recruitment"
 tags: ["Construction Management", "Visa", "Foreign Employment", "Construction Industry", "Specified Skilled Worker", "Engineer Visa"]
-cover: "/images/information/visa-guide/visa.jpg"
+cover: "../images/information/visa-guide/visa.jpg"
 ---
 
 # What Visa Do You Need to Hire Foreign Construction Managers in Japan?
@@ -51,7 +51,7 @@ Granted based on the type of work the foreigner engages in. Relevant types for c
 ## Main Visa Types for Construction Managers
 
 ### Engineer Visa (技術・人文知識・国際業務)
-![Engineer Visa Foreign Construction Manager Visa Requirements Japan Construction Industry](/images/information/visa-guide/engineer.jpg)
+![Engineer Visa Foreign Construction Manager Visa Requirements Japan Construction Industry](../images/information/visa-guide/engineer.jpg)
 
 - **Target**: Graduates in civil engineering, architecture, construction  
 - **Requirements**: Relevant degree or 10+ years of experience  
@@ -61,7 +61,7 @@ Granted based on the type of work the foreigner engages in. Relevant types for c
 ---
 
 ### Specified Skilled Worker No.2 (Construction Field)
-![Specified Skilled Worker No.2 Foreign Construction Manager Visa Requirements Japan Employment](/images/information/visa-guide/factory.jpg)
+![Specified Skilled Worker No.2 Foreign Construction Manager Visa Requirements Japan Employment](../images/information/visa-guide/factory.jpg)
 
 - **Target**: Workers with Specified Skilled Worker No.1 who passed exams  
 - **Pros**: Family members allowed, long-term stay in Japan  
@@ -71,7 +71,7 @@ Granted based on the type of work the foreigner engages in. Relevant types for c
 
 ## Hiring Process
 
-![Hiring Process for Foreign Construction Managers Visa COE Japan Construction Industry](/images/information/visa-guide/apply.jpg)
+![Hiring Process for Foreign Construction Managers Visa COE Japan Construction Industry](../images/information/visa-guide/apply.jpg)
 
 1. **Define job requirements** (skills, qualifications)  
 2. **Select candidates** (via agencies or supervising organizations)  
@@ -89,7 +89,7 @@ Granted based on the type of work the foreigner engages in. Relevant types for c
 ---
 
 ## Conclusion
-![Construction Manager Foreign Employment Visa Summary Japan](/images/information/visa-guide/conclusion.jpg)
+![Construction Manager Foreign Employment Visa Summary Japan](../images/information/visa-guide/conclusion.jpg)
 
 Hiring foreign construction managers requires a solid understanding of **the correct visa status**.  
 Among them, the **Engineer Visa** and **Specified Skilled Worker No.2** are the most relevant.  

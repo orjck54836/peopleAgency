@@ -4,7 +4,7 @@ description: "企業在雇用外國人從事施工管理職時，必須了解的
 date: "2025-08-15"
 author: "FORMA台湾人材紹介"
 tags: ["施工管理", "在留資格", "外國人雇用", "建設業", "特定技能", "技人國簽證"]
-cover: "/images/information/visa-guide/visa.jpg"
+cover: "../images/information/visa-guide/visa.jpg"
 ---
 
 # 在日本建設業雇用外國施工管理時需要的在留資格
@@ -51,7 +51,7 @@ cover: "/images/information/visa-guide/visa.jpg"
 ## 主要使用的在留資格
 
 ### 技人國簽證
-![技人國簽證 外國施工管理 在留資格 建設業 招聘流程](/images/information/visa-guide/engineer.jpg)
+![技人國簽證 外國施工管理 在留資格 建設業 招聘流程](../images/information/visa-guide/engineer.jpg)
 
 - **對象**：土木、建築專業畢業的外國人  
 - **條件**：相關學歷或 10 年以上經驗  
@@ -61,7 +61,7 @@ cover: "/images/information/visa-guide/visa.jpg"
 ---
 
 ### 特定技能2號（建設分野）
-![特定技能2號 外國施工管理 在留資格 建設業 外國人雇用](/images/information/visa-guide/factory.jpg)
+![特定技能2號 外國施工管理 在留資格 建設業 外國人雇用](../images/information/visa-guide/factory.jpg)
 
 - **對象**：已完成特定技能1號並通過考試者  
 - **優點**：可攜帶家屬、長期在日工作  
@@ -71,7 +71,7 @@ cover: "/images/information/visa-guide/visa.jpg"
 
 ## 雇用流程
 
-![施工管理 在留資格 外國人雇用 招聘流程 COE 建設業](/images/information/visa-guide/apply.jpg)
+![施工管理 在留資格 外國人雇用 招聘流程 COE 建設業](../images/information/visa-guide/apply.jpg)
 
 1. **整理職缺需求**（技能、資格要求）  
 2. **候選人篩選**（透過仲介或監理團體）  
@@ -89,7 +89,7 @@ cover: "/images/information/visa-guide/visa.jpg"
 ---
 
 ## 總結
-![施工管理 外國人雇用 在留資格 建設業 外國施工管理 總結](/images/information/visa-guide/conclusion.jpg)
+![施工管理 外國人雇用 在留資格 建設業 外國施工管理 總結](../images/information/visa-guide/conclusion.jpg)
 
 在雇用外國施工管理時，理解**正確的在留資格**至關重要。  
 尤其是「**技人國簽證**」與「**特定技能2號**」是核心。  

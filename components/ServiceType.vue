@@ -7,7 +7,7 @@ const localePath = useLocalePath()
   <section id="services" class="section services position-relative">
     <!-- 標題區 -->
     <section class="serviceType-section">
-      <h1>{{ $t('services.title') }}</h1>
+      <h2>{{ $t('services.title') }}</h2>
     </section>
     <div class="serviceType-container">
       <div>
@@ -64,6 +64,34 @@ const localePath = useLocalePath()
             </div>
           </div>
         </router-link>
+
+        <!-- 台灣遊學卡片 -->
+        <router-link to="/study_taiwan">
+          <div class="projcard projcard-school">
+            <div class="projcard-innerbox">
+              <img 
+                class="projcard-img" 
+                src="/img/my-services/card_school.png" 
+                :alt="$t('services.school.alt')" 
+              />
+              <div class="projcard-textbox">
+                <div class="projcard-title">{{ $t('services.taiwan.title') }}</div>
+                <div class="projcard-subtitle">{{ $t('services.taiwan.subtitle') }}</div>
+                <div class="projcard-bar"></div>
+                <div>
+                  <div class="projcard-description">
+                    {{ $t('services.taiwan.desc') }}
+                  </div>
+                  <div class="projcard-tagbox">
+                    <p to="/school" class="button-link">
+                      {{ $t('services.more') }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </router-link>
       </div>
     </div>
   </section>
@@ -72,7 +100,7 @@ const localePath = useLocalePath()
 <style lang="scss" scoped>
 .serviceType-section {
   text-align: center;
-  padding: 10px;
+  padding: 5px;
   background-image: url("../img/commonImage/title-background.png");
   background-size: cover;
   border-radius: 20px;

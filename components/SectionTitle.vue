@@ -62,12 +62,12 @@ onMounted(() => {
 <style lang="scss">
 // section title
 .section-title {
-  padding-left: 32px;
-  padding-top: 24px;
+  // padding-left: 32px;
+  // padding-top: 24px;
   position: relative;
   @media (min-width: 1200px) {
-    padding-top: 36px;
-    padding-left: 60px;
+    // padding-top: 36px;
+    // padding-left: 60px;
   }
   padding-bottom: 20px;
   --height: 0;
