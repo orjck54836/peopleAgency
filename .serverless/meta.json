@@ -1,6 +1,6 @@
 {
   "/Users/aiden/Downloads/portify/portify/serverless.yml": {
-    "versionFramework": "4.29.3",
+    "versionFramework": "4.29.4",
     "servicePath": "/Users/aiden/Downloads/portify/portify/serverless.yml",
     "serviceConfigFileName": "serverless.yml",
     "service": {
@@ -108,12 +108,12 @@
     "serviceProviderAwsCfStackName": "nuxt-nitro-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:ap-northeast-3:593793036921:stack/nuxt-nitro-dev/c1c21750-775a-11f0-b94b-06ed4bd6ecc9",
     "serviceProviderAwsCfStackCreated": "2025-08-12T09:00:13.138Z",
-    "serviceProviderAwsCfStackUpdated": "2026-01-02T08:34:54.509Z",
+    "serviceProviderAwsCfStackUpdated": "2026-01-03T17:33:43.039Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "WebLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:ap-northeast-3:593793036921:function:nuxt-nitro-dev-web:38",
+        "OutputValue": "arn:aws:lambda:ap-northeast-3:593793036921:function:nuxt-nitro-dev-web:40",
         "Description": "Current Lambda function version",
         "ExportName": "sls-nuxt-nitro-dev-WebLambdaFunctionQualifiedArn"
       },

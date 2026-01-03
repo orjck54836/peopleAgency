@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+  const { t } = useI18n()
 useHead({
   title: "FORMA台湾人材紹介",
   htmlAttrs: {
@@ -24,6 +25,10 @@ useHead({
       `
     },
   ]
+});
+useSeoMeta({
+  title: t("seo.blog.title"),
+  description: t("seo.blog.description"),
 });
 </script>
 <template>

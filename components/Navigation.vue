@@ -66,28 +66,43 @@ const navItems = reactive([
     <img src="/images/logo.png" class="mb-4 d-xl-none" alt="logo" />
     <ul>
       <li v-for="(item, index) in navItems" :key="index" @click="closeNav" class="nav-link">
-        <a :href="item.href" :class="{ active: item.active }">
+        <NuxtLink :to="item.href" :class="{ active: item.active }">
           <span>{{ item.index }}</span> <span class="text">{{ $t(item.text) }}</span>
-        </a>
+        </NuxtLink>
+        <!-- <a :href="item.href" :class="{ active: item.active }">
+          <span>{{ item.index }}</span> <span class="text">{{ $t(item.text) }}</span>
+        </a> -->
       </li>
     </ul>
     <div class="contact">
 
-      <!-- Line 官方帳號 -->
+      <!-- 官方帳號 -->
       <div class="line-contact nav-link">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE logo" width="24"
-          height="24" />
-        <a href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener noreferrer">
-          Line Account
-        </a>
+        <div class="line-contact-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE logo" width="24"
+            height="24" />
+          <a href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener noreferrer">
+            Line Account
+          </a>
+        </div>
+        <div class="line-contact-item">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png?20220518162235"
+            alt="IG logo" width="24" height="24" />
+          <a href="https://www.instagram.com/forma_global_connect/" target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>
+        </div>
+        <div class="line-contact-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/FB_Logo_PNG.png/640px-FB_Logo_PNG.png"
+            alt="FB logo" width="24" height="24" />
+          <a href="https://www.facebook.com/profile.php?id=61586054817873" target="_blank" rel="noopener noreferrer">
+            Facebook
+          </a>
+        </div>
       </div>
     </div>
-    <!-- <div class="google-map-wrapper">
-      <iframe width="100%" height="200" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.939320802105!2d139.76609781525802!3d35.68123628019509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c0b06c34b67%3A0x48e61f729a5c15b6!2z5p2x5Lqs6YO95p2x5Z-O!5e0!3m2!1szh-TW!2sjp!4v1720200000000!5m2!1szh-TW!2sjp"></iframe>
-    </div> -->
   </nav>
-  <!-- 直接在同層渲染 Overlay -->
   <div class="nav-overlay d-xl-none" @click.self="closeNav">
     <!-- overlay-content帶有彈出動畫 -->
     <transition name="slide-up">
@@ -98,13 +113,31 @@ const navItems = reactive([
               <span>{{ item.index }}</span> <span class="text">{{ $t(item.text) }}</span>
             </a>
           </div>
-          <!-- 手機版 Line 官方帳號 -->
+          <!-- 手機版 官方帳號 -->
           <div class="overlay-line-contact">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE logo" width="24"
-              height="24" />
-            <a href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener noreferrer">
-              Line Account
-            </a>
+            <div class="d-flex mb-3">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" class="mr-2" alt="LINE logo"
+                width="24" height="24" />
+              <a href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener noreferrer">
+                Line Account
+              </a>
+            </div>
+            <div class="d-flex mb-3">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png?20220518162235"
+                class="mr-2" alt="IG logo" width="24" height="24" />
+              <a href="https://www.instagram.com/forma_global_connect/" target="_blank" rel="noopener noreferrer">
+                Instagram
+              </a>
+            </div>
+            <div class="d-flex mb-3">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/FB_Logo_PNG.png/640px-FB_Logo_PNG.png"
+                class="mr-2" alt="FB logo" width="24" height="24" />
+              <a href="https://www.facebook.com/profile.php?id=61586054817873" target="_blank"
+                rel="noopener noreferrer">
+                Facebook
+              </a>
+            </div>
           </div>
         </transition-group>
       </div>
@@ -121,9 +154,15 @@ const navItems = reactive([
 
 .line-contact {
   display: flex;
+  flex-direction: column;
   font-weight: bolder;
-  color: #00b900;
+  color: #b19533;
   gap: 2;
+
+  .line-contact-item {
+    display: flex;
+    margin-bottom: 25px;
+  }
 
   a {
     margin-left: 10px;
@@ -337,10 +376,12 @@ const navItems = reactive([
     .overlay-line-contact {
       margin-top: 20px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
       gap: 10px;
       font-weight: bold;
-      color: #00b900;
+      color: #f6f2e9;
 
       a {
         color: inherit;
@@ -351,7 +392,7 @@ const navItems = reactive([
 
   .overlay-item {
     width: 100%;
-    text-align: center;
+    text-align: left;
     font-size: larger;
     padding-bottom: 10px;
 

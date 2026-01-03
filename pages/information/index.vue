@@ -33,8 +33,8 @@ const filteredArticles = computed(() => {
 });
 
 useSeoMeta({
-  title: "情報專欄｜FORMA台湾人材紹介",
-  description: "外国人雇用、留学、ビザ関連の最新情報を発信する情報ブログ。"
+  title: t("seo.blog.title"),
+  description: t("seo.blog.description"),
 });
 </script>
 
