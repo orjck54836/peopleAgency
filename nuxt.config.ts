@@ -22,7 +22,10 @@ export default defineNuxtConfig({
     mailFrom: 'aiden@forma-global.com',
     mailTo: 'liaiden1213@gmail.com',
     public: {
-      siteUrl: 'https://www.forma-global.com/' // 可選，前端要用就放這
+      siteUrl: 'https://www.forma-global.com/', // 可選，前端要用就放這
+      PUBLIC_KEY: process.env.NUXT_PUBLIC_KEY,
+      SERVICE_ID: process.env.NUXT_SERVICE_ID,
+      TEMPLATE_ID: process.env.NUXT_TEMPLATE_ID
     }
   },
   compatibilityDate: "2024-11-01",
@@ -80,7 +83,7 @@ export default defineNuxtConfig({
       optimizeTranslationDirective: false
     },
   },
-  css: ["~/assets/css/style.css","@/public/scss/styles.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
+  css: ["~/assets/css/style.css", "@/public/scss/styles.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
   ui: {
     colorMode: false
   },
@@ -95,12 +98,5 @@ export default defineNuxtConfig({
   },
   swiper: {
     modules: ['navigation', 'pagination', 'autoplay', 'scrollbar']
-  },
-  runtimeConfig: {
-    public: {
-      PUBLIC_KEY: process.env.NUXT_PUBLIC_KEY,
-      SERVICE_ID: process.env.NUXT_SERVICE_ID,
-      TEMPLATE_ID: process.env.NUXT_TEMPLATE_ID
-    }
   }
 });

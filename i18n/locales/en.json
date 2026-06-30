@@ -36,19 +36,24 @@
   "yes": "Yes",
   "no": "No",
   "emergencyContact": "Emergency Contact",
-
   "seo": {
     "blog": {
       "title": "Insights on Foreign Employment, Skilled Workers & Study in Japan | FORMA",
       "description": "Explore practical insights on hiring foreign workers, Specified Skilled Worker visas, studying in Japan, and Taiwan–Japan talent solutions for companies and individuals."
+    },
+    "study": {
+      "title": "Study in Japan | Language School Placement by FORMA",
+      "description": "FORMA connects students with Japanese language schools, handling enrollment, visa support, and local living assistance — from school selection to settling in after arrival in Japan."
+    },
+    "work": {
+      "title": "Japan Employment Agency | Specified Skilled Worker Visa by FORMA",
+      "description": "FORMA specializes in matching foreign talent with Japanese employers under the Specified Skilled Worker visa, supporting candidate screening, visa documentation, and post-arrival assistance for a compliant, stable workforce."
     }
   },
-
   "hero_page": {
     "title": "Japan Employment Agency・Study Abroad・Mandarin Education in Taiwan",
     "subtitle": "Foreign Talent Placement | Specified Skilled Worker Visa | Japanese Study Abroad",
     "slogan": "Connecting talents, cultures, and dreams.",
-
     "work": {
       "alt": "Japan employment agency foreign workers specified skilled visa",
       "title": "Japan Employment Agency",
@@ -65,11 +70,9 @@
       "desc": "We provide professional Mandarin courses in Taiwan, focusing on practical communication and workplace Chinese. Our programs help foreign students and job seekers adapt quickly to life and work in Taiwan."
     }
   },
-
   "services": {
     "title": "Study Abroad in Japan・Work in Japan・Agency Services",
     "more": "Learn more...",
-
     "school": {
       "alt": "Japan study abroad agency short-term programs Taiwanese students",
       "title": "Study Abroad in Japan",
@@ -89,7 +92,6 @@
       "desc": "In partnership with local language centers in Taichung, we offer short-term Mandarin programs combined with cultural activities such as night market tours, tea ceremonies, calligraphy, Tai Chi, and company visits. Students can naturally improve their Mandarin while experiencing the charm of Taiwanese culture."
     }
   },
-
   "information": {
     "title": "Information",
     "subtitle": "Talent Introduction × Taiwan Study Abroad × Japan Study Abroad｜Professional insights and practical guides to help you seize cross-border opportunities",
@@ -103,108 +105,78 @@
     "readMore": "Read more →",
     "noResults": "No search results found."
   },
-
   "commonQuestions": {
     "title": "Frequently Asked Questions",
     "more": "Learn More",
-  
     "cooperation": {
       "title": "Cooperation Model & Role Definition",
       "desc": "Clarifies our role in cross-border workforce collaboration and how we work with licensed Japanese employment agencies.",
       "category": "For Japanese employment agencies and human resource partners",
       "alt": "Japan recruitment agency cooperation overseas workforce matching",
-  
       "q1": "What role do you play in the overall process?",
       "a1": "We act as a matching and coordination partner, connecting Southeast Asian sending organizations, Taiwan-based human resources, and licensed Japanese employment agencies. Our role focuses on early-stage candidate information整理, condition alignment, and partner matching. We do not conduct employment placement or statutory procedures in Japan.",
-  
       "q2": "Do you replace the role of Japanese employment agencies?",
       "a2": "No. We do not conduct employment placement activities in Japan. All formal job placement, employment contracts, and residence status procedures are handled exclusively by licensed Japanese employment agencies.",
-  
       "q3": "What types of partners are suitable for cooperation?",
       "a3": "Our services are suitable for Japanese employment agencies that already handle or plan to handle overseas workforce cases, as well as partners seeking to expand their options for Southeast Asian or Taiwanese talent.",
-  
       "q4": "Can cooperation start with a single case?",
       "a4": "Yes. Most collaborations begin with a single case or a backup staffing need. No exclusive or long-term commitment is required.",
-  
       "q5": "Is it necessary to sign a long-term or exclusive agreement?",
       "a5": "No. Cooperation is conducted on a case-by-case basis to maintain flexibility and avoid interference with existing partnerships.",
-  
       "q6": "Is cooperation still possible if we already work with a fixed Southeast Asian sending organization?",
       "a6": "Yes. We often act as a secondary or backup option, supporting cases that existing sending organizations may find difficult to handle or are temporarily unable to supply.",
-  
       "q7": "Do you directly contact Japanese corporate clients?",
       "a7": "This depends on the cooperation model. When cases are led by a Japanese employment agency, we participate as a backend support and coordination partner without affecting existing client relationships.",
-  
       "q8": "Who communicates with which parties during cooperation?",
       "a8": "We primarily coordinate with Southeast Asian sending organizations and Taiwan-side partners. Communication with Japanese companies and formal placement processes remains led by the Japanese employment agency.",
-  
       "q9": "Can we exchange information first before deciding on cooperation?",
       "a9": "Yes. We encourage initial information exchange regarding cases or candidate conditions before determining further cooperation."
     },
-  
     "resources": {
       "title": "Talent Sources & Matching Scope",
       "desc": "Introduces available talent sources and suitable case types for cooperation.",
       "category": "For partners interested in talent sourcing flexibility",
       "alt": "Southeast Asia talent Taiwan talent overseas workforce sources",
-  
       "q1": "What talent sources can you provide?",
       "a1": "Our primary sources are Southeast Asian talents (such as Vietnam and Indonesia). Depending on case requirements, we can also provide Taiwanese talent as a supplementary option.",
-  
       "q2": "Are there additional introduction fees for Southeast Asian talent?",
       "a2": "The Southeast Asian sending organizations we cooperate with are long-term partners of Taiwanese enterprises. Therefore, no additional introduction fees are charged to the Japanese side.",
-  
       "q3": "Are you limited to specific industries or job categories?",
       "a3": "No. However, suitability for overseas talent is evaluated during the early-stage assessment based on actual job content, working conditions, and management structure.",
-  
       "q4": "Can you act as a secondary or backup talent source?",
       "a4": "Yes. We frequently serve as a backup option alongside existing sending organizations, particularly for cases with special conditions or higher risk.",
-  
       "q5": "Is it possible to compare multiple nationalities or sources simultaneously?",
       "a5": "Yes. We can provide recommendations across multiple talent sources based on case conditions to support comparison and decision-making.",
-  
       "q6": "Can you support situations where talent supply is unstable?",
       "a6": "One of our roles is to fill supply gaps by offering alternative options when existing channels cannot provide candidates in time.",
-  
       "q7": "Do you help evaluate whether a position is suitable for overseas talent?",
       "a7": "Yes. Before entering the formal placement process, we can conduct an early-stage feasibility assessment of the position.",
-  
       "q8": "Do you handle short-term or part-time-only cases?",
       "a8": "Our focus is on full-time positions eligible for lawful residence status. We do not handle cases limited to part-time work or short-term internships."
     },
-  
     "scope": {
       "title": "Scope of Responsibility & Post-Placement Support",
       "desc": "Clarifies service boundaries and available support after placement.",
       "category": "For partners focused on risk management and clear role allocation",
       "alt": "Overseas workforce post-placement support cooperation scope",
-  
       "q1": "Do you assist with post-placement issues?",
       "a1": "If communication or adaptation issues arise after placement, we can coordinate with sending organizations and relevant parties to provide informational support and adjustment assistance. However, we do not assume statutory management responsibilities in Japan.",
-  
       "q2": "Do you handle labor management or labor disputes?",
       "a2": "No. Labor management and legal responsibilities are handled in accordance with Japanese law by the employer and licensed employment agency.",
-  
       "q3": "Do you handle visa or residence status applications?",
       "a3": "No. Visa and residence status applications are handled by licensed Japanese employment agencies or certified administrative scriveners.",
-  
       "q4": "How are issues handled during cooperation?",
       "a4": "Our role is to facilitate communication and coordination, ensure transparency of information, and support partners in quickly clarifying situations so that each party can respond in compliance with applicable regulations.",
-  
       "q5": "Do you provide regular follow-ups or feedback mechanisms?",
       "a5": "Periodic information feedback can be arranged based on case requirements to help track talent adaptation.",
-  
       "q6": "If a worker leaves early, are you responsible for replacement?",
       "a6": "Replacement arrangements depend on the contract between the Japanese employment agency and the employer. We can assist with subsequent communication and matching support.",
-  
       "q7": "Do you provide any employment outcome guarantees?",
       "a7": "No. We do not provide employment outcome guarantees. Our responsibility is limited to matching and coordination support.",
-  
       "q8": "Can you help establish long-term cooperation processes?",
       "a8": "Yes. Based on cooperation experience, we can assist in organizing repeatable workflows and communication frameworks."
     }
   },
-
   "schoolOverview": {
     "region": {
       "tokyo": "Tokyo",
@@ -249,7 +221,6 @@
     "intakeMonth": "Intake",
     "moreDetail": "See more ➔"
   },
-
   "schoolDetail": {
     "breadcrumb": "School Overview",
     "titleSuffix": "School Introduction & Study Abroad Information",
@@ -262,7 +233,6 @@
     "brochure": "Brochure Download:",
     "download": "Download",
     "consultBtn": "Inquire Now",
-
     "basicInfo": "Basic Information",
     "schoolName": "School Name:",
     "city": "City:",
@@ -286,7 +256,6 @@
     "moreSchools": "More Popular Schools",
     "viewMore": "View More"
   },
-
   "taiwanStudy": {
     "hero": {
       "title": "Taiwan Short-Term Mandarin Study Program",
@@ -331,14 +300,25 @@
       "title": "Application Process",
       "subtitle": "From inquiry to arrival — we guide you every step of the way.",
       "steps": [
-        { "title": "Inquiry & Consultation", "desc": "Tell us your goals and preferred dates. We’ll recommend the best plan." },
-        { "title": "Quotation & Application", "desc": "Confirm the cost and schedule, then complete the official application." },
-        { "title": "Visa & Accommodation", "desc": "We help arrange tourist or short-term visas and housing as needed." },
-        { "title": "Arrival & Start of Classes", "desc": "Airport pickup and orientation before your Mandarin learning begins." }
+        {
+          "title": "Inquiry & Consultation",
+          "desc": "Tell us your goals and preferred dates. We’ll recommend the best plan."
+        },
+        {
+          "title": "Quotation & Application",
+          "desc": "Confirm the cost and schedule, then complete the official application."
+        },
+        {
+          "title": "Visa & Accommodation",
+          "desc": "We help arrange tourist or short-term visas and housing as needed."
+        },
+        {
+          "title": "Arrival & Start of Classes",
+          "desc": "Airport pickup and orientation before your Mandarin learning begins."
+        }
       ]
     }
-  },  
-
+  },
   "ourStoryTitle": "About us",
   "ourStory": "Company Profile",
   "stortText": "“Formosa” is more than just a place name — it's where we began. As a Taiwan-based recruitment agency, FORMA is dedicated to bridging cultural and geographic boundaries by connecting talents from Taiwan and Asia with Japanese companies seeking global growth. We specialize in study-abroad support, language school placement, and manpower services in Japan, offering comprehensive solutions from school applications and pre-departure guidance to local support and Specified Skilled Worker job matching. At FORMA, we believe that every step across borders opens the door to new possibilities.",
@@ -347,16 +327,13 @@
   "title_Resource": "By building networks and integrating international resources, we help clients overcome cultural and regional barriers.",
   "title_Momentum": "Relentless advancement and accelerated growth fuel our core drive as we move forward together with you.",
   "title_Alliance": "Progressing hand in hand with our clients, we emphasize the power of alliances for shared success.",
-
   "servicesTitle": "Service Guide",
   "schoolTitle": "Study in Japan",
   "humanResourceTitle": "Work in Japan",
   "studyTaiwanTitle": "Study in Taiwan",
   "informationTitle": "Information",
   "commonQuestionTitle": "Common Questions",
-
   "learnMore": "Learn more",
-
   "recruitmentForm": "Recruitment Service",
   "studyForm": "Study Abroad Consultation",
   "recruitmentTitle": "Recruitment Inquiry Form",
@@ -367,7 +344,6 @@
   "errorTitle": "Submission Failed",
   "errorSubtitle": "An error occurred. Please try again later.",
   "confirm": "Confirm",
-
   "hero": {
     "title": "Taiwan-Japan Talent Exchange & Employment Agency",
     "subtitle": "Taiwan professional manpower agency managing foreign talent employment in Japan"
@@ -397,11 +373,26 @@
     "q2": "Struggling with complex international labor procedures?",
     "core": "Cooperation Core",
     "nodes": {
-      "node1": { "title": "Professional Background", "desc": "Legally registered manpower agency in Taiwan with years of cooperation with Southeast Asian sending organizations." },
-      "node2": { "title": "Single Window", "desc": "Unified management by a Taiwan company, reducing cross-border communication and administrative risks." },
-      "node3": { "title": "Diverse Talent", "desc": "Covers Taiwan, Vietnam, Indonesia, and more, quickly matching various industry needs." },
-      "node4": { "title": "Full Support", "desc": "Visa, Japanese education, and pre-/post-departure life guidance in a complete one-stop service." },
-      "node5": { "title": "Trust & Assurance", "desc": "Comprehensive contracts to protect the rights of employers and partners." }
+      "node1": {
+        "title": "Professional Background",
+        "desc": "Legally registered manpower agency in Taiwan with years of cooperation with Southeast Asian sending organizations."
+      },
+      "node2": {
+        "title": "Single Window",
+        "desc": "Unified management by a Taiwan company, reducing cross-border communication and administrative risks."
+      },
+      "node3": {
+        "title": "Diverse Talent",
+        "desc": "Covers Taiwan, Vietnam, Indonesia, and more, quickly matching various industry needs."
+      },
+      "node4": {
+        "title": "Full Support",
+        "desc": "Visa, Japanese education, and pre-/post-departure life guidance in a complete one-stop service."
+      },
+      "node5": {
+        "title": "Trust & Assurance",
+        "desc": "Comprehensive contracts to protect the rights of employers and partners."
+      }
     }
   },
   "foreign": {
@@ -426,11 +417,26 @@
     "title": "Corporate Cooperation Process",
     "subtitle": "※ Entire process supervised by Taiwan agency to ensure stability and trust",
     "steps": [
-      { "title": "Requirement Confirmation", "desc": "Confirm job needs with employers and match suitable talent." },
-      { "title": "Contract Signing", "desc": "Contracts signed with candidates/partners to protect rights." },
-      { "title": "Candidate Recommendation & Interview", "desc": "Recommend qualified talent and arrange interviews." },
-      { "title": "Visa Application & Preparation", "desc": "Assist with visas, language and cultural training, and guidance." },
-      { "title": "Post-Employment Follow-up", "desc": "Monitor employment status and provide support for language and daily issues." }
+      {
+        "title": "Requirement Confirmation",
+        "desc": "Confirm job needs with employers and match suitable talent."
+      },
+      {
+        "title": "Contract Signing",
+        "desc": "Contracts signed with candidates/partners to protect rights."
+      },
+      {
+        "title": "Candidate Recommendation & Interview",
+        "desc": "Recommend qualified talent and arrange interviews."
+      },
+      {
+        "title": "Visa Application & Preparation",
+        "desc": "Assist with visas, language and cultural training, and guidance."
+      },
+      {
+        "title": "Post-Employment Follow-up",
+        "desc": "Monitor employment status and provide support for language and daily issues."
+      }
     ]
   }
 }

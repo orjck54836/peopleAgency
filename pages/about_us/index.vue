@@ -121,7 +121,6 @@
     </div>
   </section>
   <ContactIcon />
-  <Navigation :nav-open="navOpen" :close-nav="closeNav" />
   <Footer />
 </template>
 

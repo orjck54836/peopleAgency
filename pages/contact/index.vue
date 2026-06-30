@@ -26,7 +26,6 @@ const closeNav = () => {
       <Contact />
     </div>
   </main>
-  <Navigation :nav-open="navOpen" :close-nav="closeNav" />
   <Footer />
 </template>
 

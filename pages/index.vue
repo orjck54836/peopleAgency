@@ -1,45 +1,11 @@
-<script setup lang="ts">
-const navOpen = ref(false);
-const toggleNav = () => {
-  navOpen.value = !navOpen.value;
-};
-const closeNav = () => {
-  navOpen.value = false;
-};
+<script lang="ts" setup>
+const line = useCookie<'study' | 'work'>('forma-line', { default: () => 'study' })
+const localePath = useLocalePath()
+
+// SSR/CSR 皆可生效的重導
+await navigateTo(localePath(line.value === 'work' ? '/work' : '/study'), { replace: true })
 </script>
+
 <template>
-  <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
-  <!-- <Navigation :nav-open="navOpen" :close-nav="closeNav" class="gx-xxl-3"/> -->
-
-  <!-- main content -->
-  <main class="container-fluid width">
-    <div class="row">
-      <div class="col-xl-10" data-bs-spy="scroll" data-bs-target="#navigation">
-        <Hero />
-        <ServiceType />
-        <Information />
-        <section id="common_questions" class="projects section position-relative">
-          <ClientOnly>
-            <CommonQuestions />
-          </ClientOnly>
-        </section>
-      </div>
-      <div class="col-xl-2 d-flex justify-center">
-        <Navigation :nav-open="navOpen" :close-nav="closeNav" />
-      </div>
-    </div>
-  </main>
-  <ContactIcon />
-  <Footer />
+  <div />
 </template>
-
-<style lang="scss" scoped>
-.bg {
-  z-index: -5 !important;
-}
-
-.width {
-  width: 90%;
-  margin: auto;
-}
-</style>
