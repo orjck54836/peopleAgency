@@ -8,7 +8,7 @@ const closeNav = () => {
   navOpen.value = false;
 };
 const { data: article } = await useAsyncData(() =>
-  queryCollection('content').path(`/information/${route.params.slug}`).first()
+  queryCollection('content').path(`/information/study/${route.params.slug}`).first()
 )
 
 useSeoMeta({

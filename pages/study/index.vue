@@ -1,24 +1,17 @@
 <script lang="ts" setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
-const currentPage = ref(1)
-const pageSize = 6
 
-const schools = ref<any[]>([])
-
-const filters = ref({
-  keyword: '',
-  region: '',
-  intake: '',
-  type: '',
-  accommodation: ''
-})
-
-import { useI18n } from "vue-i18n"
+function toPagePath(contentPath: string): string {
+  return contentPath
+    .replace('/information/study/', '/study/information/')
+    .replace('/information/work/', '/work/information/')
+}
 
 const { t } = useI18n()
 useSeoMeta({
@@ -26,711 +19,631 @@ useSeoMeta({
   description: t('seo.study.description'),
 })
 
-const regionOptions = [
-  { value: "tokyo", label: t("schoolOverview.region.tokyo") },
-  { value: "osaka", label: t("schoolOverview.region.osaka") },
-  { value: "nagoya", label: t("schoolOverview.region.nagoya") },
-  { value: "fukuoka", label: t("schoolOverview.region.fukuoka") },
-  { value: "hokkaido", label: t("schoolOverview.region.hokkaido") },
-  { value: "kanagawa", label: t("schoolOverview.region.kanagawa") }
+// ── 手動輪播橫幅 ──
+const banners = [
+  {
+    title: '日本特色遊學',
+    sub: '從 2 週到 2 年，找到最適合你的學習方式',
+    bg: '/img/hero.jpg',
+    cta: '探索學習方式',
+    action: () => router.push('/study/schools'),
+  },
+  {
+    title: '精選語言學校媒合',
+    sub: '與日本多所語言學校深度合作，依你的目標精準推薦',
+    bg: '/img/hero.jpg',
+    cta: '查看學校列表',
+    action: () => router.push('/study/schools'),
+  },
+  {
+    title: '台日雙邊在地支援',
+    sub: '台灣顧問協助申請，日本落地後不變孤兒',
+    bg: '/img/hero.jpg',
+    cta: '立即諮詢',
+    action: () => router.push('/contact'),
+  },
 ]
 
-const intakeOptions = [
-  { value: "1", label: `1` },
-  { value: "4", label: `4` },
-  { value: "7", label: `7` },
-  { value: "10", label: `10` }
+const currentBanner = ref(0)
+let bannerTimer: ReturnType<typeof setInterval> | null = null
+
+function startBannerTimer() {
+  bannerTimer = setInterval(() => {
+    currentBanner.value = (currentBanner.value + 1) % banners.length
+  }, 5000)
+}
+
+function goToBanner(i: number) {
+  currentBanner.value = i
+  if (bannerTimer) clearInterval(bannerTimer)
+  startBannerTimer()
+}
+
+onMounted(() => startBannerTimer())
+onUnmounted(() => { if (bannerTimer) clearInterval(bannerTimer) })
+
+// ── 學習方式 ──
+const studyModes = [
+  {
+    value: '短期遊學',
+    label: '短期遊學',
+    sub: '2週～3個月',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu8cypyMF0fDQkfvrm-Wk8B-zM5r23IAFsD0v4MUBhLw&s=10',
+    desc: '適合想體驗日本生活、快速提升日語口說能力的學生。彈性安排行程，不需長期簽證，是踏出留學第一步的最佳選擇。',
+    tags: ['無需長期簽證', '彈性行程', '生活體驗'],
+  },
+  {
+    value: '長期留學',
+    label: '長期留學',
+    sub: '6個月～2年',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu8cypyMF0fDQkfvrm-Wk8B-zM5r23IAFsD0v4MUBhLw&s=10',
+    desc: '深度學習日語並融入當地生活，申請語言學校學生簽證，可合法打工補貼生活費，累積實質語言與生活能力。',
+    tags: ['學生簽證', '合法打工', '語言深化'],
+  },
+  {
+    value: '升學進修',
+    label: '升學進修',
+    sub: '專門學校・大學・研究所',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu8cypyMF0fDQkfvrm-Wk8B-zM5r23IAFsD0v4MUBhLw&s=10',
+    desc: '以取得日本學位或專業資格為目標，進入專門學校、大學或研究所就讀，為未來在日就業或學術發展奠定基礎。',
+    tags: ['取得學位', '專業資格', '就業銜接'],
+  },
 ]
 
-const sortOption = ref("")
-const sortOptions = computed(() => [
-  { value: "", label: t("schoolOverview.sort.default") },
-  { value: "tuition-desc", label: t("schoolOverview.sort.tuitionDesc") },
-  { value: "tuition-asc", label: t("schoolOverview.sort.tuitionAsc") },
-  { value: "popularity", label: t("schoolOverview.sort.popularity") }
-])
-
-const filteredSchools = computed(() => {
-  return schools.value.filter((school) => {
-    const keywordMatch = !filters.value.keyword || school.name.includes(filters.value.keyword)
-    const regionMatch = !filters.value.region || school.location === filters.value.region
-    const intakeMatch = !filters.value.intake || school.intake.includes(filters.value.intake)
-    return keywordMatch && regionMatch && intakeMatch
-  })
-})
-
-const sortedSchools = computed(() => {
-  const list = [...filteredSchools.value]
-  switch (sortOption.value) {
-    case 'tuition-desc':
-      return list.sort((a, b) => b.tuition - a.tuition)
-    case 'tuition-asc':
-      return list.sort((a, b) => a.tuition - b.tuition)
-    case 'popularity':
-      return list.sort((a, b) => b.popularity - a.popularity)
-    default:
-      return list
+function goToSchoolsByMode(mode: string) {
+  const modeMap: Record<string, string> = {
+    '短期遊學': '/study/short-term',
+    '長期留學': '/study/long-term',
+    '升學進修': '/study/university',
   }
-})
-
-const paginatedSchools = computed(() => {
-  const start = (currentPage.value - 1) * pageSize
-  const end = start + pageSize
-  return sortedSchools.value.slice(start, end)
-})
-
-const totalPages = computed(() => {
-  return Math.ceil(filteredSchools.value.length / pageSize)
-})
-
-function clearFilters() {
-  filters.value = {
-    keyword: '',
-    region: '',
-    intake: '',
-    type: '',
-    accommodation: ''
-  }
-  currentPage.value = 1
+  router.push(modeMap[mode] || '/study/schools')
 }
 
-function goToDetailPage(schoolName: string) {
-  const encoded = encodeURIComponent(schoolName)
-  router.push(`/study/${encoded}`)
+function goToAllSchools() {
+  router.push('/study/schools')
 }
 
-async function fetchSchools() {
+const selectedZone = ref('')
+const featuredSchools = ref<any[]>([])
+
+async function fetchFeaturedSchools() {
   try {
     const res = await fetch('/api/schools')
     const json = await res.json()
-    if (json.success) {
-      schools.value = json.data.map((s: any) => ({
-        ...s,
-        popularity: Math.floor(Math.random() * 5) + 1,
-        tuition: Number((s.tuitionDetails?.[0]?.total || '0').replace(/[,日圓]/g, '')) || 0
-      }))
-    }
+    if (json.success) featuredSchools.value = json.data.slice(0, 3)
   } catch (err) {
-    console.error('❌ 無法取得學校資料：', err)
+    console.error('❌ 無法取得熱門學校資料：', err)
   }
 }
 
-onMounted(fetchSchools)
+onMounted(fetchFeaturedSchools)
+
+const placeholderNews = [
+  { path: '/study/information', title: '日本留學前必看：簽證申請流程懶人包', description: '從在留資格認定到簽證核發，整理留學日本前最容易卡關的文件準備重點。', date: '2026-05-01', cover: null as string | null },
+  { path: '/study/information', title: '語言學校 vs 專門學校：該怎麼選？', description: '想先打好日語基礎還是直接銜接專業技能課程？我們整理兩種升學路線的差異。', date: '2026-04-18', cover: null as string | null },
+  { path: '/study/information', title: '留學日本的生活費怎麼抓？東京 vs 地方城市實際比較', description: '住宿、餐食、交通的實際花費差異，幫你抓出合理的每月生活預算。', date: '2026-03-30', cover: null as string | null },
+]
+
+const { data: realNews } = await useAsyncData('study-latest-news', () =>
+  queryCollection('content')
+    .where('path', 'LIKE', '/information/study/%')
+    .order('date', 'DESC')
+    .limit(8)
+    .all()
+)
+
+const latestNews = computed(() =>
+  realNews.value && realNews.value.length ? realNews.value : placeholderNews
+)
+
+function formatDate(dateStr?: string) {
+  if (!dateStr) return ''
+  const d = new Date(dateStr)
+  if (Number.isNaN(d.getTime())) return dateStr
+  return d.toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' })
+}
 </script>
 
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
-  <div class="title">
-    <h1 class="hero-title">{{ $t('schoolOverview.title') }}</h1>
-  </div>
-  <div class="hero-banner">
-    <img src="/img/school/32810422_m.jpg" :alt="$t('schoolOverview.heroAlt')" />
-    <div class="hero-banner-text">
-      <p>{{ $t('schoolOverview.heroText') }}</p>
-    </div>
-  </div>
-  <main class="page-wrapper">
-    <div class="row justify-content-center">
-      <div class="row justify-content-center align-items-center">
-        <!-- 圖片 -->
-        <div class="col-lg-3 mb-3 mb-md-0 p-4 text-picture">
-          <img src="/img/school/depart.png" :alt="$t('schoolOverview.departAlt')" />
-        </div>
-        <!-- 文字 -->
-        <div class="col-lg-7 col-md-12 jp-intro p-4 p-md-5 d-flex">
-          <div>
-            <h1>{{ $t('schoolOverview.introTitle') }}</h1>
-          </div>
-          <div>
-            <span class="jp-intro__petal petal-1" aria-hidden="true"></span>
-            <span class="jp-intro__petal petal-2" aria-hidden="true"></span>
-            <span class="jp-intro__petal petal-3" aria-hidden="true"></span>
-            <p>{{ $t('schoolOverview.introDesc') }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="school-overview-container row">
-      <div class="col-lg-4">
-        <section class="school-filter-panel">
-          <section class="mb-5">
-            <div class="filter-header">
-              <h2>{{ $t('schoolOverview.filterTitle') }}</h2>
-              <p class="filter-subtext">{{ $t('schoolOverview.filterSubtitle') }}</p>
-            </div>
-            <div class="filter-block-container flex-wrap gap-3">
-              <div class="select-group">
-                <div class="select-item">
-                  <label class="filter-block-label" for="keyword">{{ $t('schoolOverview.keywordLabel') }}</label>
-                  <input v-model="filters.keyword" type="text" id="keyword"
-                    :placeholder="$t('schoolOverview.keywordPlaceholder')" class="form-control keyword-input" />
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="region">{{ $t('schoolOverview.regionLabel') }}</label>
-                  <select v-model="filters.region" id="region" class="form-select select-control">
-                    <option value="">{{ $t('schoolOverview.allRegions') }}</option>
-                    <option v-for="region in regionOptions" :key="region" :value="region.label">
-                      {{ region.label }}
-                    </option>
-                  </select>
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="intake">{{ $t('schoolOverview.intakeLabel') }}</label>
-                  <select v-model="filters.intake" id="intake" class="form-select select-control">
-                    <option value="">{{ $t('schoolOverview.allIntakes') }}</option>
-                    <option v-for="month in intakeOptions" :key="month" :value="month.label">
-                      {{ month.label }} {{ $t('schoolOverview.month') }}
-                    </option>
-                  </select>
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="type">{{ $t('schoolOverview.typeLabel') }}</label>
-                  <select v-model="filters.type" id="type" class="form-select select-control">
-                    <option value="">{{ $t('schoolOverview.allTypes') }}</option>
-                    <option value="語言學校">{{ $t('schoolOverview.langSchool') }}</option>
-                    <option value="專門學校">{{ $t('schoolOverview.vocSchool') }}</option>
-                    <option value="大學別科">{{ $t('schoolOverview.univPrep') }}</option>
-                  </select>
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="accommodation">{{ $t('schoolOverview.accommodationLabel')
-                  }}</label>
-                  <select v-model="filters.accommodation" id="accommodation" class="form-select select-control">
-                    <option value="">{{ $t('schoolOverview.allAccommodations') }}</option>
-                    <option value="宿舍">{{ $t('schoolOverview.dorm') }}</option>
-                    <option value="寄宿家庭">{{ $t('schoolOverview.homestay') }}</option>
-                    <option value="自行租屋">{{ $t('schoolOverview.rent') }}</option>
-                  </select>
-                </div>
-                <div class="clear-button-container">
-                  <button @click="clearFilters" class="clear-button">
-                    {{ $t('schoolOverview.clearFilters') }}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
-        </section>
+  <!-- 手動輪播橫幅 -->
+  <div class="hero-banner">
+    <transition name="banner-fade" mode="out-in">
+      <div
+        :key="currentBanner"
+        class="hero-slide"
+        :style="{
+          backgroundImage: `linear-gradient(to bottom right, rgba(155,35,53,0.82), rgba(110,23,38,0.70)), url('${banners[currentBanner].bg}')`
+        }"
+      >
+        <div class="hero-slide-content">
+          <h1>{{ banners[currentBanner].title }}</h1>
+          <p>{{ banners[currentBanner].sub }}</p>
+          <button class="hero-cta" @click="banners[currentBanner].action()">
+            {{ banners[currentBanner].cta }}
+          </button>
+        </div>
       </div>
-      <div class="col-lg-8">
-        <section class="school-list-panel">
-          <div class="sort-section">
-            <button v-for="option in sortOptions" :key="option.value" @click="sortOption = option.value"
-              :class="['sort-button', { active: sortOption === option.value }]">
-              {{ option.label }}
-            </button>
-          </div>
-          <section class="user-profile d-flex flex-wrap justify-content-center gap-4">
-            <section class="card rounded-4 p-4" v-for="(person, index) in paginatedSchools" :key="index"
-              @click="goToDetailPage(person.name)">
-              <div class="school-img-block">
-                <img :src="person.image" :alt="`${person.name} 日本留學 學校介紹`" />
-              </div>
-              <div class="p-4">
-                <span class="name fw-semibold d-block">{{ person.name }}</span>
-                <span class="location-title fw-medium mb-2">{{ person.location }}</span>
-                <span class="d-block text-secondary mb-2">
-                  {{ $t('schoolOverview.intakeMonth') }}：{{ person.intake.join('月、') }}月
-                </span>
-                <p>{{ person.introduction }}</p>
-                <div class="mt-3 text-danger fw-semibold small text-center">{{ $t('schoolOverview.moreDetail') }}</div>
-              </div>
-            </section>
-          </section>
-        </section>
-      </div>
+    </transition>
+    <div class="banner-dots">
+      <button
+        v-for="(_, i) in banners"
+        :key="i"
+        type="button"
+        class="banner-dot"
+        :class="{ active: i === currentBanner }"
+        @click="goToBanner(i)"
+      />
     </div>
+  </div>
+
+  <!-- 五大承諾（獨立元件） -->
+  <TrustSection />
+
+  <main class="study-landing-wrapper">
+    <!-- 學習方式卡片 -->
+    <section class="landing-section">
+      <h2 class="landing-section-title">選擇你的學習方式</h2>
+      <div class="mode-grid">
+        <div
+          v-for="mode in studyModes"
+          :key="mode.value"
+          class="mode-card"
+          @click="goToSchoolsByMode(mode.value)"
+        >
+          <div class="mode-card-img-wrap">
+            <img :src="mode.image" :alt="mode.label" class="mode-card-img" />
+            <span class="mode-card-badge">{{ mode.sub }}</span>
+          </div>
+          <div class="mode-card-body">
+            <h3 class="mode-card-title">{{ mode.label }}</h3>
+            <p class="mode-card-desc">{{ mode.desc }}</p>
+            <div class="mode-card-tags">
+              <span v-for="tag in mode.tags" :key="tag" class="mode-card-tag">{{ tag }}</span>
+            </div>
+          </div>
+          <div class="mode-card-footer">
+            <span class="mode-card-cta">了解更多 →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 地區選擇：日本地圖 -->
+    <section class="landing-section landing-section--alt">
+      <h2 class="landing-section-title">{{ $t('schoolOverview.regionLabel') }}</h2>
+      <JapanZoneMap v-model="selectedZone" />
+    </section>
+
+    <!-- 留學情報 -->
+    <section v-if="latestNews && latestNews.length" class="landing-section">
+      <h2 class="landing-section-title">留學情報</h2>
+      <ClientOnly>
+        <Swiper
+          :slides-per-view="1"
+          :space-between="20"
+          :loop="latestNews.length > 3"
+          :breakpoints="{ 640: { slidesPerView: 2 }, 1100: { slidesPerView: 3 } }"
+          class="news-swiper"
+        >
+          <SwiperSlide v-for="(article, i) in latestNews" :key="article.path + i">
+            <NuxtLink :to="toPagePath(article.path)" class="news-card">
+              <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
+              <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
+              <div class="news-card-body">
+                <span class="news-card-date">{{ formatDate(article.date) }}</span>
+                <h3 class="news-card-title">{{ article.title }}</h3>
+                <p class="news-card-desc">{{ article.description }}</p>
+              </div>
+            </NuxtLink>
+          </SwiperSlide>
+        </Swiper>
+        <template #fallback>
+          <div class="news-fallback-grid">
+            <NuxtLink
+              v-for="(article, i) in latestNews.slice(0, 3)"
+              :key="article.path + i"
+              :to="toPagePath(article.path)"
+              class="news-card"
+            >
+              <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
+              <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
+              <div class="news-card-body">
+                <span class="news-card-date">{{ formatDate(article.date) }}</span>
+                <h3 class="news-card-title">{{ article.title }}</h3>
+                <p class="news-card-desc">{{ article.description }}</p>
+              </div>
+            </NuxtLink>
+          </div>
+        </template>
+      </ClientOnly>
+    </section>
+
+    <!-- 熱門學校推薦 -->
+    <section class="landing-section">
+      <h2 class="landing-section-title">{{ $t('schoolOverview.title') }}</h2>
+      <div class="featured-grid">
+        <NuxtLink
+          v-for="(school, i) in featuredSchools"
+          :key="i"
+          :to="`/study/${encodeURIComponent(school.name)}`"
+          class="featured-card"
+        >
+          <img :src="school.image" :alt="`${school.name} 日本留學 學校介紹`" />
+          <div class="featured-card-body">
+            <h3>{{ school.name }}</h3>
+            <p>{{ school.location }}</p>
+            <span class="featured-card-link">{{ $t('schoolDetail.viewMore') }}</span>
+          </div>
+        </NuxtLink>
+      </div>
+      <div class="landing-section-more">
+        <button class="btn-outline-primary" @click="goToAllSchools">
+          {{ $t('schoolOverview.moreDetail') }}
+        </button>
+      </div>
+    </section>
   </main>
+
   <ContactIcon />
   <Footer />
 </template>
 
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Yuji+Mai&display=swap');
-
-.jp-intro p,
-.jp-intro strong {
-  font-family: 'Kaisei Tokumin', 'Noto Serif JP', serif;
-}
-
-.jp-intro {
-  position: relative;
-  overflow: hidden;
-  animation: introFadeUp .7s ease-out both .05s;
-  line-height: 2.5;
-  color: #3e3a39;
-  text-align: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-  flex-direction: column;
-}
-
-.jp-intro h1 {
-  padding: 30px;
-}
-
-/* 文字排版：強調詞彙用和風色 */
-.jp-intro p {
-  font-size: 1.35rem;
-  letter-spacing: .2px;
-  /* padding: 50px; */
-
-  @media (max-width: 1200px) {
-    font-size: 1rem;
-  }
-}
-
-.jp-intro strong {
-  color: #9c2f2f;
-  /* 侘寂系紅（朱・緋） */
-  font-weight: 600;
-  position: relative;
-}
-
-.jp-intro strong::after {
-  /* 細筆觸底線 */
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px;
-  height: 6px;
-  background: linear-gradient(90deg, rgba(211, 159, 84, .0), rgba(211, 159, 84, .45), rgba(211, 159, 84, .0));
-  border-radius: 6px;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: strokeReveal .8s ease .3s forwards;
-}
-
-/* 櫻花花瓣（極簡形狀），緩慢上浮與旋轉 */
-.jp-intro__petal {
-  --size: 12px;
-  position: absolute;
-  width: var(--size);
-  height: var(--size);
-  left: 70%;
-  background: radial-gradient(circle at 30% 30%, #ffd9e1 0 40%, #f7b7c6 60% 100%);
-  border-radius: 60% 40% 60% 40%;
-  opacity: .0;
-  filter: blur(.2px);
-}
-
-.petal-1 {
-  left: 78%;
-  bottom: -6px;
-  animation: petalFloat 7s linear .3s infinite;
-}
-
-.petal-2 {
-  left: 86%;
-  bottom: -10px;
-  animation: petalFloat 8.5s linear 1s infinite;
-  --size: 10px;
-}
-
-.petal-3 {
-  left: 90%;
-  bottom: -8px;
-  animation: petalFloat 6.5s linear .6s infinite;
-  --size: 9px;
-}
-
-/* 動畫定義 */
-@keyframes introFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes kintsugiSlide {
-  from {
-    transform: translateX(-12px) scaleY(.96);
-    opacity: .0;
-  }
-
-  60% {
-    transform: translateX(0) scaleY(1.02);
-    opacity: .85;
-  }
-
-  to {
-    transform: translateX(0) scaleY(1);
-    opacity: 1;
-  }
-}
-
-@keyframes strokeReveal {
-  from {
-    transform: scaleX(0);
-    opacity: .4;
-  }
-
-  to {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-}
-
-@keyframes petalFloat {
-  0% {
-    transform: translateY(0) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: .55;
-  }
-
-  50% {
-    transform: translateY(-52px) translateX(-14px) rotate(80deg);
-    opacity: .45;
-  }
-
-  100% {
-    transform: translateY(-110px) translateX(-26px) rotate(180deg);
-    opacity: 0;
-  }
-}
-
+/* ════════════════════════════════
+   手動輪播橫幅
+════════════════════════════════ */
 .hero-banner {
   position: relative;
   width: 100%;
-  height: 300px;
   overflow: hidden;
 }
 
-.hero-banner img {
+.hero-slide {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
-}
-
-.hero-banner-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
-}
-
-.hero-banner-text p {
-  font-size: 1.5rem;
-  opacity: 0.9;
-}
-
-
-.d-flex>div {
-  flex: 1;
-}
-
-/* === General Typography & Layout === */
-.page-wrapper {
-  max-width: 90%;
-  margin: 50px auto;
-  padding: 4rem 1.5rem;
-  background-image: linear-gradient(rgba(255, 245, 230, 0.8),
-      /* 淡米白 */
-      rgba(248, 225, 210, 0.8)
-      /* 暖粉杏色 */
-    ),
-    url("../../img/school/background.jpg");
-  background-size: contain;
+  min-height: 480px;
+  background-size: cover;
   background-position: center;
-  border-radius: 20px;
-
-  .text-picture {
-    @media (max-width: 1400px) {
-      width: 50%;
-    }
-
-    @media (max-width: 1200px) {
-      width: 40%;
-    }
-
-    @media (max-width: 950px) {
-      width: 80%;
-    }
-  }
-}
-
-/* === Title Section === */
-.title {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9e5010;
-  font-weight: bolder;
-  width: 50%;
-  padding: 30px;
-  margin: 0 auto;
-}
-
-.hero-title {
   text-align: center;
-  padding: 0 1rem;
-  white-space: nowrap;
-  position: relative;
+  padding: 4rem 2rem;
 }
 
-/* === Filter Panel === */
-.filter-header {
-  position: relative;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 12px 12px 0 0;
-  background: linear-gradient(to bottom right, rgba(243, 235, 202, 0.751), rgba(206, 172, 79, 0.5));
-  overflow: hidden;
+.hero-slide-content {
+  max-width: 680px;
 }
 
-.filter-header::before,
-.filter-header::after {
-  content: "";
+.hero-slide-content h1 {
+  font-family: var(--font-serif);
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: #F8F4EC;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.hero-slide-content p {
+  font-size: var(--text-lg);
+  color: rgba(248, 244, 236, 0.88);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.hero-cta {
+  border: 2px solid #F8F4EC;
+  border-radius: var(--radius-full);
+  padding: 0.9rem 2.2rem;
+  font-weight: 700;
+  font-size: var(--text-base);
+  background: transparent;
+  color: #F8F4EC;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.hero-cta:hover {
+  background: #F8F4EC;
+  color: var(--c-primary);
+}
+
+.banner-fade-enter-active,
+.banner-fade-leave-active {
+  transition: opacity 0.6s ease;
+}
+
+.banner-fade-enter-from,
+.banner-fade-leave-to {
+  opacity: 0;
+}
+
+.banner-dots {
   position: absolute;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.filter-header::before {
-  top: -20px;
-  left: -20px;
-  width: 60px;
-  height: 60px;
-  background-color: rgba(255, 255, 255, 0.35);
-}
-
-.filter-header::after {
-  bottom: -20px;
-  right: -20px;
-  width: 80px;
-  height: 80px;
-  background-color: rgba(255, 255, 255, 0.25);
-  transform: rotate(45deg);
-}
-
-.filter-header h2 {
-  font-size: 1.25rem;
-  color: #9e5010;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
-}
-
-.filter-subtext {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.filter-block-container {
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  padding: 1rem;
-  border-radius: 0 0 12px 12px;
-  background: linear-gradient(to bottom right, rgba(245, 209, 167, 0.95), rgba(232, 147, 29, 0.5));
-  backdrop-filter: blur(4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-}
-
-.select-group {
-  display: flex;
-  flex-direction: column;
   gap: 0.5rem;
-  width: 100%;
+  z-index: 10;
 }
 
-.select-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
+.banner-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(248, 244, 236, 0.4);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  padding: 0;
 }
 
-.filter-block-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #6b4b1f;
+.banner-dot.active {
+  background: #F8F4EC;
+  transform: scale(1.3);
 }
 
-.select-control,
-.keyword-input {
-  padding: 0.75rem 1.25rem;
-  border-radius: 999px;
-  border: 1px solid #d6a267;
-  font-size: 0.95rem;
-  background-color: #fff;
+/* ════════════════════════════════
+   Landing wrapper & Section
+════════════════════════════════ */
+.study-landing-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
 }
 
-.clear-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
+.landing-section { padding: 3rem 0; }
+
+.landing-section--alt {
+  /* background: var(--c-primary-muted); */
+  border-radius: var(--radius-lg);
+  padding: 2rem;
 }
 
-.clear-button {
-  border-radius: 10px;
-  padding: 0.75rem 1.25rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-/* 排序區域 */
-.sort-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  padding: 1rem;
-  background: linear-gradient(to right, #fceabb, #fceabb);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
-  width: 100%;
-}
-
-.sort-button {
-  flex: 1 1 20%;
-  /* 優先兩個一行，太小就自動換行 */
-  min-width: 120px;
-  /* 防止按鈕太窄 */
-  padding: 0.6rem;
-  font-size: 0.9rem;
+.landing-section-title {
   text-align: center;
-  border: 1px solid #e5b76f;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.85);
-  color: #4b3a22;
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  margin-bottom: 2rem;
+}
+
+.landing-section-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-outline-primary {
+  border: 1px solid var(--c-primary);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--c-primary);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  padding: 0.9rem 2.2rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-
-  @media (max-width: 1200px) {
-    flex: 1 1 100%;
-  }
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
-
-.sort-button:hover {
-  background-color: #fff8e7;
-  border-color: #d7a24d;
+.btn-outline-primary:hover {
+  background: var(--c-primary);
+  color: #fff;
 }
 
-.sort-button.active {
-  background-color: #d68c28;
-  color: white;
-  font-weight: bold;
-  border-color: #c37610;
+/* ════════════════════════════════
+   學習方式卡片
+════════════════════════════════ */
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
-.school-filter-panel {
-  width: 100%;
-  border-radius: 12px;
-}
-
-.school-list-panel {
-  flex: 1;
+.mode-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  transition: border-color var(--transition-fast);
 }
 
-.user-profile .card {
+.mode-card:hover { border-color: var(--c-primary); }
+.mode-card:hover .mode-card-cta { color: var(--c-primary-light); }
+.mode-card-img-wrap { position: relative; }
+
+.mode-card-img {
   width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  flex-direction: row;
-  background-color: #f8ebd8;
-  border: 1.5px solid #c7925b;
-  transition: 0.2s ease;
-  cursor: pointer;
-
-  @media (max-width: 1200px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-.user-profile .card:hover {
-  background-color: #ebc299;
-  color: #fff !important;
-}
-
-.user-profile .card:hover .location-title,
-.user-profile .card:hover p {
-  color: #fff !important;
-}
-
-.school-img-block {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-.school-img-block img {
-  width: 100%;
-  height: 100%;
+  height: 180px;
   object-fit: cover;
   display: block;
 }
 
-.user-profile .card .name {
-  font-size: 1.125rem;
+.mode-card-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: var(--c-primary);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
 }
 
-.user-profile .card .location-title {
-  color: #7f56d9;
+.mode-card-body { padding: 1.2rem 1.4rem; flex: 1; }
+
+.mode-card-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  margin: 0 0 0.6rem;
 }
 
-.user-profile .card p {
-  font-size: 0.875rem;
+.mode-card-desc {
+  font-size: var(--text-sm);
+  color: var(--c-text-secondary);
+  line-height: 1.7;
+  margin: 0 0 1rem;
 }
 
-/* === Utility Classes === */
-.line-clamp-2 {
+.mode-card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.mode-card-tag {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--c-primary-dark);
+  background: var(--c-primary-muted);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+.mode-card-footer {
+  padding: 0.9rem 1.4rem;
+  border-top: 1px solid var(--c-border);
+}
+
+.mode-card-cta {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--c-primary);
+  transition: color var(--transition-fast);
+}
+
+/* ════════════════════════════════
+   留學情報
+════════════════════════════════ */
+.news-swiper { padding-bottom: 1rem; }
+
+.news-fallback-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.news-card {
+  display: block;
+  height: 100%;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition-fast);
+}
+
+.news-card:hover { border-color: var(--c-primary); }
+.news-card-img { width: 100%; height: 160px; object-fit: cover; }
+.news-card-img--placeholder { background: var(--c-primary-muted); height: 160px; }
+.news-card-body { padding: 1.2rem; }
+
+.news-card-date {
+  font-size: var(--text-xs);
+  color: var(--c-primary);
+  font-weight: 600;
+}
+
+.news-card-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin: 0.4rem 0;
+  color: var(--c-text);
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-/* === Responsive === */
-@media (max-width: 1200px) {
-  .select-group {
-    flex-wrap: wrap;
-  }
+.news-card-desc {
+  font-size: var(--text-sm);
+  color: var(--c-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .school-overview-container {
-    flex-direction: column;
-  }
-
-  .school-filter-panel,
-  .school-list-panel {
-    width: 100%;
-  }
+/* ════════════════════════════════
+   熱門學校推薦
+════════════════════════════════ */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
-@media (max-width: 576px) {
-  .select-item {
-    width: 100%;
-  }
+.featured-card {
+  display: block;
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition-fast);
+}
 
-  .clear-button-container {
-    justify-content: center;
+.featured-card:hover { border-color: var(--c-primary); }
+.featured-card img { width: 100%; height: 160px; object-fit: cover; }
+.featured-card-body { padding: 1rem; }
+
+.featured-card-body h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: var(--c-text);
+}
+
+.featured-card-body p {
+  font-size: var(--text-sm);
+  color: var(--c-text-secondary);
+  margin-bottom: 0.6rem;
+}
+
+.featured-card-link {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--c-primary);
+}
+
+/* ════════════════════════════════
+   RWD
+════════════════════════════════ */
+@media (max-width: 900px) {
+  .mode-grid,
+  .featured-grid,
+  .news-fallback-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+  .landing-section--alt { padding: 1.5rem 1rem; }
+}
+
+@media (max-width: 640px) {
+  .hero-slide { min-height: 360px; padding: 3rem 1.5rem; }
+  .hero-slide-content h1 { font-size: var(--text-3xl); }
+  .hero-slide-content p { font-size: var(--text-base); }
+  .study-landing-wrapper { padding: 1.5rem 1rem 3rem; }
+  .landing-section { padding: 2rem 0; }
+  .landing-section--alt { padding: 1.2rem 0.8rem; border-radius: var(--radius-md); }
+  .landing-section-title { font-size: var(--text-xl); margin-bottom: 1.2rem; }
+  .mode-grid, .featured-grid, .news-fallback-grid { grid-template-columns: 1fr; }
+  .mode-card-img { height: 140px; }
+}
+
+@media (max-width: 480px) {
+  .hero-slide-content h1 { font-size: var(--text-2xl); }
+  .mode-card-body { padding: 1rem; }
+  .mode-card-footer { padding: 0.75rem 1rem; }
+  .news-card-body { padding: 0.9rem; }
+  .featured-card-body { padding: 0.8rem; }
 }
 </style>

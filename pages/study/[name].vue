@@ -92,7 +92,7 @@ useSeoMeta({
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                  <NuxtLink to="/study">{{ $t('schoolDetail.breadcrumb') }}</NuxtLink>
+                  <NuxtLink to="/study/schools">{{ $t('schoolDetail.breadcrumb') }}</NuxtLink>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">{{ school.name }}</li>
               </ol>

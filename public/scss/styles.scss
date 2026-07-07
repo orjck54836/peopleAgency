@@ -32,61 +32,241 @@ Version: 1.0
 6. Animations
 
 */
-:root {
-  --primary: 215, 169, 140;   /* 淺楓木色 */
-  --secondary: 199, 146, 91;  /* 蜂蜜棕 */
-  --background: 242, 232, 218; /* 米白色 */
-  --contrast: 165, 124, 101;  /* 暖灰木色 */
-  --accent: 227, 183, 120;    /* 淺金棕 */
-}
-
 @import "bootstrap.scss";
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Zen+Kurenaido&display=swap');
 
+/* ============================================================
+   FORMA Global — 全站設計 Token
+   留學線 (.line-study)  : 酒紅 × 白底  — 和風漆器感
+   工作線 (.line-work)   : 深藍 × 白底  — 現代正式商務感
+   ============================================================ */
+
+/* ── 全站共用基礎變數 ── */
+:root {
+  /* 字型 */
+  --font-serif: 'Noto Sans TC', serif;
+  --font-sans:  'Kaisei Decol', 'Noto Sans TC', sans-serif;
+
+  /* 字級 */
+  --text-xs:   0.72rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  2rem;
+  --text-4xl:  2.5rem;
+
+  /* 圓角 */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-full: 999px;
+
+  /* 間距 */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+
+  /* 過渡 */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+}
+
+/* ============================================================
+   留學線色票  :root, .line-study
+   主色：酒紅  #8B1A2F
+   底色：純白  #FFFFFF
+   ============================================================ */
+:root,
+.line-study {
+  --c-primary:         #8B1A2F;
+  --c-primary-light:   #B02440;
+  --c-primary-dark:    #5C0F1E;
+  --c-primary-muted:   #F5E8EB;
+
+  --c-bg:              #FFFFFF;
+  --c-bg-alt:          #FBF7F8;
+  --c-surface:         #FFFFFF;
+
+  --c-border:          #E8D5D8;
+  --c-border-strong:   #8B1A2F;
+
+  --c-text:            #1A0A0D;
+  --c-text-secondary:  #5C3340;
+  --c-text-muted:      #9E7A82;
+  --c-text-on-primary: #FFFFFF;
+
+  --font-heading: var(--font-serif);
+  --font-body:    var(--font-sans);
+}
+
+/* ============================================================
+   工作線色票  .line-work
+   主色：深藍  #1B3A6B
+   底色：純白  #FFFFFF
+   ============================================================ */
+.line-work {
+  --c-primary:         #1B3A6B;
+  --c-primary-light:   #2A5298;
+  --c-primary-dark:    #0F2347;
+  --c-primary-muted:   #E8EEF7;
+
+  --c-bg:              #FFFFFF;
+  --c-bg-alt:          #F6F8FC;
+  --c-surface:         #FFFFFF;
+
+  --c-border:          #D0DAE8;
+  --c-border-strong:   #1B3A6B;
+
+  --c-text:            #0A0F1A;
+  --c-text-secondary:  #3A506B;
+  --c-text-muted:      #7A95B0;
+  --c-text-on-primary: #FFFFFF;
+
+  --font-heading: var(--font-sans);
+  --font-body:    var(--font-sans);
+}
+
+/* ============================================================
+   全站基礎 Reset & Base
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: "Kaisei Decol", serif;
-  font-weight: 400;
-  font-style: normal;
-  background-color: rgb(var(--background)); /* 柔和米白色，讓畫面更乾淨舒適 */
-  color: rgb(var(--contrast)); /* 文字用暖灰木色，溫潤柔和 */
-  overflow-x: hidden;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--c-text);
+  background-color: var(--c-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--c-text);
+  line-height: 1.3;
+  margin-top: 0;
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl);  }
+h5 { font-size: var(--text-lg);  }
+h6 { font-size: var(--text-base);}
+
+p {
+  margin-top: 0;
+  color: var(--c-text-secondary);
+}
+
 a {
+  color: var(--c-primary);
   text-decoration: none;
-  color: rgb(var(--black));
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--c-primary-light);
+  }
 }
-p,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: rgb(var(--black));
-  margin-bottom: 0;
+
+img {
+  max-width: 100%;
+  display: block;
 }
-/* 行距 */
-h1,h2,li {
-  line-height: 1.75;
+
+ul, ol {
+  padding-left: 1.25rem;
 }
-h1 {
-  font-size: 28pt !important;
-}
-h2 {
-  font-size: 26pt !important;
-  color: #bb5b11dc !important;
-}
-h3 {
-  font-size: 16pt !important;
-  color: rgb(135 130 101 / 84%) !important;
-}
-h4 {
-  font-size: 14pt !important;
-  color: rgb(135 130 101 / 84%) !important;
-}
-input, select {
+
+button {
+  font-family: var(--font-body);
   cursor: pointer;
+}
+
+/* ============================================================
+   全站共用元件 Utility Classes
+   ============================================================ */
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--c-primary);
+  color: var(--c-text-on-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+
+  &:hover {
+    background: var(--c-primary-light);
+    color: var(--c-text-on-primary);
+  }
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--c-primary);
+  border: 1px solid var(--c-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+
+  &:hover {
+    background: var(--c-primary);
+    color: var(--c-text-on-primary);
+  }
+}
+
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.divider {
+  height: 1px;
+  background: var(--c-border);
+  margin: var(--space-lg) 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: var(--c-primary-muted);
+  color: var(--c-primary-dark);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: 600;
 }
 @media screen and (min-width: 1400px) {
   .btn {

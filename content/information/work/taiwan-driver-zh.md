@@ -4,7 +4,7 @@ description: "面對日本物流、觀光與運輸業嚴重的司機短缺問題
 date: "2026-01-12"
 author: "FORMA 台湾人材紹介"
 tags: ["日本司機短缺", "台灣司機", "特定技能", "外國司機雇用", "人材紹介", "日本運輸業"]
-cover: "../images/information/taiwan-driver/girl.jpg"
+cover: "/images/information/taiwan-driver/girl.jpg"
 ---
 
 # 日本司機人手不足｜台灣司機 × 專業代辦的一站式解方  
@@ -18,7 +18,7 @@ cover: "../images/information/taiwan-driver/girl.jpg"
 
 ## 為什麼選擇台灣？  
 
-![台灣司機 專業駕駛 形象](../images/information/taiwan-driver/pixabay.jpg)  
+![台灣司機 專業駕駛 形象](/images/information/taiwan-driver/pixabay.jpg)  
 
 - **駕駛文化相近**：台灣與日本同為左駕，交通規則與駕駛習慣高度相容  
 - **服務意識強**：多數台灣司機具備接待旅客、服務業經驗，適合觀光與接送需求  
@@ -32,7 +32,7 @@ cover: "../images/information/taiwan-driver/girl.jpg"
 雇用外國司機，真正困難的往往不是「人」，而是**流程**。  
 我們的角色，就是讓企業只需要專心在「用人」，其餘全部交給我們。  
 
-![人材介紹 流程示意](../images/information/taiwan-driver/flow.jpg)  
+![人材介紹 流程示意](/images/information/taiwan-driver/flow.jpg)  
 
 ### 我們負責的內容包括：  
 
@@ -56,7 +56,7 @@ cover: "../images/information/taiwan-driver/girl.jpg"
 
 ## 對日本企業的實際好處  
 
-![日本物流 司機短缺](../images/information/taiwan-driver/elevate.jpg)  
+![日本物流 司機短缺](/images/information/taiwan-driver/elevate.jpg)  
 
 - **快速補足人力缺口**：不必長期空轉或壓榨現有人員  
 - **降低人事試錯成本**：事前篩選與培訓，大幅減少不適任風險  
@@ -67,7 +67,7 @@ cover: "../images/information/taiwan-driver/girl.jpg"
 
 ## 適合導入的企業類型  
 
-![巴士 物流 接送 司機工作](../images/information/taiwan-driver/fauxels.jpg)  
+![巴士 物流 接送 司機工作](/images/information/taiwan-driver/fauxels.jpg)  
 
 - 物流、配送、運輸相關企業  
 - 觀光巴士、接送服務業者  
@@ -88,7 +88,7 @@ cover: "../images/information/taiwan-driver/girl.jpg"
 
 ## 結語  
 
-![穩定運輸 人材解決方案](../images/information/taiwan-driver/conclusion.jpg)  
+![穩定運輸 人材解決方案](/images/information/taiwan-driver/conclusion.jpg)  
 
 在司機短缺已成結構性問題的時代，  
 真正重要的不是「撐多久」，而是「換一種更聰明的方式」。  

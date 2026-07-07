@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-  const { t } = useI18n()
+const { t } = useI18n()
+const route = useRoute() 
 useHead({
   title: "FORMA台湾人材紹介",
   htmlAttrs: {
@@ -32,7 +33,8 @@ useSeoMeta({
 });
 </script>
 <template>
-  <div class="page-wrapper">
+  <!-- app.vue -->
+  <div class="page-wrapper" :class="route.path.startsWith('/work') ? 'line-work' : 'line-study'">
     <UApp>
       <NuxtRouteAnnouncer />
       <div class="global-background">
@@ -45,8 +47,9 @@ useSeoMeta({
 .global-background {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('./img/background.png');
-  min-height: 100vh; /* 至少撐滿整個視窗高度 */
+  /* background-image: url('./img/background.png'); */
+  min-height: 100vh;
+  /* 至少撐滿整個視窗高度 */
   display: flex;
   flex-direction: column;
 }

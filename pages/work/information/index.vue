@@ -12,8 +12,16 @@ const searchQuery = ref("");
 
 // 拿文章
 const { data: articles } = await useAsyncData("articles", () =>
-  queryCollection("content").all()
+  queryCollection("content").where("path", "LIKE", "/information/work/%").all()
 );
+
+function toPagePath(contentPath: string): string {
+  // /information/study/slug → /study/information/slug
+  // /information/work/slug  → /work/information/slug
+  return contentPath
+    .replace('/information/study/', '/study/information/')
+    .replace('/information/work/', '/work/information/')
+}
 
 // 關鍵字篩選
 const filteredArticles = computed(() => {
@@ -24,9 +32,9 @@ const filteredArticles = computed(() => {
   return articles.value.filter(
     (post) =>
       post.title.toLowerCase().includes(keyword) ||
-      post.meta?.description?.toLowerCase().includes(keyword) ||
-      post.meta?.author?.toLowerCase().includes(keyword) ||
-      (post.meta?.tags || []).some((tag: string) =>
+      post.description?.toLowerCase().includes(keyword) ||
+      post.author?.toLowerCase().includes(keyword) ||
+      (post.tags || []).some((tag: string) =>
         tag.toLowerCase().includes(keyword)
       )
   );
@@ -57,32 +65,32 @@ useSeoMeta({
 
     <!-- 卡片列表 -->
     <div v-if="filteredArticles?.length" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <article v-for="post in filteredArticles" :key="post._id"
+      <article v-for="post in filteredArticles" :key="post.path"
         class="article-card border rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all bg-white flex flex-col">
         <!-- 封面圖片 -->
-        <NuxtLink :to="post.path">
-          <img v-if="post.meta?.cover" :src="String(post.meta.cover)" :alt="post.title"
+        <NuxtLink :to="toPagePath(post.path)">
+          <img v-if="post.cover" :src="String(post.cover)" :alt="post.title"
             class="article-cover w-full h-52 object-cover" />
         </NuxtLink>
 
         <!-- 文字區塊 -->
         <div class="p-4 flex flex-col flex-grow">
-          <NuxtLink :to="post.path">
+          <NuxtLink :to="toPagePath(post.path)">
             <h2 class="text-xl font-semibold mb-3 text-gray-800 hover:text-indigo-600 line-clamp-2">
               {{ post.title }}
             </h2>
           </NuxtLink>
 
           <p class="text-gray-600 text-sm mb-3">
-            <time :datetime="post.meta?.date">{{ post.meta?.date }}</time> ｜ {{ post.meta?.author }}
+            <time :datetime="post.date">{{ post.date }}</time> ｜ {{ post.author }}
           </p>
 
           <p class="text-gray-700 text-base leading-relaxed line-clamp-3">
-            {{ post.meta?.description }}
+            {{ post.description }}
           </p>
 
           <div class="mt-auto pt-4">
-            <NuxtLink :to="post.path" class="text-indigo-600 text-sm font-medium hover:underline">
+            <NuxtLink :to="toPagePath(post.path)" class="text-indigo-600 text-sm font-medium hover:underline">
               {{ $t('information.readMore') }}
             </NuxtLink>
           </div>

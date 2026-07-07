@@ -194,18 +194,18 @@ onMounted(() => {
 // ---- 雙品牌色票（CSS variables，依 header--study / header--work 切換）----
 .header {
   &.header--study {
-    --line-bg-start: rgba(252, 227, 186, 0.5);
-    --line-bg-end: rgba(255, 232, 197, 0.5);
-    --line-accent: 211, 166, 39; // 金棕，呼應留學線
-    --line-font: 'Playfair Display', serif;
-  }
+  --line-bg-start: rgba(255, 255, 255, 0.95);
+  --line-bg-end:   rgba(251, 247, 248, 0.95);
+  --line-accent:   139, 26, 47;   /* 酒紅 RGB */
+  --line-font: 'Playfair Display', serif;
+}
 
-  &.header--work {
-    --line-bg-start: rgba(210, 222, 230, 0.6);
-    --line-bg-end: rgba(190, 205, 215, 0.5);
-    --line-accent: 47, 79, 99; // 沉穩藍灰，呼應人資/企業線
-    --line-font: 'Poppins', sans-serif;
-  }
+&.header--work {
+  --line-bg-start: rgba(255, 255, 255, 0.95);
+  --line-bg-end:   rgba(246, 248, 252, 0.95);
+  --line-accent:   27, 58, 107;   /* 深藍 RGB */
+  --line-font: 'Poppins', sans-serif;
+}
 }
 
 .logo-img {
