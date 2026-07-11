@@ -40,6 +40,7 @@ useSeoMeta({
       <div class="global-background">
         <NuxtPage />
       </div>
+      <LineFloatBtn />
     </UApp>
   </div>
 </template>

@@ -1,27 +1,27 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
 const route = useRoute()
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
-
 const currentPage = ref(1)
 const pageSize = 6
-
 const schools = ref<any[]>([])
 
-// 從 query string 讀取預設篩選條件（例如 /study/schools?region=hokkaido&type=語言學校）
+const initialRegions = route.query.regions
+  ? (route.query.regions as string).split(',')
+  : (route.query.region ? [route.query.region as string] : [])
+
 const filters = ref({
   keyword: (route.query.keyword as string) || '',
-  region: (route.query.region as string) || '',
+  regions: initialRegions as string[],
   intake: (route.query.intake as string) || '',
   type: (route.query.type as string) || '',
   accommodation: (route.query.accommodation as string) || ''
 })
-
-import { useI18n } from "vue-i18n"
 
 const { t } = useI18n()
 useSeoMeta({
@@ -30,33 +30,41 @@ useSeoMeta({
 })
 
 const regionOptions = [
-  { value: "tokyo", label: t("schoolOverview.region.tokyo") },
-  { value: "osaka", label: t("schoolOverview.region.osaka") },
-  { value: "nagoya", label: t("schoolOverview.region.nagoya") },
-  { value: "fukuoka", label: t("schoolOverview.region.fukuoka") },
+  { value: "tokyo",    label: t("schoolOverview.region.tokyo") },
+  { value: "osaka",    label: t("schoolOverview.region.osaka") },
+  { value: "nagoya",   label: t("schoolOverview.region.nagoya") },
+  { value: "fukuoka",  label: t("schoolOverview.region.fukuoka") },
   { value: "hokkaido", label: t("schoolOverview.region.hokkaido") },
-  { value: "kanagawa", label: t("schoolOverview.region.kanagawa") }
+  { value: "kanagawa", label: t("schoolOverview.region.kanagawa") },
 ]
 
+const initialRegionLabels = computed(() =>
+  filters.value.regions
+    .map((v) => regionOptions.find((r) => r.value === v)?.label)
+    .filter((v): v is string => Boolean(v))
+)
+
 const intakeOptions = [
-  { value: "1", label: `1` },
-  { value: "4", label: `4` },
-  { value: "7", label: `7` },
-  { value: "10", label: `10` }
+  { value: "1",  label: "1" },
+  { value: "4",  label: "4" },
+  { value: "7",  label: "7" },
+  { value: "10", label: "10" },
 ]
 
 const sortOption = ref("")
 const sortOptions = computed(() => [
-  { value: "", label: t("schoolOverview.sort.default") },
+  { value: "",             label: t("schoolOverview.sort.default") },
   { value: "tuition-desc", label: t("schoolOverview.sort.tuitionDesc") },
-  { value: "tuition-asc", label: t("schoolOverview.sort.tuitionAsc") },
-  { value: "popularity", label: t("schoolOverview.sort.popularity") }
+  { value: "tuition-asc",  label: t("schoolOverview.sort.tuitionAsc") },
+  { value: "popularity",   label: t("schoolOverview.sort.popularity") },
 ])
 
 const filteredSchools = computed(() => {
   return schools.value.filter((school) => {
     const keywordMatch = !filters.value.keyword || school.name.includes(filters.value.keyword)
-    const regionMatch = !filters.value.region || school.location === filters.value.region
+    const regionMatch =
+      initialRegionLabels.value.length === 0 ||
+      initialRegionLabels.value.includes(school.location)
     const intakeMatch = !filters.value.intake || school.intake.includes(filters.value.intake)
     const typeMatch = !filters.value.type || school.type === filters.value.type
     const accommodationMatch = !filters.value.accommodation || school.dormitory?.type === filters.value.accommodation
@@ -67,42 +75,30 @@ const filteredSchools = computed(() => {
 const sortedSchools = computed(() => {
   const list = [...filteredSchools.value]
   switch (sortOption.value) {
-    case 'tuition-desc':
-      return list.sort((a, b) => b.tuition - a.tuition)
-    case 'tuition-asc':
-      return list.sort((a, b) => a.tuition - b.tuition)
-    case 'popularity':
-      return list.sort((a, b) => b.popularity - a.popularity)
-    default:
-      return list
+    case 'tuition-desc': return list.sort((a, b) => b.tuition - a.tuition)
+    case 'tuition-asc':  return list.sort((a, b) => a.tuition - b.tuition)
+    case 'popularity':   return list.sort((a, b) => b.popularity - a.popularity)
+    default: return list
   }
 })
 
 const paginatedSchools = computed(() => {
   const start = (currentPage.value - 1) * pageSize
-  const end = start + pageSize
-  return sortedSchools.value.slice(start, end)
+  return sortedSchools.value.slice(start, start + pageSize)
 })
 
-const totalPages = computed(() => {
-  return Math.ceil(filteredSchools.value.length / pageSize)
-})
+const totalPages = computed(() =>
+  Math.ceil(filteredSchools.value.length / pageSize)
+)
 
 function clearFilters() {
-  filters.value = {
-    keyword: '',
-    region: '',
-    intake: '',
-    type: '',
-    accommodation: ''
-  }
+  filters.value = { keyword: '', regions: [], intake: '', type: '', accommodation: '' }
   currentPage.value = 1
   router.replace({ path: '/study/schools' })
 }
 
 function goToDetailPage(schoolName: string) {
-  const encoded = encodeURIComponent(schoolName)
-  router.push(`/study/${encoded}`)
+  router.push(`/study/${encodeURIComponent(schoolName)}`)
 }
 
 async function fetchSchools() {
@@ -126,596 +122,513 @@ onMounted(fetchSchools)
 
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
-  <div class="title">
-    <h1 class="hero-title">{{ $t('schoolOverview.title') }}</h1>
-  </div>
-  <div class="hero-banner">
-    <img src="/img/school/32810422_m.jpg" :alt="$t('schoolOverview.heroAlt')" />
-    <div class="hero-banner-text">
-      <p>{{ $t('schoolOverview.heroText') }}</p>
-    </div>
-  </div>
-  <main class="page-wrapper">
-    <div class="row justify-content-center">
-      <div class="row justify-content-center align-items-center">
-        <!-- 圖片 -->
-        <div class="col-lg-3 mb-3 mb-md-0 p-4 text-picture">
-          <img src="/img/school/depart.png" :alt="$t('schoolOverview.departAlt')" />
-        </div>
-        <!-- 文字 -->
-        <div class="col-lg-7 col-md-12 jp-intro p-4 p-md-5 d-flex">
-          <div>
-            <h1>{{ $t('schoolOverview.introTitle') }}</h1>
-          </div>
-          <div>
-            <span class="jp-intro__petal petal-1" aria-hidden="true"></span>
-            <span class="jp-intro__petal petal-2" aria-hidden="true"></span>
-            <span class="jp-intro__petal petal-3" aria-hidden="true"></span>
-            <p>{{ $t('schoolOverview.introDesc') }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="school-overview-container row">
-      <div class="col-lg-4">
-        <section class="school-filter-panel">
-          <section class="mb-5">
-            <div class="filter-header">
-              <h2>{{ $t('schoolOverview.filterTitle') }}</h2>
-              <p class="filter-subtext">{{ $t('schoolOverview.filterSubtitle') }}</p>
-            </div>
-            <div class="filter-block-container flex-wrap gap-3">
-              <div class="select-group">
-                <div class="select-item">
-                  <label class="filter-block-label" for="keyword">{{ $t('schoolOverview.keywordLabel') }}</label>
-                  <input v-model="filters.keyword" type="text" id="keyword"
-                    :placeholder="$t('schoolOverview.keywordPlaceholder')" class="form-control keyword-input" />
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="region">{{ $t('schoolOverview.regionLabel') }}</label>
-                  <select v-model="filters.region" id="region" class="form-select select-control">
-                    <option value="">{{ $t('schoolOverview.allRegions') }}</option>
-                    <option v-for="region in regionOptions" :key="region.value" :value="region.label">
-                      {{ region.label }}
-                    </option>
-                  </select>
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="intake">{{ $t('schoolOverview.intakeLabel') }}</label>
-                  <select v-model="filters.intake" id="intake" class="form-select select-control">
-                    <option value="">{{ $t('schoolOverview.allIntakes') }}</option>
-                    <option v-for="month in intakeOptions" :key="month.value" :value="month.label">
-                      {{ month.label }} {{ $t('schoolOverview.month') }}
-                    </option>
-                  </select>
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="type">{{ $t('schoolOverview.typeLabel') }}</label>
-                  <select v-model="filters.type" id="type" class="form-select select-control">
-                    <option value="">{{ $t('schoolOverview.allTypes') }}</option>
-                    <option value="語言學校">{{ $t('schoolOverview.langSchool') }}</option>
-                    <option value="專門學校">{{ $t('schoolOverview.vocSchool') }}</option>
-                    <option value="大學別科">{{ $t('schoolOverview.univPrep') }}</option>
-                  </select>
-                </div>
-                <div class="select-item">
-                  <label class="filter-block-label" for="accommodation">{{ $t('schoolOverview.accommodationLabel')
-                  }}</label>
-                  <select v-model="filters.accommodation" id="accommodation" class="form-select select-control">
-                    <option value="">{{ $t('schoolOverview.allAccommodations') }}</option>
-                    <option value="宿舍">{{ $t('schoolOverview.dorm') }}</option>
-                    <option value="寄宿家庭">{{ $t('schoolOverview.homestay') }}</option>
-                    <option value="自行租屋">{{ $t('schoolOverview.rent') }}</option>
-                  </select>
-                </div>
-                <div class="clear-button-container">
-                  <button @click="clearFilters" class="clear-button">
-                    {{ $t('schoolOverview.clearFilters') }}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
-        </section>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-eyebrow">日本語言學校</p>
+      <h1 class="page-hero-title">{{ $t('schoolOverview.title') }}</h1>
+      <p class="page-hero-sub">{{ $t('schoolOverview.heroText') }}</p>
+    </div>
+  </section>
+
+  <div class="schools-layout">
+    <!-- 左側篩選面板 -->
+    <aside class="filter-panel">
+      <div class="filter-header">
+        <h2>{{ $t('schoolOverview.filterTitle') }}</h2>
+        <p>{{ $t('schoolOverview.filterSubtitle') }}</p>
       </div>
-      <div class="col-lg-8">
-        <section class="school-list-panel">
-          <div class="sort-section">
-            <button v-for="option in sortOptions" :key="option.value" @click="sortOption = option.value"
-              :class="['sort-button', { active: sortOption === option.value }]">
-              {{ option.label }}
-            </button>
+
+      <div class="filter-body">
+        <!-- 關鍵字 -->
+        <div class="filter-field">
+          <label>{{ $t('schoolOverview.keywordLabel') }}</label>
+          <input
+            v-model="filters.keyword"
+            type="text"
+            :placeholder="$t('schoolOverview.keywordPlaceholder')"
+            class="filter-input"
+          />
+        </div>
+
+        <!-- 地區 -->
+        <div class="filter-field">
+          <label>{{ $t('schoolOverview.regionLabel') }}</label>
+          <select
+            :value="filters.regions[0] || ''"
+            class="filter-select"
+            @change="filters.regions = ($event.target as HTMLSelectElement).value
+              ? [($event.target as HTMLSelectElement).value] : []"
+          >
+            <option value="">{{ $t('schoolOverview.allRegions') }}</option>
+            <option v-for="r in regionOptions" :key="r.value" :value="r.value">{{ r.label }}</option>
+          </select>
+          <p v-if="filters.regions.length > 1" class="filter-note">
+            目前篩選：{{ initialRegionLabels.join('、') }}
+          </p>
+        </div>
+
+        <!-- 入學月份 -->
+        <div class="filter-field">
+          <label>{{ $t('schoolOverview.intakeLabel') }}</label>
+          <select v-model="filters.intake" class="filter-select">
+            <option value="">{{ $t('schoolOverview.allIntakes') }}</option>
+            <option v-for="m in intakeOptions" :key="m.value" :value="m.label">
+              {{ m.label }} {{ $t('schoolOverview.month') }}
+            </option>
+          </select>
+        </div>
+
+        <!-- 學校類型 -->
+        <div class="filter-field">
+          <label>{{ $t('schoolOverview.typeLabel') }}</label>
+          <select v-model="filters.type" class="filter-select">
+            <option value="">{{ $t('schoolOverview.allTypes') }}</option>
+            <option value="語言學校">{{ $t('schoolOverview.langSchool') }}</option>
+            <option value="專門學校">{{ $t('schoolOverview.vocSchool') }}</option>
+            <option value="大學別科">{{ $t('schoolOverview.univPrep') }}</option>
+          </select>
+        </div>
+
+        <!-- 住宿類型 -->
+        <div class="filter-field">
+          <label>{{ $t('schoolOverview.accommodationLabel') }}</label>
+          <select v-model="filters.accommodation" class="filter-select">
+            <option value="">{{ $t('schoolOverview.allAccommodations') }}</option>
+            <option value="宿舍">{{ $t('schoolOverview.dorm') }}</option>
+            <option value="寄宿家庭">{{ $t('schoolOverview.homestay') }}</option>
+            <option value="自行租屋">{{ $t('schoolOverview.rent') }}</option>
+          </select>
+        </div>
+
+        <button class="filter-clear" @click="clearFilters">
+          {{ $t('schoolOverview.clearFilters') }}
+        </button>
+      </div>
+    </aside>
+
+    <!-- 右側學校列表 -->
+    <div class="schools-main">
+      <!-- 排序列 -->
+      <div class="sort-bar">
+        <span class="sort-label">排序：</span>
+        <button
+          v-for="opt in sortOptions"
+          :key="opt.value"
+          class="sort-btn"
+          :class="{ active: sortOption === opt.value }"
+          @click="sortOption = opt.value"
+        >
+          {{ opt.label }}
+        </button>
+        <span class="result-count">共 {{ filteredSchools.length }} 所學校</span>
+      </div>
+
+      <!-- 學校卡片列表 -->
+      <div class="school-list">
+        <div
+          v-for="school in paginatedSchools"
+          :key="school.name"
+          class="school-card"
+          @click="goToDetailPage(school.name)"
+        >
+          <div class="school-card-img-wrap">
+            <img :src="school.image" :alt="school.name" class="school-card-img" />
+            <span class="school-card-type">{{ school.type }}</span>
           </div>
-          <section class="user-profile d-flex flex-wrap justify-content-center gap-4">
-            <section class="card rounded-4 p-4" v-for="(person, index) in paginatedSchools" :key="index"
-              @click="goToDetailPage(person.name)">
-              <div class="school-img-block">
-                <img :src="person.image" :alt="`${person.name} 日本留學 學校介紹`" />
-              </div>
-              <div class="p-4">
-                <span class="name fw-semibold d-block">{{ person.name }}</span>
-                <span class="location-title fw-medium mb-2">{{ person.location }}</span>
-                <span class="d-block text-secondary mb-2">
-                  {{ $t('schoolOverview.intakeMonth') }}：{{ person.intake.join('月、') }}月
-                </span>
-                <p>{{ person.introduction }}</p>
-                <div class="mt-3 text-danger fw-semibold small text-center">{{ $t('schoolOverview.moreDetail') }}</div>
-              </div>
-            </section>
-          </section>
-        </section>
+          <div class="school-card-body">
+            <h3 class="school-card-name">{{ school.name }}</h3>
+            <p class="school-card-location">📍 {{ school.location }}</p>
+            <p class="school-card-intake">
+              入學期間：{{ school.intake.join('月、') }}月
+            </p>
+            <p class="school-card-intro">{{ school.introduction }}</p>
+            <span class="school-card-cta">{{ $t('schoolOverview.moreDetail') }} →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 無結果 -->
+      <div v-if="filteredSchools.length === 0" class="no-result">
+        <p>找不到符合條件的學校，請調整篩選條件。</p>
+        <button class="filter-clear" @click="clearFilters">清除所有篩選</button>
+      </div>
+
+      <!-- 分頁 -->
+      <div v-if="totalPages > 1" class="pagination">
+        <button
+          v-for="p in totalPages"
+          :key="p"
+          class="page-btn"
+          :class="{ active: p === currentPage }"
+          @click="currentPage = p"
+        >
+          {{ p }}
+        </button>
       </div>
     </div>
-  </main>
+  </div>
+
   <ContactIcon />
   <Footer />
 </template>
 
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Yuji+Mai&display=swap');
-
-.jp-intro p,
-.jp-intro strong {
-  font-family: 'Kaisei Tokumin', 'Noto Serif JP', serif;
+/* ── Page Hero ── */
+.page-hero {
+  background: var(--c-primary);
+  padding: 3.5rem 2rem;
+  text-align: center;
 }
 
-.jp-intro {
-  position: relative;
-  overflow: hidden;
-  animation: introFadeUp .7s ease-out both .05s;
-  line-height: 2.5;
-  color: #3e3a39;
-  text-align: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-  flex-direction: column;
-}
+.page-hero-inner { max-width: 640px; margin: 0 auto; }
 
-.jp-intro h1 {
-  padding: 30px;
-}
-
-.jp-intro p {
-  font-size: 1.35rem;
-  letter-spacing: .2px;
-
-  @media (max-width: 1200px) {
-    font-size: 1rem;
-  }
-}
-
-.jp-intro strong {
-  color: #9c2f2f;
+.page-hero-eyebrow {
+  font-size: var(--text-xs);
   font-weight: 600;
-  position: relative;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin: 0 0 0.5rem;
 }
 
-.jp-intro strong::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px;
-  height: 6px;
-  background: linear-gradient(90deg, rgba(211, 159, 84, .0), rgba(211, 159, 84, .45), rgba(211, 159, 84, .0));
-  border-radius: 6px;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: strokeReveal .8s ease .3s forwards;
+.page-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
 }
 
-.jp-intro__petal {
-  --size: 12px;
-  position: absolute;
-  width: var(--size);
-  height: var(--size);
-  left: 70%;
-  background: radial-gradient(circle at 30% 30%, #ffd9e1 0 40%, #f7b7c6 60% 100%);
-  border-radius: 60% 40% 60% 40%;
-  opacity: .0;
-  filter: blur(.2px);
+.page-hero-sub {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.82);
+  margin: 0;
+  line-height: 1.7;
 }
 
-.petal-1 {
-  left: 78%;
-  bottom: -6px;
-  animation: petalFloat 7s linear .3s infinite;
-}
-
-.petal-2 {
-  left: 86%;
-  bottom: -10px;
-  animation: petalFloat 8.5s linear 1s infinite;
-  --size: 10px;
-}
-
-.petal-3 {
-  left: 90%;
-  bottom: -8px;
-  animation: petalFloat 6.5s linear .6s infinite;
-  --size: 9px;
-}
-
-@keyframes introFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes kintsugiSlide {
-  from {
-    transform: translateX(-12px) scaleY(.96);
-    opacity: .0;
-  }
-
-  60% {
-    transform: translateX(0) scaleY(1.02);
-    opacity: .85;
-  }
-
-  to {
-    transform: translateX(0) scaleY(1);
-    opacity: 1;
-  }
-}
-
-@keyframes strokeReveal {
-  from {
-    transform: scaleX(0);
-    opacity: .4;
-  }
-
-  to {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-}
-
-@keyframes petalFloat {
-  0% {
-    transform: translateY(0) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: .55;
-  }
-
-  50% {
-    transform: translateY(-52px) translateX(-14px) rotate(80deg);
-    opacity: .45;
-  }
-
-  100% {
-    transform: translateY(-110px) translateX(-26px) rotate(180deg);
-    opacity: 0;
-  }
-}
-
-.hero-banner {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-}
-
-.hero-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
-}
-
-.hero-banner-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
-}
-
-.hero-banner-text p {
-  font-size: 1.5rem;
-  opacity: 0.9;
-}
-
-.d-flex>div {
-  flex: 1;
-}
-
-.page-wrapper {
-  max-width: 90%;
-  margin: 50px auto;
-  padding: 4rem 1.5rem;
-  background-image: linear-gradient(rgba(255, 245, 230, 0.8), rgba(248, 225, 210, 0.8)), url("../../img/school/background.jpg");
-  background-size: contain;
-  background-position: center;
-  border-radius: 20px;
-
-  .text-picture {
-    @media (max-width: 1400px) {
-      width: 50%;
-    }
-
-    @media (max-width: 1200px) {
-      width: 40%;
-    }
-
-    @media (max-width: 950px) {
-      width: 80%;
-    }
-  }
-}
-
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9e5010;
-  font-weight: bolder;
-  width: 50%;
-  padding: 30px;
+/* ── 整體佈局 ── */
+.schools-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 0;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+  align-items: flex-start;
 }
 
-.hero-title {
-  text-align: center;
-  padding: 0 1rem;
-  white-space: nowrap;
-  position: relative;
+/* ── 左側篩選面板 ── */
+.filter-panel {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: sticky;
+  top: 80px;
+  margin-right: 1.5rem;
 }
 
 .filter-header {
-  position: relative;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 12px 12px 0 0;
-  background: linear-gradient(to bottom right, rgba(243, 235, 202, 0.751), rgba(206, 172, 79, 0.5));
-  overflow: hidden;
-}
-
-.filter-header::before,
-.filter-header::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.filter-header::before {
-  top: -20px;
-  left: -20px;
-  width: 60px;
-  height: 60px;
-  background-color: rgba(255, 255, 255, 0.35);
-}
-
-.filter-header::after {
-  bottom: -20px;
-  right: -20px;
-  width: 80px;
-  height: 80px;
-  background-color: rgba(255, 255, 255, 0.25);
-  transform: rotate(45deg);
+  background: var(--c-primary);
+  padding: 1rem 1.2rem;
 }
 
 .filter-header h2 {
-  font-size: 1.25rem;
-  color: #9e5010;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.2rem;
 }
 
-.filter-subtext {
-  font-size: 0.9rem;
-  color: #555;
+.filter-header p {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.75);
+  margin: 0;
 }
 
-.filter-block-container {
+.filter-body {
+  background: var(--c-surface);
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  padding: 1rem;
-  border-radius: 0 0 12px 12px;
-  background: linear-gradient(to bottom right, rgba(245, 209, 167, 0.95), rgba(232, 147, 29, 0.5));
-  backdrop-filter: blur(4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  gap: 1rem;
 }
 
-.select-group {
+.filter-field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.3rem;
+}
+
+.filter-field label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--c-primary);
+  letter-spacing: 0.04em;
+}
+
+.filter-input,
+.filter-select {
   width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  background: var(--c-bg);
+  color: var(--c-text);
+  transition: border-color var(--transition-fast);
 }
 
-.select-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: var(--c-primary);
 }
 
-.filter-block-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #6b4b1f;
+.filter-note {
+  font-size: var(--text-xs);
+  color: var(--c-text-muted);
+  margin: 0;
 }
 
-.select-control,
-.keyword-input {
-  padding: 0.75rem 1.25rem;
-  border-radius: 999px;
-  border: 1px solid #d6a267;
-  font-size: 0.95rem;
-  background-color: #fff;
-}
-
-.clear-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.clear-button {
-  border-radius: 10px;
-  padding: 0.75rem 1.25rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.sort-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  padding: 1rem;
-  background: linear-gradient(to right, #fceabb, #fceabb);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
+.filter-clear {
   width: 100%;
-}
-
-.sort-button {
-  flex: 1 1 20%;
-  min-width: 120px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--c-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
   padding: 0.6rem;
-  font-size: 0.9rem;
-  text-align: center;
-  border: 1px solid #e5b76f;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.85);
-  color: #4b3a22;
   cursor: pointer;
-  transition: all 0.2s ease;
-
-  @media (max-width: 1200px) {
-    flex: 1 1 100%;
-  }
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+  margin-top: 0.5rem;
 }
 
-.sort-button:hover {
-  background-color: #fff8e7;
-  border-color: #d7a24d;
+.filter-clear:hover {
+  border-color: var(--c-primary);
+  color: var(--c-primary);
 }
 
-.sort-button.active {
-  background-color: #d68c28;
-  color: white;
-  font-weight: bold;
-  border-color: #c37610;
-}
-
-.school-filter-panel {
-  width: 100%;
-  border-radius: 12px;
-}
-
-.school-list-panel {
-  flex: 1;
+/* ── 右側主區 ── */
+.schools-main {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-.user-profile .card {
-  width: 100%;
+/* ── 排序列 ── */
+.sort-bar {
   display: flex;
   align-items: center;
-  padding: 1rem;
-  flex-direction: row;
-  background-color: #f8ebd8;
-  border: 1.5px solid #c7925b;
-  transition: 0.2s ease;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+}
+
+.sort-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--c-text-muted);
+}
+
+.sort-btn {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  background: var(--c-surface);
+  color: var(--c-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
   cursor: pointer;
-
-  @media (max-width: 1200px) {
-    flex-direction: column;
-    text-align: center;
-  }
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
-.user-profile .card:hover {
-  background-color: #ebc299;
-  color: #fff !important;
+.sort-btn:hover {
+  border-color: var(--c-primary);
+  color: var(--c-primary);
 }
 
-.user-profile .card:hover .location-title,
-.user-profile .card:hover p {
-  color: #fff !important;
+.sort-btn.active {
+  background: var(--c-primary);
+  color: #fff;
+  border-color: var(--c-primary);
 }
 
-.school-img-block {
-  width: 200px;
-  height: 200px;
+.result-count {
+  margin-left: auto;
+  font-size: var(--text-xs);
+  color: var(--c-text-muted);
+}
+
+/* ── 學校卡片 ── */
+.school-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.school-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  border-radius: 12px;
-  flex-shrink: 0;
+  background: var(--c-surface);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.school-img-block img {
+.school-card:hover {
+  border-color: var(--c-primary);
+  box-shadow: 0 2px 12px rgba(139,26,47,0.08);
+}
+
+.school-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.school-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
 }
 
-.user-profile .card .name {
-  font-size: 1.125rem;
+.school-card:hover .school-card-img {
+  transform: scale(1.04);
 }
 
-.user-profile .card .location-title {
-  color: #7f56d9;
+.school-card-type {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  background: var(--c-primary);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
 }
 
-.user-profile .card p {
-  font-size: 0.875rem;
+.school-card-body {
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
 }
 
-.line-clamp-2 {
+.school-card-name {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0;
+}
+
+.school-card-location {
+  font-size: var(--text-sm);
+  color: var(--c-text-muted);
+  margin: 0;
+}
+
+.school-card-intake {
+  font-size: var(--text-sm);
+  color: var(--c-text-secondary);
+  margin: 0;
+}
+
+.school-card-intro {
+  font-size: var(--text-sm);
+  color: var(--c-text-secondary);
+  line-height: 1.6;
+  margin: 0.25rem 0 0;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-@media (max-width: 1200px) {
-  .select-group {
-    flex-wrap: wrap;
+.school-card-cta {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-top: 0.5rem;
+}
+
+/* ── 無結果 ── */
+.no-result {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--c-text-muted);
+  border: 1px dashed var(--c-border);
+  border-radius: var(--radius-md);
+}
+
+.no-result p { margin: 0 0 1rem; }
+
+/* ── 分頁 ── */
+.pagination {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.page-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  background: var(--c-surface);
+  color: var(--c-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.page-btn:hover {
+  border-color: var(--c-primary);
+  color: var(--c-primary);
+}
+
+.page-btn.active {
+  background: var(--c-primary);
+  color: #fff;
+  border-color: var(--c-primary);
+}
+
+/* ── RWD ── */
+@media (max-width: 900px) {
+  .schools-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-panel {
+    position: static;
+    margin-right: 0;
+  }
+
+  .school-card {
+    grid-template-columns: 160px 1fr;
   }
 }
 
-@media (max-width: 768px) {
-  .school-overview-container {
-    flex-direction: column;
+@media (max-width: 600px) {
+  .school-card {
+    grid-template-columns: 1fr;
   }
 
-  .school-filter-panel,
-  .school-list-panel {
-    width: 100%;
-  }
-}
-
-@media (max-width: 576px) {
-  .select-item {
-    width: 100%;
-  }
-
-  .clear-button-container {
-    justify-content: center;
+  .school-card-img-wrap {
+    height: 200px;
   }
 }
 </style>

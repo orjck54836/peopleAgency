@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import projectOne from "/img/common-questions/worker.jpg";
-import projectTwo from "/img/common-questions/price.jpg";
-import projectThree from "/img/common-questions/visa.jpg";
+import projectOne from "/images/common-questions/worker.jpg";
+import projectTwo from "/images/common-questions/price.jpg";
+import projectThree from "/images/common-questions/visa.jpg";
 
 const projects = [
   {
@@ -117,7 +117,7 @@ const currentProject = ref(projects[0]);
   text-align: center;
   padding: 5px;
   position: relative;
-  background-image: url("/img/commonImage/title-background.png");
+  background-image: url("/images/commonImage/title-background.png");
   background-size: cover;
   border-radius: 20px;
 }

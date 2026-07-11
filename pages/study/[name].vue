@@ -12,10 +12,7 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 const carousel = useTemplateRef('carousel')
 const activeIndex = ref(0)
 
-function onSelect(index: number) {
-  activeIndex.value = index
-}
-
+function onSelect(index: number) { activeIndex.value = index }
 function select(index: number) {
   activeIndex.value = index
   carousel.value?.emblaApi?.scrollTo(index)
@@ -29,14 +26,10 @@ const items = [
 
 const schoolName = decodeURIComponent(route.params.name as string)
 
-// SSR 階段就抓好資料，確保 SEO meta 與首屏內容一致
-const { data: allSchools } = await useAsyncData(
-  `schools-list`,
-  async () => {
-    const json = await $fetch<{ success: boolean; data: any[] }>('/api/schools')
-    return json.success ? json.data : []
-  }
-)
+const { data: allSchools } = await useAsyncData('schools-list', async () => {
+  const json = await $fetch<{ success: boolean; data: any[] }>('/api/schools')
+  return json.success ? json.data : []
+})
 
 const school = computed(() =>
   (allSchools.value ?? []).find((s) => s.name === schoolName)
@@ -44,13 +37,9 @@ const school = computed(() =>
 
 const recommendedSchools = computed(() => {
   const others = (allSchools.value ?? []).filter((s) => s.name !== schoolName)
-  // 用學校名稱當作 seed 排序，避免 SSR/CSR 結果不一致導致 hydration mismatch
-  return [...others]
-    .sort((a, b) => a.name.localeCompare(b.name))
-    .slice(0, 3)
+  return [...others].sort((a, b) => a.name.localeCompare(b.name)).slice(0, 3)
 })
 
-// SSR 階段即可正確產生帶學校名稱的 SEO meta
 useSeoMeta({
   title: computed(() =>
     school.value
@@ -65,76 +54,117 @@ useSeoMeta({
 })
 </script>
 
-
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
 
-  <main class="school-wrapper" v-if="school">
-    <div class="school-layout">
-      <!-- 左側圖片輪播 -->
-      <div class="flex-4 w-full">
-        <UCarousel ref="carousel" v-slot="{ item }" :items="items" class="w-full max-w-4xl mx-auto" @select="onSelect">
-          <img :src="item" class="rounded-lg mx-auto" :alt="`${school.name} 日本留學 學校圖片`" />
+  <main v-if="school" class="detail-page">
+
+    <!-- 麵包屑 -->
+    <div class="breadcrumb-bar">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <NuxtLink to="/study/schools">{{ $t('schoolDetail.breadcrumb') }}</NuxtLink>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">{{ school.name }}</li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- Hero 區：圖片 + 基本資訊 -->
+    <section class="detail-hero">
+      <!-- 圖片輪播 -->
+      <div class="detail-gallery">
+        <UCarousel
+          ref="carousel"
+          v-slot="{ item }"
+          :items="items"
+          class="gallery-carousel"
+          @select="onSelect"
+        >
+          <img :src="item" class="gallery-img" :alt="`${school.name} 學校圖片`" />
         </UCarousel>
-        <div class="flex gap-1 justify-content-center pt-4 max-w-xs mx-auto">
-          <div v-for="(item, index) in items" :key="index"
-            class="size-11 opacity-25 hover:opacity-100 transition-opacity"
-            :class="{ 'opacity-100': activeIndex === index }" @click="select(index)">
-            <img :src="item" width="44" height="44" class="rounded-lg" :alt="`${school.name} 校園環境縮圖`" />
+        <div class="gallery-thumbs">
+          <div
+            v-for="(item, index) in items"
+            :key="index"
+            class="thumb"
+            :class="{ active: activeIndex === index }"
+            @click="select(index)"
+          >
+            <img :src="item" :alt="`縮圖 ${index + 1}`" />
           </div>
         </div>
       </div>
 
-      <!-- 右側內容 -->
-      <div class="school-content-section">
-        <ul class="meta-list">
-          <div>
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-              <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item">
-                  <NuxtLink to="/study/schools">{{ $t('schoolDetail.breadcrumb') }}</NuxtLink>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">{{ school.name }}</li>
-              </ol>
-            </nav>
-            <h1 class="school-title mb-2">{{ school.name }}｜{{ $t('schoolDetail.titleSuffix') }}</h1>
-          </div>
+      <!-- 基本資訊側欄 -->
+      <div class="detail-info">
+        <span class="detail-type-tag">{{ school.type }}</span>
+        <h1 class="detail-name">{{ school.name }}</h1>
 
-          <li><strong>{{ $t('schoolDetail.location') }}</strong>{{ school.location }}</li>
-          <li><strong>{{ $t('schoolDetail.intake') }}</strong>{{ school.intake.join('月、') }}月</li>
-          <li><strong>{{ $t('schoolDetail.type') }}</strong>{{ school.type }}</li>
-          <li><strong>{{ $t('schoolDetail.duration') }}</strong>{{ school.tuitionDetails.at(-1)?.duration }}</li>
-          <li><strong>{{ $t('schoolDetail.target') }}</strong>{{ school.requirements[0] }}</li>
-          <li><strong>{{ $t('schoolDetail.japaneseLevel') }}</strong>{{ school.requirements[1] }}</li>
-          <li><strong>{{ $t('schoolDetail.brochure') }}</strong><a href="#">{{ $t('schoolDetail.download') }}</a></li>
+        <ul class="detail-meta">
+          <li>
+            <span class="meta-label">{{ $t('schoolDetail.location') }}</span>
+            <span class="meta-val">{{ school.location }}</span>
+          </li>
+          <li>
+            <span class="meta-label">{{ $t('schoolDetail.intake') }}</span>
+            <span class="meta-val">{{ school.intake.join('月、') }}月</span>
+          </li>
+          <li>
+            <span class="meta-label">{{ $t('schoolDetail.type') }}</span>
+            <span class="meta-val">{{ school.type }}</span>
+          </li>
+          <li>
+            <span class="meta-label">{{ $t('schoolDetail.duration') }}</span>
+            <span class="meta-val">{{ school.tuitionDetails.at(-1)?.duration }}</span>
+          </li>
+          <li>
+            <span class="meta-label">{{ $t('schoolDetail.target') }}</span>
+            <span class="meta-val">{{ school.requirements[0] }}</span>
+          </li>
+          <li>
+            <span class="meta-label">{{ $t('schoolDetail.japaneseLevel') }}</span>
+            <span class="meta-val">{{ school.requirements[1] }}</span>
+          </li>
+          <li>
+            <span class="meta-label">{{ $t('schoolDetail.brochure') }}</span>
+            <a href="#" class="meta-link">{{ $t('schoolDetail.download') }}</a>
+          </li>
         </ul>
 
-        <button class="booking-btn">{{ $t('schoolDetail.consultBtn') }}</button>
+        <NuxtLink to="/contact" class="consult-btn">
+          {{ $t('schoolDetail.consultBtn') }}
+        </NuxtLink>
       </div>
-    </div>
+    </section>
 
-    <section class="feature-layout">
-      <!-- 左側：課程特色 -->
-      <div class="features-section">
+    <!-- 詳細內容 + 側欄推薦 -->
+    <section class="detail-body">
+      <div class="detail-content">
+
+        <!-- 基本資料 -->
         <div class="detail-block">
           <h2>{{ $t('schoolDetail.basicInfo') }}</h2>
-          <ul>
-            <li><strong>{{ $t('schoolDetail.schoolName') }}</strong>{{ school.name }}</li>
-            <li><strong>{{ $t('schoolDetail.city') }}</strong>{{ school.location }}</li>
-            <li><strong>{{ $t('schoolDetail.intake') }}</strong>{{ school.intake.join('月、') }}月</li>
-            <li><strong>{{ $t('schoolDetail.type') }}</strong>{{ school.type }}</li>
-            <li><strong>{{ $t('schoolDetail.founded') }}</strong>{{ school.founded }}</li>
+          <ul class="info-list">
+            <li><span>{{ $t('schoolDetail.schoolName') }}</span><span>{{ school.name }}</span></li>
+            <li><span>{{ $t('schoolDetail.city') }}</span><span>{{ school.location }}</span></li>
+            <li><span>{{ $t('schoolDetail.intake') }}</span><span>{{ school.intake.join('月、') }}月</span></li>
+            <li><span>{{ $t('schoolDetail.type') }}</span><span>{{ school.type }}</span></li>
+            <li><span>{{ $t('schoolDetail.founded') }}</span><span>{{ school.founded }}</span></li>
           </ul>
         </div>
 
+        <!-- 學校介紹 -->
         <div class="detail-block">
           <h2>{{ $t('schoolDetail.introduction') }}</h2>
-          <p class="description">{{ school.introduction }}</p>
+          <p class="detail-text">{{ school.introduction }}</p>
         </div>
 
+        <!-- 學費資訊 -->
         <div class="detail-block">
           <h2>{{ $t('schoolDetail.tuitionInfo') }}</h2>
-          <div class="table-responsive">
+          <div class="table-wrap">
             <table class="tuition-table">
               <thead>
                 <tr>
@@ -153,294 +183,440 @@ useSeoMeta({
                   <td>{{ fee.entryFee }}</td>
                   <td>{{ fee.tuition }}</td>
                   <td>{{ fee.facility }}</td>
-                  <td>{{ fee.total }}</td>
+                  <td class="total-cell">{{ fee.total }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
+        <!-- 宿舍資訊 -->
         <div class="detail-block">
           <h2>{{ $t('schoolDetail.dormInfo') }}</h2>
-          <ul>
-            <li><strong>{{ $t('schoolDetail.dormType') }}</strong>{{ school.dormitory.type }}</li>
-            <li><strong>{{ $t('schoolDetail.dormRent') }}</strong>{{ school.dormitory.rent }} 日圓</li>
-            <li><strong>{{ $t('schoolDetail.dormMisc') }}</strong>{{ school.dormitory.misc }}</li>
-            <li><strong>{{ $t('schoolDetail.dormLocation') }}</strong>{{ school.dormitory.location }}</li>
+          <ul class="info-list">
+            <li><span>{{ $t('schoolDetail.dormType') }}</span><span>{{ school.dormitory.type }}</span></li>
+            <li><span>{{ $t('schoolDetail.dormRent') }}</span><span>{{ school.dormitory.rent }} 日圓</span></li>
+            <li><span>{{ $t('schoolDetail.dormMisc') }}</span><span>{{ school.dormitory.misc }}</span></li>
+            <li><span>{{ $t('schoolDetail.dormLocation') }}</span><span>{{ school.dormitory.location }}</span></li>
           </ul>
         </div>
 
+        <!-- 課程特色 -->
         <div class="detail-block">
           <h2>{{ $t('schoolDetail.features') }}</h2>
-          <ul>
-            <li v-for="(item, i) in school.features" :key="i">◆ {{ item }}</li>
+          <ul class="feature-list">
+            <li v-for="(item, i) in school.features" :key="i">
+              <span class="feature-dot"></span>{{ item }}
+            </li>
           </ul>
-          <p><strong>{{ $t('schoolDetail.courseDuration') }}</strong>{{ school.date }}</p>
+          <p class="detail-text" style="margin-top:0.75rem">
+            <strong>{{ $t('schoolDetail.courseDuration') }}</strong>{{ school.date }}
+          </p>
         </div>
 
+        <!-- 入學要件 -->
         <div class="detail-block">
           <h2>{{ $t('schoolDetail.requirements') }}</h2>
-          <ul>
-            <li v-for="(req, i) in school.requirements" :key="i">- {{ req }}</li>
+          <ul class="req-list">
+            <li v-for="(req, i) in school.requirements" :key="i">{{ req }}</li>
           </ul>
         </div>
+
       </div>
 
-      <!-- 右側：推薦學校 -->
-      <aside class="sidebar">
-        <div class="sidebar-header">{{ $t('schoolDetail.moreSchools') }}</div>
-        <div class="recommend-card" v-for="(rec, i) in recommendedSchools" :key="i">
+      <!-- 推薦學校側欄 -->
+      <aside class="detail-sidebar">
+        <h3 class="sidebar-title">{{ $t('schoolDetail.moreSchools') }}</h3>
+        <div
+          v-for="(rec, i) in recommendedSchools"
+          :key="i"
+          class="rec-card"
+        >
           <NuxtLink :to="`/study/${encodeURIComponent(rec.name)}`">
-            <div>
-              <img :src="rec.image" :alt="`${rec.name} 日本留學 推薦學校`" class="rec-img" />
-              <h3 class="rec-title">{{ rec.name }}</h3>
-              <div class="text-center mb-2">{{ $t('schoolDetail.viewMore') }}</div>
+            <img :src="rec.image" :alt="`${rec.name} 推薦學校`" class="rec-img" />
+            <div class="rec-body">
+              <p class="rec-name">{{ rec.name }}</p>
+              <p class="rec-location">{{ rec.location }}</p>
+              <span class="rec-cta">{{ $t('schoolDetail.viewMore') }} →</span>
             </div>
           </NuxtLink>
         </div>
       </aside>
     </section>
+
   </main>
 
   <ContactIcon />
   <Footer />
 </template>
 
-<style lang="scss" scoped>
-.school-wrapper {
-  max-width: 95%;
+<style scoped>
+.detail-page {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 3rem 1rem;
-
-  @media (max-width: 1400px) {
-    max-width: 95%;
-  }
+  padding: 0 1.5rem 5rem;
 }
 
-.school-layout {
+/* ── 麵包屑 ── */
+.breadcrumb-bar {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--c-border);
+  margin-bottom: 2rem;
+}
+
+.breadcrumb {
   display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-
-  @media (max-width: 1200px) {
-    flex-direction: column;
-  }
-}
-
-.school-image-section {
-  flex: 1 1 50%;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.school-image-section img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.school-content-section {
-  flex: 1 1 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  gap: 1rem;
-  padding: 20px 0;
-
-  @media (max-width: 1200px) {
-    align-items: center;
-  }
-}
-
-.breadcrumbs {
-  font-size: 0.85rem;
-  color: #999;
-}
-
-.school-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #9e5010;
-}
-
-.meta-list {
+  align-items: center;
+  gap: 0.5rem;
   list-style: none;
   padding: 0;
-  margin: 1rem 0;
+  margin: 0;
+  font-size: var(--text-sm);
 }
 
-.meta-list li {
-  margin-bottom: 0.4rem;
-  font-size: 0.95rem;
-  color: #333;
+.breadcrumb-item a {
+  color: var(--c-primary);
+  text-decoration: none;
 }
 
-.meta-list a {
-  color: #d67c00;
-  text-decoration: underline;
+.breadcrumb-item a:hover { text-decoration: underline; }
+
+.breadcrumb-item.active { color: var(--c-text-muted); }
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '›';
+  color: var(--c-border);
 }
 
-.booking-btn {
-  padding: 0.75rem;
+/* ── Hero 區 ── */
+.detail-hero {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+  align-items: flex-start;
+}
+
+/* 圖片輪播 */
+.detail-gallery { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.gallery-carousel { border-radius: var(--radius-md); overflow: hidden; }
+
+.gallery-img {
   width: 100%;
-  max-width: 300px;
-  background: linear-gradient(to right, #fa709a, #febb6e);
-  border: none;
-  border-radius: 999px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
 }
 
-.booking-btn:hover {
-  opacity: 0.85;
-}
-
-.not-found {
-  text-align: center;
-  padding: 4rem 2rem;
-  color: #c00;
-}
-
-.feature-layout {
+.gallery-thumbs {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-top: 3rem;
-
-  .features-section {
-    background-color: #fffdf7;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    flex: 1 1 65%;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(230, 150, 60, 0.1);
-    padding: 1rem;
-    max-width: 100%;
-    box-sizing: border-box;
-
-    .detail-block {
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(230, 150, 60, 0.1);
-      margin-bottom: 10px;
-      width: 100%;
-
-      h2 {
-        font-size: 1.25rem;
-        margin: 1.2rem 0;
-        color: #9e5010;
-      }
-    }
-
-    ul {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #444;
-    }
-
-    .description {
-      margin-bottom: 1rem;
-      color: #555;
-    }
-
-    .table-scale-wrapper {
-      width: 100%;
-      overflow: visible;
-      display: flex;
-      justify-content: center;
-    }
-
-    .tuition-table {
-      width: 100%;
-      max-width: 800px;
-      border-collapse: collapse;
-      font-size: 1rem;
-      transition: transform 0.2s ease;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-
-      thead {
-        background: linear-gradient(to right, #f7e2c3, #e6b87c);
-        color: #5c3c0d;
-        max-width: 100%;
-
-        th {
-          padding: 0.75rem 1rem;
-          text-align: center;
-          font-weight: 700;
-          border-bottom: 1px solid #e0c29e;
-          font-size: 0.8rem;
-        }
-      }
-
-      tbody {
-        tr {
-          transition: background 0.2s ease;
-          font-size: 0.8rem;
-
-          &:nth-child(even) {
-            background-color: #fdf7f0;
-          }
-
-          &:hover {
-            background-color: #fff1db;
-          }
-
-          td {
-            padding: 0.75rem 1rem;
-            text-align: center;
-            border-bottom: 1px solid #f0e2d0;
-            color: #444;
-          }
-        }
-      }
-    }
-  }
+  gap: 0.5rem;
 }
 
-.sidebar {
-  flex: 1 1 5%;
-  background: linear-gradient(to bottom right, #fff5eb, #ffe2cc);
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  height: fit-content;
-
-  .sidebar-header {
-    font-weight: bold;
-    font-size: 1rem;
-    color: #d67c00;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-}
-
-.recommend-card {
-  background: #fff;
-  border-radius: 12px;
-  margin-bottom: 1rem;
+.thumb {
+  width: 72px;
+  height: 54px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color var(--transition-fast);
+  flex-shrink: 0;
 }
 
-.recommend-card:hover {
-  transform: translateY(-4px);
+.thumb.active { border-color: var(--c-primary); }
+
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* 基本資訊側欄 */
+.detail-info {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  background: var(--c-surface);
+  position: sticky;
+  top: 80px;
 }
+
+.detail-type-tag {
+  display: inline-block;
+  background: var(--c-primary-muted);
+  color: var(--c-primary-dark);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.75rem;
+}
+
+.detail-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 800;
+  color: var(--c-primary-dark);
+  margin: 0 0 1.2rem;
+  line-height: 1.3;
+}
+
+.detail-meta {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.detail-meta li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--c-border);
+  font-size: var(--text-sm);
+  gap: 0.5rem;
+}
+
+.detail-meta li:last-child { border-bottom: none; }
+
+.meta-label {
+  color: var(--c-text-muted);
+  flex-shrink: 0;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding-top: 2px;
+}
+
+.meta-val { color: var(--c-text); text-align: right; }
+
+.meta-link {
+  color: var(--c-primary);
+  text-decoration: underline;
+  text-align: right;
+}
+
+.consult-btn {
+  display: block;
+  width: 100%;
+  background: var(--c-primary);
+  color: var(--c-text-on-primary);
+  text-align: center;
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: background var(--transition-fast);
+}
+
+.consult-btn:hover {
+  background: var(--c-primary-light);
+  color: var(--c-text-on-primary);
+}
+
+/* ── 詳細內容區 ── */
+.detail-body {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-block {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  background: var(--c-surface);
+}
+
+.detail-block h2 {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--c-border);
+}
+
+/* 資訊列表 */
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--c-border);
+  font-size: var(--text-sm);
+}
+
+.info-list li:last-child { border-bottom: none; }
+
+.info-list li span:first-child {
+  color: var(--c-text-muted);
+  font-weight: 600;
+  font-size: var(--text-xs);
+}
+
+.info-list li span:last-child { color: var(--c-text); }
+
+.detail-text {
+  font-size: var(--text-sm);
+  color: var(--c-text-secondary);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* 學費表 */
+.table-wrap { overflow-x: auto; }
+
+.tuition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.tuition-table thead tr {
+  background: var(--c-primary-muted);
+}
+
+.tuition-table th {
+  padding: 0.6rem 0.75rem;
+  text-align: center;
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  font-size: var(--text-xs);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.tuition-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: center;
+  color: var(--c-text-secondary);
+  border-bottom: 1px solid var(--c-border);
+  font-size: var(--text-xs);
+}
+
+.tuition-table tbody tr:last-child td { border-bottom: none; }
+
+.tuition-table tbody tr:nth-child(even) { background: var(--c-bg-alt); }
+
+.total-cell { font-weight: 700; color: var(--c-primary-dark); }
+
+/* 特色清單 */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--text-sm);
+  color: var(--c-text-secondary);
+}
+
+.feature-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* 入學要件 */
+.req-list {
+  padding-left: 1.2rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.req-list li {
+  font-size: var(--text-sm);
+  color: var(--c-text-secondary);
+  line-height: 1.6;
+}
+
+/* ── 推薦學校側欄 ── */
+.detail-sidebar { position: sticky; top: 80px; }
+
+.sidebar-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  margin: 0 0 1rem;
+}
+
+.rec-card {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  transition: border-color var(--transition-fast);
+}
+
+.rec-card:hover { border-color: var(--c-primary); }
+
+.rec-card a { text-decoration: none; color: inherit; display: block; }
 
 .rec-img {
   width: 100%;
-  height: 120px;
+  height: 110px;
   object-fit: cover;
+  display: block;
 }
 
-.rec-title {
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  color: #333;
+.rec-body { padding: 0.75rem; }
+
+.rec-name {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0 0 0.2rem;
+}
+
+.rec-location {
+  font-size: var(--text-xs);
+  color: var(--c-text-muted);
+  margin: 0 0 0.4rem;
+}
+
+.rec-cta {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--c-primary);
+}
+
+/* ── RWD ── */
+@media (max-width: 1024px) {
+  .detail-hero { grid-template-columns: 1fr; }
+  .detail-info { position: static; }
+  .detail-body { grid-template-columns: 1fr; }
+  .detail-sidebar { position: static; }
+}
+
+@media (max-width: 640px) {
+  .detail-page { padding: 0 1rem 4rem; }
+  .detail-block { padding: 1.2rem; }
 }
 </style>

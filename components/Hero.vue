@@ -52,7 +52,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import heroPhoto from '../img/hero.jpg'
+import heroPhoto from '../images/hero.jpg'
 defineEmits(['contact', 'explore'])
 defineProps({
   photoUrl: {

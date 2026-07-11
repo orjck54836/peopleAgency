@@ -98,14 +98,14 @@ const costLabels: Record<number, string> = {
 const defaultZone = 'kanto'
 
 const imageMap: Record<string, string> = {
-  hokkaido: '/img/study/japan-map-hokkaido.png',
-  tohoku: '/img/study/japan-map-tohoku.png',
-  kanto: '/img/study/japan-map-kanto.png',
-  chubu: '/img/study/japan-map-chubu.png',
-  kansai: '/img/study/japan-map-kansai.png',
-  chugoku: '/img/study/japan-map-chugoku.png',
-  shikoku: '/img/study/japan-map-shikoku.png',
-  kyushu: '/img/study/japan-map-kyushu.png',
+  hokkaido: '/images/study/japan-map-hokkaido.png',
+  tohoku: '/images/study/japan-map-tohoku.png',
+  kanto: '/images/study/japan-map-kanto.png',
+  chubu: '/images/study/japan-map-chubu.png',
+  kansai: '/images/study/japan-map-kansai.png',
+  chugoku: '/images/study/japan-map-chugoku.png',
+  shikoku: '/images/study/japan-map-shikoku.png',
+  kyushu: '/images/study/japan-map-kyushu.png',
 }
 
 const currentZone = computed(() =>

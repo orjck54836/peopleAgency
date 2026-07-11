@@ -38,14 +38,14 @@ const studyNavItems = [
   { text: 'studyTaiwanTitle', href: '/study/taiwan' },
   { text: 'informationTitle', href: '/study/information' },
   { text: 'ourStoryTitle', href: '/about_us' },
-  { text: 'commonQuestionTitle', href: '/study#common_questions' },
+  { text: 'commonQuestionTitle', href: '/study/common-questions' },
 ];
 
 const workNavItems = [
   { text: 'humanResourceTitle', href: '/work' },
   { text: 'informationTitle', href: '/work/information' },
   { text: 'ourStoryTitle', href: '/about_us' },
-  { text: 'commonQuestionTitle', href: '/work#common_questions' },
+  { text: 'commonQuestionTitle', href: '/work/common-questions' },
 ];
 
 const navItems = computed(() => (currentLine.value === 'work' ? workNavItems : studyNavItems));
@@ -94,7 +94,7 @@ onMounted(() => {
     <div class="container-fluid d-flex align-items-center justify-content-between">
       <!-- Logo -->
       <NuxtLink :to="localePath(`/${currentLine}`)" :class="classes">
-        <img src="../img/logo.png" alt="logo" class="logo-img" />
+        <img src="../images/logo.png" alt="logo" class="logo-img" />
       </NuxtLink>
 
       <!-- 主選單（取代原右側 Navigation） -->
@@ -111,24 +111,12 @@ onMounted(() => {
       <div class="d-flex align-items-center header-actions">
         <!-- 雙品牌切換器 -->
         <div class="line-switcher" role="tablist" aria-label="業務線切換">
-          <button
-            type="button"
-            class="line-switcher__btn"
-            :class="{ active: currentLine === 'study' }"
-            role="tab"
-            :aria-selected="currentLine === 'study'"
-            @click="switchLine('study')"
-          >
+          <button type="button" class="line-switcher__btn" :class="{ active: currentLine === 'study' }" role="tab"
+            :aria-selected="currentLine === 'study'" @click="switchLine('study')">
             {{ $t('schoolTitle') }}
           </button>
-          <button
-            type="button"
-            class="line-switcher__btn"
-            :class="{ active: currentLine === 'work' }"
-            role="tab"
-            :aria-selected="currentLine === 'work'"
-            @click="switchLine('work')"
-          >
+          <button type="button" class="line-switcher__btn" :class="{ active: currentLine === 'work' }" role="tab"
+            :aria-selected="currentLine === 'work'" @click="switchLine('work')">
             {{ $t('humanResourceTitle') }}
           </button>
         </div>
@@ -163,18 +151,10 @@ onMounted(() => {
     <transition name="slide-down">
       <div v-if="navOpen" class="mobile-nav d-xl-none">
         <div class="mobile-line-switcher">
-          <button
-            type="button"
-            :class="{ active: currentLine === 'study' }"
-            @click="switchLine('study'); toggleNav()"
-          >
+          <button type="button" :class="{ active: currentLine === 'study' }" @click="switchLine('study'); toggleNav()">
             {{ $t('schoolTitle') }}
           </button>
-          <button
-            type="button"
-            :class="{ active: currentLine === 'work' }"
-            @click="switchLine('work'); toggleNav()"
-          >
+          <button type="button" :class="{ active: currentLine === 'work' }" @click="switchLine('work'); toggleNav()">
             {{ $t('humanResourceTitle') }}
           </button>
         </div>
@@ -194,18 +174,20 @@ onMounted(() => {
 // ---- 雙品牌色票（CSS variables，依 header--study / header--work 切換）----
 .header {
   &.header--study {
-  --line-bg-start: rgba(255, 255, 255, 0.95);
-  --line-bg-end:   rgba(251, 247, 248, 0.95);
-  --line-accent:   139, 26, 47;   /* 酒紅 RGB */
-  --line-font: 'Playfair Display', serif;
-}
+    --line-bg-start: rgba(255, 255, 255, 0.95);
+    --line-bg-end: rgba(251, 247, 248, 0.95);
+    --c-primary: 139, 26, 47;
+    /* 酒紅 RGB */
+    --line-font: 'Playfair Display', serif;
+  }
 
-&.header--work {
-  --line-bg-start: rgba(255, 255, 255, 0.95);
-  --line-bg-end:   rgba(246, 248, 252, 0.95);
-  --line-accent:   27, 58, 107;   /* 深藍 RGB */
-  --line-font: 'Poppins', sans-serif;
-}
+  &.header--work {
+    --line-bg-start: rgba(255, 255, 255, 0.95);
+    --line-bg-end: rgba(246, 248, 252, 0.95);
+    --c-primary: 27, 58, 107;
+    /* 深藍 RGB */
+    --line-font: 'Poppins', sans-serif;
+  }
 }
 
 .logo-img {
@@ -257,7 +239,7 @@ onMounted(() => {
         bottom: -2px;
         width: 0;
         height: 2px;
-        background: rgb(var(--line-accent));
+        background: rgb(var(--c-primary));
         transition: width 0.3s ease;
       }
 
@@ -275,7 +257,7 @@ onMounted(() => {
   // ---- 雙品牌切換器 ----
   .line-switcher {
     display: flex;
-    border: 1px solid rgba(var(--line-accent), 0.5);
+    border: 1px solid rgba(var(--c-primary), 0.5);
     border-radius: 999px;
     overflow: hidden;
 
@@ -290,12 +272,12 @@ onMounted(() => {
       transition: background-color 0.25s ease, color 0.25s ease;
 
       &.active {
-        background-color: rgb(var(--line-accent));
+        background-color: rgb(var(--c-primary));
         color: #fff;
       }
 
       &:not(.active):hover {
-        background-color: rgba(var(--line-accent), 0.15);
+        background-color: rgba(var(--c-primary), 0.15);
       }
     }
 
@@ -311,7 +293,7 @@ onMounted(() => {
 
     button {
       flex: 1;
-      border: 1px solid rgba(var(--line-accent), 0.5);
+      border: 1px solid rgba(var(--c-primary), 0.5);
       border-radius: 8px;
       background: transparent;
       padding: 10px;
@@ -319,7 +301,7 @@ onMounted(() => {
       cursor: pointer;
 
       &.active {
-        background-color: rgb(var(--line-accent));
+        background-color: rgb(var(--c-primary));
         color: #fff;
       }
     }
@@ -364,22 +346,22 @@ onMounted(() => {
     text-align: center;
     font-size: 1rem;
     font-weight: 600;
-    background-color: rgb(var(--line-accent));
+    background-color: rgb(var(--c-primary));
     color: #fff;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(var(--line-accent), 0.2);
+    box-shadow: 0 4px 6px rgba(var(--c-primary), 0.2);
 
     &:hover {
-      background-color: rgba(var(--line-accent), 0.85);
-      box-shadow: 0 4px 10px rgba(var(--line-accent), 0.5);
+      background-color: rgba(var(--c-primary), 0.85);
+      box-shadow: 0 4px 10px rgba(var(--c-primary), 0.5);
     }
 
     &:active {
       transform: scale(0.97);
-      box-shadow: 0 2px 4px rgba(var(--line-accent), 0.3);
+      box-shadow: 0 2px 4px rgba(var(--c-primary), 0.3);
     }
 
     @media (max-width: 1200px) {
@@ -388,21 +370,17 @@ onMounted(() => {
   }
 
   .dropdown-menu {
-    background-color: rgb(var(--background));
-    border: 2px solid rgba(var(--line-accent), 0.2);
-    border-radius: 10px;
-    box-shadow: 4px 4px 12px rgba(var(--line-accent), 0.15), -4px -4px 12px rgba(var(--background), 0.2);
-    overflow: hidden;
-    padding: 10px 0;
-    min-width: 180px;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 0.5rem);
     left: 50%;
-    transform: translateX(-50%) translateY(-10px);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    display: block;
+    transform: translateX(-50%);
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-md);
+    min-width: 160px;
+    padding: 0.4rem 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    z-index: 100;
   }
 
   .dropdown-menu.show {
@@ -422,7 +400,7 @@ onMounted(() => {
   }
 
   .dropdown-menu li:hover {
-    background-color: rgba(var(--line-accent), 0.15);
+    background-color: rgba(var(--c-primary), 0.15);
     border-radius: 8px;
   }
 
@@ -445,12 +423,29 @@ onMounted(() => {
     }
 
     &:hover {
-      color: rgb(var(--line-accent));
+      color: rgb(var(--c-primary));
     }
   }
 
+  .dropdown-item {
+    display: block;
+    padding: 0.65rem 1.2rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--c-text-secondary);
+    text-decoration: none;
+    transition: background var(--transition-fast), color var(--transition-fast);
+    white-space: nowrap;
+  }
+
   .dropdown-item:hover {
-    background-color: rgba(var(--line-accent), 0.15);
+    background: var(--c-primary-muted);
+    color: var(--c-primary-dark);
+  }
+
+  .dropdown-item.router-link-active {
+    color: var(--c-primary);
+    font-weight: 700;
   }
 
   .menu-btn {
@@ -459,7 +454,7 @@ onMounted(() => {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(var(--line-accent), 0.8);
+    background-color: rgba(var(--c-primary), 0.8);
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     cursor: pointer;

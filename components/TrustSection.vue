@@ -2,7 +2,8 @@
   <section class="trust-section">
     <div class="trust-header">
       <h2 class="trust-headline">留學代辦的問題</h2>
-      <p class="trust-subhead">台灣人最怕代辦費不透明、被變相加價、出國後變孤兒。五個實在的承諾，重新定義留學代辦這件事。</p>
+      <p class="trust-subhead">大家最怕的代辦費不透明、變相加價、出國後沒人理。</p>
+      <p class="trust-subhead">我們的五個承諾，重新定義留學代辦的責任。</p>
     </div>
 
     <div class="trust-grid">
@@ -64,7 +65,6 @@
       <!-- 承諾 03：左文字 右展開 -->
       <div class="trust-row trust-row--left">
         <div class="trust-cell trust-cell--text">
-          <span class="promise-badge">98% 簽證過件率</span>
           <p class="promise-num">承諾 03 / 簽證過件</p>
           <h3 class="promise-title">入管局最刁鑽的文件，交給專家</h3>
           <p class="promise-body">針對日本入管局繁雜的留學理由書與經費支付說明，提供顧問一對一修改指導，大幅提高過件率。</p>
@@ -114,7 +114,6 @@
           </div>
         </div>
         <div class="trust-cell trust-cell--text">
-          <span class="promise-badge">40 所合作校</span>
           <p class="promise-num">承諾 04 / 精準媒合</p>
           <h3 class="promise-title">追星、升學、學技術，都幫你配到對的學校</h3>
           <p class="promise-body">不論你的目標是動漫留學、專業技術、升學還是純體驗，我們客製化精準推薦。</p>
@@ -124,7 +123,6 @@
       <!-- 承諾 05：左文字 右展開 -->
       <div class="trust-row trust-row--left">
         <div class="trust-cell trust-cell--text">
-          <p class="promise-num">承諾 05 / 一條龍輔導</p>
           <h3 class="promise-title">從出國前到在日就職，一路陪到底</h3>
           <p class="promise-body">出國前 JLPT 加強、在日期間打工介紹、畢業後正職媒合，全程陪伴不斷線。</p>
         </div>

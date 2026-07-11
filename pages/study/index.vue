@@ -24,21 +24,21 @@ const banners = [
   {
     title: '日本特色遊學',
     sub: '從 2 週到 2 年，找到最適合你的學習方式',
-    bg: '/img/hero.jpg',
+    bg: '/images/banner1.jpeg',
     cta: '探索學習方式',
     action: () => router.push('/study/schools'),
   },
   {
     title: '精選語言學校媒合',
     sub: '與日本多所語言學校深度合作，依你的目標精準推薦',
-    bg: '/img/hero.jpg',
+    bg: '/images/banner2.jpeg',
     cta: '查看學校列表',
     action: () => router.push('/study/schools'),
   },
   {
     title: '台日雙邊在地支援',
     sub: '台灣顧問協助申請，日本落地後不變孤兒',
-    bg: '/img/hero.jpg',
+    bg: '/images/banner3.jpeg',
     cta: '立即諮詢',
     action: () => router.push('/contact'),
   },
@@ -59,7 +59,26 @@ function goToBanner(i: number) {
   startBannerTimer()
 }
 
-onMounted(() => startBannerTimer())
+const imgRef = ref<HTMLElement | null>(null)
+const contentRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  startBannerTimer()
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.2 }
+  )
+  if (imgRef.value) observer.observe(imgRef.value)
+  if (contentRef.value) observer.observe(contentRef.value)
+})
 onUnmounted(() => { if (bannerTimer) clearInterval(bannerTimer) })
 
 // ── 學習方式 ──
@@ -68,7 +87,7 @@ const studyModes = [
     value: '短期遊學',
     label: '短期遊學',
     sub: '2週～3個月',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu8cypyMF0fDQkfvrm-Wk8B-zM5r23IAFsD0v4MUBhLw&s=10',
+    image: '/images/short-term-study.jpeg',
     desc: '適合想體驗日本生活、快速提升日語口說能力的學生。彈性安排行程，不需長期簽證，是踏出留學第一步的最佳選擇。',
     tags: ['無需長期簽證', '彈性行程', '生活體驗'],
   },
@@ -76,7 +95,7 @@ const studyModes = [
     value: '長期留學',
     label: '長期留學',
     sub: '6個月～2年',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu8cypyMF0fDQkfvrm-Wk8B-zM5r23IAFsD0v4MUBhLw&s=10',
+    image: '/images/long-term-study.jpeg',
     desc: '深度學習日語並融入當地生活，申請語言學校學生簽證，可合法打工補貼生活費，累積實質語言與生活能力。',
     tags: ['學生簽證', '合法打工', '語言深化'],
   },
@@ -84,7 +103,7 @@ const studyModes = [
     value: '升學進修',
     label: '升學進修',
     sub: '專門學校・大學・研究所',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu8cypyMF0fDQkfvrm-Wk8B-zM5r23IAFsD0v4MUBhLw&s=10',
+    image: '/images/education.jpeg',
     desc: '以取得日本學位或專業資格為目標，進入專門學校、大學或研究所就讀，為未來在日就業或學術發展奠定基礎。',
     tags: ['取得學位', '專業資格', '就業銜接'],
   },
@@ -150,13 +169,9 @@ function formatDate(dateStr?: string) {
   <!-- 手動輪播橫幅 -->
   <div class="hero-banner">
     <transition name="banner-fade" mode="out-in">
-      <div
-        :key="currentBanner"
-        class="hero-slide"
-        :style="{
-          backgroundImage: `linear-gradient(to bottom right, rgba(155,35,53,0.82), rgba(110,23,38,0.70)), url('${banners[currentBanner].bg}')`
-        }"
-      >
+      <div :key="currentBanner" class="hero-slide" :style="{
+        backgroundImage: `url('${banners[currentBanner].bg}')`
+      }">
         <div class="hero-slide-content">
           <h1>{{ banners[currentBanner].title }}</h1>
           <p>{{ banners[currentBanner].sub }}</p>
@@ -167,31 +182,38 @@ function formatDate(dateStr?: string) {
       </div>
     </transition>
     <div class="banner-dots">
-      <button
-        v-for="(_, i) in banners"
-        :key="i"
-        type="button"
-        class="banner-dot"
-        :class="{ active: i === currentBanner }"
-        @click="goToBanner(i)"
-      />
+      <button v-for="(_, i) in banners" :key="i" type="button" class="banner-dot"
+        :class="{ active: i === currentBanner }" @click="goToBanner(i)" />
     </div>
   </div>
-
+  <!-- 品牌理念區 -->
+  <section class="philosophy-section">
+    <div class="philosophy-inner">
+      <div class="philosophy-img-wrap" ref="imgRef">
+        <img src="/images/plane.png" alt="FORMA 留學理念" class="philosophy-img" />
+      </div>
+      <div class="philosophy-content" ref="contentRef">
+        <h2 class="philosophy-headline">
+          把對日本的嚮往<br>變成你的人生履歷
+        </h2>
+        <div class="philosophy-body">
+          <p>台灣人對日本文化一直有著深厚的情結，但很多時候，這份嚮往只停留在旅遊的幾天假期裡。「如果能真正生活在那裡，該有多好？」</p>
+          <p>其實，去日本留學、體驗沉浸式學習，並沒有想像中遙遠。相比歐美高昂的開銷，日本學費親民、文化適應期短，是含金量極高的選擇。</p>
+          <p>正因為看見這份熱情，我們成立了 Forma。從跨出台灣的第一步、適應當地環境，到畢業後開拓更多元的工作機會——這條路上，你不是一個人摸索，我們就在這裡。</p>
+        </div>
+        <NuxtLink to="/contact" class="philosophy-cta">開始諮詢 →</NuxtLink>
+      </div>
+    </div>
+  </section>
   <!-- 五大承諾（獨立元件） -->
   <TrustSection />
 
   <main class="study-landing-wrapper">
     <!-- 學習方式卡片 -->
     <section class="landing-section">
-      <h2 class="landing-section-title">選擇你的學習方式</h2>
+      <h2 class="philosophy-headline">選擇你的學習方式</h2>
       <div class="mode-grid">
-        <div
-          v-for="mode in studyModes"
-          :key="mode.value"
-          class="mode-card"
-          @click="goToSchoolsByMode(mode.value)"
-        >
+        <div v-for="mode in studyModes" :key="mode.value" class="mode-card" @click="goToSchoolsByMode(mode.value)">
           <div class="mode-card-img-wrap">
             <img :src="mode.image" :alt="mode.label" class="mode-card-img" />
             <span class="mode-card-badge">{{ mode.sub }}</span>
@@ -212,21 +234,16 @@ function formatDate(dateStr?: string) {
 
     <!-- 地區選擇：日本地圖 -->
     <section class="landing-section landing-section--alt">
-      <h2 class="landing-section-title">{{ $t('schoolOverview.regionLabel') }}</h2>
+      <h2 class="philosophy-headline">{{ $t('schoolOverview.regionLabel') }}</h2>
       <JapanZoneMap v-model="selectedZone" />
     </section>
 
     <!-- 留學情報 -->
     <section v-if="latestNews && latestNews.length" class="landing-section">
-      <h2 class="landing-section-title">留學情報</h2>
+      <h2 class="philosophy-headline">最新消息</h2>
       <ClientOnly>
-        <Swiper
-          :slides-per-view="1"
-          :space-between="20"
-          :loop="latestNews.length > 3"
-          :breakpoints="{ 640: { slidesPerView: 2 }, 1100: { slidesPerView: 3 } }"
-          class="news-swiper"
-        >
+        <Swiper :slides-per-view="1" :space-between="20" :loop="latestNews.length > 3"
+          :breakpoints="{ 640: { slidesPerView: 2 }, 1100: { slidesPerView: 3 } }" class="news-swiper">
           <SwiperSlide v-for="(article, i) in latestNews" :key="article.path + i">
             <NuxtLink :to="toPagePath(article.path)" class="news-card">
               <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
@@ -241,12 +258,8 @@ function formatDate(dateStr?: string) {
         </Swiper>
         <template #fallback>
           <div class="news-fallback-grid">
-            <NuxtLink
-              v-for="(article, i) in latestNews.slice(0, 3)"
-              :key="article.path + i"
-              :to="toPagePath(article.path)"
-              class="news-card"
-            >
+            <NuxtLink v-for="(article, i) in latestNews.slice(0, 3)" :key="article.path + i"
+              :to="toPagePath(article.path)" class="news-card">
               <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
               <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
               <div class="news-card-body">
@@ -258,31 +271,6 @@ function formatDate(dateStr?: string) {
           </div>
         </template>
       </ClientOnly>
-    </section>
-
-    <!-- 熱門學校推薦 -->
-    <section class="landing-section">
-      <h2 class="landing-section-title">{{ $t('schoolOverview.title') }}</h2>
-      <div class="featured-grid">
-        <NuxtLink
-          v-for="(school, i) in featuredSchools"
-          :key="i"
-          :to="`/study/${encodeURIComponent(school.name)}`"
-          class="featured-card"
-        >
-          <img :src="school.image" :alt="`${school.name} 日本留學 學校介紹`" />
-          <div class="featured-card-body">
-            <h3>{{ school.name }}</h3>
-            <p>{{ school.location }}</p>
-            <span class="featured-card-link">{{ $t('schoolDetail.viewMore') }}</span>
-          </div>
-        </NuxtLink>
-      </div>
-      <div class="landing-section-more">
-        <button class="btn-outline-primary" @click="goToAllSchools">
-          {{ $t('schoolOverview.moreDetail') }}
-        </button>
-      </div>
     </section>
   </main>
 
@@ -302,7 +290,7 @@ function formatDate(dateStr?: string) {
 
 .hero-slide {
   width: 100%;
-  min-height: 480px;
+  min-height: 550px;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -385,6 +373,122 @@ function formatDate(dateStr?: string) {
   transform: scale(1.3);
 }
 
+/* ── 品牌理念區 ── */
+.philosophy-section {
+  padding: 6rem 2rem;
+  background: var(--c-bg-alt);
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+  overflow: hidden;
+}
+
+.philosophy-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* ── 圖片側 ── */
+.philosophy-img-wrap {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  /* border: 1px solid var(--c-border); */
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.philosophy-img-wrap.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.philosophy-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── 文字側 ── */
+.philosophy-content {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
+}
+
+.philosophy-content.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.philosophy-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--c-text);
+  line-height: 1.3;
+  margin: 0 0 1.5rem;
+}
+
+.philosophy-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.philosophy-body p {
+  font-size: var(--text-sm);
+  color: var(--c-text-secondary);
+  line-height: 1.85;
+  margin: 0;
+}
+
+.philosophy-cta {
+  display: inline-block;
+  border: 1.5px solid var(--c-primary);
+  border-radius: var(--radius-full);
+  padding: 0.85rem 2.2rem;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--c-primary);
+  text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.philosophy-cta:hover {
+  background: var(--c-primary);
+  color: var(--c-text-on-primary);
+}
+
+/* RWD */
+@media (max-width: 768px) {
+  .philosophy-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .philosophy-img-wrap {
+    transform: translateY(-20px);
+  }
+
+  .philosophy-img-wrap.is-visible {
+    transform: translateY(0);
+  }
+
+  .philosophy-content {
+    transform: translateY(20px);
+  }
+
+  .philosophy-content.is-visible {
+    transform: translateY(0);
+  }
+}
+
 /* ════════════════════════════════
    Landing wrapper & Section
 ════════════════════════════════ */
@@ -394,7 +498,10 @@ function formatDate(dateStr?: string) {
   padding: 2rem 1.5rem 4rem;
 }
 
-.landing-section { padding: 3rem 0; }
+.landing-section {
+  text-align: center;
+  padding: 3rem 0;
+}
 
 .landing-section--alt {
   /* background: var(--c-primary-muted); */
@@ -454,9 +561,17 @@ function formatDate(dateStr?: string) {
   transition: border-color var(--transition-fast);
 }
 
-.mode-card:hover { border-color: var(--c-primary); }
-.mode-card:hover .mode-card-cta { color: var(--c-primary-light); }
-.mode-card-img-wrap { position: relative; }
+.mode-card:hover {
+  border-color: var(--c-primary);
+}
+
+.mode-card:hover .mode-card-cta {
+  color: var(--c-primary-light);
+}
+
+.mode-card-img-wrap {
+  position: relative;
+}
 
 .mode-card-img {
   width: 100%;
@@ -477,7 +592,10 @@ function formatDate(dateStr?: string) {
   border-radius: var(--radius-sm);
 }
 
-.mode-card-body { padding: 1.2rem 1.4rem; flex: 1; }
+.mode-card-body {
+  padding: 1.2rem 1.4rem;
+  flex: 1;
+}
 
 .mode-card-title {
   font-family: var(--font-serif);
@@ -494,7 +612,11 @@ function formatDate(dateStr?: string) {
   margin: 0 0 1rem;
 }
 
-.mode-card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.mode-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
 
 .mode-card-tag {
   font-size: var(--text-xs);
@@ -520,7 +642,9 @@ function formatDate(dateStr?: string) {
 /* ════════════════════════════════
    留學情報
 ════════════════════════════════ */
-.news-swiper { padding-bottom: 1rem; }
+.news-swiper {
+  padding-bottom: 1rem;
+}
 
 .news-fallback-grid {
   display: grid;
@@ -540,10 +664,24 @@ function formatDate(dateStr?: string) {
   transition: border-color var(--transition-fast);
 }
 
-.news-card:hover { border-color: var(--c-primary); }
-.news-card-img { width: 100%; height: 160px; object-fit: cover; }
-.news-card-img--placeholder { background: var(--c-primary-muted); height: 160px; }
-.news-card-body { padding: 1.2rem; }
+.news-card:hover {
+  border-color: var(--c-primary);
+}
+
+.news-card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.news-card-img--placeholder {
+  background: var(--c-primary-muted);
+  height: 160px;
+}
+
+.news-card-body {
+  padding: 1.2rem;
+}
 
 .news-card-date {
   font-size: var(--text-xs);
@@ -592,9 +730,19 @@ function formatDate(dateStr?: string) {
   transition: border-color var(--transition-fast);
 }
 
-.featured-card:hover { border-color: var(--c-primary); }
-.featured-card img { width: 100%; height: 160px; object-fit: cover; }
-.featured-card-body { padding: 1rem; }
+.featured-card:hover {
+  border-color: var(--c-primary);
+}
+
+.featured-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.featured-card-body {
+  padding: 1rem;
+}
 
 .featured-card-body h3 {
   font-size: var(--text-base);
@@ -619,31 +767,80 @@ function formatDate(dateStr?: string) {
    RWD
 ════════════════════════════════ */
 @media (max-width: 900px) {
+
   .mode-grid,
   .featured-grid,
   .news-fallback-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .landing-section--alt { padding: 1.5rem 1rem; }
+
+  .landing-section--alt {
+    padding: 1.5rem 1rem;
+  }
 }
 
 @media (max-width: 640px) {
-  .hero-slide { min-height: 360px; padding: 3rem 1.5rem; }
-  .hero-slide-content h1 { font-size: var(--text-3xl); }
-  .hero-slide-content p { font-size: var(--text-base); }
-  .study-landing-wrapper { padding: 1.5rem 1rem 3rem; }
-  .landing-section { padding: 2rem 0; }
-  .landing-section--alt { padding: 1.2rem 0.8rem; border-radius: var(--radius-md); }
-  .landing-section-title { font-size: var(--text-xl); margin-bottom: 1.2rem; }
-  .mode-grid, .featured-grid, .news-fallback-grid { grid-template-columns: 1fr; }
-  .mode-card-img { height: 140px; }
+  .hero-slide {
+    min-height: 360px;
+    padding: 3rem 1.5rem;
+  }
+
+  .hero-slide-content h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .hero-slide-content p {
+    font-size: var(--text-base);
+  }
+
+  .study-landing-wrapper {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .landing-section {
+    padding: 2rem 0;
+  }
+
+  .landing-section--alt {
+    padding: 1.2rem 0.8rem;
+    border-radius: var(--radius-md);
+  }
+
+  .landing-section-title {
+    font-size: var(--text-xl);
+    margin-bottom: 1.2rem;
+  }
+
+  .mode-grid,
+  .featured-grid,
+  .news-fallback-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mode-card-img {
+    height: 140px;
+  }
 }
 
 @media (max-width: 480px) {
-  .hero-slide-content h1 { font-size: var(--text-2xl); }
-  .mode-card-body { padding: 1rem; }
-  .mode-card-footer { padding: 0.75rem 1rem; }
-  .news-card-body { padding: 0.9rem; }
-  .featured-card-body { padding: 0.8rem; }
+  .hero-slide-content h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .mode-card-body {
+    padding: 1rem;
+  }
+
+  .mode-card-footer {
+    padding: 0.75rem 1rem;
+  }
+
+  .news-card-body {
+    padding: 0.9rem;
+  }
+
+  .featured-card-body {
+    padding: 0.8rem;
+  }
 }
 </style>

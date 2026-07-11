@@ -16,7 +16,7 @@
         <div class="intro-text">
           <div class="text">
             <img 
-              src="/img/information/2661118.png" 
+              src="/images/information/2661118.png" 
               :alt="$t('information.alt')" 
               class="img-fluid"
             >
@@ -71,7 +71,7 @@
   .information-section {
     text-align: center;
     padding: 5px;
-    background-image: url("../img/commonImage/title-background.png");
+    background-image: url("../images/commonImage/title-background.png");
     background-size: cover;
     border-radius: 20px;
   }
