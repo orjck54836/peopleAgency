@@ -239,39 +239,58 @@ function formatDate(dateStr?: string) {
     </section>
 
     <!-- 留學情報 -->
-    <section v-if="latestNews && latestNews.length" class="landing-section">
-      <h2 class="philosophy-headline">最新消息</h2>
-      <ClientOnly>
-        <Swiper :slides-per-view="1" :space-between="20" :loop="latestNews.length > 3"
-          :breakpoints="{ 640: { slidesPerView: 2 }, 1100: { slidesPerView: 3 } }" class="news-swiper">
-          <SwiperSlide v-for="(article, i) in latestNews" :key="article.path + i">
-            <NuxtLink :to="toPagePath(article.path)" class="news-card">
-              <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
-              <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
-              <div class="news-card-body">
-                <span class="news-card-date">{{ formatDate(article.date) }}</span>
-                <h3 class="news-card-title">{{ article.title }}</h3>
-                <p class="news-card-desc">{{ article.description }}</p>
-              </div>
-            </NuxtLink>
-          </SwiperSlide>
-        </Swiper>
-        <template #fallback>
-          <div class="news-fallback-grid">
-            <NuxtLink v-for="(article, i) in latestNews.slice(0, 3)" :key="article.path + i"
-              :to="toPagePath(article.path)" class="news-card">
-              <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
-              <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
-              <div class="news-card-body">
-                <span class="news-card-date">{{ formatDate(article.date) }}</span>
-                <h3 class="news-card-title">{{ article.title }}</h3>
-                <p class="news-card-desc">{{ article.description }}</p>
-              </div>
-            </NuxtLink>
+<section v-if="latestNews && latestNews.length" class="landing-section">
+  <h2 class="landing-section-title">留學情報</h2>
+  <ClientOnly>
+    <Swiper
+      :slides-per-view="1"
+      :space-between="16"
+      :loop="latestNews.length > 2"
+      :breakpoints="{
+        480: { slidesPerView: 1, spaceBetween: 16 },
+        640: { slidesPerView: 2, spaceBetween: 16 },
+        1024: { slidesPerView: 3, spaceBetween: 20 }
+      }"
+      class="news-swiper"
+    >
+      <SwiperSlide v-for="(article, i) in latestNews" :key="article.path + i">
+        <NuxtLink :to="toPagePath(article.path)" class="news-card">
+          <div class="news-card-img-wrap">
+            <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
+            <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
           </div>
-        </template>
-      </ClientOnly>
-    </section>
+          <div class="news-card-body">
+            <span class="news-card-date">{{ formatDate(article.date) }}</span>
+            <h3 class="news-card-title">{{ article.title }}</h3>
+            <p class="news-card-desc">{{ article.description }}</p>
+            <span class="news-card-cta">閱讀更多 →</span>
+          </div>
+        </NuxtLink>
+      </SwiperSlide>
+    </Swiper>
+    <template #fallback>
+      <div class="news-fallback-grid">
+        <NuxtLink
+          v-for="(article, i) in latestNews.slice(0, 3)"
+          :key="article.path + i"
+          :to="toPagePath(article.path)"
+          class="news-card"
+        >
+          <div class="news-card-img-wrap">
+            <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
+            <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
+          </div>
+          <div class="news-card-body">
+            <span class="news-card-date">{{ formatDate(article.date) }}</span>
+            <h3 class="news-card-title">{{ article.title }}</h3>
+            <p class="news-card-desc">{{ article.description }}</p>
+            <span class="news-card-cta">閱讀更多 →</span>
+          </div>
+        </NuxtLink>
+      </div>
+    </template>
+  </ClientOnly>
+</section>
   </main>
 
   <ContactIcon />
@@ -493,7 +512,7 @@ function formatDate(dateStr?: string) {
    Landing wrapper & Section
 ════════════════════════════════ */
 .study-landing-wrapper {
-  max-width: 1100px;
+  max-width: 80%;
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
 }
@@ -766,9 +785,16 @@ function formatDate(dateStr?: string) {
 /* ════════════════════════════════
    RWD
 ════════════════════════════════ */
-@media (max-width: 900px) {
+/* ════════════════════════════════
+   RWD
+════════════════════════════════ */
 
-  .mode-grid,
+/* 平板（≤ 900px）：三欄 → 兩欄 */
+@media (max-width: 900px) {
+  .mode-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .featured-grid,
   .news-fallback-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -779,22 +805,30 @@ function formatDate(dateStr?: string) {
   }
 }
 
+/* 大手機（≤ 640px）：全面單欄 */
 @media (max-width: 640px) {
   .hero-slide {
-    min-height: 360px;
-    padding: 3rem 1.5rem;
+    min-height: 320px;
+    padding: 2.5rem 1.2rem;
   }
 
   .hero-slide-content h1 {
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl);
   }
 
   .hero-slide-content p {
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-cta {
+    padding: 0.7rem 1.6rem;
+    font-size: var(--text-sm);
   }
 
   .study-landing-wrapper {
     padding: 1.5rem 1rem 3rem;
+    max-width: 100%;
   }
 
   .landing-section {
@@ -802,8 +836,9 @@ function formatDate(dateStr?: string) {
   }
 
   .landing-section--alt {
-    padding: 1.2rem 0.8rem;
+    padding: 1.5rem 1rem;
     border-radius: var(--radius-md);
+    margin: 0 -1rem;
   }
 
   .landing-section-title {
@@ -811,36 +846,60 @@ function formatDate(dateStr?: string) {
     margin-bottom: 1.2rem;
   }
 
-  .mode-grid,
-  .featured-grid,
-  .news-fallback-grid {
+  .landing-section-more {
+    margin-top: 1.2rem;
+  }
+
+  /* 學習方式：單欄 */
+  .mode-grid {
     grid-template-columns: 1fr;
   }
 
   .mode-card-img {
-    height: 140px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-slide-content h1 {
-    font-size: var(--text-2xl);
+    height: 160px;
   }
 
   .mode-card-body {
-    padding: 1rem;
+    padding: 1rem 1.2rem;
   }
 
   .mode-card-footer {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1.2rem;
   }
 
-  .news-card-body {
-    padding: 0.9rem;
+  /* 學校推薦：單欄 */
+  .featured-grid {
+    grid-template-columns: 1fr;
   }
 
-  .featured-card-body {
-    padding: 0.8rem;
+  /* 情報：fallback 單欄 */
+  .news-fallback-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .news-card-img {
+    height: 140px;
+  }
+  
+}
+
+/* 小手機（≤ 480px） */
+@media (max-width: 480px) {
+  .hero-slide-content h1 {
+    font-size: var(--text-xl);
+  }
+
+  .landing-section-title {
+    font-size: var(--text-lg);
+  }
+
+  .mode-card-img {
+    height: 130px;
+  }
+
+  .mode-card-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
   }
 }
 </style>

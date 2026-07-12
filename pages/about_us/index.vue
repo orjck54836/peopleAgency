@@ -116,7 +116,6 @@ const companyInfo = [
               ? '我們的創辦人擁有日商工作經驗，深刻理解台灣人想赴日工作時面臨的困境：不知道從哪裡找職缺、不清楚簽證該怎麼辦、也沒有人告訴你日本職場文化的眉眉角角。正因如此，我們決定成為這座橋梁。'
               : '正因為看見這份熱情，我們成立了這家代辦。我們不只幫你遞交表格，更想把在地經驗分享給你。從跨出台灣的第一步、適應當地環境，到畢業後開拓更多元的工作機會——這條路上，你不是一個人摸索。' }}
             </p>
-            <p>FORMA 成立至今，累積了超過 10 年的就業服務經驗，持有台灣就業服務乙級證照，在日本也有長期合作的在地夥伴。我們相信，每一個選擇出發的人，都值得有人陪著走。</p>
           </div>
         </div>
         <div class="story-img-wrap">
@@ -128,9 +127,8 @@ const companyInfo = [
     <!-- 核心價值 -->
     <section class="about-section about-section--alt">
       <div class="about-section-inner">
-        <p class="section-eyebrow">我們的承諾</p>
         <h2 class="section-title">
-          {{ isWorkLine ? '為什麼選擇 FORMA 找日本工作' : '為什麼選擇 FORMA 留學代辦' }}
+          {{ '為什麼選擇我們？' }}
         </h2>
         <div class="value-grid">
           <div v-for="v in values" :key="v.title" class="value-card">

@@ -97,8 +97,7 @@ function toggle(i: number) {
   <!-- Page Hero -->
   <section class="faq-hero">
     <div class="faq-hero-inner">
-      <p class="faq-hero-eyebrow">常見問題</p>
-      <h1 class="faq-hero-title">你想知道的，<br>我們都整理好了</h1>
+      <h1 class="faq-hero-title">常見問題</h1>
       <p class="faq-hero-sub">整理日本留學與赴日工作最常被詢問的問題，幫助你出發前做好充足準備。</p>
     </div>
   </section>

@@ -203,7 +203,7 @@
 }
 
 .trust-grid {
-  max-width: 900px;
+  max-width: 80%;
   margin: 0 auto;
 }
 
@@ -566,6 +566,11 @@
 
   .trust-cell {
     padding: 1.75rem 1.5rem;
+  }
+
+  .trust-grid {
+    max-width: 90%;
+    margin: 0 auto;
   }
 }
 
