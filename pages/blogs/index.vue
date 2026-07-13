@@ -32,10 +32,6 @@ const topics = [
     articles: ["Deploying Web Applications: A Guide", "Introduction to Continuous Deployment", "Deploying with Git and GitHub", "Best Practices for Secure Deployment", "Automating Deployments with CI/CD"],
   },
 ];
-const opened = ref(null);
-import AnimateHeight from "vue-animate-height";
-import { blogData } from "~/public/serviceType";
-import { formatString } from "~/utils/formatString";
 </script>
 <template>
   <header class="header-blog">
