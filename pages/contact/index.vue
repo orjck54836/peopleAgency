@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import logo from "/images/logo.png";
+import logo from "/images/logo-forma.png";
 
 
 const navOpen = ref(false);

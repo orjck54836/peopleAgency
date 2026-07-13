@@ -94,7 +94,7 @@ onMounted(() => {
     <div class="container-fluid d-flex align-items-center justify-content-between">
       <!-- Logo -->
       <NuxtLink :to="localePath(`/${currentLine}`)" :class="classes">
-        <img src="/images/logo.png" alt="logo" class="logo-img" />
+        <img src="/images/logo-forma.png" alt="logo" class="logo-img" />
       </NuxtLink>
 
       <!-- 主選單（取代原右側 Navigation） -->

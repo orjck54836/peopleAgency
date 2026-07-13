@@ -23,7 +23,14 @@ test -f .output/server/index.mjs || { echo "❌ .output/server/index.mjs 不存�
 du -sh .output/server || true
 
 echo "==> Step 2: 同步前端到 S3：s3://$S3_BUCKET"
+# 2a. 先完整同步所有檔案（含 --delete 清掉舊檔），用短快取當預設
 aws s3 sync .output/public "s3://$S3_BUCKET" --delete \
+  --cache-control "public,max-age=0,must-revalidate" \
+  ${AWS_PROFILE:+--profile "$AWS_PROFILE"} --region "$AWS_REGION"
+
+# 2b. 再針對帶 hash 的 _nuxt/ 覆蓋成長快取（不含 --delete，只更新 metadata）
+aws s3 cp "s3://$S3_BUCKET/_nuxt/" "s3://$S3_BUCKET/_nuxt/" \
+  --recursive --metadata-directive REPLACE \
   --cache-control "public,max-age=31536000,immutable" \
   ${AWS_PROFILE:+--profile "$AWS_PROFILE"} --region "$AWS_REGION"
 
