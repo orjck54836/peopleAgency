@@ -6,10 +6,12 @@ const route = useRoute()
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
 
-
+const { t } = useI18n()
 useSeoMeta({
   title: '常見問題｜FORMA 留學・就職代辦',
   description: '整理日本留學與赴日工作最常被詢問的問題，包含費用、簽證、申請流程、落地支援等，幫助你出發前做好充足準備。',
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 const studyFaqs = [
@@ -106,28 +108,14 @@ function toggle(i: number) {
     <!-- FAQ 列表 -->
     <div class="faq-body">
       <div class="faq-list">
-        <div
-          v-for="(faq, i) in faqs"
-          class="faq-item"
-          :class="{ 'faq-item--open': openIndex === i }"
-        >
-          <button
-            type="button"
-            class="faq-question"
-            :aria-expanded="openIndex === i"
-            @click="toggle(i)"
-          >
+        <div v-for="(faq, i) in faqs" class="faq-item" :class="{ 'faq-item--open': openIndex === i }">
+          <button type="button" class="faq-question" :aria-expanded="openIndex === i" @click="toggle(i)">
             <span class="faq-num">{{ String(i + 1).padStart(2, '0') }}</span>
             <span class="faq-q-text">{{ faq.q }}</span>
             <span class="faq-icon" aria-hidden="true">
               <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polyline
-                  points="3,6 8,11 13,6"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+                <polyline points="3,6 8,11 13,6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
               </svg>
             </span>
           </button>
@@ -152,11 +140,21 @@ function toggle(i: number) {
         <div class="aside-card aside-card--light">
           <p class="aside-eyebrow">快速連結</p>
           <ul class="aside-links">
-            <li><NuxtLink to="/study/schools">查看合作學校</NuxtLink></li>
-            <li><NuxtLink to="/study/information">留學情報專欄</NuxtLink></li>
-            <li><NuxtLink to="/study/short-term">短期遊學介紹</NuxtLink></li>
-            <li><NuxtLink to="/study/long-term">長期留學介紹</NuxtLink></li>
-            <li><NuxtLink to="/study/university">升學進修介紹</NuxtLink></li>
+            <li>
+              <NuxtLink to="/study/schools">查看合作學校</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/study/information">留學情報專欄</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/study/short-term">短期遊學介紹</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/study/long-term">長期留學介紹</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/study/university">升學進修介紹</NuxtLink>
+            </li>
           </ul>
         </div>
       </aside>
@@ -164,7 +162,7 @@ function toggle(i: number) {
 
   </main>
 
-  
+
   <Footer />
 </template>
 
@@ -176,14 +174,17 @@ function toggle(i: number) {
   text-align: center;
 }
 
-.faq-hero-inner { max-width: 600px; margin: 0 auto; }
+.faq-hero-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
 
 .faq-hero-eyebrow {
   font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   margin: 0 0 0.6rem;
 }
 
@@ -198,7 +199,7 @@ function toggle(i: number) {
 
 .faq-hero-sub {
   font-size: var(--text-sm);
-  color: rgba(255,255,255,0.82);
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.7;
   margin: 0;
 }
@@ -233,7 +234,9 @@ function toggle(i: number) {
   border-right: 1px solid var(--c-border);
 }
 
-.faq-tab:last-child { border-right: none; }
+.faq-tab:last-child {
+  border-right: none;
+}
 
 .faq-tab:hover {
   background: var(--c-primary-muted);
@@ -265,9 +268,13 @@ function toggle(i: number) {
   background: var(--c-surface);
 }
 
-.faq-item:last-child { border-bottom: none; }
+.faq-item:last-child {
+  border-bottom: none;
+}
 
-.faq-item--open { background: var(--c-bg); }
+.faq-item--open {
+  background: var(--c-bg);
+}
 
 .faq-question {
   width: 100%;
@@ -282,7 +289,9 @@ function toggle(i: number) {
   transition: background var(--transition-fast);
 }
 
-.faq-question:hover { background: var(--c-primary-muted); }
+.faq-question:hover {
+  background: var(--c-primary-muted);
+}
 
 .faq-num {
   font-size: var(--text-xs);
@@ -293,7 +302,9 @@ function toggle(i: number) {
   opacity: 0.6;
 }
 
-.faq-item--open .faq-num { opacity: 1; }
+.faq-item--open .faq-num {
+  opacity: 1;
+}
 
 .faq-q-text {
   font-size: var(--text-base);
@@ -303,7 +314,9 @@ function toggle(i: number) {
   flex: 1;
 }
 
-.faq-item--open .faq-q-text { color: var(--c-primary-dark); }
+.faq-item--open .faq-q-text {
+  color: var(--c-primary-dark);
+}
 
 .faq-icon {
   flex-shrink: 0;
@@ -316,9 +329,15 @@ function toggle(i: number) {
   transition: transform var(--transition-base);
 }
 
-.faq-icon svg { width: 16px; height: 16px; display: block; }
+.faq-icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
 
-.faq-item--open .faq-icon { transform: rotate(180deg); }
+.faq-item--open .faq-icon {
+  transform: rotate(180deg);
+}
 
 .faq-answer-wrap {
   max-height: 0;
@@ -326,7 +345,9 @@ function toggle(i: number) {
   transition: max-height 0.3s ease;
 }
 
-.faq-answer-wrap.open { max-height: 400px; }
+.faq-answer-wrap.open {
+  max-height: 400px;
+}
 
 .faq-answer {
   padding: 0 1.3rem 1.2rem 3.2rem;
@@ -357,7 +378,9 @@ function toggle(i: number) {
   padding: 1.4rem;
 }
 
-.aside-card--light { background: var(--c-bg-alt); }
+.aside-card--light {
+  background: var(--c-bg-alt);
+}
 
 .aside-eyebrow {
   font-size: var(--text-xs);
@@ -413,7 +436,9 @@ function toggle(i: number) {
   border-bottom: 1px solid var(--c-border);
 }
 
-.aside-links li:last-child { border-bottom: none; }
+.aside-links li:last-child {
+  border-bottom: none;
+}
 
 .aside-links a {
   display: block;
@@ -424,7 +449,9 @@ function toggle(i: number) {
   transition: color var(--transition-fast);
 }
 
-.aside-links a:hover { color: var(--c-primary); }
+.aside-links a:hover {
+  color: var(--c-primary);
+}
 
 /* ── RWD ── */
 @media (max-width: 768px) {
@@ -432,15 +459,31 @@ function toggle(i: number) {
     grid-template-columns: 1fr;
   }
 
-  .faq-aside { position: static; }
+  .faq-aside {
+    position: static;
+  }
 
-  .faq-answer { padding: 0 1.2rem 1rem 1.2rem; }
+  .faq-answer {
+    padding: 0 1.2rem 1rem 1.2rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .faq-hero { padding: 3rem 1.5rem; }
-  .faq-page { padding: 2rem 1rem 4rem; }
-  .faq-tabs { width: 100%; }
-  .faq-tab { flex: 1; text-align: center; }
+  .faq-hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .faq-page {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .faq-tabs {
+    width: 100%;
+  }
+
+  .faq-tab {
+    flex: 1;
+    text-align: center;
+  }
 }
 </style>

@@ -6,9 +6,13 @@ const router = useRouter()
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
 
+const { t } = useI18n()
+
 useSeoMeta({
   title: '升學進修｜日本專門學校・大學申請｜FORMA',
   description: '以取得日本學位或專業資格為目標，進入專門學校、大學或研究所就讀。FORMA 提供從語言學校銜接升學的完整規劃與申請代辦服務。',
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 const sections = [

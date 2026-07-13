@@ -6,9 +6,13 @@ const router = useRouter()
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
 
+const { t } = useI18n()
+
 useSeoMeta({
   title: '長期留學｜6個月～2年語言學校留學｜FORMA',
   description: '申請日本語言學校學生簽證，深度學習日語並融入當地生活，合法打工補貼生活費。FORMA 提供完整的長期留學申請代辦與支援服務。',
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 const sections = [

@@ -6,9 +6,13 @@ const router = useRouter()
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
 
+const { t } = useI18n()
+
 useSeoMeta({
   title: '短期遊學｜2週～3個月日本語言體驗｜FORMA',
   description: '不需要長期簽證，彈性安排2週到3個月的日本短期遊學課程。透過 FORMA 選擇適合的語言學校，快速提升日語口說能力並體驗日本生活。',
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 const sections = [

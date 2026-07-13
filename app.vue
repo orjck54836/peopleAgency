@@ -30,6 +30,8 @@ useHead({
 useSeoMeta({
   title: t("seo.blog.title"),
   description: t("seo.blog.description"),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 });
 </script>
 <template>

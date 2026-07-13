@@ -204,8 +204,6 @@ watch(
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9e5010;
-  font-weight: bolder;
   padding: 30px;
   padding-bottom: 0;
   margin: 0 auto;
@@ -259,12 +257,7 @@ watch(
       position: relative;
       transition: color 0.3s ease;
 
-      &.active {
-        color: #fff;
-      }
-
       &:hover {
-        color: #fff;
         transform: scale(1.05);
       }
     }
@@ -391,7 +384,7 @@ watch(
 
     .form-submit-btn {
       padding: 0.75rem 2rem;
-      background-color: rgb(var(--primary));
+      background-color: rgba(47, 40, 33, 0.657);
       border: none;
       border-radius: 8px;
       color: white;
@@ -400,7 +393,7 @@ watch(
       transition: 0.3s;
 
       &:hover {
-        // background-color: darken(rgb(var(--primary)), 10%);
+        background-color: rgba(47, 40, 33, 0.276);
       }
 
       &:active {

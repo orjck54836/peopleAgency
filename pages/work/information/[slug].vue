@@ -11,9 +11,12 @@ const { data: article } = await useAsyncData(() =>
   queryCollection('content').path(`/information/work/${route.params.slug}`).first()
 )
 
+const { t } = useI18n()
 useSeoMeta({
   title: article.value?.title,
-  description: article.value?.description
+  description: article.value?.description,
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 </script>
 
@@ -33,10 +36,10 @@ useSeoMeta({
 
       <!-- 作者與日期 -->
       <p class="text-gray-500 text-sm mb-10">
-        <time :datetime="String(article.meta?.date || '')">
-          {{ article.meta?.date }}
+        <time :datetime="String(article.date || '')">
+          {{ article.date }}
         </time>
-        ｜ {{ article.meta?.author }}
+        ｜ {{ article.author }}
       </p>
 
 
@@ -69,7 +72,7 @@ useSeoMeta({
     <div v-else class="text-center text-gray-500">{{ $t('information.noResults') }}</div>
   </section>
 
-  
+
   <Footer />
 </template>
 
@@ -131,6 +134,7 @@ useSeoMeta({
   padding-left: 1.5rem;
   margin-bottom: 1.4em;
 }
+
 .prose li {
   margin-bottom: 0.6em;
 }
@@ -199,4 +203,3 @@ useSeoMeta({
   margin: 1.5rem auto;
 }
 </style>
-

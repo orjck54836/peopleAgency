@@ -4,9 +4,12 @@ import { ref } from 'vue'
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
 
+const { t } = useI18n()
 useSeoMeta({
     title: '關於我們｜FORMA 日本就職代辦',
     description: '薪火相傳福爾摩沙國際有限公司（FORMA Global），提供台灣人赴日就職的專業媒合與簽證代辦服務，台日雙邊在地支援，陪你在日本找到屬於自己的位置。',
+    ogTitle: t('seo.study.title'),
+    ogDescription: t('seo.study.description'),
 })
 
 const values = [

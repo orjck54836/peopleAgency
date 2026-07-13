@@ -43,6 +43,8 @@ const filteredArticles = computed(() => {
 useSeoMeta({
   title: t("seo.blog.title"),
   description: t("seo.blog.description"),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 });
 </script>
 
@@ -101,7 +103,7 @@ useSeoMeta({
     <p v-else class="text-center text-gray-500">{{ $t('information.noResults') }}</p>
   </section>
 
-  
+
   <Footer />
 </template>
 

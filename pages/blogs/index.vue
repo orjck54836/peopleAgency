@@ -1,10 +1,5 @@
 <script setup lang="ts">
 import logo from "/images/logo.png";
-import fb from "/images/fb.png";
-import tt from "/images/tt.png";
-import x from "/images/x.png";
-import sp from "/images/sp.png";
-import hero from "/images/hero.png";
 const topics = [
   {
     id: 1,

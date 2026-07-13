@@ -136,6 +136,8 @@ const { t } = useI18n()
 useSeoMeta({
   title: t('seo.work.title'),
   description: t('seo.work.description'),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 const width = 800;

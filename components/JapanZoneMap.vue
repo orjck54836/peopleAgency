@@ -536,7 +536,7 @@ function goToSchools() {
 
   .zone-tabs li:nth-child(7),
   .zone-tabs li:nth-child(8) {
-    border-bottom: none;
+    border-top: 1px solid var(--c-border);
   }
 
   .zone-tab {

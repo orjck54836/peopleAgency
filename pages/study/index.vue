@@ -21,13 +21,15 @@ const { t } = useI18n()
 useSeoMeta({
   title: t('seo.study.title'),
   description: t('seo.study.description'),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 // ── 手動輪播橫幅 ──
 const banners = [
   {
-    title: '把熱愛的風景過成日常，給自己一個在這裡生活的機會。',
-    sub: '去寫下屬於你的日本故事，皓學會為你鋪好路，你只管裝滿期待出發。',
+    title: '把熱愛的風景過成日常\n給自己在這裡生活的機會',
+    sub: '去寫下屬於你的日本故事，\n我們會為你鋪好路，\n你只管裝滿期待出發。',
     bg: '/images/banner1.jpeg',
     cta: '探索學習方式',
     action: () => router.push('/study/schools'),
@@ -41,7 +43,7 @@ const banners = [
   },
   {
     title: '台日雙邊在地支援',
-    sub: '從零出發到日本生活！最懂你的日本留遊學專家。',
+    sub: '從零出發到日本生活！\n最懂你的日本留遊學專家。',
     bg: '/images/banner3.jpeg',
     cta: '立即諮詢',
     action: () => router.push('/contact'),
@@ -197,8 +199,8 @@ function formatDate(dateStr?: string) {
         <img src="/images/plane.png" alt="FORMA 留學理念" class="philosophy-img" />
       </div>
       <div class="philosophy-content" ref="contentRef">
-        <h2 class="philosophy-headline">
-          把對日本的嚮往<br>變成你的人生履歷
+        <h2 class="philosophy-headline text-center">
+          把對日本的嚮往<br/>變成你的人生履歷
         </h2>
         <div class="philosophy-body">
           <p>台灣人對日本文化一直有著深厚的情結，但很多時候，這份嚮往只停留在旅遊的幾天假期裡。「如果能真正生活在那裡，該有多好？」</p>
@@ -338,7 +340,6 @@ function formatDate(dateStr?: string) {
 }
 
 .hero-title {
-  font-size: clamp(1.5rem, 4vw, 4rem);
   color: #fff;
   line-height: 1.05;
   margin: 0 0 1.2rem;
@@ -882,10 +883,6 @@ function formatDate(dateStr?: string) {
     background: linear-gradient(to right, rgba(30,8,12,0.6) 0%, rgba(30,8,12,0.35) 100%);
   }
 
-  .hero-slide-content h1 {
-    font-size: var(--text-2xl);
-  }
-
   .hero-slide-content p {
     font-size: var(--text-sm);
     margin-bottom: 1.2rem;
@@ -956,7 +953,7 @@ function formatDate(dateStr?: string) {
 /* 小手機（≤ 480px） */
 @media (max-width: 480px) {
   .hero-slide-content h1 {
-    font-size: var(--text-xl);
+    font-size: 2rem;
   }
 
   .landing-section-title {

@@ -51,6 +51,8 @@ useSeoMeta({
       ? school.value.introduction.slice(0, 120)
       : t('seo.study.description')
   ),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 </script>
 

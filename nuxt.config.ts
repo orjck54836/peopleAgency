@@ -45,9 +45,33 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/',
     head: {
+      titleTemplate: '%s｜FORMA 日本留學・就職代辦',
+      htmlAttrs: {
+        lang: 'zh-Hant-TW',
+      },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        // 全站預設 description（頁面沒設時的 fallback）
+        { name: 'description', content: 'FORMA 提供台灣人赴日留學與就職的專業代辦服務，透明收費、台日雙邊在地支援，陪你把對日本的嚮往變成真實的人生履歷。' },
+        // Open Graph（社群分享）
+        { property: 'og:site_name', content: 'FORMA' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:locale', content: 'zh_TW' },
+        { property: 'og:image', content: 'https://www.forma-global.com/images/og-default.jpg' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        // Twitter Card
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:image', content: 'https://www.forma-global.com/images/og-default.jpg' },
+      ],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Pacifico&display=swap',
+        },
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Pacifico&display=swap',

@@ -6,10 +6,12 @@ const route = useRoute()
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
 
-
+const { t } = useI18n()
 useSeoMeta({
   title: '常見問題｜FORMA 留學・就職代辦',
   description: '整理日本留學與赴日工作最常被詢問的問題，包含費用、簽證、申請流程、落地支援等，幫助你出發前做好充足準備。',
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 const studyFaqs = [

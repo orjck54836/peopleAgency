@@ -24,9 +24,12 @@ const filters = ref({
 })
 
 const { t } = useI18n()
+
 useSeoMeta({
   title: t('seo.study.title'),
   description: t('seo.study.description'),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 const regionOptions = [
