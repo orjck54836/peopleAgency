@@ -119,7 +119,7 @@ const resources = [
 
 .footer-logo {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
+  font-size: var(--text-3xl);
   font-weight: 800;
   color: #fff;
   margin: 0 0 0.6rem;
@@ -127,7 +127,7 @@ const resources = [
 }
 
 .footer-tagline {
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   color: rgba(255,255,255,0.6);
   line-height: 1.7;
   margin: 0 0 1.5rem;
@@ -147,10 +147,10 @@ const resources = [
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
 }
 
-.contact-icon { font-size: 0.9rem; flex-shrink: 0; }
+.contact-icon { font-size: var(--text-sm); flex-shrink: 0; }
 
 .contact-label {
   color: rgba(255,255,255,0.5);
@@ -176,7 +176,7 @@ const resources = [
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   text-decoration: none;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
@@ -189,7 +189,7 @@ const resources = [
 
 /* ── 資源欄 ── */
 .footer-col-title {
-  font-size: 0.78rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -207,7 +207,7 @@ const resources = [
 }
 
 .footer-links a {
-  font-size: 0.83rem;
+  font-size: var(--text-sm);
   color: rgba(255,255,255,0.7);
   text-decoration: none;
   transition: color 0.15s;
@@ -218,7 +218,7 @@ const resources = [
 
 .footer-links a::before {
   content: '→';
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   opacity: 0.5;
   transition: opacity 0.15s, transform 0.15s;
 }
@@ -240,7 +240,7 @@ const resources = [
 }
 
 .footer-bottom p {
-  font-size: 0.78rem;
+  font-size: var(--text-xs);
   color: rgba(255,255,255,0.35);
   margin: 0;
 }

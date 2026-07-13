@@ -192,7 +192,7 @@ const currentProject = ref(projects[0]);
       }
 
       p {
-        font-size: 0.95rem;
+        font-size: var(--text-base);
         color: #555;
       }
 
@@ -213,7 +213,7 @@ const currentProject = ref(projects[0]);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
       color: #fff;
-      font-size: 1.2rem;
+      font-size: var(--text-xl);
       font-weight: 600;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       opacity: 0;
@@ -226,7 +226,7 @@ const currentProject = ref(projects[0]);
         display: inline-flex;
         align-items: center;
         gap: 0.4rem;
-        font-size: 1.5rem;
+        font-size: var(--text-2xl);
 
         &::after {
           content: "→";
@@ -308,14 +308,14 @@ const currentProject = ref(projects[0]);
       color: rgb(var(--contrast));
 
       .modal-faq-title {
-        font-size: 1.8rem;
+        font-size: var(--text-3xl);
         font-weight: 700;
         margin-bottom: 0.5rem;
         text-align: center;
       }
 
       .modal-faq-subtitle {
-        font-size: 1rem;
+        font-size: var(--text-base);
         color: rgba(var(--contrast), 0.85);
         line-height: 1.6;
         margin-bottom: 1.5rem;
@@ -341,13 +341,13 @@ const currentProject = ref(projects[0]);
           }
 
           h3 {
-            font-size: 1.1rem;
+            font-size: var(--text-lg);
             margin-bottom: 0.5rem;
             font-weight: 600;
           }
 
           p {
-            font-size: 0.95rem;
+            font-size: var(--text-base);
             color: rgba(var(--contrast), 0.9);
             line-height: 1.5;
           }

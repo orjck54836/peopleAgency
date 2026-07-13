@@ -69,13 +69,13 @@ useSeoMeta({
     <div v-else class="text-center text-gray-500">{{ $t('information.noResults') }}</div>
   </section>
 
-  <ContactIcon />
+  
   <Footer />
 </template>
 
 <style>
 .prose {
-  font-family: "Noto Serif JP", "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-heading);
   color: #2c2c2c;
   line-height: 1.9;
   letter-spacing: 0.03em;
@@ -84,7 +84,7 @@ useSeoMeta({
 
 /* 導語段落（第一段稍微強調） */
 .prose p:first-of-type {
-  font-size: 1.2rem;
+  font-size: var(--text-xl);
   font-weight: 500;
   line-height: 1.9;
   color: #1f2937;
@@ -92,7 +92,7 @@ useSeoMeta({
 
 /* H1 */
 .prose h1 {
-  font-size: 2.5rem;
+  font-size: var(--text-4xl);
   font-weight: 800;
   line-height: 1.3;
   margin-bottom: 1.5em;
@@ -111,7 +111,7 @@ useSeoMeta({
 
 /* H3 */
 .prose h3 {
-  font-size: 1.3rem;
+  font-size: var(--text-2xl);
   font-weight: 600;
   color: #374151;
   margin-top: 2rem;
@@ -121,7 +121,7 @@ useSeoMeta({
 /* 段落 */
 .prose p {
   margin-bottom: 1.4em;
-  font-size: 1.05rem;
+  font-size: var(--text-lg);
   color: #2d2d2d;
 }
 
@@ -142,7 +142,7 @@ useSeoMeta({
   color: #374151;
   background: #f9fafb;
   border-radius: 0.5rem;
-  font-size: 1.05rem;
+  font-size: var(--text-lg);
   margin: 2em 0;
 }
 
@@ -151,7 +151,7 @@ useSeoMeta({
   background: #f3f4f6;
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   color: #e11d48;
 }
 
@@ -162,7 +162,7 @@ useSeoMeta({
   padding: 1.2rem;
   border-radius: 0.75rem;
   overflow-x: auto;
-  font-size: 0.95rem;
+  font-size: var(--text-base);
   margin: 2em 0;
 }
 

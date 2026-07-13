@@ -51,7 +51,7 @@ useSeoMeta({
   <section class="container py-12 max-w-6xl mx-auto">
     <div class="title">
       <!-- 頁面標題 -->
-      <h1 class="text-4xl font-extrabold mb-6 text-center tracking-wide">
+      <h1>
         {{ $t('informationTitle') }}
       </h1>
       <p class="subtitle">{{ $t('information.subtitle') }}</p>
@@ -101,7 +101,7 @@ useSeoMeta({
     <p v-else class="text-center text-gray-500">{{ $t('information.noResults') }}</p>
   </section>
 
-  <ContactIcon />
+  
   <Footer />
 </template>
 
@@ -110,8 +110,6 @@ useSeoMeta({
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9e5010;
-  font-weight: bolder;
   padding: 30px;
   padding-bottom: 0;
   margin: 0 auto;
@@ -121,8 +119,6 @@ useSeoMeta({
 
 /* 副標題 */
 .subtitle {
-  font-size: 1rem;
-  color: #4b5563;
   text-align: center;
   margin-bottom: 3rem;
   line-height: 1.6;

@@ -125,7 +125,7 @@ function goToAllSchools() {
     </section>
   </main>
 
-  <ContactIcon />
+  
   <Footer />
 </template>
 
@@ -150,7 +150,7 @@ function goToAllSchools() {
 .mode-section { display: flex; gap: 1.5rem; padding: 2rem; background: var(--c-surface); border-bottom: 1px solid var(--c-border); align-items: flex-start; }
 .mode-section:last-child { border-bottom: none; }
 .mode-section--alt { background: var(--c-bg-alt); }
-.mode-section-icon { font-size: 2rem; flex-shrink: 0; width: 2.5rem; text-align: center; padding-top: 0.2rem; }
+.mode-section-icon { font-size: var(--text-3xl); flex-shrink: 0; width: 2.5rem; text-align: center; padding-top: 0.2rem; }
 .mode-section-text h2 { font-family: var(--font-serif); font-size: var(--text-lg); font-weight: 700; color: var(--c-primary-dark); margin: 0 0 0.6rem; }
 .mode-section-text p { font-size: var(--text-sm); color: var(--c-text-secondary); line-height: 1.8; margin: 0; }
 .mode-schools { border-top: 1px solid var(--c-border); padding-top: 3rem; }

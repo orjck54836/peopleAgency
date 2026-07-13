@@ -121,7 +121,7 @@
       </div>
     </section>
   </main>
-  <ContactIcon />
+  
   <Footer />
 </template>
 
@@ -205,13 +205,13 @@ const nodes = computed(() => {
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: var(--text-4xl);
   font-weight: 800;
   margin-bottom: 1rem;
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: var(--text-xl);
   margin-bottom: 2rem;
 }
 
@@ -222,7 +222,7 @@ const nodes = computed(() => {
 
 .main-content h2 {
   text-align: center;
-  font-size: 2rem;
+  font-size: var(--text-3xl);
   margin-bottom: 1.5rem;
   color: #1f2937;
 }
@@ -277,7 +277,7 @@ const nodes = computed(() => {
 
 /* 副標題 */
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
   color: #4b5563;
   text-align: center;
   margin-bottom: 3rem;
@@ -338,7 +338,7 @@ const nodes = computed(() => {
 
 /* icon */
 .visa-icon {
-  font-size: 2.5rem;
+  font-size: var(--text-4xl);
   flex-shrink: 0;
   color: #2563eb;
   margin-top: 0.3rem;
@@ -355,7 +355,7 @@ const nodes = computed(() => {
 }
 
 .visa-text h3 {
-  font-size: 1.4rem;
+  font-size: var(--text-2xl);
   font-weight: 700;
   margin-bottom: 1rem;
   color: #1f2937;
@@ -375,7 +375,7 @@ const nodes = computed(() => {
 }
 
 .visa-text p {
-  font-size: 1rem;
+  font-size: var(--text-base);
   color: #374151;
   line-height: 1.7;
   max-width: 600px;
@@ -425,7 +425,7 @@ const nodes = computed(() => {
 }
 
 .text-block h2 {
-  font-size: 2rem;
+  font-size: var(--text-3xl);
   font-weight: 800;
   margin-bottom: 1rem;
 }
@@ -440,7 +440,7 @@ const nodes = computed(() => {
 }
 
 .benefits-list li {
-  font-size: 1rem;
+  font-size: var(--text-base);
   color: #4b5563;
   line-height: 1.6;
 }
@@ -474,7 +474,7 @@ const nodes = computed(() => {
 }
 
 .audience-block h3 {
-  font-size: 1.2rem;
+  font-size: var(--text-xl);
   font-weight: 700;
   color: #1e3a8a;
   margin-bottom: 1rem;
@@ -489,7 +489,7 @@ const nodes = computed(() => {
 }
 
 .audience-block li {
-  font-size: 0.95rem;
+  font-size: var(--text-base);
   color: #374151;
   line-height: 1.5;
 }
@@ -516,7 +516,7 @@ const nodes = computed(() => {
   }
 
   .text-block h2 {
-    font-size: 1.5rem;
+    font-size: var(--text-2xl);
     /* 標題縮小 */
   }
 
@@ -525,7 +525,7 @@ const nodes = computed(() => {
   }
 
   .benefits-list li {
-    font-size: 0.95rem;
+    font-size: var(--text-base);
     line-height: 1.5;
   }
 
@@ -545,14 +545,14 @@ const nodes = computed(() => {
 }
 
 .section-title {
-  font-size: 2rem;
+  font-size: var(--text-3xl);
   font-weight: 800;
   margin-bottom: 0.8rem;
   padding: 0;
 }
 
 .section-subtitle {
-  font-size: 1rem;
+  font-size: var(--text-base);
   color: #4b5563;
   margin-bottom: 3rem;
 }
@@ -600,7 +600,7 @@ const nodes = computed(() => {
 
 /* 標題 */
 .flow-step h3 {
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
   font-weight: 700;
   color: #1e3a8a;
   margin-bottom: 0.5rem;
@@ -608,7 +608,7 @@ const nodes = computed(() => {
 
 /* 內文 */
 .flow-step p {
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   color: #374151;
   line-height: 1.5;
 }
@@ -621,7 +621,7 @@ const nodes = computed(() => {
 
 .flow-arrow::after {
   content: "→";
-  font-size: 1.5rem;
+  font-size: var(--text-2xl);
   color: #9ca3af;
   display: flex;
   align-items: center;
@@ -645,7 +645,7 @@ const nodes = computed(() => {
 
 @media (max-width: 768px) {
   .hero h1 {
-    font-size: 1.8rem;
+    font-size: var(--text-3xl);
   }
 
   .mission-block {
@@ -680,14 +680,14 @@ const nodes = computed(() => {
 }
 
 .partnership-text .intro {
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
   color: #374151;
   margin-bottom: 2.5rem;
   line-height: 1.8;
 }
 
 .why-title {
-  font-size: 1.6rem;
+  font-size: var(--text-3xl);
   font-weight: 700;
   color: #9333ea;
   margin-bottom: 2rem;
@@ -728,19 +728,19 @@ const nodes = computed(() => {
 }
 
 .icon {
-  font-size: 1.8rem;
+  font-size: var(--text-3xl);
   flex-shrink: 0;
 }
 
 .content h4 {
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
   font-weight: 700;
   color: #1e3a8a;
   margin-bottom: 0.3rem;
 }
 
 .content p {
-  font-size: 0.95rem;
+  font-size: var(--text-base);
   color: #4b5563;
   line-height: 1.6;
 }
@@ -779,7 +779,7 @@ const nodes = computed(() => {
 }
 
 .tree-title {
-  font-size: 2rem;
+  font-size: var(--text-3xl);
   font-weight: 800;
   margin-bottom: 2rem;
   color: #1e3a8a;
@@ -807,7 +807,7 @@ const nodes = computed(() => {
   background: linear-gradient(135deg, #e8820e, #eabf33e7);
   color: #fff;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: var(--text-xl);
   padding: 1.2rem 2rem;
   border-radius: 50%;
   width: 200px;
@@ -834,14 +834,14 @@ const nodes = computed(() => {
 
 .tree-node h4 {
   text-align: center;
-  font-size: 1rem;
+  font-size: var(--text-base);
   font-weight: 700;
   color: #1e3a8a;
   margin-bottom: 0.4rem;
 }
 
 .tree-node p {
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   color: #4b5563;
   line-height: 1.4;
 }

@@ -41,7 +41,7 @@
 }
 
 .tagline p:first-child {
-  font-size: 1.6rem;
+  font-size: var(--text-3xl);
   font-weight: 800;
   background: linear-gradient(90deg, #ff8a00, #e52e71);
   -webkit-background-clip: text;
@@ -51,7 +51,7 @@
 }
 
 .tagline p:last-child {
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
   font-weight: 500;
   color: #555;
   letter-spacing: 0.03em;
@@ -122,7 +122,7 @@
         letter-spacing: 0.05em;
         word-break: break-word;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: var(--text-base);
         max-width: 500px;
       }
     }
@@ -134,7 +134,7 @@
     padding: 0.75rem 1.5rem;
     background-color: #2e7d32;
     color: white;
-    font-size: 1rem;
+    font-size: var(--text-base);
     font-weight: 600;
     border-radius: 30px;
     text-decoration: none;

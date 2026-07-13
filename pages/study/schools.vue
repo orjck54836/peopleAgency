@@ -270,7 +270,7 @@ onMounted(fetchSchools)
     </div>
   </div>
 
-  <ContactIcon />
+  
   <Footer />
 </template>
 

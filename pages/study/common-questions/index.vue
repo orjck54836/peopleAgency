@@ -165,7 +165,7 @@ function toggle(i: number) {
 
   </main>
 
-  <ContactIcon />
+  
   <Footer />
 </template>
 

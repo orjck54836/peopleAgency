@@ -110,7 +110,7 @@ import { formatString } from "~/utils/formatString";
       position: relative;
       background-color: rgb(var(--black));
       svg {
-        font-size: 2rem;
+        font-size: var(--text-3xl);
         color: rgb(var(--primary));
       }
       span {

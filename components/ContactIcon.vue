@@ -36,16 +36,16 @@ const localePath = useLocalePath()
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   color: white;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   transition: transform 0.2s ease, background-color 0.3s ease;
 
   span {
     text-align: center;
-    font-size: 1rem;
+    font-size: var(--text-base);
   }
 
   svg {
-    font-size: 1.2rem;
+    font-size: var(--text-xl);
   }
 
   &:hover {

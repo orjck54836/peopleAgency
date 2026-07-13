@@ -11,7 +11,6 @@
       <!-- 承諾 01：左文字 右展開 -->
       <div class="trust-row trust-row--left">
         <div class="trust-cell trust-cell--text">
-          <p class="promise-num">承諾 01 / 費用透明</p>
           <h3 class="promise-title">零代辦費，學費透明到底</h3>
           <p class="promise-body">與日本學校同步收費，絕不收取高額代辦費，更沒有變相加價與任何隱藏費用。每一筆金額白紙黑字，讓你安心規劃預算。</p>
         </div>
@@ -56,7 +55,6 @@
           </div>
         </div>
         <div class="trust-cell trust-cell--text">
-          <p class="promise-num">承諾 02 / 雙邊支援</p>
           <h3 class="promise-title">台灣幫你申請，日本有人接應</h3>
           <p class="promise-body">行前由台灣顧問全程協助申請；抵達後，當地協力夥伴與學長姐陪你落地開戶、辦手機、租屋。</p>
         </div>
@@ -65,7 +63,6 @@
       <!-- 承諾 03：左文字 右展開 -->
       <div class="trust-row trust-row--left">
         <div class="trust-cell trust-cell--text">
-          <p class="promise-num">承諾 03 / 簽證過件</p>
           <h3 class="promise-title">入管局最刁鑽的文件，交給專家</h3>
           <p class="promise-body">針對日本入管局繁雜的留學理由書與經費支付說明，提供顧問一對一修改指導，大幅提高過件率。</p>
         </div>
@@ -114,7 +111,6 @@
           </div>
         </div>
         <div class="trust-cell trust-cell--text">
-          <p class="promise-num">承諾 04 / 精準媒合</p>
           <h3 class="promise-title">追星、升學、學技術，都幫你配到對的學校</h3>
           <p class="promise-body">不論你的目標是動漫留學、專業技術、升學還是純體驗，我們客製化精準推薦。</p>
         </div>
@@ -179,7 +175,7 @@
 }
 
 .trust-eyebrow {
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.14em;
   color: var(--c-primary);
   font-weight: 600;
@@ -196,8 +192,6 @@
 }
 
 .trust-subhead {
-  font-size: 0.875rem;
-  color: var(--c-text-secondary);
   line-height: 1.8;
   margin: 0;
 }
@@ -322,7 +316,7 @@
 /* ── 文字內容 ── */
 .promise-badge {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   background: var(--c-primary-muted);
   color: var(--c-primary-dark);
@@ -330,14 +324,6 @@
   border-radius: 999px;
   margin-bottom: 0.75rem;
   align-self: flex-start;
-}
-
-.promise-num {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--c-primary);
-  letter-spacing: 0.06em;
-  margin: 0 0 0.5rem;
 }
 
 .promise-title {
@@ -350,7 +336,7 @@
 }
 
 .promise-body {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   color: var(--c-text-secondary);
   line-height: 1.8;
   margin: 0;
@@ -358,7 +344,7 @@
 
 /* ── 展開內容細項 ── */
 .reveal-label {
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   color: var(--c-primary);
   letter-spacing: 0.06em;
@@ -370,7 +356,7 @@
   justify-content: space-between;
   padding: 0.45rem 0;
   border-bottom: 1px solid var(--c-border);
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
 }
 
 .fee-last {
@@ -396,7 +382,7 @@
   gap: 0.6rem;
   padding: 0.45rem 0;
   border-bottom: 1px solid var(--c-border);
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
 }
 
 .sup-last {
@@ -404,7 +390,7 @@
 }
 
 .stag {
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   padding: 0.15rem 0.5rem;
   border-radius: 3px;
@@ -437,14 +423,14 @@
 }
 
 .reveal-stat-label {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--c-text);
   margin: 0 0 0.2rem;
 }
 
 .reveal-stat-sub {
-  font-size: 0.78rem;
+  font-size: var(--text-xs);
   color: var(--c-text-secondary);
   margin: 0;
 }
@@ -457,7 +443,7 @@
 }
 
 .ctag {
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: 600;
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
@@ -473,7 +459,7 @@
 }
 
 .reveal-count {
-  font-size: 0.78rem;
+  font-size: var(--text-xs);
   color: var(--c-text-muted);
   margin: 0;
 }
@@ -505,14 +491,14 @@
 }
 
 .tl-stage {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--c-text);
   margin: 0 0 0.1rem;
 }
 
 .tl-detail {
-  font-size: 0.78rem;
+  font-size: var(--text-xs);
   color: var(--c-text-secondary);
   margin: 0;
 }
@@ -527,7 +513,7 @@
 }
 
 .trust-cta-text {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   color: var(--c-text-secondary);
   margin: 0 0 1rem;
 }
@@ -536,7 +522,7 @@
   display: inline-block;
   background: var(--c-primary);
   color: #fff;
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   padding: 0.9rem 2.4rem;
   border-radius: 999px;

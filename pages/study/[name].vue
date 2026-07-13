@@ -246,7 +246,7 @@ useSeoMeta({
 
   </main>
 
-  <ContactIcon />
+  
   <Footer />
 </template>
 

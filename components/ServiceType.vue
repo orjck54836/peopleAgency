@@ -165,14 +165,14 @@ const localePath = useLocalePath()
     padding: 1rem;
 
     .title {
-      font-size: 1.2rem;
+      font-size: var(--text-xl);
       font-weight: 600;
       margin-bottom: 0.5rem;
       color: #333;
     }
 
     .desc {
-      font-size: 0.95rem;
+      font-size: var(--text-base);
       color: #555;
       line-height: 1.5;
       margin-bottom: 1rem;
@@ -190,7 +190,7 @@ const localePath = useLocalePath()
         color: #333;
         padding: 0.25rem 0.75rem;
         border-radius: 16px;
-        font-size: 0.75rem;
+        font-size: var(--text-xs);
         margin-right: 5px;
       }
     }
@@ -397,7 +397,7 @@ const localePath = useLocalePath()
 
   .button-link {
     bottom: 3%;
-    font-size: 1.2rem;
+    font-size: var(--text-xl);
     cursor: default;
     user-select: none;
     color: #0a663d8e;
@@ -450,7 +450,7 @@ const localePath = useLocalePath()
   }
 
   .projcard-tagbox .button-link {
-    font-size: 1rem;
+    font-size: var(--text-base);
     padding: 8px 16px;
   }
 }

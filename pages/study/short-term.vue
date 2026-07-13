@@ -125,7 +125,7 @@ function goToAllSchools() {
     </section>
   </main>
 
-  <ContactIcon />
+  
   <Footer />
 </template>
 
@@ -212,7 +212,7 @@ function goToAllSchools() {
 .mode-section--alt { background: var(--c-bg-alt); }
 
 .mode-section-icon {
-  font-size: 2rem;
+  font-size: var(--text-3xl);
   flex-shrink: 0;
   width: 2.5rem;
   text-align: center;

@@ -50,12 +50,12 @@
   
   .message-box h3 {
     margin-bottom: 0.5rem;
-    font-size: 1.5rem;
+    font-size: var(--text-2xl);
     color: #ff0000;
   }
   
   .message-box p {
-    font-size: 1rem;
+    font-size: var(--text-base);
     color: #555;
     margin-bottom: 2rem;
   }
@@ -67,7 +67,7 @@
     border: none;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: var(--text-base);
     cursor: pointer;
     transition: background-color 0.3s ease;
   }

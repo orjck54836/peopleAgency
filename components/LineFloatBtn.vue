@@ -22,7 +22,7 @@ const lineUrl = 'https://line.me/R/ti/p/@forma_global'
 .line-float {
   position: fixed;
   bottom: 2rem;
-  right: 2rem;
+  right: 1rem;
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ const lineUrl = 'https://line.me/R/ti/p/@forma_global'
 }
 
 .line-label {
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.04em;
   white-space: nowrap;

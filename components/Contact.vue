@@ -298,7 +298,7 @@ watch(
 
   label .required {
     color: #e63946;
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     margin-left: 6px;
   }
 
@@ -308,7 +308,7 @@ watch(
     margin-top: 0.5rem;
 
     .radio-option {
-      font-size: 1rem;
+      font-size: var(--text-base);
       font-weight: 500;
       display: flex;
       align-items: center;
@@ -327,13 +327,13 @@ watch(
     margin-bottom: 2rem;
 
     h2 {
-      font-size: 2rem;
+      font-size: var(--text-3xl);
       font-weight: 700;
     }
 
     .subtitle {
       margin-top: 0.5rem;
-      font-size: 0.9rem;
+      font-size: var(--text-sm);
       font-weight: 500;
       color: #333;
       line-height: 1.6;
@@ -366,7 +366,7 @@ watch(
       border: 1px solid #ccc;
       border-radius: 8px;
       padding: 0.75rem 1rem;
-      font-size: 1rem;
+      font-size: var(--text-base);
       background: #f9f9f9;
       transition: border-color 0.3s;
 
@@ -396,7 +396,7 @@ watch(
       border-radius: 8px;
       color: white;
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: var(--text-lg);
       transition: 0.3s;
 
       &:hover {

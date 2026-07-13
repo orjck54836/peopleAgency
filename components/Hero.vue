@@ -79,7 +79,7 @@ const tags = ['日本特色遊學', '就業仲介・特定技能', '台灣華語
   height: calc(100svh - var(--nav-height, 64px));
   min-height: 520px;
   overflow: hidden;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
 }
 
 .hero-photo { position: absolute; inset: 0; }
@@ -118,7 +118,7 @@ const tags = ['日本特色遊學', '就業仲介・特定技能', '台灣華語
   text-align: center; padding: 0 2rem; padding-bottom: 8%;
 }
 .hero-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-weight: 300;
   font-size: clamp(4rem, 9.5vw, 9.5rem);
   line-height: .94; letter-spacing: -.02em; color: var(--dark); margin: 0;
@@ -150,7 +150,7 @@ const tags = ['日本特色遊學', '就業仲介・特定技能', '台灣華語
 
 .btn-fill {
   padding: 11px 28px; background: var(--dark); color: #fff; border: none;
-  font-family: 'DM Sans', sans-serif; font-size: .7rem; font-weight: 400;
+  font-family: var(--font-body); font-size: .7rem; font-weight: 400;
   letter-spacing: .18em; text-transform: uppercase; cursor: pointer;
   transition: background .2s; border-radius: 1px;
 }
@@ -158,7 +158,7 @@ const tags = ['日本特色遊學', '就業仲介・特定技能', '台灣華語
 
 .btn-outline {
   padding: 10px 24px; background: none; color: var(--mid);
-  border: 1px solid rgba(26,20,16,.22); font-family: 'DM Sans', sans-serif;
+  border: 1px solid rgba(26,20,16,.22); font-family: var(--font-body);
   font-size: .7rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase;
   cursor: pointer; transition: border-color .2s, color .2s; border-radius: 1px;
 }

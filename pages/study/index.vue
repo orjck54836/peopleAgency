@@ -26,8 +26,8 @@ useSeoMeta({
 // ── 手動輪播橫幅 ──
 const banners = [
   {
-    title: '日本特色遊學',
-    sub: '從 2 週到 2 年，找到最適合你的學習方式',
+    title: '把熱愛的風景過成日常，給自己一個在這裡生活的機會。',
+    sub: '去寫下屬於你的日本故事，皓學會為你鋪好路，你只管裝滿期待出發。',
     bg: '/images/banner1.jpeg',
     cta: '探索學習方式',
     action: () => router.push('/study/schools'),
@@ -41,7 +41,7 @@ const banners = [
   },
   {
     title: '台日雙邊在地支援',
-    sub: '台灣顧問協助申請，日本落地後不變孤兒',
+    sub: '從零出發到日本生活！最懂你的日本留遊學專家。',
     bg: '/images/banner3.jpeg',
     cta: '立即諮詢',
     action: () => router.push('/contact'),
@@ -177,8 +177,8 @@ function formatDate(dateStr?: string) {
         backgroundImage: `url('${banners[currentBanner].bg}')`
       }">
         <div class="hero-slide-content">
-          <h1>{{ banners[currentBanner].title }}</h1>
-          <p>{{ banners[currentBanner].sub }}</p>
+          <h1 class="hero-title">{{ banners[currentBanner].title }}</h1>
+          <p class="hero-sub">{{ banners[currentBanner].sub }}</p>
           <button class="hero-cta" @click="banners[currentBanner].action()">
             {{ banners[currentBanner].cta }}
           </button>
@@ -208,7 +208,7 @@ function formatDate(dateStr?: string) {
         <div class="d-flex justify-center">
           <NuxtLink to="/contact" class="philosophy-cta">開始諮詢 →</NuxtLink>
         </div>
-        
+
       </div>
     </div>
   </section>
@@ -247,20 +247,13 @@ function formatDate(dateStr?: string) {
 
     <!-- 留學情報 -->
     <section v-if="latestNews && latestNews.length" class="landing-section">
-      <h2 class="landing-section-title">留學情報</h2>
+      <h2 class="philosophy-headline">留學情報</h2>
       <ClientOnly>
-        <Swiper
-  :modules="swiperModules"
-  :navigation="true"
-  :slides-per-view="1"
-  :space-between="16"
-  :loop="latestNews.length > 2"
-  :breakpoints="{
-    640: { slidesPerView: 2 },
-    1024: { slidesPerView: 3 }
-  }"
-  class="news-swiper"
->
+        <Swiper :modules="swiperModules" :navigation="true" :slides-per-view="1" :space-between="16"
+          :loop="latestNews.length > 2" :breakpoints="{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
+          }" class="news-swiper">
           <SwiperSlide v-for="(article, i) in latestNews" :key="article.path + i">
             <NuxtLink :to="toPagePath(article.path)" class="news-card">
               <div class="news-card-img-wrap">
@@ -297,7 +290,7 @@ function formatDate(dateStr?: string) {
     </section>
   </main>
 
-  <ContactIcon />
+
   <Footer />
 </template>
 
@@ -312,51 +305,69 @@ function formatDate(dateStr?: string) {
 }
 
 .hero-slide {
+  position: relative;
   width: 100%;
-  min-height: 550px;
+  min-height: 560px;
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 4rem 2rem;
+  justify-content: flex-start;   /* 靠左 */
+  padding: 4rem 6%;
+}
+
+/* 左側輕微暗化，讓文字浮出（只暗左半邊）*/
+.hero-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(137, 110, 73, 0.503) 0%,
+    rgba(87, 74, 77, 0.2) 50%,
+    transparent 70%
+  );
+  z-index: 1;
 }
 
 .hero-slide-content {
-  max-width: 680px;
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+  text-align: left;   /* 靠左 */
 }
 
-.hero-slide-content h1 {
-  font-family: var(--font-serif);
-  font-size: var(--text-4xl);
-  font-weight: 800;
-  color: #F8F4EC;
-  margin-bottom: 1rem;
-  line-height: 1.3;
+.hero-title {
+  font-size: clamp(1.5rem, 4vw, 4rem);
+  color: #fff;
+  line-height: 1.05;
+  margin: 0 0 1.2rem;
+  white-space: pre-line;   /* 讓 \n 換行生效 */
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
 }
 
-.hero-slide-content p {
-  font-size: var(--text-lg);
-  color: rgba(248, 244, 236, 0.88);
-  margin-bottom: 2rem;
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  color: rgba(255, 255, 255, 0.95);
   line-height: 1.6;
+  margin: 0 0 2rem;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
 }
 
 .hero-cta {
-  border: 2px solid #F8F4EC;
+  border: 2px solid rgba(255, 255, 255, 0.85);
   border-radius: var(--radius-full);
-  padding: 0.9rem 2.2rem;
+  padding: 0.9rem 2.4rem;
   font-weight: 700;
   font-size: var(--text-base);
   background: transparent;
-  color: #F8F4EC;
+  color: #fff;
   cursor: pointer;
   transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 .hero-cta:hover {
-  background: #F8F4EC;
+  background: #fff;
   color: var(--c-primary);
 }
 
@@ -465,8 +476,6 @@ function formatDate(dateStr?: string) {
 }
 
 .philosophy-body p {
-  font-size: var(--text-sm);
-  color: var(--c-text-secondary);
   line-height: 1.85;
   margin: 0;
 }
@@ -490,6 +499,30 @@ function formatDate(dateStr?: string) {
 
 /* RWD */
 @media (max-width: 768px) {
+  .hero-slide {
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-slide-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  /* 手機版遮罩改成整體均勻暗化（因為文字置中，不能只暗左邊）*/
+  .hero-slide::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(30, 8, 12, 0.45),
+      rgba(30, 8, 12, 0.55)
+    );
+  }
+
+  /* CTA 按鈕置中 */
+  .hero-cta {
+    margin: 0 auto;
+  }
   .philosophy-inner {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -665,6 +698,19 @@ function formatDate(dateStr?: string) {
 /* ════════════════════════════════
    留學情報
 ════════════════════════════════ */
+/* 讓 Swiper 所有 slide 等高 */
+.news-swiper :deep(.swiper-slide) {
+  height: auto;
+  display: flex;
+}
+
+/* 卡片撐滿 slide 高度 */
+.news-swiper :deep(.swiper-slide) .news-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .news-swiper :deep(.swiper-button-next),
 .news-swiper :deep(.swiper-button-prev) {
   color: var(--c-primary);
@@ -673,14 +719,15 @@ function formatDate(dateStr?: string) {
   background: var(--c-surface);
   border: 1px solid var(--c-border);
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .news-swiper :deep(.swiper-button-next)::after,
 .news-swiper :deep(.swiper-button-prev)::after {
-  font-size: 1rem;
+  font-size: var(--text-base);
   font-weight: 700;
 }
+
 .news-swiper {
   padding-bottom: 1rem;
 }
@@ -828,8 +875,11 @@ function formatDate(dateStr?: string) {
 /* 大手機（≤ 640px）：全面單欄 */
 @media (max-width: 640px) {
   .hero-slide {
-    min-height: 320px;
-    padding: 2.5rem 1.2rem;
+    min-height: 420px;
+    padding: 3rem 1.5rem;
+  }
+  .hero-slide::before {
+    background: linear-gradient(to right, rgba(30,8,12,0.6) 0%, rgba(30,8,12,0.35) 100%);
   }
 
   .hero-slide-content h1 {

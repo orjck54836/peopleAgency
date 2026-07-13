@@ -37,14 +37,14 @@ const studyNavItems = [
   { text: 'schoolTitle', href: '/study' },
   { text: 'studyTaiwanTitle', href: '/study/taiwan' },
   { text: 'informationTitle', href: '/study/information' },
-  { text: 'ourStoryTitle', href: '/about_us' },
+  { text: 'ourStoryTitle', href: '/study/about_us' },
   { text: 'commonQuestionTitle', href: '/study/common-questions' },
 ];
 
 const workNavItems = [
   { text: 'humanResourceTitle', href: '/work' },
   { text: 'informationTitle', href: '/work/information' },
-  { text: 'ourStoryTitle', href: '/about_us' },
+  { text: 'ourStoryTitle', href: '/work/about_us' },
   { text: 'commonQuestionTitle', href: '/work/common-questions' },
 ];
 
@@ -63,11 +63,11 @@ const currentLanguageName = computed(() => {
   return current ? current.name : 'Language';
 });
 
-const switchLang = async (lang: string) => {
-  await setLocale(lang);
-  const path = switchLocalePath(lang);
-  router.push(path);
-};
+const switchLang = async (lang: 'en' | 'zh' | 'ja') => {
+  await setLocale(lang)
+  const path = switchLocalePath(lang)
+  router.push(path)
+}
 
 // ---- 進場動畫 ----
 onMounted(() => {
@@ -94,7 +94,7 @@ onMounted(() => {
     <div class="container-fluid d-flex align-items-center justify-content-between">
       <!-- Logo -->
       <NuxtLink :to="localePath(`/${currentLine}`)" :class="classes">
-        <img src="../images/logo.png" alt="logo" class="logo-img" />
+        <img src="/images/logo.png" alt="logo" class="logo-img" />
       </NuxtLink>
 
       <!-- 主選單（取代原右側 Navigation） -->
@@ -265,7 +265,7 @@ onMounted(() => {
       border: none;
       background: transparent;
       padding: 8px 16px;
-      font-size: 0.85rem;
+      font-size: var(--text-sm);
       font-weight: 600;
       cursor: pointer;
       color: rgb(var(--black));
@@ -323,7 +323,7 @@ onMounted(() => {
         a {
           color: rgb(var(--black));
           font-weight: 500;
-          font-size: 1.05rem;
+          font-size: var(--text-lg);
         }
       }
     }
@@ -344,7 +344,7 @@ onMounted(() => {
     display: inline-block;
     padding: 0.8rem 1.5rem;
     text-align: center;
-    font-size: 1rem;
+    font-size: var(--text-base);
     font-weight: 600;
     background-color: rgb(var(--c-primary));
     color: #fff;
@@ -392,7 +392,7 @@ onMounted(() => {
   .dropdown-menu li {
     list-style: none;
     padding: 8px 15px;
-    font-size: 1rem;
+    font-size: var(--text-base);
     color: rgb(var(--contrast));
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
@@ -408,7 +408,7 @@ onMounted(() => {
     background-color: transparent;
     border: none;
     color: rgb(var(--contrast));
-    font-size: 1.1rem;
+    font-size: var(--text-lg);
     font-weight: bold;
     cursor: pointer;
     padding: 8px 12px;
@@ -419,7 +419,7 @@ onMounted(() => {
 
     &::after {
       content: "▼";
-      font-size: 0.8rem;
+      font-size: var(--text-sm);
     }
 
     &:hover {
@@ -449,6 +449,7 @@ onMounted(() => {
   }
 
   .menu-btn {
+    color: #fff;
     width: 48px;
     height: 48px;
     display: inline-flex;

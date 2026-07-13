@@ -13,7 +13,7 @@
   
       <!-- 課程介紹 -->
       <section class="visa-section">
-        <h2 class="section-title">{{ $t('taiwanStudy.course.title') }}</h2>
+        <h2 class="text-center">{{ $t('taiwanStudy.course.title') }}</h2>
         <p class="section-subtitle">{{ $t('taiwanStudy.course.subtitle') }}</p>
   
         <div class="visa-list">
@@ -94,7 +94,7 @@
       </section>
     </main>
   
-    <ContactIcon />
+    
     <Footer />
 </template>
   
@@ -131,16 +131,16 @@
   <style scoped>
   /* ====== 基本結構 ====== */
   :root {
-    --jp-main: #e4b169; /* 主色 */
-    --jp-bg: #f8f5f0; /* 柔米白背景 */
-    --jp-text: #4a5568; /* 深灰字體 */
-    --jp-border: #e5e7eb;
-    --jp-accent: #f1d7a6;
+    --jp-main: var(--c-primary); /* 主色 */
+    --jp-bg: var(--c-bg-alt); /* 柔米白背景 */
+    --jp-text: var(--c-text-secondary); /* 深灰字體 */
+    --jp-border: var(--c-border);
+    --jp-accent: var(--c-primary-muted);
     --jp-shadow: rgba(0, 0, 0, 0.05);
   }
   
   body {
-    font-family: "Noto Sans JP", "Hiragino Sans", "游ゴシック体", sans-serif;
+    font-family: var(--font-body);
     background-color: var(--jp-bg);
     color: var(--jp-text);
     line-height: 1.8;
@@ -157,24 +157,13 @@
     letter-spacing: 0.04em;
   }
   
-  .hero-content h1 {
-    font-size: 2.4rem;
-    font-weight: 800;
-    margin-bottom: 1.2rem;
-    text-shadow: 0 3px 6px rgba(0,0,0,0.3);
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-    opacity: 0.95;
-  }
-  
   /* ====== 標題區 ====== */
-  .section-title {
+  .hero-content p{
+    color: #fff;
+  }
+
+  .section-title h2{
     text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1a1a1a;
     margin-bottom: 1rem;
     position: relative;
   }
@@ -184,22 +173,20 @@
     display: block;
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, #e4b169, #f1d7a6);
+    background: linear-gradient(90deg, var(--c-primary), var(--c-primary-light));
     margin: 0.6rem auto 0;
     border-radius: 3px;
   }
   
   .section-subtitle {
     text-align: center;
-    font-size: 1.05rem;
-    color: #6b7280;
     margin-bottom: 3.5rem;
   }
   
   /* ====== 課程介紹卡片 ====== */
   .visa-section {
-    background-color: #fff;
-    border-top: 1px solid #f0ebe2;
+    background-color: var(--c-surface);
+    border-top: 1px solid var(--c-border);
     padding: 6rem 1.5rem;
     max-width: 1100px;
     margin: 0 auto;
@@ -214,7 +201,7 @@
   .visa-item {
     display: flex;
     align-items: center;
-    background: #ffffff;
+    background: var(--c-surface);
     border-radius: 16px;
     box-shadow: 0 10px 30px var(--jp-shadow);
     overflow: hidden;
@@ -245,8 +232,8 @@
   }
   
   .visa-text h3 {
-    font-size: 1.4rem;
-    color: #1f2937;
+    font-size: var(--text-2xl);
+    color: var(--c-text);
     font-weight: 700;
     margin-bottom: 0.8rem;
     border-left: 4px solid var(--jp-main);
@@ -254,8 +241,8 @@
   }
   
   .visa-text p {
-    font-size: 1rem;
-    color: #4b5563;
+    font-size: var(--text-base);
+    color: var(--c-text-secondary);
     line-height: 1.8;
   }
   
@@ -287,7 +274,7 @@
   }
   
   .text-block h2 {
-    font-size: 2rem;
+    font-size: var(--text-3xl);
     text-align: center;
     margin-bottom: 2rem;
   }
@@ -307,13 +294,13 @@
   }
   
   .audience-block {
-    background: #fff;
+    background: var(--c-surface);
     border-radius: 12px;
     padding: 2rem 1.5rem;
     width: 45%;
     min-width: 320px;
     box-shadow: 0 8px 20px var(--jp-shadow);
-    border: 1px solid #f0edea;
+    border: 1px solid var(--c-border);
     transition: transform 0.3s ease;
   }
   
@@ -322,9 +309,9 @@
   }
   
   .audience-block h3 {
-    color: #b45309;
+    color: var(--c-primary-dark);
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: var(--text-xl);
     margin-bottom: 1rem;
   }
   
@@ -332,12 +319,12 @@
     list-style: "◆ ";
     margin-left: 0.5rem;
     line-height: 1.7;
-    color: #374151;
+    color: var(--c-text-secondary);
   }
   
   /* ====== 流程區 ====== */
   .flow-section {
-    background: linear-gradient(180deg, #fffaf5, #f8f5f0);
+    background: var(--c-bg-alt);
     padding: 6rem 2rem;
     text-align: center;
   }
@@ -351,7 +338,7 @@
   }
   
   .flow-step {
-    background: #fff;
+    background: var(--c-surface);
     border-radius: 12px;
     padding: 2rem 1.5rem;
     width: 230px;
@@ -369,7 +356,7 @@
     width: 48px;
     height: 48px;
     margin: 0 auto 1rem;
-    background: linear-gradient(135deg, #f7b267, #f5c57a);
+    background: linear-gradient(135deg, var(--c-primary), var(--c-primary-light));
     color: #fff;
     font-weight: 700;
     border-radius: 50%;
@@ -379,30 +366,30 @@
   }
   
   .flow-step h3 {
-    color: #1f2937;
-    font-size: 1.05rem;
+    color: var(--c-text);
+    font-size: var(--text-lg);
     font-weight: 700;
     margin-bottom: 0.5rem;
   }
   
   .flow-step p {
-    color: #4b5563;
-    font-size: 0.95rem;
+    color: var(--c-text-secondary);
+    font-size: var(--text-base);
     line-height: 1.6;
   }
 
   .flow-arrow {
     content: "→";
-    font-size: 1.6rem;
-    color: #bdbdbd;
+    font-size: var(--text-3xl);
+    color: var(--c-text-muted);
     display: flex;
     align-items: center;
   }
   
   .flow-arrow::after {
     content: "→";
-    font-size: 1.6rem;
-    color: #bdbdbd;
+    font-size: var(--text-3xl);
+    color: var(--c-text-muted);
     display: flex;
     align-items: center;
     margin: auto;
