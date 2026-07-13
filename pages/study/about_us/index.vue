@@ -38,7 +38,7 @@ const companyInfo = [
 
   <section class="about-hero">
     <div class="about-hero-inner">
-      <h1 class="about-title">陪你把對日本的嚮往，<br>變成真實的人生履歷</h1>
+      <h1 class="about-title">把對日本的嚮往變成人生履歷</h1>
       <p class="about-sub">FORMA提供台灣人日本留學的完整代辦與在地支援服務。</p>
     </div>
   </section>

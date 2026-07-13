@@ -100,7 +100,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-ap-northeast-3-561efd32-c539",
-          "S3Key": "serverless/nuxt-nitro/dev/1783926859284-2026-07-13T07:14:19.284Z/nuxt-nitro.zip"
+          "S3Key": "serverless/nuxt-nitro/dev/1783936109499-2026-07-13T09:48:29.499Z/nuxt-nitro.zip"
         },
         "Handler": ".output/server/index.handler",
         "Runtime": "nodejs18.x",
@@ -129,14 +129,14 @@
         "WebLogGroup"
       ]
     },
-    "WebLambdaVersion2oDD0mMip5qmGQu70EsU1Q0typTnHrAFYBLyEnRSMQ": {
+    "WebLambdaVersionr0wq62EluzWVWbZoFjOSQFP90TElfQUnTnjmqkYc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "WebLambdaFunction"
         },
-        "CodeSha256": "3sRy54kaObOMxuVqrOgSfY0RLSeEW4rQei2D0rsJOkQ="
+        "CodeSha256": "x0nNm+nDWMv88SVPb7hCqZI9QoDAMHyZn3G1NZYGZ2M="
       }
     },
     "HttpApi": {
@@ -245,7 +245,7 @@
     "WebLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "WebLambdaVersion2oDD0mMip5qmGQu70EsU1Q0typTnHrAFYBLyEnRSMQ"
+        "Ref": "WebLambdaVersionr0wq62EluzWVWbZoFjOSQFP90TElfQUnTnjmqkYc"
       },
       "Export": {
         "Name": "sls-nuxt-nitro-dev-WebLambdaFunctionQualifiedArn"
