@@ -340,8 +340,9 @@ function goToSchools() {
 .card-intro {
   display: flex;
   gap: 1.6rem;
-  padding: 1.5rem 10rem 1.5rem 10rem;
+  padding: 1.5rem;
   flex-direction: column;
+  align-items: center;
 }
 
 .card-map {
@@ -377,7 +378,7 @@ function goToSchools() {
   font-size: 0.9rem;
   color: var(--c-text-secondary);
   line-height: 1.85;
-  margin: 0;
+  margin: 0 1rem;
 }
 
 .card-divider {

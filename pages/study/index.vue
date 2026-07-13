@@ -2,6 +2,10 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+
+const swiperModules = [Navigation, Pagination, Autoplay]
 
 const router = useRouter()
 const navOpen = ref(false)
@@ -201,7 +205,10 @@ function formatDate(dateStr?: string) {
           <p>其實，去日本留學、體驗沉浸式學習，並沒有想像中遙遠。相比歐美高昂的開銷，日本學費親民、文化適應期短，是含金量極高的選擇。</p>
           <p>正因為看見這份熱情，我們成立了 Forma。從跨出台灣的第一步、適應當地環境，到畢業後開拓更多元的工作機會——這條路上，你不是一個人摸索，我們就在這裡。</p>
         </div>
-        <NuxtLink to="/contact" class="philosophy-cta">開始諮詢 →</NuxtLink>
+        <div class="d-flex justify-center">
+          <NuxtLink to="/contact" class="philosophy-cta">開始諮詢 →</NuxtLink>
+        </div>
+        
       </div>
     </div>
   </section>
@@ -239,58 +246,55 @@ function formatDate(dateStr?: string) {
     </section>
 
     <!-- 留學情報 -->
-<section v-if="latestNews && latestNews.length" class="landing-section">
-  <h2 class="landing-section-title">留學情報</h2>
-  <ClientOnly>
-    <Swiper
-      :slides-per-view="1"
-      :space-between="16"
-      :loop="latestNews.length > 2"
-      :breakpoints="{
-        480: { slidesPerView: 1, spaceBetween: 16 },
-        640: { slidesPerView: 2, spaceBetween: 16 },
-        1024: { slidesPerView: 3, spaceBetween: 20 }
-      }"
-      class="news-swiper"
-    >
-      <SwiperSlide v-for="(article, i) in latestNews" :key="article.path + i">
-        <NuxtLink :to="toPagePath(article.path)" class="news-card">
-          <div class="news-card-img-wrap">
-            <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
-            <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
+    <section v-if="latestNews && latestNews.length" class="landing-section">
+      <h2 class="landing-section-title">留學情報</h2>
+      <ClientOnly>
+        <Swiper
+  :modules="swiperModules"
+  :navigation="true"
+  :slides-per-view="1"
+  :space-between="16"
+  :loop="latestNews.length > 2"
+  :breakpoints="{
+    640: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }"
+  class="news-swiper"
+>
+          <SwiperSlide v-for="(article, i) in latestNews" :key="article.path + i">
+            <NuxtLink :to="toPagePath(article.path)" class="news-card">
+              <div class="news-card-img-wrap">
+                <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
+                <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
+              </div>
+              <div class="news-card-body">
+                <span class="news-card-date">{{ formatDate(article.date) }}</span>
+                <h3 class="news-card-title">{{ article.title }}</h3>
+                <p class="news-card-desc">{{ article.description }}</p>
+                <span class="news-card-cta">閱讀更多 →</span>
+              </div>
+            </NuxtLink>
+          </SwiperSlide>
+        </Swiper>
+        <template #fallback>
+          <div class="news-fallback-grid">
+            <NuxtLink v-for="(article, i) in latestNews.slice(0, 3)" :key="article.path + i"
+              :to="toPagePath(article.path)" class="news-card">
+              <div class="news-card-img-wrap">
+                <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
+                <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
+              </div>
+              <div class="news-card-body">
+                <span class="news-card-date">{{ formatDate(article.date) }}</span>
+                <h3 class="news-card-title">{{ article.title }}</h3>
+                <p class="news-card-desc">{{ article.description }}</p>
+                <span class="news-card-cta">閱讀更多 →</span>
+              </div>
+            </NuxtLink>
           </div>
-          <div class="news-card-body">
-            <span class="news-card-date">{{ formatDate(article.date) }}</span>
-            <h3 class="news-card-title">{{ article.title }}</h3>
-            <p class="news-card-desc">{{ article.description }}</p>
-            <span class="news-card-cta">閱讀更多 →</span>
-          </div>
-        </NuxtLink>
-      </SwiperSlide>
-    </Swiper>
-    <template #fallback>
-      <div class="news-fallback-grid">
-        <NuxtLink
-          v-for="(article, i) in latestNews.slice(0, 3)"
-          :key="article.path + i"
-          :to="toPagePath(article.path)"
-          class="news-card"
-        >
-          <div class="news-card-img-wrap">
-            <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
-            <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
-          </div>
-          <div class="news-card-body">
-            <span class="news-card-date">{{ formatDate(article.date) }}</span>
-            <h3 class="news-card-title">{{ article.title }}</h3>
-            <p class="news-card-desc">{{ article.description }}</p>
-            <span class="news-card-cta">閱讀更多 →</span>
-          </div>
-        </NuxtLink>
-      </div>
-    </template>
-  </ClientOnly>
-</section>
+        </template>
+      </ClientOnly>
+    </section>
   </main>
 
   <ContactIcon />
@@ -661,6 +665,22 @@ function formatDate(dateStr?: string) {
 /* ════════════════════════════════
    留學情報
 ════════════════════════════════ */
+.news-swiper :deep(.swiper-button-next),
+.news-swiper :deep(.swiper-button-prev) {
+  color: var(--c-primary);
+  width: 36px;
+  height: 36px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.news-swiper :deep(.swiper-button-next)::after,
+.news-swiper :deep(.swiper-button-prev)::after {
+  font-size: 1rem;
+  font-weight: 700;
+}
 .news-swiper {
   padding-bottom: 1rem;
 }
@@ -880,7 +900,7 @@ function formatDate(dateStr?: string) {
   .news-card-img {
     height: 140px;
   }
-  
+
 }
 
 /* 小手機（≤ 480px） */
