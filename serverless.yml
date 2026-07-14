@@ -4,7 +4,7 @@ frameworkVersion: '4'
 provider:
   name: aws
   region: ap-northeast-3
-  runtime: nodejs18.x
+  runtime: nodejs22.x
   memorySize: 1024
   timeout: 15
   architecture: arm64
