@@ -2,7 +2,7 @@
 title: "台灣短期遊學推薦｜台中小班制中文課程與文化體驗"
 description: "台灣短期遊學推薦！台中小班制中文課程，2-4 週彈性方案，結合寫春聯、製作太陽餅等文化體驗，語言學習與文化交流一次滿足。"
 date: "2025-09-21"
-author: "FORMA 渡日誌"
+author: "皓學留遊學"
 tags: ["台灣短期遊學", "中文學習", "台灣文化體驗", "留學台灣", "台中語言中心"]
 cover: "/images/information/taiwan-shortstudy/temple.jpg"
 ---

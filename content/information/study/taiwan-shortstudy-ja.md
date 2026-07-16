@@ -2,7 +2,7 @@
 title: "台湾短期留学｜少人数制の中国語学習と文化体験"
 description: "おすすめの台湾短期留学プログラム。台中の少人数制中国語コース、2〜4週間の柔軟なプラン、書道やお菓子作りなどの文化体験付き。語学学習と文化交流を一度に。"
 date: "2025-09-21"
-author: "FORMA"
+author: "皓學留遊學"
 tags: ["台湾短期留学", "中国語学習", "台湾文化体験", "台湾留学", "台中語学センター"]
 cover: "/images/information/taiwan-shortstudy/temple.jpg"
 ---
