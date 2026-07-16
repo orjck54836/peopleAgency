@@ -9,7 +9,7 @@
       "provider": {
         "name": "aws",
         "region": "ap-northeast-3",
-        "runtime": "nodejs18.x",
+        "runtime": "nodejs22.x",
         "memorySize": 1024,
         "timeout": 15,
         "architecture": "arm64",
@@ -59,7 +59,7 @@
     "provider": {
       "name": "aws",
       "region": "ap-northeast-3",
-      "runtime": "nodejs18.x",
+      "runtime": "nodejs22.x",
       "memorySize": 1024,
       "timeout": 15,
       "architecture": "arm64",
@@ -92,7 +92,7 @@
       "serviceProvider": null,
       "instanceParameters": null
     },
-    "serviceRawFile": "service: nuxt-nitro\nframeworkVersion: '4'\n\nprovider:\n  name: aws\n  region: ap-northeast-3\n  runtime: nodejs18.x\n  memorySize: 1024\n  timeout: 15\n  architecture: arm64\n  environment:\n    NUXT_AWS_REGION: ap-northeast-3\n    NUXT_SES_REGION: ap-northeast-1\n    NUXT_MAIL_FROM: aiden@forma-global.com\n    NUXT_MAIL_TO: liaiden1213@gmail.com\n  iamRoleStatements:\n    - Effect: Allow\n      Action:\n        - dynamodb:Scan\n        - ses:SendEmail\n        - ses:SendRawEmail\n      Resource: \"*\"\n\npackage:\n  patterns:\n    - '!**'\n    - '.output/server/**'\n    - 'node_modules/vue-bundle-renderer/**'\n    - 'node_modules/@vue/shared/**'\n    - 'package.json'\n\nfunctions:\n  web:\n    handler: .output/server/index.handler\n    events:\n      - httpApi: '*'\n",
+    "serviceRawFile": "service: nuxt-nitro\nframeworkVersion: '4'\n\nprovider:\n  name: aws\n  region: ap-northeast-3\n  runtime: nodejs22.x\n  memorySize: 1024\n  timeout: 15\n  architecture: arm64\n  environment:\n    NUXT_AWS_REGION: ap-northeast-3\n    NUXT_SES_REGION: ap-northeast-1\n    NUXT_MAIL_FROM: aiden@forma-global.com\n    NUXT_MAIL_TO: liaiden1213@gmail.com\n  iamRoleStatements:\n    - Effect: Allow\n      Action:\n        - dynamodb:Scan\n        - ses:SendEmail\n        - ses:SendRawEmail\n      Resource: \"*\"\n\npackage:\n  patterns:\n    - '!**'\n    - '.output/server/**'\n    - 'node_modules/vue-bundle-renderer/**'\n    - 'node_modules/@vue/shared/**'\n    - 'package.json'\n\nfunctions:\n  web:\n    handler: .output/server/index.handler\n    events:\n      - httpApi: '*'\n",
     "command": [
       "info"
     ],
@@ -108,12 +108,12 @@
     "serviceProviderAwsCfStackName": "nuxt-nitro-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:ap-northeast-3:593793036921:stack/nuxt-nitro-dev/c1c21750-775a-11f0-b94b-06ed4bd6ecc9",
     "serviceProviderAwsCfStackCreated": "2025-08-12T09:00:13.138Z",
-    "serviceProviderAwsCfStackUpdated": "2026-07-13T09:48:54.499Z",
+    "serviceProviderAwsCfStackUpdated": "2026-07-15T11:07:56.424Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "WebLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:ap-northeast-3:593793036921:function:nuxt-nitro-dev-web:43",
+        "OutputValue": "arn:aws:lambda:ap-northeast-3:593793036921:function:nuxt-nitro-dev-web:50",
         "Description": "Current Lambda function version",
         "ExportName": "sls-nuxt-nitro-dev-WebLambdaFunctionQualifiedArn"
       },

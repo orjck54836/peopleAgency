@@ -288,7 +288,7 @@ function goToSchools() {
   border: none;
   background: var(--c-surface);
   color: var(--c-text);
-  font-size: var(--text-sm);
+  
   font-weight: 600;
   padding: 0.85rem 0.5rem;
   text-align: center;
@@ -323,15 +323,13 @@ function goToSchools() {
 }
 
 .card-region {
-  font-family: var(--font-serif);
-  font-size: var(--text-2xl);
   font-weight: 700;
   color: var(--c-primary-dark);
   margin: 0;
 }
 
 .card-cities {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-muted);
   font-weight: 600;
 }
@@ -375,7 +373,6 @@ function goToSchools() {
 .card-desc {
   flex: 1;
   min-width: 0;
-  font-size: var(--text-sm);
   color: var(--c-text-secondary);
   line-height: 1.85;
   margin: 0 1rem;
@@ -401,7 +398,6 @@ function goToSchools() {
 }
 
 .rating-label {
-  font-size: var(--text-xs);
   font-weight: 700;
   color: var(--c-primary);
   width: 4.5rem;
@@ -414,7 +410,7 @@ function goToSchools() {
 }
 
 .star {
-  font-size: var(--text-sm);
+  
   color: var(--c-border);
 }
 
@@ -423,7 +419,7 @@ function goToSchools() {
 }
 
 .rating-tag {
-  font-size: var(--text-xs);
+  
   color: var(--c-text-muted);
   background: var(--c-bg-alt);
   padding: 0.1rem 0.5rem;
@@ -431,7 +427,6 @@ function goToSchools() {
 }
 
 .rating-row--rent .rent-value {
-  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--c-text);
 }
@@ -452,15 +447,12 @@ function goToSchools() {
 }
 
 .detail-title {
-  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--c-primary-dark);
   margin: 0 0 0.25rem;
 }
 
 .detail-text {
-  font-size: var(--text-sm);
-  color: var(--c-text-secondary);
   line-height: 1.7;
   margin: 0;
 }
@@ -476,7 +468,7 @@ function goToSchools() {
   border-radius: var(--radius-md);
   background: transparent;
   color: var(--c-primary);
-  font-size: var(--text-sm);
+  
   font-weight: 700;
   padding: 0.8rem;
   cursor: pointer;
@@ -540,7 +532,7 @@ function goToSchools() {
   }
 
   .zone-tab {
-    font-size: var(--text-sm);
+    
     padding: 0.8rem 0.3rem;
   }
 
@@ -573,7 +565,7 @@ function goToSchools() {
 
   .rating-label {
     width: 4rem;
-    font-size: var(--text-xs);
+    
   }
 }
 

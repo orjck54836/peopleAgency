@@ -36,7 +36,7 @@ const localePath = useLocalePath()
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   color: white;
   font-weight: 600;
-  font-size: var(--text-sm);
+  
   transition: transform 0.2s ease, background-color 0.3s ease;
 
   span {

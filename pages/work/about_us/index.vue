@@ -105,7 +105,7 @@ const companyInfo = [
 }
 
 .about-eyebrow {
-    font-size: var(--text-xs);
+    
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -123,7 +123,7 @@ const companyInfo = [
 }
 
 .about-sub {
-    font-size: var(--text-sm);
+    
     color: rgba(255, 255, 255, 0.82);
     line-height: 1.7;
     margin: 0;
@@ -153,7 +153,7 @@ const companyInfo = [
 }
 
 .section-eyebrow {
-    font-size: var(--text-xs);
+    
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -177,7 +177,7 @@ const companyInfo = [
 }
 
 .story-body p {
-    font-size: var(--text-sm);
+    
     color: var(--c-text-secondary);
     line-height: 1.85;
     margin: 0;
@@ -223,7 +223,7 @@ const companyInfo = [
 }
 
 .value-desc {
-    font-size: var(--text-sm);
+    
     color: var(--c-text-secondary);
     line-height: 1.7;
     margin: 0;
@@ -275,7 +275,7 @@ const companyInfo = [
 }
 
 .team-tag {
-    font-size: var(--text-xs);
+    
     font-weight: 700;
     background: var(--c-primary-muted);
     color: var(--c-primary-dark);
@@ -284,14 +284,14 @@ const companyInfo = [
 }
 
 .team-role {
-    font-size: var(--text-sm);
+    
     color: var(--c-primary);
     font-weight: 600;
     margin: 0 0 0.5rem;
 }
 
 .team-desc {
-    font-size: var(--text-sm);
+    
     color: var(--c-text-secondary);
     line-height: 1.7;
     margin: 0;
@@ -307,7 +307,7 @@ const companyInfo = [
     display: grid;
     grid-template-columns: 140px 1fr;
     border-bottom: 1px solid var(--c-border);
-    font-size: var(--text-sm);
+    
 }
 
 .company-row:last-child {
@@ -319,7 +319,7 @@ const companyInfo = [
     background: var(--c-primary-muted);
     color: var(--c-primary-dark);
     font-weight: 700;
-    font-size: var(--text-xs);
+    
     display: flex;
     align-items: center;
 }
@@ -346,7 +346,7 @@ const companyInfo = [
 }
 
 .about-cta p {
-    font-size: var(--text-sm);
+    
     color: var(--c-text-secondary);
     margin: 0 0 1.5rem;
 }
@@ -355,7 +355,7 @@ const companyInfo = [
     display: inline-block;
     background: var(--c-primary);
     color: var(--c-text-on-primary);
-    font-size: var(--text-sm);
+    
     font-weight: 700;
     padding: 0.9rem 2.4rem;
     border-radius: var(--radius-full);

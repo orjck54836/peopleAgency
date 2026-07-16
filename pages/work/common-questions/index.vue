@@ -180,7 +180,7 @@ function toggle(i: number) {
 }
 
 .faq-hero-eyebrow {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -198,7 +198,7 @@ function toggle(i: number) {
 }
 
 .faq-hero-sub {
-  font-size: var(--text-sm);
+  
   color: rgba(255, 255, 255, 0.82);
   line-height: 1.7;
   margin: 0;
@@ -227,7 +227,7 @@ function toggle(i: number) {
   border: none;
   background: var(--c-surface);
   color: var(--c-text-secondary);
-  font-size: var(--text-sm);
+  
   font-weight: 600;
   cursor: pointer;
   transition: background var(--transition-fast), color var(--transition-fast);
@@ -294,7 +294,7 @@ function toggle(i: number) {
 }
 
 .faq-num {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   color: var(--c-primary);
   flex-shrink: 0;
@@ -355,7 +355,7 @@ function toggle(i: number) {
 }
 
 .faq-answer p {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   line-height: 1.85;
   margin: 0;
@@ -383,7 +383,7 @@ function toggle(i: number) {
 }
 
 .aside-eyebrow {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--c-primary);
@@ -400,7 +400,7 @@ function toggle(i: number) {
 }
 
 .aside-body {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   line-height: 1.7;
   margin: 0 0 1.2rem;
@@ -410,7 +410,7 @@ function toggle(i: number) {
   display: inline-block;
   background: var(--c-primary);
   color: var(--c-text-on-primary);
-  font-size: var(--text-sm);
+  
   font-weight: 700;
   padding: 0.7rem 1.5rem;
   border-radius: var(--radius-full);
@@ -443,7 +443,7 @@ function toggle(i: number) {
 .aside-links a {
   display: block;
   padding: 0.55rem 0;
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   text-decoration: none;
   transition: color var(--transition-fast);

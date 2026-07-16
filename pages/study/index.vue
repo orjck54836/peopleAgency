@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 
+
 const swiperModules = [Navigation, Pagination, Autoplay]
 
 const router = useRouter()
@@ -200,12 +201,15 @@ function formatDate(dateStr?: string) {
       </div>
       <div class="philosophy-content" ref="contentRef">
         <h2 class="philosophy-headline text-center">
-          把對日本的嚮往<br/>變成你的人生履歷
+          關於皓學
         </h2>
         <div class="philosophy-body">
-          <p>台灣人對日本文化一直有著深厚的情結，但很多時候，這份嚮往只停留在旅遊的幾天假期裡。「如果能真正生活在那裡，該有多好？」</p>
-          <p>其實，去日本留學、體驗沉浸式學習，並沒有想像中遙遠。相比歐美高昂的開銷，日本學費親民、文化適應期短，是含金量極高的選擇。</p>
-          <p>正因為看見這份熱情，我們成立了 Forma。從跨出台灣的第一步、適應當地環境，到畢業後開拓更多元的工作機會——這條路上，你不是一個人摸索，我們就在這裡。</p>
+          <p>去日本留遊學，是一次跨出舒適圈、拓展視野並挑戰自我的勇敢實踐。</p>
+          <p>我們明白，這趟旅程的終極目標，是為了幫你找到能過上理想生活的力量。</p>
+          <p>在尋找自我的路上，你不需要獨自面對未知；皓學會站在你身旁，將你心中對日本生活的嚮往，一步步轉化為踏實且清晰的起點。</p>
+          <p>我們深知每一個出國決定背後，都夾雜著對未來的期待與對未知的焦慮。</p>
+          <p>為了撫平這些不安，皓學用最溫暖的傾聽與一對一諮詢，幫你把亂成一團的代辦手續與規劃，梳理成一條明晰且安心的路。</p>
+          <p>我們用最細緻的專業，為你的日本生活，建立最踏實的安全感。</p>
         </div>
         <div class="d-flex justify-center">
           <NuxtLink to="/contact" class="philosophy-cta">開始諮詢 →</NuxtLink>
@@ -486,7 +490,7 @@ function formatDate(dateStr?: string) {
   border: 1.5px solid var(--c-primary);
   border-radius: var(--radius-full);
   padding: 0.85rem 2.2rem;
-  font-size: var(--text-sm);
+  
   font-weight: 700;
   color: var(--c-primary);
   text-decoration: none;
@@ -586,7 +590,7 @@ function formatDate(dateStr?: string) {
   border-radius: var(--radius-full);
   background: transparent;
   color: var(--c-primary);
-  font-size: var(--text-sm);
+  
   font-weight: 700;
   padding: 0.9rem 2.2rem;
   cursor: pointer;
@@ -643,7 +647,7 @@ function formatDate(dateStr?: string) {
   left: 0.75rem;
   background: var(--c-primary);
   color: #fff;
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   padding: 0.25rem 0.6rem;
   border-radius: var(--radius-sm);
@@ -655,16 +659,12 @@ function formatDate(dateStr?: string) {
 }
 
 .mode-card-title {
-  font-family: var(--font-serif);
-  font-size: var(--text-xl);
   font-weight: 700;
   color: var(--c-primary-dark);
   margin: 0 0 0.6rem;
 }
 
 .mode-card-desc {
-  font-size: var(--text-sm);
-  color: var(--c-text-secondary);
   line-height: 1.7;
   margin: 0 0 1rem;
 }
@@ -676,7 +676,7 @@ function formatDate(dateStr?: string) {
 }
 
 .mode-card-tag {
-  font-size: var(--text-xs);
+  
   font-weight: 600;
   color: var(--c-primary-dark);
   background: var(--c-primary-muted);
@@ -690,7 +690,7 @@ function formatDate(dateStr?: string) {
 }
 
 .mode-card-cta {
-  font-size: var(--text-sm);
+  
   font-weight: 700;
   color: var(--c-primary);
   transition: color var(--transition-fast);
@@ -771,7 +771,7 @@ function formatDate(dateStr?: string) {
 }
 
 .news-card-date {
-  font-size: var(--text-xs);
+  
   color: var(--c-primary);
   font-weight: 600;
 }
@@ -788,7 +788,7 @@ function formatDate(dateStr?: string) {
 }
 
 .news-card-desc {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   line-height: 1.5;
   display: -webkit-box;
@@ -839,13 +839,13 @@ function formatDate(dateStr?: string) {
 }
 
 .featured-card-body p {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   margin-bottom: 0.6rem;
 }
 
 .featured-card-link {
-  font-size: var(--text-sm);
+  
   font-weight: 600;
   color: var(--c-primary);
 }
@@ -884,13 +884,13 @@ function formatDate(dateStr?: string) {
   }
 
   .hero-slide-content p {
-    font-size: var(--text-sm);
+    
     margin-bottom: 1.2rem;
   }
 
   .hero-cta {
     padding: 0.7rem 1.6rem;
-    font-size: var(--text-sm);
+    
   }
 
   .study-landing-wrapper {

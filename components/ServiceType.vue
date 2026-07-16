@@ -190,7 +190,7 @@ const localePath = useLocalePath()
         color: #333;
         padding: 0.25rem 0.75rem;
         border-radius: 16px;
-        font-size: var(--text-xs);
+        
         margin-right: 5px;
       }
     }

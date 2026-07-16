@@ -40,7 +40,7 @@ useSeoMeta({
     <UApp>
       <NuxtRouteAnnouncer />
       <div class="global-background">
-        <NuxtPage />
+        <NuxtPage :key="$route.fullPath" />
       </div>
       <LineFloatBtn />
     </UApp>

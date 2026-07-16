@@ -47,5 +47,5 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 
 ### 延伸閱讀
 
-- [在日本建設業雇用外國施工管理時需要的在留資格是什麼？](/study/information/visa-guide.zh)
+- [在日本建設業雇用外國施工管理時需要的在留資格是什麼？](/work/information/visa-guide.zh)
 - [台灣遊學完整介紹](/study/taiwan)

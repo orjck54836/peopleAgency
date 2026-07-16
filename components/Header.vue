@@ -91,12 +91,14 @@ onMounted(() => {
 
 <template>
   <header class="header" :class="`header--${currentLine}`">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
-      <!-- Logo -->
-      <NuxtLink :to="localePath(`/${currentLine}`)" :class="classes">
-        <img src="/images/logo-forma.png" alt="logo" class="logo-img" />
-      </NuxtLink>
-
+    <div class="container-fluid d-flex align-items-center justify-content-between header-left">
+      <div style="width: 100px; height: 80px; display: flex; align-items: center;">
+        <!-- Logo -->
+        <NuxtLink :to="localePath(`/${currentLine}`)" :class="classes">
+          <img :src="currentLine === 'work' ? '/images/logo-forma.png' : '/images/haogaku-logo.svg'"
+            :alt="currentLine === 'work' ? 'FORMA' : '皓學'" class="logo-img" />
+        </NuxtLink>
+      </div>
       <!-- 主選單（取代原右側 Navigation） -->
       <nav class="main-nav d-none d-xl-flex">
         <ul>
@@ -191,8 +193,6 @@ onMounted(() => {
 }
 
 .logo-img {
-  height: 60px;
-  width: 140px;
   object-fit: cover;
 }
 
@@ -254,6 +254,12 @@ onMounted(() => {
     gap: 14px;
   }
 
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
   // ---- 雙品牌切換器 ----
   .line-switcher {
     display: flex;
@@ -265,7 +271,7 @@ onMounted(() => {
       border: none;
       background: transparent;
       padding: 8px 16px;
-      font-size: var(--text-sm);
+
       font-weight: 600;
       cursor: pointer;
       color: rgb(var(--black));
@@ -419,7 +425,7 @@ onMounted(() => {
 
     &::after {
       content: "▼";
-      font-size: var(--text-sm);
+
     }
 
     &:hover {
@@ -430,7 +436,7 @@ onMounted(() => {
   .dropdown-item {
     display: block;
     padding: 0.65rem 1.2rem;
-    font-size: var(--text-sm);
+
     font-weight: 500;
     color: var(--c-text-secondary);
     text-decoration: none;

@@ -47,5 +47,5 @@ cover: "/images/information/taiwan-shortstudy/temple.jpg"
 
 ### 関連記事
 
-- [日本の建設業で外国人施工管理を雇用する際に必要な在留資格とは？](/study/information/visa-guide.ja)
+- [日本の建設業で外国人施工管理を雇用する際に必要な在留資格とは？](/work/information/visa-guide.ja)
 - [台湾留学の詳しい紹介](/study/taiwan)

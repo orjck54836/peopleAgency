@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import logo from "/images/logo-forma.png";
+import logo from "/images/haogaku-logo.svg";
 
 
 const navOpen = ref(false);

@@ -254,6 +254,17 @@
     "courseDuration": "課程期間：",
     "requirements": "報名資格",
     "moreSchools": "更多熱門學校",
+    "tel": "電話",
+    "website": "網站",
+    "address": "地址",
+    "nearestStation": "附近車站",
+    "morningClass": "上午課程",
+    "afternoonClass": "下午課程",
+    "daysPerWeek": "每週上課天數",
+    "hoursPerWeek": "每週上課時數",
+    "applicationFee": "報名費",
+    "registrationFee": "入學金",
+    "otherFees": "其他學雜費",
     "viewMore": "查看更多"
   },
   "taiwanStudy": {

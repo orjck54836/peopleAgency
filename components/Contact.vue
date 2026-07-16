@@ -291,7 +291,7 @@ watch(
 
   label .required {
     color: #e63946;
-    font-size: var(--text-sm);
+    
     margin-left: 6px;
   }
 
@@ -326,7 +326,7 @@ watch(
 
     .subtitle {
       margin-top: 0.5rem;
-      font-size: var(--text-sm);
+      
       font-weight: 500;
       color: #333;
       line-height: 1.6;

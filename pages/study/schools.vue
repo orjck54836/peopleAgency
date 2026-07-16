@@ -288,7 +288,7 @@ onMounted(fetchSchools)
 .page-hero-inner { max-width: 640px; margin: 0 auto; }
 
 .page-hero-eyebrow {
-  font-size: var(--text-xs);
+  
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -306,7 +306,7 @@ onMounted(fetchSchools)
 }
 
 .page-hero-sub {
-  font-size: var(--text-sm);
+  
   color: rgba(255,255,255,0.82);
   margin: 0;
   line-height: 1.7;
@@ -346,7 +346,7 @@ onMounted(fetchSchools)
 }
 
 .filter-header p {
-  font-size: var(--text-xs);
+  
   color: rgba(255,255,255,0.75);
   margin: 0;
 }
@@ -366,7 +366,7 @@ onMounted(fetchSchools)
 }
 
 .filter-field label {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   color: var(--c-primary);
   letter-spacing: 0.04em;
@@ -378,7 +378,7 @@ onMounted(fetchSchools)
   padding: 0.6rem 0.8rem;
   border: 1px solid var(--c-border);
   border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
+  
   background: var(--c-bg);
   color: var(--c-text);
   transition: border-color var(--transition-fast);
@@ -391,7 +391,7 @@ onMounted(fetchSchools)
 }
 
 .filter-note {
-  font-size: var(--text-xs);
+  
   color: var(--c-text-muted);
   margin: 0;
 }
@@ -402,7 +402,7 @@ onMounted(fetchSchools)
   border-radius: var(--radius-sm);
   background: transparent;
   color: var(--c-text-muted);
-  font-size: var(--text-xs);
+  
   font-weight: 600;
   padding: 0.6rem;
   cursor: pointer;
@@ -435,7 +435,7 @@ onMounted(fetchSchools)
 }
 
 .sort-label {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   color: var(--c-text-muted);
 }
@@ -445,7 +445,7 @@ onMounted(fetchSchools)
   border-radius: var(--radius-sm);
   background: var(--c-surface);
   color: var(--c-text-secondary);
-  font-size: var(--text-xs);
+  
   font-weight: 600;
   padding: 0.35rem 0.75rem;
   cursor: pointer;
@@ -465,7 +465,7 @@ onMounted(fetchSchools)
 
 .result-count {
   margin-left: auto;
-  font-size: var(--text-xs);
+  
   color: var(--c-text-muted);
 }
 
@@ -515,7 +515,7 @@ onMounted(fetchSchools)
   left: 0.6rem;
   background: var(--c-primary);
   color: #fff;
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-sm);
@@ -538,19 +538,19 @@ onMounted(fetchSchools)
 }
 
 .school-card-location {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-muted);
   margin: 0;
 }
 
 .school-card-intake {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   margin: 0;
 }
 
 .school-card-intro {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   line-height: 1.6;
   margin: 0.25rem 0 0;
@@ -561,7 +561,7 @@ onMounted(fetchSchools)
 }
 
 .school-card-cta {
-  font-size: var(--text-sm);
+  
   font-weight: 700;
   color: var(--c-primary);
   margin-top: 0.5rem;
@@ -592,7 +592,7 @@ onMounted(fetchSchools)
   border-radius: var(--radius-sm);
   background: var(--c-surface);
   color: var(--c-text-secondary);
-  font-size: var(--text-sm);
+  
   font-weight: 600;
   cursor: pointer;
   transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);

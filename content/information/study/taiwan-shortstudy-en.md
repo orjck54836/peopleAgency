@@ -47,5 +47,5 @@ A short-term study trip to Taiwan is more than a language journey—it's the per
 
 ### Related Reading
 
-- [What Visa Do You Need to Hire Foreign Construction Managers in Japan?](/study/information/visa-guide.en)
+- [What Visa Do You Need to Hire Foreign Construction Managers in Japan?](/work/information/visa-guide.en)
 - [Complete Guide to Studying in Taiwan](/study/taiwan)

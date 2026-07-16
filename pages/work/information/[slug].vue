@@ -80,7 +80,6 @@ useSeoMeta({
     <div v-else class="article-empty">{{ $t('information.noResults') }}</div>
   </main>
 
-  <ContactIcon />
   <Footer />
 </template>
 
@@ -96,7 +95,7 @@ useSeoMeta({
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: var(--text-sm);
+  
   margin-bottom: 2rem;
   flex-wrap: wrap;
 }
@@ -136,7 +135,7 @@ useSeoMeta({
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: var(--text-sm);
+  
   color: var(--c-text-muted);
 }
 
@@ -196,7 +195,7 @@ useSeoMeta({
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   text-decoration: none;
   transition: color var(--transition-fast);
@@ -236,7 +235,7 @@ useSeoMeta({
   display: inline-block;
   background: var(--c-primary);
   color: var(--c-text-on-primary);
-  font-size: var(--text-sm);
+  
   font-weight: 700;
   padding: 0.85rem 2.2rem;
   border-radius: var(--radius-full);
@@ -339,7 +338,7 @@ useSeoMeta({
   background: var(--c-primary-muted);
   padding: 2px 6px;
   border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
+  
   color: var(--c-primary-dark);
 }
 
@@ -350,7 +349,7 @@ useSeoMeta({
   padding: 1.2rem;
   border-radius: var(--radius-md);
   overflow-x: auto;
-  font-size: var(--text-sm);
+  
   margin: 2em 0;
 }
 
@@ -391,7 +390,7 @@ useSeoMeta({
   width: 100%;
   border-collapse: collapse;
   margin: 2em 0;
-  font-size: var(--text-sm);
+  
 }
 
 .article-body th {

@@ -15,6 +15,15 @@ export default defineNuxtConfig({
     minify: true,
     sourceMap: false
   },
+  content: {
+    database: {
+      type: 'sqlite',
+      filename: '/tmp/contents.sqlite'
+    },
+    experimental: {
+      sqliteConnector: 'native'
+    }
+  },
   runtimeConfig: {
     awsRegion: 'ap-northeast-3',
     ddb: { languageSchoolsTable: 'language_schools' },

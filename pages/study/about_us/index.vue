@@ -13,7 +13,7 @@ useSeoMeta({
 })
 
 const values = [
-  { icon: '¥', title: '費用透明，零代辦費', desc: '首辦免代辦費，與日本學校同步收費，絕不收取隱藏費用。每一筆支出清楚說明，讓你安心出發。' },
+  { icon: '¥', title: '費用透明，零代辦費', desc: '免代辦費，絕不收取隱藏費用。每一筆支出清楚說明，讓你安心出發。' },
   { icon: '🤝', title: '台日雙邊在地支援', desc: '台灣顧問協助行前申請，日本當地有協力夥伴陪你落地開戶、辦手機、找租屋，出國不變孤兒。' },
   { icon: '📄', title: '專業簽證指導', desc: '針對入管局的留學理由書與財力證明，提供顧問一對一修改，大幅提升在留資格認定證明書的過件率。' },
   { icon: '🎯', title: '精準媒合學校', desc: '依你的目標（語言學習、升學、體驗文化）精準推薦合適學校，40 所以上東京、京都、大阪合作校。' },
@@ -50,9 +50,9 @@ const companyInfo = [
           <h2 class="section-title">關於我們</h2>
           <div class="story-body">
             <p>去日本留遊學，是一次跨出舒適圈、拓展視野並挑戰自我的勇敢實踐。我們明白，這趟旅程的終極目標，是為了幫你找到能過上理想生活的力量。</p>
-            <p>在尋找自我的路上，你不需要獨自面對未知；皓學會站在你身旁，將你心中對日本生活的嚮往，一步步轉化為踏實且清晰的起點。</p>
+            <p>在尋找自我的路上，你不需要獨自面對未知；我們會站在你身旁，將你心中對日本生活的嚮往，一步步轉化為踏實且清晰的起點。</p>
             <p>我們深知每一個出國決定背後，都夾雜著對未來的期待與對未知的焦慮。</p>
-            <p>為了撫平這些不安，皓學用最溫暖的傾聽與一對一諮詢，幫你把亂成一團的代辦手續與規劃，梳理成一條明晰且安心的路。我們用最細緻的專業，為你的日本生活，建立最踏實的安全感。</p>
+            <p>為了撫平這些不安，我們用最溫暖的傾聽與一對一諮詢，幫你把亂成一團的代辦手續與規劃，梳理成一條明晰且安心的路。我們用最細緻的專業，為你的日本生活，建立最踏實的安全感。</p>
           </div>
         </div>
         <div class="story-img-wrap">
@@ -63,7 +63,7 @@ const companyInfo = [
 
     <section class="about-section about-section--alt">
       <div class="about-section-inner">
-        <h2 class="section-title">為什麼選擇 FORMA 留學代辦</h2>
+        <h2 class="section-title">為什麼選擇皓學留學代辦？</h2>
         <div class="value-grid">
           <div v-for="v in values" :key="v.title" class="value-card">
             <h3 class="value-title">{{ v.title }}</h3>
@@ -107,7 +107,7 @@ const companyInfo = [
 }
 
 .about-eyebrow {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -125,7 +125,7 @@ const companyInfo = [
 }
 
 .about-sub {
-  font-size: var(--text-sm);
+  
   color: rgba(255, 255, 255, 0.82);
   line-height: 1.7;
   margin: 0;
@@ -155,7 +155,7 @@ const companyInfo = [
 }
 
 .section-eyebrow {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -164,9 +164,8 @@ const companyInfo = [
 }
 
 .section-title {
-  font-family: var(--font-heading);
   font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--c-text);
   line-height: 1.3;
 }
@@ -215,15 +214,12 @@ const companyInfo = [
 }
 
 .value-title {
-  font-size: var(--text-base);
   font-weight: 700;
   color: var(--c-primary-dark);
   margin: 0 0 0.5rem;
 }
 
 .value-desc {
-  font-size: var(--text-sm);
-  color: var(--c-text-secondary);
   line-height: 1.7;
   margin: 0;
 }
@@ -274,7 +270,7 @@ const companyInfo = [
 }
 
 .team-tag {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   background: var(--c-primary-muted);
   color: var(--c-primary-dark);
@@ -283,14 +279,14 @@ const companyInfo = [
 }
 
 .team-role {
-  font-size: var(--text-sm);
+  
   color: var(--c-primary);
   font-weight: 600;
   margin: 0 0 0.5rem;
 }
 
 .team-desc {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   line-height: 1.7;
   margin: 0;
@@ -306,7 +302,7 @@ const companyInfo = [
   display: grid;
   grid-template-columns: 140px 1fr;
   border-bottom: 1px solid var(--c-border);
-  font-size: var(--text-sm);
+  
 }
 
 .company-row:last-child {
@@ -318,7 +314,6 @@ const companyInfo = [
   background: var(--c-primary-muted);
   color: var(--c-primary-dark);
   font-weight: 700;
-  font-size: var(--text-xs);
   display: flex;
   align-items: center;
 }
@@ -338,15 +333,12 @@ const companyInfo = [
 
 .about-cta h2 {
   font-family: var(--font-heading);
-  font-size: var(--text-2xl);
   font-weight: 700;
   color: var(--c-primary-dark);
   margin: 0 0 0.75rem;
 }
 
 .about-cta p {
-  font-size: var(--text-sm);
-  color: var(--c-text-secondary);
   margin: 0 0 1.5rem;
 }
 
@@ -354,7 +346,6 @@ const companyInfo = [
   display: inline-block;
   background: var(--c-primary);
   color: var(--c-text-on-primary);
-  font-size: var(--text-sm);
   font-weight: 700;
   padding: 0.9rem 2.4rem;
   border-radius: var(--radius-full);

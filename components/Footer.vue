@@ -6,9 +6,9 @@ const socialLinks = [
 ]
 
 const contactInfo = [
-  { label: '電話', value: '+886-04-22233958', icon: '📞' },
-  { label: 'LINE ID', value: '@forma_global', icon: '💬' },
-  { label: 'Email', value: 'info@forma-global.com', icon: '✉️' },
+  { label: '電話', value: '+886-04-22233958', icon: '' },
+  { label: 'LINE ID', value: '@forma_global', icon: '' },
+  { label: 'Email', value: 'info@forma-global.com', icon: '' },
 ]
 
 const resources = [
@@ -47,12 +47,11 @@ const resources = [
 
       <!-- 第一欄：品牌 + 聯絡資訊 + 社群 -->
       <div class="footer-col footer-col--brand">
-        <p class="footer-logo">FORMA</p>
+        <p class="footer-logo">皓學/FORMA</p>
         <p class="footer-tagline">薪火相傳福爾摩沙國際有限公司<br>陪你把對日本的嚮往，變成真實的人生履歷。</p>
 
         <ul class="footer-contact">
           <li v-for="c in contactInfo" :key="c.label">
-            <span class="contact-icon">{{ c.icon }}</span>
             <span class="contact-label">{{ c.label }}</span>
             <span class="contact-val">{{ c.value }}</span>
           </li>
@@ -127,7 +126,7 @@ const resources = [
 }
 
 .footer-tagline {
-  font-size: var(--text-sm);
+  
   color: rgba(255,255,255,0.6);
   line-height: 1.7;
   margin: 0 0 1.5rem;
@@ -147,10 +146,10 @@ const resources = [
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: var(--text-sm);
+  
 }
 
-.contact-icon { font-size: var(--text-sm); flex-shrink: 0; }
+.contact-icon {  flex-shrink: 0; }
 
 .contact-label {
   color: rgba(255,255,255,0.5);
@@ -176,7 +175,7 @@ const resources = [
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--text-sm);
+  
   text-decoration: none;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
@@ -189,7 +188,7 @@ const resources = [
 
 /* ── 資源欄 ── */
 .footer-col-title {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -207,7 +206,7 @@ const resources = [
 }
 
 .footer-links a {
-  font-size: var(--text-sm);
+  
   color: rgba(255,255,255,0.7);
   text-decoration: none;
   transition: color 0.15s;
@@ -218,7 +217,7 @@ const resources = [
 
 .footer-links a::before {
   content: '→';
-  font-size: var(--text-xs);
+  
   opacity: 0.5;
   transition: opacity 0.15s, transform 0.15s;
 }
@@ -240,7 +239,7 @@ const resources = [
 }
 
 .footer-bottom p {
-  font-size: var(--text-xs);
+  
   color: rgba(255,255,255,0.35);
   margin: 0;
 }

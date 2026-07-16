@@ -610,7 +610,7 @@ const nodes = computed(() => {
 
 /* 內文 */
 .flow-step p {
-  font-size: var(--text-sm);
+  
   color: #374151;
   line-height: 1.5;
 }
@@ -843,7 +843,7 @@ const nodes = computed(() => {
 }
 
 .tree-node p {
-  font-size: var(--text-sm);
+  
   color: #4b5563;
   line-height: 1.4;
 }

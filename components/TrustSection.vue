@@ -107,7 +107,6 @@
               <span class="ctag">EJU 名校</span>
               <span class="ctag">純體驗</span>
             </div>
-            <p class="reveal-count">40 所東京、京都、大阪合作校</p>
           </div>
         </div>
         <div class="trust-cell trust-cell--text">
@@ -175,7 +174,7 @@
 }
 
 .trust-eyebrow {
-  font-size: var(--text-xs);
+  
   letter-spacing: 0.14em;
   color: var(--c-primary);
   font-weight: 600;
@@ -185,7 +184,7 @@
 .trust-headline {
   font-family: var(--font-serif);
   font-size: clamp(1.9rem, 3.5vw, 2.5rem);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--c-text);
   line-height: 1.25;
   margin: 0 0 1rem;
@@ -316,7 +315,7 @@
 /* ── 文字內容 ── */
 .promise-badge {
   display: inline-block;
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   background: var(--c-primary-muted);
   color: var(--c-primary-dark);
@@ -327,26 +326,20 @@
 }
 
 .promise-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-  font-weight: 800;
-  color: var(--c-text);
+  color: var(--c-primary-dark);
+  font-weight: 700;
   line-height: 1.35;
   margin: 0 0 0.75rem;
 }
 
 .promise-body {
-  font-size: var(--text-sm);
-  color: var(--c-text-secondary);
   line-height: 1.8;
   margin: 0;
 }
 
 /* ── 展開內容細項 ── */
 .reveal-label {
-  font-size: var(--text-xs);
   font-weight: 700;
-  color: var(--c-primary);
   letter-spacing: 0.06em;
   margin: 0 0 0.9rem;
 }
@@ -356,7 +349,7 @@
   justify-content: space-between;
   padding: 0.45rem 0;
   border-bottom: 1px solid var(--c-border);
-  font-size: var(--text-sm);
+  
 }
 
 .fee-last {
@@ -382,7 +375,6 @@
   gap: 0.6rem;
   padding: 0.45rem 0;
   border-bottom: 1px solid var(--c-border);
-  font-size: var(--text-sm);
 }
 
 .sup-last {
@@ -390,7 +382,7 @@
 }
 
 .stag {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   padding: 0.15rem 0.5rem;
   border-radius: 3px;
@@ -416,21 +408,19 @@
 .reveal-stat {
   font-family: var(--font-serif);
   font-size: 3rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--c-primary);
   line-height: 1;
   margin: 0 0 0.25rem;
 }
 
 .reveal-stat-label {
-  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--c-text);
   margin: 0 0 0.2rem;
 }
 
 .reveal-stat-sub {
-  font-size: var(--text-xs);
   color: var(--c-text-secondary);
   margin: 0;
 }
@@ -443,7 +433,7 @@
 }
 
 .ctag {
-  font-size: var(--text-xs);
+  
   font-weight: 600;
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
@@ -456,12 +446,6 @@
   background: var(--c-primary-muted);
   border-color: var(--c-primary);
   color: var(--c-primary-dark);
-}
-
-.reveal-count {
-  font-size: var(--text-xs);
-  color: var(--c-text-muted);
-  margin: 0;
 }
 
 .reveal-tl {
@@ -491,14 +475,12 @@
 }
 
 .tl-stage {
-  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--c-text);
   margin: 0 0 0.1rem;
 }
 
 .tl-detail {
-  font-size: var(--text-xs);
   color: var(--c-text-secondary);
   margin: 0;
 }
@@ -513,7 +495,7 @@
 }
 
 .trust-cta-text {
-  font-size: var(--text-sm);
+  
   color: var(--c-text-secondary);
   margin: 0 0 1rem;
 }
@@ -522,7 +504,7 @@
   display: inline-block;
   background: var(--c-primary);
   color: #fff;
-  font-size: var(--text-sm);
+  
   font-weight: 700;
   padding: 0.9rem 2.4rem;
   border-radius: 999px;

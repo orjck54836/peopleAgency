@@ -50,7 +50,7 @@ const lineUrl = 'https://line.me/R/ti/p/@forma_global'
 }
 
 .line-label {
-  font-size: var(--text-xs);
+  
   font-weight: 700;
   letter-spacing: 0.04em;
   white-space: nowrap;
