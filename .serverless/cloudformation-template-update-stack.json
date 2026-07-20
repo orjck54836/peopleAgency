@@ -100,7 +100,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-ap-northeast-3-561efd32-c539",
-          "S3Key": "serverless/nuxt-nitro/dev/1784224896841-2026-07-16T18:01:36.841Z/nuxt-nitro.zip"
+          "S3Key": "serverless/nuxt-nitro/dev/1784225723477-2026-07-16T18:15:23.477Z/nuxt-nitro.zip"
         },
         "Handler": ".output/server/index.handler",
         "Runtime": "nodejs22.x",
@@ -114,8 +114,8 @@
           "Variables": {
             "NUXT_AWS_REGION": "ap-northeast-3",
             "NUXT_SES_REGION": "ap-northeast-1",
-            "NUXT_MAIL_FROM": "aiden@forma-global.com",
-            "NUXT_MAIL_TO": "liaiden1213@gmail.com"
+            "NUXT_MAIL_FROM": "info@forma-global.com",
+            "NUXT_MAIL_TO": "info@forma-global.com"
           }
         },
         "Role": {
@@ -129,14 +129,14 @@
         "WebLogGroup"
       ]
     },
-    "WebLambdaVersion6Qk1a52L82ThFWHtRAQrK3eTBdYtxkrb0YCgejHS0": {
+    "WebLambdaVersionOhmx95XErzZMlmR7N8O1iww9cYIy653YyXFjKlwCw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "WebLambdaFunction"
         },
-        "CodeSha256": "swd4zYGptPPVNx3+v0ema9iIwBqFuZTWUCRgT3CWLUI="
+        "CodeSha256": "i3X6A240bZXwOxE9LSYMyqSGALc63BQvOhi6L3TPCVI="
       }
     },
     "HttpApi": {
@@ -245,7 +245,7 @@
     "WebLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "WebLambdaVersion6Qk1a52L82ThFWHtRAQrK3eTBdYtxkrb0YCgejHS0"
+        "Ref": "WebLambdaVersionOhmx95XErzZMlmR7N8O1iww9cYIy653YyXFjKlwCw"
       },
       "Export": {
         "Name": "sls-nuxt-nitro-dev-WebLambdaFunctionQualifiedArn"

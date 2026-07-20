@@ -11,8 +11,8 @@ provider:
   environment:
     NUXT_AWS_REGION: ap-northeast-3
     NUXT_SES_REGION: ap-northeast-1
-    NUXT_MAIL_FROM: aiden@forma-global.com
-    NUXT_MAIL_TO: liaiden1213@gmail.com
+    NUXT_MAIL_FROM: info@forma-global.com
+    NUXT_MAIL_TO: info@forma-global.com
   iamRoleStatements:
     - Effect: Allow
       Action:

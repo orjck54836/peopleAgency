@@ -1,97 +1,108 @@
 <template>
-    <transition name="fade">
-      <div v-if="show" class="success-message">
-        <div class="message-box">
-          <h3>{{ title }}</h3>
-          <p>{{ subtitle }}</p>
-          <button class="confirm-btn" @click="handleConfirm">{{ $t("confirm") }}</button>
-        </div>
+  <transition name="fade">
+    <div v-if="show" class="success-overlay">
+      <div class="success-box">
+        <h3 class="success-title">{{ title }}</h3>
+        <p class="success-sub">{{ subtitle }}</p>
+        <button class="success-btn" @click="handleConfirm">
+          {{ $t("confirm") }}
+        </button>
       </div>
-    </transition>
-  </template>
-  
-  <script setup lang="ts">
-  import { useRouter } from "vue-router";
-  
-  defineProps<{
-    show: boolean;
-    title: string;
-    subtitle: string;
-  }>();
-  
-  const emit = defineEmits(["close"]);
-  const router = useRouter();
-  
-  const handleConfirm = () => {
-    emit("close");
-    router.push("/"); // ✅ 點擊後回首頁
-  };
-  </script>
-  
-  <style scoped>
-  .success-message {
-    position: fixed;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgb(248, 243, 235);
-    border: 2px solid rgba(190, 106, 16, 0.3);
-    border-radius: 16px;
-    padding: 3rem 2rem;
-    width: 45vw;
-    max-width: 600px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    z-index: 9999;
-    animation: pop 0.3s ease-out;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .message-box h3 {
-    margin-bottom: 0.5rem;
-    font-size: var(--text-2xl);
-    color: #333;
-  }
-  
-  .message-box p {
-    font-size: var(--text-base);
-    color: #555;
-    margin-bottom: 2rem;
-  }
-  
-  .confirm-btn {
-    padding: 0.8rem 2rem;
-    background-color: rgb(var(--primary));
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: var(--text-base);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .confirm-btn:hover {
-    background-color: #be6a10;
-  }
-  
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.3s ease;
-  }
-  .fade-enter-from, .fade-leave-to {
+    </div>
+  </transition>
+</template>
+
+<script setup lang="ts">
+import { useRouter } from "vue-router"
+
+defineProps<{
+  show: boolean
+  title: string
+  subtitle: string
+}>()
+
+const emit = defineEmits(["close"])
+const router = useRouter()
+
+const handleConfirm = () => {
+  emit("close")
+  router.push("/")
+}
+</script>
+
+<style scoped>
+/* ── 遮罩層 ── */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1.5rem;
+}
+
+/* ── 對話框 ── */
+.success-box {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+  animation: pop 0.3s ease-out;
+}
+
+.success-title {
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  margin: 0 0 0.75rem;
+}
+
+.success-sub {
+  color: var(--c-text-secondary);
+  line-height: 1.7;
+  margin: 0 0 2rem;
+}
+
+.success-btn {
+  display: inline-block;
+  background: var(--c-primary);
+  color: var(--c-text-on-primary);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.85rem 2.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.success-btn:hover {
+  background: var(--c-primary-light);
+}
+
+/* ── 動畫 ── */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@keyframes pop {
+  from {
+    transform: translateY(-12px);
     opacity: 0;
   }
-  
-  @keyframes pop {
-    from {
-      transform: translate(-50%, -10px);
-      opacity: 0;
-    }
-    to {
-      transform: translate(-50%, 0);
-      opacity: 1;
-    }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
-  </style>
-  
+}
+</style>

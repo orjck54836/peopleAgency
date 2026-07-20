@@ -2,7 +2,7 @@
 title: "Taiwan Short-Term Study Abroad | Small-Group Chinese & Culture"
 description: "Recommended Taiwan short-term study abroad program in Taichung. Small-group Chinese classes, flexible 2–4 week plans, plus cultural experiences like calligraphy and baking. Language learning meets cultural immersion."
 date: "2025-09-21"
-author: "皓學留遊學"
+author: "皓學日本留遊學"
 tags: ["Taiwan study abroad", "Chinese learning", "Taiwan culture", "study in Taiwan", "Taichung language center"]
 cover: "/images/information/taiwan-shortstudy/temple.jpg"
 ---

@@ -28,8 +28,8 @@ export default defineNuxtConfig({
     awsRegion: 'ap-northeast-3',
     ddb: { languageSchoolsTable: 'language_schools' },
     sesRegion: 'ap-northeast-3',
-    mailFrom: 'aiden@forma-global.com',
-    mailTo: 'liaiden1213@gmail.com',
+    mailFrom: 'info@forma-global.com',
+    mailTo: 'info@forma-global.com',
     public: {
       siteUrl: 'https://www.forma-global.com/', // 可選，前端要用就放這
       PUBLIC_KEY: process.env.NUXT_PUBLIC_KEY,

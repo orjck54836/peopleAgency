@@ -13,15 +13,16 @@ export default defineEventHandler(async (event) => {
         workContent?: string
         cityAddress?: string
         // 留學用
-        dob?: string
-        nationality?: string
         gender?: string
-        studyStart?: string
-        programType?: string
-        budget?: string
+        age?: string
+        lineId?: string
+        education?: string
+        japaneseLevel?: string
+        departureTime?: string
+        studyDuration?: string
         preferredCity?: string
-        needDorm?: string
-        emergencyContact?: string
+        studyPurpose?: string
+        budget?: string
     }>(event)
 
     // 基本驗證
@@ -47,18 +48,19 @@ export default defineEventHandler(async (event) => {
                 : `【${formType}】
 
         姓名: ${body.name ?? ''}
-        電話: ${body.phone ?? ''}
-        E-mail: ${body.email ?? ''}
-        出生日期: ${body.dob ?? ''}
-        國籍: ${body.nationality ?? ''}
         性別: ${body.gender ?? ''}
-        預計出國時間: ${body.studyStart ?? ''}
-        課程類型: ${body.programType ?? ''}
+        電話: ${body.phone ?? ''}
+        年齡: ${body.age ?? ''}
+        E-mail: ${body.email ?? ''}
+        LINE ID: ${body.lineId ?? ''}
+        目前身分/學歷: ${body.education ?? ''}
+        日語程度: ${body.japaneseLevel ?? ''}
+        預計出發時間: ${body.departureTime ?? ''}
+        預計留學期間: ${body.studyDuration ?? ''}
+        期望留學地區: ${body.preferredCity ?? ''}
+        留學主要目的: ${body.studyPurpose ?? ''}
         預算範圍: ${body.budget ?? ''}
-        希望地區: ${body.preferredCity ?? ''}
-        是否需要宿舍: ${body.needDorm ?? ''}
-        緊急聯絡人: ${body.emergencyContact ?? ''}
-        補充說明: ${body.message ?? ''}`
+        詢問事項: ${body.message ?? ''}`
 
     // 讀取環境變數（建議放 nuxt.config.ts -> runtimeConfig）
     const config = useRuntimeConfig(event)
@@ -76,8 +78,8 @@ export default defineEventHandler(async (event) => {
     //         : undefined,
     // })
 
-    const Source = config.mailFrom || 'aiden@forma-global.com'
-    const ToAddresses = (config.mailTo || 'liaiden1213@gmail.com')
+    const Source = config.mailFrom || 'info@forma-global.com'
+    const ToAddresses = (config.mailTo || 'info@forma-global.com')
         .split(',')
         .map((s: string) => s.trim())
         .filter(Boolean)

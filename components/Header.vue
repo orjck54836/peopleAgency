@@ -67,6 +67,21 @@ const switchLang = async (lang: 'en' | 'zh' | 'ja') => {
   await setLocale(lang)
   const path = switchLocalePath(lang)
   router.push(path)
+
+  // 關閉 dropdown（移除 Bootstrap 的 show class）
+  const menu = document.querySelector('#languageDropdown + .dropdown-menu')
+  const btn = document.getElementById('languageDropdown')
+  menu?.classList.remove('show')
+  btn?.setAttribute('aria-expanded', 'false')
+  btn?.classList.remove('show')
+  isDropdownOpen.value = false
+}
+
+const isDropdownOpen = ref(false)
+
+function onDropdownToggle(e: Event) {
+  const btn = e.currentTarget as HTMLElement
+  isDropdownOpen.value = btn.getAttribute('aria-expanded') === 'true'
 }
 
 // ---- 進場動畫 ----
@@ -75,6 +90,11 @@ onMounted(() => {
   gsap.from(".work-btn", { duration: 1.2, scale: 0, opacity: 0, ease: "bounce" });
   gsap.from(".contact-btn", { duration: 1.2, scale: 0.5, opacity: 0.5, ease: "bounce" });
   gsap.from(".nav-link", { duration: 0.8, delay: 0.4, opacity: 0, stagger: 0.08 });
+
+  const btn = document.getElementById('languageDropdown')
+  if (!btn) return
+  btn.addEventListener('show.bs.dropdown', () => { isDropdownOpen.value = true })
+  btn.addEventListener('hide.bs.dropdown', () => { isDropdownOpen.value = false })
 
   const freelancerEl = document.querySelector(".freelancer");
   const descEl = document.querySelector(".description");
@@ -129,8 +149,8 @@ onMounted(() => {
 
         <!-- 語言切換 -->
         <div class="dropdown">
-          <button class="dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <button class="dropdown-toggle" :class="{ 'is-open': isDropdownOpen }" type="button" id="languageDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false" @click="onDropdownToggle">
             {{ currentLanguageName }}
           </button>
           <ul class="dropdown-menu" aria-labelledby="languageDropdown">
@@ -413,7 +433,7 @@ onMounted(() => {
   .dropdown-toggle {
     background-color: transparent;
     border: none;
-    color: rgb(var(--contrast));
+    color: rgba(var(--c-primary));
     font-size: var(--text-lg);
     font-weight: bold;
     cursor: pointer;
@@ -424,8 +444,13 @@ onMounted(() => {
     transition: color 0.3s ease-in-out;
 
     &::after {
-      content: "▼";
+      font-size: 1.2rem;
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
 
+    &.is-open::after {
+      transform: rotate(180deg);
     }
 
     &:hover {
