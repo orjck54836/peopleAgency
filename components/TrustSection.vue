@@ -1,161 +1,151 @@
+<script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+</script>
+
 <template>
   <section class="trust-section">
     <div class="trust-header">
-      <h2 class="trust-headline">留學代辦的問題</h2>
-      <p class="trust-subhead">大家最怕的代辦費不透明、變相加價、出國後沒人理。</p>
-      <p class="trust-subhead">我們的五個承諾，重新定義留學代辦的責任。</p>
+      <h2 class="trust-headline">{{ $t('trust.headline') }}</h2>
+      <p class="trust-subhead">{{ $t('trust.subhead1') }}</p>
+      <p class="trust-subhead">{{ $t('trust.subhead2') }}</p>
     </div>
 
     <div class="trust-grid">
 
-      <!-- 承諾 01：左文字 右展開 -->
+      <!-- 承諾 01 -->
       <div class="trust-row trust-row--left">
         <div class="trust-cell trust-cell--text">
-          <h3 class="promise-title">零代辦費，學費透明到底</h3>
-          <p class="promise-body">與日本學校同步收費，絕不收取高額代辦費，更沒有變相加價與任何隱藏費用。每一筆金額白紙黑字，讓你安心規劃預算。</p>
+          <h3 class="promise-title">{{ $t('trust.promises.0.title') }}</h3>
+          <p class="promise-body">{{ $t('trust.promises.0.body') }}</p>
         </div>
         <div class="trust-cell trust-cell--reveal">
           <div class="arrow-wrap">
             <svg class="tri-arrow tri-arrow--flip-right" viewBox="0 0 75 65" xmlns="http://www.w3.org/2000/svg">
-              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
           <div class="reveal-content">
-            <p class="reveal-label">費用明細</p>
-            <div class="fee-row"><span class="fee-name">日本學校學費</span><span class="fee-val">與官網同步</span></div>
-            <div class="fee-row"><span class="fee-name">代辦服務費</span><span class="fee-val fee-red">NT$ 0</span></div>
-            <div class="fee-row fee-last"><span class="fee-name">隱藏費用</span><span class="fee-val">無</span></div>
+            <p class="reveal-label">{{ $t('trust.promises.0.reveal.label') }}</p>
+            <div class="fee-row"><span class="fee-name">{{ $t('trust.promises.0.reveal.row1.name') }}</span><span class="fee-val">{{ $t('trust.promises.0.reveal.row1.val') }}</span></div>
+            <div class="fee-row"><span class="fee-name">{{ $t('trust.promises.0.reveal.row2.name') }}</span><span class="fee-val fee-red">{{ $t('trust.promises.0.reveal.row2.val') }}</span></div>
+            <div class="fee-row fee-last"><span class="fee-name">{{ $t('trust.promises.0.reveal.row3.name') }}</span><span class="fee-val">{{ $t('trust.promises.0.reveal.row3.val') }}</span></div>
           </div>
         </div>
       </div>
 
-      <!-- 承諾 02：右文字 左展開 -->
+      <!-- 承諾 02 -->
       <div class="trust-row trust-row--right">
         <div class="trust-cell trust-cell--reveal">
           <div class="arrow-wrap">
             <svg class="tri-arrow tri-arrow--flip-left" viewBox="0 0 75 65" xmlns="http://www.w3.org/2000/svg">
-              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
           <div class="reveal-content">
-            <p class="reveal-label">落地全程有人帶</p>
-            <div class="sup-row"><span class="stag stag-tw">台灣</span><span class="sdesc">顧問陪你準備文件、送件申請</span></div>
-            <div class="sup-row sup-last"><span class="stag stag-jp">日本</span><span class="sdesc">協力夥伴帶你開戶、辦手機、租屋</span>
-            </div>
+            <p class="reveal-label">{{ $t('trust.promises.1.reveal.label') }}</p>
+            <div class="sup-row"><span class="stag stag-tw">{{ $t('trust.promises.1.reveal.tw.tag') }}</span><span class="sdesc">{{ $t('trust.promises.1.reveal.tw.desc') }}</span></div>
+            <div class="sup-row sup-last"><span class="stag stag-jp">{{ $t('trust.promises.1.reveal.jp.tag') }}</span><span class="sdesc">{{ $t('trust.promises.1.reveal.jp.desc') }}</span></div>
           </div>
         </div>
         <div class="trust-cell trust-cell--text">
-          <h3 class="promise-title">台灣幫你申請，日本有人接應</h3>
-          <p class="promise-body">行前由台灣顧問全程協助申請；抵達後，當地協力夥伴與學長姐陪你落地開戶、辦手機、租屋。</p>
+          <h3 class="promise-title">{{ $t('trust.promises.1.title') }}</h3>
+          <p class="promise-body">{{ $t('trust.promises.1.body') }}</p>
         </div>
       </div>
 
-      <!-- 承諾 03：左文字 右展開 -->
+      <!-- 承諾 03 -->
       <div class="trust-row trust-row--left">
         <div class="trust-cell trust-cell--text">
-          <h3 class="promise-title">入管局最刁鑽的文件，交給專家</h3>
-          <p class="promise-body">針對日本入管局繁雜的留學理由書與經費支付說明，提供顧問一對一修改指導，大幅提高過件率。</p>
+          <h3 class="promise-title">{{ $t('trust.promises.2.title') }}</h3>
+          <p class="promise-body">{{ $t('trust.promises.2.body') }}</p>
         </div>
         <div class="trust-cell trust-cell--reveal">
           <div class="arrow-wrap">
             <svg class="tri-arrow tri-arrow--flip-right" viewBox="0 0 75 65" xmlns="http://www.w3.org/2000/svg">
-              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
           <div class="reveal-content">
-            <p class="reveal-label">在留資格認定證明書</p>
-            <p class="reveal-stat">98%</p>
-            <p class="reveal-stat-label">簽證過件率</p>
-            <p class="reveal-stat-sub">專家一對一修改指導</p>
+            <p class="reveal-label">{{ $t('trust.promises.2.reveal.label') }}</p>
+            <p class="reveal-stat">{{ $t('trust.promises.2.reveal.stat') }}</p>
+            <p class="reveal-stat-label">{{ $t('trust.promises.2.reveal.statLabel') }}</p>
+            <p class="reveal-stat-sub">{{ $t('trust.promises.2.reveal.statSub') }}</p>
           </div>
         </div>
       </div>
 
-      <!-- 承諾 04：右文字 左展開 -->
+      <!-- 承諾 04 -->
       <div class="trust-row trust-row--right">
         <div class="trust-cell trust-cell--reveal">
           <div class="arrow-wrap">
             <svg class="tri-arrow tri-arrow--flip-left" viewBox="0 0 75 65" xmlns="http://www.w3.org/2000/svg">
-              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
           <div class="reveal-content">
-            <p class="reveal-label">依你的目標精準推薦</p>
+            <p class="reveal-label">{{ $t('trust.promises.3.reveal.label') }}</p>
             <div class="reveal-tags">
-              <span class="ctag ctag-accent">動漫追星</span>
-              <span class="ctag">專門學校</span>
-              <span class="ctag">EJU 名校</span>
-              <span class="ctag">純體驗</span>
+              <span class="ctag ctag-accent">{{ $t('trust.promises.3.reveal.tags.0') }}</span>
+              <span class="ctag">{{ $t('trust.promises.3.reveal.tags.1') }}</span>
+              <span class="ctag">{{ $t('trust.promises.3.reveal.tags.2') }}</span>
+              <span class="ctag">{{ $t('trust.promises.3.reveal.tags.3') }}</span>
             </div>
           </div>
         </div>
         <div class="trust-cell trust-cell--text">
-          <h3 class="promise-title">追星、升學、學技術，都幫你配到對的學校</h3>
-          <p class="promise-body">不論你的目標是動漫留學、專業技術、升學還是純體驗，我們客製化精準推薦。</p>
+          <h3 class="promise-title">{{ $t('trust.promises.3.title') }}</h3>
+          <p class="promise-body">{{ $t('trust.promises.3.body') }}</p>
         </div>
       </div>
 
-      <!-- 承諾 05：左文字 右展開 -->
+      <!-- 承諾 05 -->
       <div class="trust-row trust-row--left">
         <div class="trust-cell trust-cell--text">
-          <h3 class="promise-title">從出國前到在日就職，一路陪到底</h3>
-          <p class="promise-body">出國前 JLPT 加強、在日期間打工介紹、畢業後正職媒合，全程陪伴不斷線。</p>
+          <h3 class="promise-title">{{ $t('trust.promises.4.title') }}</h3>
+          <p class="promise-body">{{ $t('trust.promises.4.body') }}</p>
         </div>
         <div class="trust-cell trust-cell--reveal">
           <div class="arrow-wrap">
             <svg class="tri-arrow tri-arrow--flip-right" viewBox="0 0 75 65" xmlns="http://www.w3.org/2000/svg">
-              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-top" points="0,4  37.5,28 75,4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-middle" points="0,22 37.5,46 75,22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline class="arrow-bottom" points="0,40 37.5,64 75,40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
           <div class="reveal-content">
             <div class="reveal-tl">
               <div class="tl-item"><span class="tl-dot"></span>
                 <div>
-                  <p class="tl-stage">出國前</p>
-                  <p class="tl-detail">日文規劃・JLPT 加強</p>
+                  <p class="tl-stage">{{ $t('trust.promises.4.reveal.tl.0.stage') }}</p>
+                  <p class="tl-detail">{{ $t('trust.promises.4.reveal.tl.0.detail') }}</p>
                 </div>
               </div>
               <div class="tl-item"><span class="tl-dot"></span>
                 <div>
-                  <p class="tl-stage">在日期間</p>
-                  <p class="tl-detail">打工機會介紹</p>
+                  <p class="tl-stage">{{ $t('trust.promises.4.reveal.tl.1.stage') }}</p>
+                  <p class="tl-detail">{{ $t('trust.promises.4.reveal.tl.1.detail') }}</p>
                 </div>
               </div>
               <div class="tl-item tl-last"><span class="tl-dot"></span>
                 <div>
-                  <p class="tl-stage">畢業後</p>
-                  <p class="tl-detail">日本正職職缺媒合</p>
+                  <p class="tl-stage">{{ $t('trust.promises.4.reveal.tl.2.stage') }}</p>
+                  <p class="tl-detail">{{ $t('trust.promises.4.reveal.tl.2.detail') }}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 </template>

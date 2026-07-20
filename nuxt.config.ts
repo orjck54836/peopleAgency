@@ -49,8 +49,15 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@vite-pwa/nuxt',
     'vue3-carousel-nuxt',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxtjs/sitemap',
   ],
+  site: {
+    url: 'https://www.forma-global.com',
+  },
+  sitemap: {
+    sitemaps: true,
+  },
   app: {
     baseURL: '/',
     head: {

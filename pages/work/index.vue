@@ -213,8 +213,8 @@ const nodes = computed(() => {
 }
 
 .hero p {
-  font-size: var(--text-xl);
   margin-bottom: 2rem;
+  color: white;
 }
 
 /* Section 基本 */

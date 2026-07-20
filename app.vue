@@ -1,21 +1,24 @@
 <script lang="ts" setup>
-const { t } = useI18n()
-const route = useRoute() 
+const { locale } = useI18n()
+const route = useRoute()
+
 useHead({
-  title: "FORMA台湾人材紹介",
+  titleTemplate: '%s | 皓學',
   htmlAttrs: {
-    lang: "ja",
+    lang: locale,
   },
   link: [
-    { rel: 'icon', type: 'image/png', href: '/favicon.png' },  // 16x16 or 32x32
+    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+    { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicon.png' },
+    { rel: 'apple-touch-icon', href: '/favicon.png' },
   ],
   meta: [
     { name: 'theme-color', content: '#ffffff' }
   ],
   script: [
     {
-      src: "https://www.googletagmanager.com/gtag/js?id=G-RKNCTYCV3V",
-      async: true
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-RKNCTYCV3V',
+      async: true,
     },
     {
       children: `
@@ -23,19 +26,13 @@ useHead({
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-RKNCTYCV3V');
-      `
+      `,
     },
-  ]
-});
-useSeoMeta({
-  title: t("seo.blog.title"),
-  description: t("seo.blog.description"),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
-});
+  ],
+})
 </script>
+
 <template>
-  <!-- app.vue -->
   <div class="page-wrapper" :class="route.path.startsWith('/work') ? 'line-work' : 'line-study'">
     <UApp>
       <NuxtRouteAnnouncer />
@@ -46,13 +43,12 @@ useSeoMeta({
     </UApp>
   </div>
 </template>
+
 <style scoped>
 .global-background {
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-image: url('./img/background.png'); */
   min-height: 100vh;
-  /* 至少撐滿整個視窗高度 */
   display: flex;
   flex-direction: column;
 }

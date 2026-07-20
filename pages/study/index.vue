@@ -5,7 +5,6 @@ import { useI18n } from 'vue-i18n'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 
-
 const swiperModules = [Navigation, Pagination, Autoplay]
 
 const router = useRouter()
@@ -18,7 +17,7 @@ function toPagePath(contentPath: string): string {
     .replace('/information/work/', '/work/information/')
 }
 
-const { t } = useI18n()
+const { t, tm, locale } = useI18n()
 useSeoMeta({
   title: t('seo.study.title'),
   description: t('seo.study.description'),
@@ -27,36 +26,28 @@ useSeoMeta({
 })
 
 // ── 手動輪播橫幅 ──
-const banners = [
-  {
-    title: '把熱愛的風景過成日常\n給自己在這裡生活的機會',
-    sub: '去寫下屬於你的日本故事，\n我們會為你鋪好路，\n你只管裝滿期待出發。',
-    bg: '/images/banner1.jpeg',
-    cta: '探索學習方式',
-    action: () => router.push('/study/schools'),
-  },
-  {
-    title: '精選語言學校媒合',
-    sub: '與日本多所語言學校深度合作，依你的目標精準推薦',
-    bg: '/images/banner2.jpeg',
-    cta: '查看學校列表',
-    action: () => router.push('/study/schools'),
-  },
-  {
-    title: '台日雙邊在地支援',
-    sub: '從零出發到日本生活！\n最懂你的日本留遊學專家。',
-    bg: '/images/banner3.jpeg',
-    cta: '立即諮詢',
-    action: () => router.push('/contact'),
-  },
+// 只放不受語言影響的資料（圖片、動作），文字全部由 i18n 提供
+const bannerMeta = [
+  { id: 'schools', bg: '/images/banner1.jpeg', action: () => router.push('/study/schools') },
+  { id: 'match', bg: '/images/banner2.jpeg', action: () => router.push('/study/schools') },
+  { id: 'support', bg: '/images/banner3.jpeg', action: () => router.push('/contact') },
 ]
+
+const banners = computed(() =>
+  bannerMeta.map((meta, i) => ({
+    ...meta,
+    title: t(`studyLanding.banners.${i}.title`),
+    sub: t(`studyLanding.banners.${i}.sub`),
+    cta: t(`studyLanding.banners.${i}.cta`),
+  }))
+)
 
 const currentBanner = ref(0)
 let bannerTimer: ReturnType<typeof setInterval> | null = null
 
 function startBannerTimer() {
   bannerTimer = setInterval(() => {
-    currentBanner.value = (currentBanner.value + 1) % banners.length
+    currentBanner.value = (currentBanner.value + 1) % banners.value.length
   }, 5000)
 }
 
@@ -88,41 +79,39 @@ onMounted(() => {
 })
 onUnmounted(() => { if (bannerTimer) clearInterval(bannerTimer) })
 
+// 品牌理念段落文字（陣列，用 tm 取原始清單）
+const philosophyBody = computed(() => {
+  const count = Number(t('studyLanding.philosophy.bodyCount'))
+  return Array.from({ length: count }, (_, i) =>
+    t(`studyLanding.philosophy.body.${i}`)
+  )
+})
+
 // ── 學習方式 ──
-const studyModes = [
-  {
-    value: '短期遊學',
-    label: '短期遊學',
-    sub: '2週～3個月',
-    image: '/images/short-term-study.jpeg',
-    desc: '適合想體驗日本生活、快速提升日語口說能力的學生。彈性安排行程，不需長期簽證，是踏出留學第一步的最佳選擇。',
-    tags: ['無需長期簽證', '彈性行程', '生活體驗'],
-  },
-  {
-    value: '長期留學',
-    label: '長期留學',
-    sub: '6個月～2年',
-    image: '/images/long-term-study.jpeg',
-    desc: '深度學習日語並融入當地生活，申請語言學校學生簽證，可合法打工補貼生活費，累積實質語言與生活能力。',
-    tags: ['學生簽證', '合法打工', '語言深化'],
-  },
-  {
-    value: '升學進修',
-    label: '升學進修',
-    sub: '專門學校・大學・研究所',
-    image: '/images/education.jpeg',
-    desc: '以取得日本學位或專業資格為目標，進入專門學校、大學或研究所就讀，為未來在日就業或學術發展奠定基礎。',
-    tags: ['取得學位', '專業資格', '就業銜接'],
-  },
+// id 為固定英文 slug，用於路由判斷，不隨語言改變
+const studyModeMeta = [
+  { id: 'short-term', image: '/images/short-term-study.jpeg' },
+  { id: 'long-term', image: '/images/long-term-study.jpeg' },
+  { id: 'university', image: '/images/education.jpeg' },
 ]
 
-function goToSchoolsByMode(mode: string) {
+const studyModes = computed(() =>
+  studyModeMeta.map((meta, i) => ({
+    ...meta,
+    label: t(`studyLanding.modes.items.${i}.label`),
+    sub: t(`studyLanding.modes.items.${i}.sub`),
+    desc: t(`studyLanding.modes.items.${i}.desc`),
+    tags: [0, 1, 2].map(j => t(`studyLanding.modes.items.${i}.tags.${j}`)),
+  }))
+)
+
+function goToSchoolsByMode(modeId: string) {
   const modeMap: Record<string, string> = {
-    '短期遊學': '/study/short-term',
-    '長期留學': '/study/long-term',
-    '升學進修': '/study/university',
+    'short-term': '/study/short-term',
+    'long-term': '/study/long-term',
+    'university': '/study/university',
   }
-  router.push(modeMap[mode] || '/study/schools')
+  router.push(modeMap[modeId] || '/study/schools')
 }
 
 function goToAllSchools() {
@@ -144,11 +133,17 @@ async function fetchFeaturedSchools() {
 
 onMounted(fetchFeaturedSchools)
 
-const placeholderNews = [
-  { path: '/study/information', title: '日本留學前必看：簽證申請流程懶人包', description: '從在留資格認定到簽證核發，整理留學日本前最容易卡關的文件準備重點。', date: '2026-05-01', cover: null as string | null },
-  { path: '/study/information', title: '語言學校 vs 專門學校：該怎麼選？', description: '想先打好日語基礎還是直接銜接專業技能課程？我們整理兩種升學路線的差異。', date: '2026-04-18', cover: null as string | null },
-  { path: '/study/information', title: '留學日本的生活費怎麼抓？東京 vs 地方城市實際比較', description: '住宿、餐食、交通的實際花費差異，幫你抓出合理的每月生活預算。', date: '2026-03-30', cover: null as string | null },
-]
+// 佔位新聞資料（無真實文章時使用），文字改由 i18n 提供
+const placeholderNews = computed(() => {
+  const dates = ['2026-05-01', '2026-04-18', '2026-03-30']
+  return dates.map((date, i) => ({
+    path: '/study/information',
+    title: t(`studyLanding.news.placeholder.${i}.title`),
+    description: t(`studyLanding.news.placeholder.${i}.description`),
+    date,
+    cover: null as string | null,
+  }))
+})
 
 const { data: realNews } = await useAsyncData('study-latest-news', () =>
   queryCollection('content')
@@ -159,14 +154,15 @@ const { data: realNews } = await useAsyncData('study-latest-news', () =>
 )
 
 const latestNews = computed(() =>
-  realNews.value && realNews.value.length ? realNews.value : placeholderNews
+  realNews.value && realNews.value.length ? realNews.value : placeholderNews.value
 )
 
 function formatDate(dateStr?: string) {
   if (!dateStr) return ''
   const d = new Date(dateStr)
   if (Number.isNaN(d.getTime())) return dateStr
-  return d.toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' })
+  const localeMap: Record<string, string> = { 'zh-TW': 'zh-TW', en: 'en-US', ja: 'ja-JP' }
+  return d.toLocaleDateString(localeMap[locale.value] || 'zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' })
 }
 </script>
 
@@ -193,40 +189,36 @@ function formatDate(dateStr?: string) {
         :class="{ active: i === currentBanner }" @click="goToBanner(i)" />
     </div>
   </div>
+
   <!-- 品牌理念區 -->
   <section class="philosophy-section">
     <div class="philosophy-inner">
       <div class="philosophy-img-wrap" ref="imgRef">
-        <img src="/images/plane.png" alt="FORMA 留學理念" class="philosophy-img" />
+        <img src="/images/plane.png" :alt="$t('studyLanding.philosophy.headline')" class="philosophy-img" />
       </div>
       <div class="philosophy-content" ref="contentRef">
         <h2 class="philosophy-headline text-center">
-          關於皓學
+          {{ $t('studyLanding.philosophy.headline') }}
         </h2>
         <div class="philosophy-body">
-          <p>去日本留遊學，是一次跨出舒適圈、拓展視野並挑戰自我的勇敢實踐。</p>
-          <p>我們明白，這趟旅程的終極目標，是為了幫你找到能過上理想生活的力量。</p>
-          <p>在尋找自我的路上，你不需要獨自面對未知；皓學會站在你身旁，將你心中對日本生活的嚮往，一步步轉化為踏實且清晰的起點。</p>
-          <p>我們深知每一個出國決定背後，都夾雜著對未來的期待與對未知的焦慮。</p>
-          <p>為了撫平這些不安，皓學用最溫暖的傾聽與一對一諮詢，幫你把亂成一團的代辦手續與規劃，梳理成一條明晰且安心的路。</p>
-          <p>我們用最細緻的專業，為你的日本生活，建立最踏實的安全感。</p>
+          <p v-for="(line, i) in philosophyBody" :key="i">{{ line }}</p>
         </div>
         <div class="d-flex justify-center">
-          <NuxtLink to="/contact" class="philosophy-cta">開始諮詢 →</NuxtLink>
+          <NuxtLink to="/contact" class="philosophy-cta">{{ $t('studyLanding.philosophy.cta') }}</NuxtLink>
         </div>
-
       </div>
     </div>
   </section>
+
   <!-- 五大承諾（獨立元件） -->
   <TrustSection />
 
   <main class="study-landing-wrapper">
     <!-- 學習方式卡片 -->
     <section class="landing-section">
-      <h2 class="philosophy-headline">選擇你的學習方式</h2>
+      <h2 class="philosophy-headline">{{ $t('studyLanding.modes.heading') }}</h2>
       <div class="mode-grid">
-        <div v-for="mode in studyModes" :key="mode.value" class="mode-card" @click="goToSchoolsByMode(mode.value)">
+        <div v-for="mode in studyModes" :key="mode.id" class="mode-card" @click="goToSchoolsByMode(mode.id)">
           <div class="mode-card-img-wrap">
             <img :src="mode.image" :alt="mode.label" class="mode-card-img" />
             <span class="mode-card-badge">{{ mode.sub }}</span>
@@ -239,7 +231,7 @@ function formatDate(dateStr?: string) {
             </div>
           </div>
           <div class="mode-card-footer">
-            <span class="mode-card-cta">了解更多 →</span>
+            <span class="mode-card-cta">{{ $t('studyLanding.modes.readMore') }}</span>
           </div>
         </div>
       </div>
@@ -253,7 +245,7 @@ function formatDate(dateStr?: string) {
 
     <!-- 留學情報 -->
     <section v-if="latestNews && latestNews.length" class="landing-section">
-      <h2 class="philosophy-headline">留學情報</h2>
+      <h2 class="philosophy-headline">{{ $t('studyLanding.news.heading') }}</h2>
       <ClientOnly>
         <Swiper :modules="swiperModules" :navigation="true" :slides-per-view="1" :space-between="16"
           :loop="latestNews.length > 2" :breakpoints="{
@@ -270,7 +262,7 @@ function formatDate(dateStr?: string) {
                 <span class="news-card-date">{{ formatDate(article.date) }}</span>
                 <h3 class="news-card-title">{{ article.title }}</h3>
                 <p class="news-card-desc">{{ article.description }}</p>
-                <span class="news-card-cta">閱讀更多 →</span>
+                <span class="news-card-cta">{{ $t('studyLanding.news.readMore') }}</span>
               </div>
             </NuxtLink>
           </SwiperSlide>
@@ -287,7 +279,7 @@ function formatDate(dateStr?: string) {
                 <span class="news-card-date">{{ formatDate(article.date) }}</span>
                 <h3 class="news-card-title">{{ article.title }}</h3>
                 <p class="news-card-desc">{{ article.description }}</p>
-                <span class="news-card-cta">閱讀更多 →</span>
+                <span class="news-card-cta">{{ $t('studyLanding.news.readMore') }}</span>
               </div>
             </NuxtLink>
           </div>
@@ -295,8 +287,6 @@ function formatDate(dateStr?: string) {
       </ClientOnly>
     </section>
   </main>
-
-
   <Footer />
 </template>
 
@@ -327,12 +317,7 @@ function formatDate(dateStr?: string) {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(137, 110, 73, 0.503) 0%,
-    rgba(87, 74, 77, 0.2) 50%,
-    transparent 70%
-  );
+  background: linear-gradient(to right, rgba(30,8,12,0.6) 0%, rgba(30,8,12,0.35) 100%);
   z-index: 1;
 }
 
@@ -665,6 +650,7 @@ function formatDate(dateStr?: string) {
 }
 
 .mode-card-desc {
+  text-align: left;
   line-height: 1.7;
   margin: 0 0 1rem;
 }

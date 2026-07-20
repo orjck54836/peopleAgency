@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -9,69 +9,39 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 const { t } = useI18n()
 
 useSeoMeta({
-  title: '升學進修｜日本專門學校・大學申請｜皓學',
-  description: '以取得日本學位或專業資格為目標，進入專門學校、大學或研究所就讀。皓學提供從語言學校銜接升學的完整規劃與申請代辦服務。',
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
+  title: t('seo.university.title'),
+  description: t('seo.university.description'),
+  ogTitle: t('seo.university.title'),
+  ogDescription: t('seo.university.description'),
 })
 
-const sections = [
-  {
-    icon: '',
-    title: '什麼是升學進修？',
-    body: '升學進修是指在日本完成基礎語言學習後，進一步報考並就讀日本的專門學校、大學或大學院（研究所），以取得正式學歷或專業技術文憑的留學規劃，修業年限通常為 2 年至 4 年。與一般語言學校相比，升學進修能讓學生深入鑽研特定專業領域（如動漫、設計、商學或理工），並取得國際認可的學位、畢業後，學生不僅具備高度的專業技能與日語能力，更能大幅提升在日本當地就職的競爭力，順利將學生簽證轉換為「技術・人文知識・國際業務」等工作簽證，正式立足日本職場。',
-    list: null,
-  },
-  {
-    icon: '',
-    title: '適合哪些人？',
-    body: '',
-    list: [
-      { title: '追求專業技能的實踐者', desc: '計畫就讀專門學校，學習動漫、設計、製藥、IT 或美容等一技之長，為未來躍進打下堅實的實務基礎。' },
-      { title: '嚮往日本大學的學子', desc: '希望進入日本的高等教育體系，體驗完整的大學生活，並取得具備國際競爭力的學士學位。' },
-      { title: '深造學術領域的研究者', desc: '目標為日本的大學院（研究所），針對特定學術領域進行深入的專業研究，追求碩士或博士學位。' },
-      { title: '放眼日本職場的規劃者', desc: '期許畢業後能直接留在日本企業就職，透過日本在地學歷與學校的產學合作資源，順利接軌日本職場。' },
-    ],
-  },
-  {
-    icon: '',
-    title: '課程特色',
-    body: '日本的高等教育機構以嚴謹的學術訓練與高度的產學合作聞名。專門學校著重於「即戰力」的培養，提供業界一線專家的實務指導與資源豐富的企業實習機會；大學與大學院則提供完整的研究資源與學術環境。培養具備獨立思考與問題解決能力的高階人才。在準備升學的階段，除了需具備 JLPT N2 或 N1 的日語實力，課程準備重點會放在日本留學考試（EJU）、校內考（筆試與小論文）及教授面試的密集特訓，透過系統化的推考規劃與專業輔導，學生能精準掌握各校招生標準，強化學術寫作與邏輯表達力，進而錄取理想的學術殿堂。',
-    list: null,
-  },
-  {
-    icon: '',
-    title: '申請流程與時程',
-    body: '為了順利考取理想學校，升學進修的準備期間通常需要提前 8 至 12 個月啟動：',
-    list: [
-      { title: '入學（通常為 4 月）的前一年夏秋季', desc: '學生需先考取 EJU 或 JLPT 門檻成績，並於秋冬季（入學前 4 至 6 個月）提交錄取書與研究生書等書面資料進行「出願（提出申請）」。' },
-      { title: '通過審查與校內考後', desc: '學校會於入學前 2 至 3 個月寄發合格通知書。確認就讀並繳費後，已在日學生須辦理在留資格變更；從台灣直接報名的學生，則依標準流程取得 COE 並換發留學簽證。' },
-      { title: '最後約 3 個月底前', desc: '安排妥當住宿與機票，即可赴日迎接 4 月開學。' },
-    ],
-  },
-  {
-    icon: '',
-    title: '費用參考',
-    body: '升學進修的修業時間通常為 2 年至 4 年（專門學校與大學院約 2 年，大學約 4 年），學生需依據報考學校性質評估預算：',
-    list: [
-      { title: '學費與雜費', desc: '國公立大學每年約 50 萬～80 萬日圓；私立大學或專門學校每年約 90 萬～150 萬日圓（約折合台幣 18 萬～30 萬元，理科或醫藥相關學科系通常較高）。' },
-      { title: '住宿費用', desc: '每年約 40 萬～100 萬日圓（約折合台幣 8 萬～20 萬元）。' },
-      { title: '預估總花費', desc: '加上機票與當地基本生活開銷，一整年的整體預算約落在台幣 50 萬～85 萬元之間（依學校性質、就讀城市與個人消費習慣而異）。' },
-    ],
-  },
-  {
-    icon: '',
-    title: '申請必備文件',
-    body: '日本各高等教育機構需提交嚴謹且完整的書面審查資料。基本資料部分，學生需準備護照影本、個人近照、入學願書以及詳盡的志望理由書（就讀動機）。在學歷與能力證明方面，必須提供最高學歷之畢業證書與歷年成績單正本，並附上近期取得的語言能力證明（如 JLPT 證書、EJU 成績單，部分大學亦要求 TOEFL 或 TOEIC 英文成績）。此外，若申請大學院（研究所），學生還需額外準備專屬的「研究計畫書」以及指導教授的推薦函；若申請藝術或設計類專門學校，則通常需要提交個人作品集。經費支付證明（存款證明與經費支付人的在職證明）亦是審查簽證與入學資格的重要依據。',
-    list: null,
-  },
-  {
-    icon: '',
-    title: '貼心小提醒',
-    body: '日本的大學與專門學校絕大多數以春季（4 月）為正式入學季，且各校的「出願（申請）期間」非常短暫且嚴格，通常集中在入學前一年的秋至冬季。由於準備過程涉及繁複的考試報名、研究計畫撰寫與學校聯繫，建議學生在預計升學的 8 至 12 個月前開始聯繫專業諮詢顧問，並及早確認目標校系與報考資格，以利為學生量身規劃最紮實打的升學策略與時程！',
-    list: null,
-  },
+const sectionMeta = [
+  { id: 'whatIs', listCount: 0 },
+  { id: 'whoFor', listCount: 4 },
+  { id: 'features', listCount: 0 },
+  { id: 'process', listCount: 3 },
+  { id: 'cost', listCount: 3 },
+  { id: 'documents', listCount: 0 },
+  { id: 'reminder', listCount: 0 },
 ]
+
+const sections = computed(() =>
+  sectionMeta.map(meta => ({
+    id: meta.id,
+    title: t(`university.sections.${meta.id}.title`),
+    body: t(`university.sections.${meta.id}.body`),
+    list: meta.listCount > 0
+      ? Array.from({ length: meta.listCount }, (_, j) => ({
+        title: t(`university.sections.${meta.id}.list.${j}.title`),
+        desc: t(`university.sections.${meta.id}.list.${j}.desc`),
+      }))
+      : null,
+  }))
+)
+
+const chips = computed(() =>
+  Array.from({ length: 5 }, (_, i) => t(`university.chips.${i}`))
+)
 
 const recommendedSchools = ref<any[]>([])
 
@@ -111,26 +81,23 @@ function goToAllSchools() {
 
   <section class="mode-hero">
     <div class="mode-hero-inner">
-      <p class="mode-tag">升學進修</p>
-      <h1>在日本取得學位<br>為未來職涯奠基</h1>
-      <p class="mode-sub">從語言學校到專門學校、大學，皓學 全程規劃陪你升學</p>
+      <p class="mode-tag">{{ $t('university.hero.tag') }}</p>
+      <h1 v-html="$t('university.hero.title')" />
+      <p class="mode-sub">{{ $t('university.hero.sub') }}</p>
     </div>
   </section>
 
   <main class="mode-wrapper">
     <div class="mode-chips">
-      <span class="chip">取得日本學位</span>
-      <span class="chip">專業資格認證</span>
-      <span class="chip">就業直接銜接</span>
-      <span class="chip">語言學校銜接</span>
-      <span class="chip">2年以上</span>
+      <span v-for="chip in chips" :key="chip" class="chip">{{ chip }}</span>
     </div>
 
     <section class="mode-sections">
-      <div v-for="(sec, i) in sections" :key="i" class="mode-section" :class="{ 'mode-section--alt': i % 2 === 1 }">
+      <div v-for="(sec, i) in sections" :key="sec.id" class="mode-section"
+        :class="{ 'mode-section--alt': i % 2 === 1 }">
         <div class="mode-section-text">
           <h2>{{ sec.title }}</h2>
-          <p v-if="sec.body">{{ sec.body }}</p>
+          <p v-if="sec.body" style="white-space: pre-line">{{ sec.body }}</p>
           <ul v-if="sec.list" class="section-list">
             <li v-for="(item, j) in sec.list" :key="j">
               <strong>{{ item.title }}</strong>：{{ item.desc }}
@@ -141,8 +108,8 @@ function goToAllSchools() {
     </section>
 
     <section class="mode-schools">
-      <h2 class="mode-schools-title">推薦升學學校</h2>
-      <p class="mode-schools-sub">以下為皓學精選的升學進修合作學校</p>
+      <h2 class="mode-schools-title">{{ $t('university.schools.title') }}</h2>
+      <p class="mode-schools-sub">{{ $t('university.schools.sub') }}</p>
       <div v-if="recommendedSchools.length" class="mode-schools-grid">
         <div v-for="school in recommendedSchools" :key="school.name" class="school-card"
           @click="goToSchool(school.name)">
@@ -150,16 +117,17 @@ function goToAllSchools() {
           <div class="school-card-body">
             <h3>{{ school.name }}</h3>
             <p>{{ school.location }}</p>
-            <span class="school-card-link">查看詳情 →</span>
+            <span class="school-card-link">{{ $t('university.schools.detail') }}</span>
           </div>
         </div>
       </div>
       <div class="mode-schools-cta">
-        <button class="btn-more" @click="goToAllSchools">查看全部專門學校 →</button>
+        <button class="btn-more" @click="goToAllSchools">
+          {{ $t('university.schools.viewAll') }}
+        </button>
       </div>
     </section>
   </main>
-
 
   <Footer />
 </template>

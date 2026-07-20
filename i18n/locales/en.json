@@ -70,6 +70,295 @@
   "yes": "Yes",
   "no": "No",
   "emergencyContact": "Emergency Contact",
+  "studyLanding": {
+    "banners": [
+      {
+        "title": "Turn the scenery you love into everyday life\nGive yourself the chance to live here",
+        "sub": "Write your own story in Japan.\nWe'll pave the way for you —\njust bring your excitement and go.",
+        "cta": "Explore Study Options"
+      },
+      {
+        "title": "Curated Language School Matching",
+        "sub": "Deep partnerships with language schools across Japan, matched precisely to your goals",
+        "cta": "View School List"
+      },
+      {
+        "title": "On-the-Ground Support in Taiwan and Japan",
+        "sub": "From zero to life in Japan —\nyour trusted study-abroad specialists.",
+        "cta": "Get a Free Consultation"
+      }
+    ],
+    "philosophy": {
+      "headline": "About Haogaku",
+      "bodyCount": "6",
+      "body": {
+        "0": "Studying or living abroad in Japan is a brave step outside your comfort zone — one that broadens your horizons and challenges you to grow.",
+        "1": "We understand the ultimate goal of this journey is finding the strength to build the life you truly want.",
+        "2": "You don't have to face the unknown alone on this path of self-discovery. Haogaku stands beside you, turning your vision of life in Japan into a clear, grounded starting point, step by step.",
+        "3": "We know every decision to move abroad carries both hope for the future and anxiety about the unknown.",
+        "4": "To ease that uncertainty, Haogaku offers warm, one-on-one consultations that turn tangled paperwork and planning into a clear, reassuring path forward.",
+        "5": "With meticulous professionalism, we build real peace of mind for your life in Japan."
+      },
+      "cta": "Start a Consultation →"
+    },
+    "modes": {
+      "heading": "Choose Your Study Path",
+      "readMore": "Learn More →",
+      "items": [
+        {
+          "label": "Short-Term Study",
+          "sub": "2 weeks – 3 months",
+          "desc": "Ideal for students who want to experience life in Japan and quickly improve their spoken Japanese. Flexible scheduling with no long-term visa required — the perfect first step into studying abroad.",
+          "tags": {
+            "0": "No Long-Term Visa",
+            "1": "Flexible Schedule",
+            "2": "Life Experience"
+          }
+        },
+        {
+          "label": "Long-Term Study",
+          "sub": "6 months – 2 years",
+          "desc": "Immerse yourself in Japanese language and local life with a student visa, with the option to work part-time legally to help cover living costs while building real language and life skills.",
+          "tags": [
+            "Student Visa",
+            "Legal Part-Time Work",
+            "Deeper Language Skills"
+          ]
+        },
+        {
+          "label": "Higher Education",
+          "sub": "Vocational School · University · Graduate School",
+          "desc": "Aim for a degree or professional qualification in Japan by enrolling in a vocational school, university, or graduate program — building a foundation for future work or academic growth in Japan.",
+          "tags": [
+            "Earn a Degree",
+            "Professional Qualification",
+            "Career Pathway"
+          ]
+        }
+      ]
+    },
+    "news": {
+      "heading": "Study Abroad Insights",
+      "readMore": "Read More →",
+      "placeholder": [
+        {
+          "title": "Before Studying in Japan: A Visa Application Checklist",
+          "description": "From Certificate of Eligibility to visa issuance, here's a guide to the paperwork that trips up most first-time applicants."
+        },
+        {
+          "title": "Language School vs. Vocational School: Which Should You Choose?",
+          "description": "Want a strong Japanese foundation first, or to jump straight into professional training? Here's how the two paths differ."
+        },
+        {
+          "title": "What Does It Really Cost to Live in Japan? Tokyo vs. Regional Cities",
+          "description": "Compare actual housing, food, and transport costs to build a realistic monthly budget."
+        }
+      ]
+    }
+  },
+  "trust": {
+    "headline": "The Problem with Study Abroad Agencies",
+    "subhead1": "Hidden fees, inflated prices, and zero support once you're overseas.",
+    "subhead2": "Our five commitments redefine what a study abroad agency should be.",
+    "promises": {
+      "0": {
+        "title": "Zero Agency Fees. Full Tuition Transparency.",
+        "body": "We charge the same tuition as Japanese schools directly — no agency markups, no hidden costs. Every amount is in writing so you can plan with confidence.",
+        "reveal": {
+          "label": "Fee Breakdown",
+          "row1": {
+            "name": "School Tuition",
+            "val": "Same as official price"
+          },
+          "row2": {
+            "name": "Agency Fee",
+            "val": "NT$ 0"
+          },
+          "row3": {
+            "name": "Hidden Charges",
+            "val": "None"
+          }
+        }
+      },
+      "1": {
+        "title": "We Handle the Paperwork. Japan Has You Covered on Arrival.",
+        "body": "Our Taiwan consultants guide you through every application step. Once you land, local partners help you open a bank account, get a phone plan, and find housing.",
+        "reveal": {
+          "label": "End-to-End Support",
+          "tw": {
+            "tag": "Taiwan",
+            "desc": "Consultants guide you through documents and applications"
+          },
+          "jp": {
+            "tag": "Japan",
+            "desc": "Local partners help with banking, phones, and housing"
+          }
+        }
+      },
+      "2": {
+        "title": "Japan Immigration Documents? Leave It to the Experts.",
+        "body": "We provide one-on-one guidance on the notoriously complex study reason letters and financial proof required by Japanese immigration, significantly improving approval rates.",
+        "reveal": {
+          "label": "Certificate of Eligibility",
+          "stat": "98%",
+          "statLabel": "Visa Approval Rate",
+          "statSub": "One-on-one expert coaching"
+        }
+      },
+      "3": {
+        "title": "Anime Fan, Future Engineer, or Just Exploring — We'll Find Your School.",
+        "body": "Whatever your goal — anime culture, technical training, university entrance, or pure experience — we match you to the right school.",
+        "reveal": {
+          "label": "Matched to Your Goals",
+          "tags": {
+            "0": "Anime & Pop Culture",
+            "1": "Vocational School",
+            "2": "EJU Top Universities",
+            "3": "Life Experience"
+          }
+        }
+      },
+      "4": {
+        "title": "With You from Before Departure to Your First Job in Japan.",
+        "body": "JLPT prep before you go, part-time job introductions while you're there, and full-time job placement after graduation — we stay with you the whole way.",
+        "reveal": {
+          "tl": {
+            "0": {
+              "stage": "Before Departure",
+              "detail": "Japanese study plan · JLPT prep"
+            },
+            "1": {
+              "stage": "While in Japan",
+              "detail": "Part-time job introductions"
+            },
+            "2": {
+              "stage": "After Graduation",
+              "detail": "Full-time job placement in Japan"
+            }
+          }
+        }
+      }
+    }
+  },
+  "japanZoneMap": {
+    "regionSuffix": " Region",
+    "mapAlt": "Map of Japan, {label}",
+    "searchBtn": "Find Schools in {label} →",
+    "ratings": {
+      "cost": "Cost of Living",
+      "convenience": "Convenience",
+      "atmosphere": "Study Popularity",
+      "difficulty": "Adjustment Level",
+      "rent": "Rent Range"
+    },
+    "costLabels": {
+      "1": "Very Affordable",
+      "2": "Affordable",
+      "3": "Moderate",
+      "4": "Above Average",
+      "5": "Expensive"
+    },
+    "convenienceLabels": {
+      "1": "Limited",
+      "2": "Fair",
+      "3": "Moderate",
+      "4": "Convenient",
+      "5": "Very Convenient"
+    },
+    "atmosphereLabels": {
+      "1": "Quiet",
+      "2": "Fair",
+      "3": "Moderate",
+      "4": "Lively",
+      "5": "Very Lively"
+    },
+    "difficultyLabels": {
+      "1": "Easy",
+      "2": "Fairly Easy",
+      "3": "Moderate",
+      "4": "Challenging",
+      "5": "Difficult"
+    },
+    "details": {
+      "climate": "Climate",
+      "suitableFor": "Best For",
+      "lifeAccess": "Living & Transport"
+    },
+    "zones": {
+      "hokkaido": {
+        "label": "Hokkaido",
+        "cities": "Sapporo, Hakodate, Otaru",
+        "rentRange": "¥35,000 – ¥60,000 / month",
+        "description": "Located at Japan's northernmost tip, Hokkaido is vast and surrounded by sea, covering about 22% of Japan's total land area. It offers pristine natural scenery and fresh air — cool summers and a snow paradise in winter. The relaxed pace of life and relatively affordable costs make it ideal for students who want to escape big-city noise and focus on study while experiencing authentic Japanese life.",
+        "climate": "Four distinct seasons: cool summers (20–26°C) and harsh, snowy winters (-10–0°C). A great region to experience snow country culture and skiing.",
+        "suitableFor": "Students who love nature, want a quiet study environment, are interested in skiing or outdoor activities, or are working with a tighter budget.",
+        "lifeAccess": "Sapporo has a subway and tram network with solid daily amenities. Suburban areas rely on buses, and winter travel can be disrupted by heavy snowfall — choosing a campus near the city center is recommended."
+      },
+      "tohoku": {
+        "label": "Tohoku",
+        "cities": "Sendai, Aomori, Morioka",
+        "rentRange": "¥30,000 – ¥55,000 / month",
+        "description": "Tohoku covers the northern part of Honshu across six prefectures. Centered on Sendai, the 'City of Trees,' the region is rich in natural scenery, warm community spirit, and some of Japan's most authentic rural culture. Costs are among the lowest in Japan, making it ideal for students who want to immerse deeply in local life and experience traditional festivals like the Aomori Nebuta and Sendai Tanabata.",
+        "climate": "Distinct four seasons: mild summers (22–28°C) and cold, snowy winters (-2–5°C), with heavy snowfall on the Japan Sea side.",
+        "suitableFor": "Students who want an authentic, unhurried Japanese experience, have a limited budget, love traditional culture and festivals, or prefer warm, community-oriented surroundings.",
+        "lifeAccess": "Sendai is Tohoku's transport hub with Shinkansen access to Tokyo (about 1.5 hours) and a city subway. Other prefectures rely mainly on JR trains and buses."
+      },
+      "kanto": {
+        "label": "Kanto",
+        "cities": "Tokyo, Yokohama, Saitama",
+        "rentRange": "¥70,000 – ¥120,000 / month",
+        "description": "Centered on Tokyo, the Kanto region is Japan's political, economic, and cultural core — and the most popular destination for study abroad. It offers the widest selection of language schools, vocational schools, and universities in Japan, with unmatched transport links and daily conveniences. Anime, fashion, food, and subculture are all here, along with the most part-time work and internship opportunities in the country.",
+        "climate": "Four distinct seasons: hot, humid summers (28–35°C) and dry, cool winters (2–10°C) with little snowfall.",
+        "suitableFor": "Students who want big-city life, the widest choice of schools and job opportunities, an interest in anime, fashion, or subculture, or who want maximum part-time work options.",
+        "lifeAccess": "Japan's most extensive rail network — JR, subway, and private lines woven together for effortless commuting. Daily life is impeccable, though rent and living costs are the highest in the country."
+      },
+      "chubu": {
+        "label": "Chubu",
+        "cities": "Nagoya, Shizuoka, Kanazawa",
+        "rentRange": "¥40,000 – ¥70,000 / month",
+        "description": "Chubu spans nine prefectures including Aichi, Shizuoka, Niigata, and Ishikawa, centered on Nagoya — Japan's fourth-largest city and a key industrial hub (home of Toyota). Living costs are significantly lower than Tokyo or Osaka, with abundant industry internships and jobs nearby. It also sits close to Mt. Fuji, Tateyama Kurobe, and Kanazawa's Kenroku-en, blending urban convenience with natural and cultural beauty.",
+        "climate": "Four distinct seasons: hot summers (28–34°C). The Japan Sea side gets heavy snow in winter; the Pacific side is dry and cool (3–8°C).",
+        "suitableFor": "Students interested in manufacturing or engineering internships, those who want urban life on a smaller budget, or those who enjoy a balance of city amenities and natural surroundings.",
+        "lifeAccess": "Nagoya is the region's transport hub with Shinkansen access to both Tokyo and Osaka. The city subway is well-developed, rents are reasonable, and overall value for money is high."
+      },
+      "kansai": {
+        "label": "Kansai",
+        "cities": "Osaka, Kyoto, Kobe",
+        "rentRange": "¥50,000 – ¥90,000 / month",
+        "description": "Kansai is centered on Osaka, Kyoto, and Kobe — the cradle of Japanese history and culture. Kyoto preserves the elegance of a thousand-year-old capital, Osaka is famous for its bold commercial energy and food culture ('Japan's Kitchen'), and Kobe exudes the charm of an international port city. Living costs are slightly lower than Tokyo, with a wide range of language and vocational schools — perfect for experiencing traditional Japan without sacrificing urban convenience.",
+        "climate": "Four distinct seasons: hot, humid summers (29–35°C) and cool winters with little snow (3–9°C). Kyoto's basin geography makes its summers hotter and winters colder.",
+        "suitableFor": "Students who love Japanese traditional culture and history, enjoy great food, want city life at lower rent than Tokyo, or have an outgoing personality and love meeting people.",
+        "lifeAccess": "A dense web of JR, Hankyu, Keihan, and subway lines makes travel between Osaka, Kyoto, and Kobe a quick 30–60 minutes. Daily amenities are excellent, and Kansai locals are famously warm and sociable."
+      },
+      "chugoku": {
+        "label": "Chugoku",
+        "cities": "Hiroshima, Okayama, Yamaguchi",
+        "rentRange": "¥30,000 – ¥50,000 / month",
+        "description": "Chugoku covers the western end of Honshu across five prefectures. Hiroshima is an internationally recognized symbol of peace, home to the UNESCO-listed Atomic Bomb Dome and Itsukushima Shrine. Okayama is renowned for its high number of sunny days and pleasant climate. With mild weather, lower living costs, and a relaxed pace, it suits students who want to focus in a quiet environment while engaging with rich history and culture.",
+        "climate": "The Seto Inland Sea side has mild, low-rain weather (among Japan's sunniest areas). Four distinct seasons: summers 28–33°C, winters 4–9°C.",
+        "suitableFor": "Students who prefer a mild climate, quiet study environment, interest in historical sites and World Heritage sites, or a tighter budget.",
+        "lifeAccess": "Hiroshima has trams and buses, with Shinkansen connections to Osaka and Fukuoka. Daily amenities are sufficient, and rents and living costs are affordable."
+      },
+      "shikoku": {
+        "label": "Shikoku",
+        "cities": "Takamatsu, Matsuyama, Tokushima",
+        "rentRange": "¥25,000 – ¥45,000 / month",
+        "description": "Shikoku consists of four prefectures — Tokushima, Kagawa, Ehime, and Kochi — and is Japan's smallest main island region. It offers beautiful natural scenery and unique cultural heritage including the 88-temple Shikoku pilgrimage, Dogo Onsen, and the Naruto whirlpools. The pace is relaxed and community spirit is warm. Schools are smaller with better student-to-teacher ratios, allowing more individual attention — ideal for focused, immersive study.",
+        "climate": "The Seto Inland Sea side is warm with little rain; the Pacific side (Kochi) is warm but rainy. Four seasons: summers 28–33°C, winters 5–10°C.",
+        "suitableFor": "Students who want small-class attention, a quiet and focused environment, enjoy nature and hot springs, or are looking for the best value-for-money study experience in Japan.",
+        "lifeAccess": "Takamatsu and Matsuyama have local transport and tram lines; expressway bridges connect to Honshu. The pace of life is slow, and rents and living costs are among the lowest in Japan."
+      },
+      "kyushu": {
+        "label": "Kyushu & Okinawa",
+        "cities": "Fukuoka, Kagoshima, Okinawa",
+        "rentRange": "¥30,000 – ¥60,000 / month",
+        "description": "Kyushu comprises seven prefectures plus Okinawa. Fukuoka — the region's largest city — is a rising study-abroad hotspot with great amenities and affordable costs. Nagasaki has deep multicultural history, Kumamoto has the spectacular Aso volcano, and Okinawa is a subtropical island paradise. Warm climate, excellent food, and friendly prices combine urban convenience with a distinctly southern character.",
+        "climate": "Warm overall: Kyushu main island has four seasons (summers 30–35°C, winters 6–12°C); Okinawa is subtropical with warm weather year-round (18–30°C).",
+        "suitableFor": "Students who like warm weather, want urban convenience at affordable prices, are interested in connecting with Asia (close to Korea and Taiwan), or love food and island life.",
+        "lifeAccess": "Fukuoka has a subway and an airport minutes from the city center, with frequent flights to Taiwan. Daily amenities are solid, and rents and living costs are relatively affordable."
+      }
+    }
+  },
   "seo": {
     "blog": {
       "title": "Insights on Foreign Employment, Skilled Workers & Study in Japan | FORMA",
@@ -82,6 +371,401 @@
     "work": {
       "title": "Japan Employment Agency | Specified Skilled Worker Visa by FORMA",
       "description": "FORMA specializes in matching foreign talent with Japanese employers under the Specified Skilled Worker visa, supporting candidate screening, visa documentation, and post-arrival assistance for a compliant, stable workforce.FORMA connects students with Japanese language schools, handling enrollment, visa support, and local living assistance — from school selection to settling in after arrival in Japan."
+    }
+  },
+  "faq": {
+    "hero": {
+      "title": "Frequently Asked Questions",
+      "sub": "Answers to the most common questions about studying and working in Japan, so you can prepare with confidence."
+    },
+    "aside": {
+      "eyebrow": "Still have questions?",
+      "title": "Talk to one of our consultants",
+      "body": "Whether it's the application process, budget planning, or Japan work visa questions — our consultants are here to help.",
+      "cta": "Free Consultation →",
+      "linksTitle": "Quick Links",
+      "links": {
+        "schools": "View Partner Schools",
+        "info": "Study Abroad Insights",
+        "shortTerm": "Short-Term Study",
+        "longTerm": "Long-Term Study",
+        "university": "Higher Education"
+      }
+    },
+    "study": {
+      "0": {
+        "q": "Can I study in Japan with no Japanese ability?",
+        "a": "For short-term study (visa-exempt entry), yes — you can absolutely start from scratch with just the Japanese alphabet.\n\nHowever, if you plan to apply for long-term study of 6 months or more (student visa), Japan's Immigration Services Agency has tightened its requirements. The old '150-hour study certificate' is no longer accepted.\n\nFor a long-term visa, we now recommend having at least JLPT N5 (or passing the school's Japanese placement interview).",
+        "listCount": "0"
+      },
+      "1": {
+        "q": "What's the difference between short-term and long-term study?",
+        "a": "The key differences lie in duration, visa type, and core purpose. Choose based on your goals:",
+        "listCount": "2",
+        "list": {
+          "0": {
+            "title": "Short-Term Study (2 weeks – 3 months)",
+            "desc": "Ideal for using school holidays, paid leave, or a career transition gap to improve spoken Japanese and experience daily life in Japan. No study visa required — Taiwanese passport holders can enter visa-free for up to 90 days, making this the easiest first step into life in Japan."
+          },
+          "1": {
+            "title": "Long-Term Study (6 months – 2 years)",
+            "desc": "Best for those aiming to reach fluent Japanese (JLPT N2/N1 or above), or planning to pursue higher education or a career in Japan. Requires a 'Student' residence status (student visa). Benefits include full academic and career support, plus the legal right to work part-time (up to 28 hours/week) to help cover living costs."
+          }
+        }
+      },
+      "2": {
+        "q": "How do I choose the right language school?",
+        "a": "The key is matching the school to your study purpose and personal preferences. Consider these dimensions:",
+        "listCount": "3",
+        "list": {
+          "0": {
+            "title": "Teaching Style",
+            "desc": "Do you want practical everyday conversation, or a school focused on exam prep and university entrance (JLPT, EJU)?"
+          },
+          "1": {
+            "title": "City & Lifestyle",
+            "desc": "Do you prefer the energy and resources of a major city like Tokyo or Osaka, or a smaller city with lower costs and a more relaxed pace?"
+          },
+          "2": {
+            "title": "Nationality Mix",
+            "desc": "Do you want a diverse international student body, or a community with more Mandarin-speaking peers for mutual support?"
+          }
+        }
+      },
+      "3": {
+        "q": "How are agency fees calculated? What costs should I prepare for?",
+        "a": "Haogaku's services are completely free for students — we charge zero agency fees. All tuition is paid directly to the Japanese school at their official rates, with no markups or hidden charges. The main costs you need to prepare for are:",
+        "listCount": "2",
+        "list": {
+          "0": {
+            "title": "School Fees",
+            "desc": "Tuition, application fee, enrollment fee, and materials fee."
+          },
+          "1": {
+            "title": "Living Expenses",
+            "desc": "Accommodation, daily living costs, flights, and overseas insurance."
+          }
+        }
+      },
+      "4": {
+        "q": "Is dormitory included in the tuition?",
+        "a": "No — accommodation is a separate cost.\n\nJapanese schools offer a wide variety of housing options, typically ranging from ¥30,000 to ¥90,000 per month depending on the city, neighborhood, and room type (single vs. shared).\n\nBeyond school dorms, we also have long-term partnerships with local rental networks and student apartment providers that don't require a guarantor.\n\nBefore you apply, our consultants will walk you through all accommodation options and costs based on your budget.",
+        "listCount": "0"
+      },
+      "5": {
+        "q": "How long does the visa process take? What's the approval rate?",
+        "a": "Japan's student visa (Certificate of Eligibility, COE) review typically takes 2–3 months.\n\nTo allow plenty of time, we strongly recommend starting the application process 5–6 months before your intended enrollment date.\n\nJapan's immigration authority applies strict standards for long-term visas. The most critical factors are the quality of your 'Study Purpose Statement' and the completeness of your financial documentation.\n\nStudents who follow our consultant's guidance step-by-step have an excellent track record of approval — there's no need to worry excessively about the rate.",
+        "listCount": "0"
+      },
+      "6": {
+        "q": "What if I get sick in Japan? Is health insurance expensive?",
+        "a": "Students on a long-term student visa (6 months or more) are legally required to enroll in Japan's National Health Insurance (Kokumin Kenko Hoken).\n\nOnce enrolled, you typically only pay 30% of medical costs, covering standard consultations, prescriptions, and basic dental care. Premiums are calculated based on your declared income from the previous year in Japan.\n\nSince newly arrived students have no prior-year income on record, premiums are usually heavily reduced — often as low as ¥1,000–2,000 per month.\n\nWe cover the full process for registering at your local ward office (kuyakusho) during our pre-departure orientation.",
+        "listCount": "0"
+      },
+      "7": {
+        "q": "Can I work part-time while studying in Japan?",
+        "a": "Yes. As long as you hold a long-term student visa and obtain 'Permission to Engage in Activity Other than That Permitted' (資格外活動許可) — either at the airport on arrival or afterward at an immigration office — you can work legally. Japanese law caps student part-time work at 28 hours per week (up to 8 hours/day and 40 hours/week during school holidays).\n\nMinimum wages vary by region. In major cities like Tokyo and Osaka, hourly rates are roughly ¥1,100–1,300; in smaller cities, around ¥950–1,050. Part-time work not only helps with daily expenses — it's one of the best ways to build spoken Japanese and integrate into Japanese society.",
+        "listCount": "0"
+      },
+      "8": {
+        "q": "Can I stay in Japan to work after graduating from a language school?",
+        "a": "Yes — but successfully obtaining a Japanese work visa depends primarily on your educational background and Japanese ability:",
+        "listCount": "2",
+        "list": {
+          "0": {
+            "title": "Educational Background",
+            "desc": "You must hold a Taiwanese college diploma (associate degree, bachelor's, or above), or have completed a Japanese vocational school program or higher."
+          },
+          "1": {
+            "title": "Japanese Language Requirement",
+            "desc": "Under Japan's latest immigration guidelines, if your target role involves communication-based duties (e.g. sales, translation, business services, hospitality management) and the employer is a small-to-medium Japanese company, JLPT N2 (CEFR B2) or above will be mandatory when applying for a work visa."
+          }
+        }
+      }
+    }
+  },
+  "shortTerm": {
+    "hero": {
+      "tag": "Short-Term Study",
+      "title": "Take Your First Step in 2 Weeks to 3 Months",
+      "sub": "No long-term visa needed. Flexible schedule. Fast-track your Japanese and life in Japan."
+    },
+    "chips": {
+      "0": "No Long-Term Visa",
+      "1": "Flexible Schedule",
+      "2": "Intensive Language Training",
+      "3": "Cultural Immersion",
+      "4": "2 Weeks – 3 Months"
+    },
+    "sections": {
+      "whatIs": {
+        "title": "What Is Short-Term Study?",
+        "body": "Short-term study means staying in Japan for 2 weeks to 3 months, with a focus on language learning and authentic local life experience.\n\nThe biggest advantage? No long-term student visa required. Students simply enter on a tourist visa-exempt basis (up to 90 days with a Taiwanese passport).\n\nWhether you want to ease into life in Japan before committing to a longer program, or make the most of a short break, this is the most flexible and stress-free way to start your Japan journey."
+      },
+      "whoFor": {
+        "title": "Who Is It For?",
+        "body": "",
+        "list": {
+          "0": {
+            "title": "Working Professionals Recharging",
+            "desc": "Use paid leave or a career transition break to push through plateaus in spoken Japanese and listening in a full-immersion environment."
+          },
+          "1": {
+            "title": "Students Making the Most of Holidays",
+            "desc": "Step beyond the textbook during summer or winter break for a deep, hands-on experience of everyday life in Japan."
+          },
+          "2": {
+            "title": "Planners Considering Japan Long-Term",
+            "desc": "Experience Japan in person before committing to a long-term visa application — and confirm whether the lifestyle suits you."
+          },
+          "3": {
+            "title": "Japan Enthusiasts Who Want More Than Tourism",
+            "desc": "Not just sightseeing. Live like a local and explore Japanese culture through daily life."
+          }
+        }
+      },
+      "features": {
+        "title": "Program Features",
+        "body": "Short-term courses focus on intensive, practical Japanese. Classes typically run 3–4 hours per day in small groups of just 4–10 students, giving you maximum progress in speaking and listening within a full-immersion environment.\n\nBeyond classroom training, schools regularly organize cultural experiences like tea ceremony, kimono wearing, and field trips. You'll also connect with international students from around the world — learning that goes well beyond textbooks, helping you naturally blend into Japanese daily life and build a global perspective."
+      },
+      "cost": {
+        "title": "Cost & Duration Reference",
+        "body": "Short-term programs are highly flexible — choose anywhere from 2 to 12 weeks:",
+        "list": {
+          "0": {
+            "title": "Tuition & Fees",
+            "desc": "Approximately ¥50,000–¥300,000 (roughly NT$10,000–60,000)."
+          },
+          "1": {
+            "title": "Accommodation",
+            "desc": "Approximately ¥30,000–¥270,000 (roughly NT$6,000–56,000)."
+          },
+          "2": {
+            "title": "Estimated Total",
+            "desc": "Including flights and basic living costs, total budget is roughly NT$35,000–280,000 (varies by duration, city, and personal spending habits)."
+          }
+        }
+      },
+      "reminder": {
+        "title": "Helpful Reminder",
+        "body": "Short-term language school programs in Japan typically open enrollment each quarter (January, April, July, and October). Spots and dormitory places are limited — we recommend contacting our consultants at least 3 months before your intended departure to secure the best schedule for you."
+      }
+    },
+    "schools": {
+      "title": "Recommended Language Schools",
+      "sub": "A curated selection of Haogaku's partner schools for short-term study",
+      "detail": "View Details →",
+      "viewAll": "View All Language Schools →"
+    }
+  },
+  "longTerm": {
+    "hero": {
+      "tag": "Long-Term Study",
+      "title": "6 Months to 2 Years — Put Down Real Roots in Japan",
+      "sub": "Apply for a student visa, work legally, and truly integrate into Japanese society."
+    },
+    "chips": {
+      "0": "Student Visa (Study)",
+      "1": "Legal Part-Time Work 28hr/week",
+      "2": "Deep Language Learning",
+      "3": "Higher Education Pathway",
+      "4": "6 Months – 2 Years"
+    },
+    "sections": {
+      "whatIs": {
+        "title": "What Is Long-Term Study?",
+        "body": "Long-term study means enrolling in a Japanese language school for 6 months to 2 years while applying for a 'Student' residence status (student visa). Compared to short-term programs, this gives you the time to bring your Japanese to genuine fluency and build real local connections.\n\nBetter yet, you can legally work part-time (up to 28 hours per week) — earning money to help cover living costs while gaining first-hand experience of Japanese work culture."
+      },
+      "whoFor": {
+        "title": "Who Is It For?",
+        "body": "",
+        "list": {
+          "0": {
+            "title": "Serious Japanese Learners with Clear Goals",
+            "desc": "For those committed to reaching genuine fluency — N2 or N1 level — through total immersion in a full Japanese-language environment."
+          },
+          "1": {
+            "title": "Future Japan-Based Professionals",
+            "desc": "Planning to work or change careers in Japan and looking to build solid business communication skills and adapt to Japanese workplace culture first."
+          },
+          "2": {
+            "title": "Applicants Preparing for Higher Education",
+            "desc": "Aiming for a Japanese university, graduate school, or vocational school and needing a dedicated transition period for exam prep and academic support."
+          },
+          "3": {
+            "title": "Japan Enthusiasts Seeking Deep Immersion",
+            "desc": "Ready to take a meaningful gap year — spending 1 to 2 years living fully in Japan to explore what comes next in life."
+          }
+        }
+      },
+      "features": {
+        "title": "Program Features",
+        "body": "Long-term programs center on comprehensive academic and practical Japanese, using a structured progression from foundational to advanced levels. Students build intuitive listening, speaking, reading, and writing skills in a total-immersion environment.\n\nAt the intermediate and advanced stages, courses integrate targeted JLPT exam preparation, business Japanese, and academic writing — tailored to each student's career goals.\n\nSchools also offer dedicated one-on-one support for university applications and job hunting, covering everything from school applications and resume editing to mock interviews. Regular cultural events and international exchange activities help students integrate deeply into Japanese society and build lasting networks."
+      },
+      "process": {
+        "title": "Application Timeline",
+        "body": "To secure your visa and enroll on schedule, the long-term study application process typically requires starting 4–6 months in advance:",
+        "list": {
+          "0": {
+            "title": "4–6 Months Before Enrollment",
+            "desc": "Assess your goals, confirm your intake term, and select your ideal school."
+          },
+          "1": {
+            "title": "3–4 Months Before Enrollment",
+            "desc": "Prepare complete written application documents and submit them to the school for review."
+          },
+          "2": {
+            "title": "1–2 Months Before Enrollment",
+            "desc": "The school submits the application to Japan's Immigration Services Agency on your behalf to obtain the Certificate of Eligibility (COE)."
+          },
+          "3": {
+            "title": "1 Month Before Departure",
+            "desc": "Bring your original COE, passport, and ID to the Japan-Taiwan Exchange Association to apply for your study visa — typically processed within 2–5 business days. Once your visa is issued and accommodation and flights are arranged, you're ready to go."
+          }
+        }
+      },
+      "cost": {
+        "title": "Cost Reference",
+        "body": "Long-term programs typically run from 6 months to 2 years. Choose the length that fits your goals:",
+        "list": {
+          "0": {
+            "title": "Tuition & Fees",
+            "desc": "Approximately ¥700,000–¥900,000 per year (roughly NT$140,000–180,000)."
+          },
+          "1": {
+            "title": "Accommodation",
+            "desc": "Approximately ¥360,000–¥1,000,000 per year (roughly NT$72,000–200,000)."
+          },
+          "2": {
+            "title": "Estimated Total",
+            "desc": "Including flights and basic living costs, a full year's budget is roughly NT$350,000–600,000 (varies by city, accommodation type, and personal spending habits)."
+          }
+        }
+      },
+      "documents": {
+        "title": "Required Documents",
+        "body": "A complete set of written materials is required for a long-term study application. All documents must be current and accurate:",
+        "list": {
+          "0": {
+            "title": "Personal Documents",
+            "desc": "Passport copy, compliant personal photo, application form, and a detailed study purpose statement."
+          },
+          "1": {
+            "title": "Academic Records",
+            "desc": "Original graduation certificate and official transcripts from your highest level of completed education."
+          },
+          "2": {
+            "title": "Financial Proof",
+            "desc": "Bank statements showing a balance of at least NT$800,000–1,000,000, plus the financial sponsor's employment certificate and annual income documentation (e.g. tax withholding certificate)."
+          }
+        }
+      },
+      "howWeHelp": {
+        "title": "How Haogaku Supports You",
+        "body": "Long-term language school programs in Japan primarily open each spring (April) and autumn (October), with some schools also accepting intake in January and July.\n\nSince long-term study requires applying for residence status with the Japanese government, the process involves considerable paperwork — and school spots and dormitories fill up quickly. We recommend reaching out to our consultants 4–6 months before your intended departure so we can map out the smoothest visa and enrollment timeline for you."
+      }
+    },
+    "schools": {
+      "title": "Recommended Language Schools",
+      "sub": "A curated selection of Haogaku's partner schools for long-term study",
+      "detail": "View Details →",
+      "viewAll": "View All Language Schools →"
+    }
+  },
+  "university": {
+    "hero": {
+      "tag": "Higher Education",
+      "title": "Earn a Degree in Japan — Build the Foundation for Your Future Career",
+      "sub": "From language school to vocational school or university — Haogaku plans every step with you."
+    },
+    "chips": {
+      "0": "Earn a Japanese Degree",
+      "1": "Professional Certification",
+      "2": "Direct Career Pathway",
+      "3": "Language School Pathway",
+      "4": "2+ Years"
+    },
+    "sections": {
+      "whatIs": {
+        "title": "What Is Higher Education Abroad?",
+        "body": "Higher education abroad means, after completing foundational Japanese language study, going on to enroll in a Japanese vocational school, university, or graduate school to earn an official academic degree or professional diploma — typically a 2 to 4-year commitment. Unlike a language school, this path lets students specialize deeply in a specific field (such as anime, design, business, or engineering) and earn an internationally recognized qualification. Graduates not only possess strong professional skills and Japanese fluency, but also significantly improve their competitiveness in the Japanese job market — with a clear pathway to convert a student visa into a 'Technology / Humanities / International Services' work visa and launch a career in Japan."
+      },
+      "whoFor": {
+        "title": "Who Is It For?",
+        "body": "",
+        "list": {
+          "0": {
+            "title": "Hands-On Learners Pursuing a Specialty",
+            "desc": "Planning to enroll in a vocational school to build practical skills in anime, design, pharmaceuticals, IT, or beauty — laying a solid foundation for the next step in your career."
+          },
+          "1": {
+            "title": "Students Dreaming of a Japanese University",
+            "desc": "Looking to enter Japan's higher education system, experience full campus life, and earn a bachelor's degree with international recognition."
+          },
+          "2": {
+            "title": "Researchers Pursuing Advanced Study",
+            "desc": "Targeting a Japanese graduate school to conduct in-depth research in a specific academic field and pursue a master's or doctoral degree."
+          },
+          "3": {
+            "title": "Planners with an Eye on the Japanese Job Market",
+            "desc": "Aiming to work directly in a Japanese company after graduation, leveraging a local Japanese qualification and the school's industry connections to land a job."
+          }
+        }
+      },
+      "features": {
+        "title": "Program Features",
+        "body": "Japan's higher education institutions are renowned for rigorous academic training and close industry collaboration. Vocational schools emphasize 'job-ready' skills, with hands-on instruction from frontline industry professionals and robust internship opportunities. Universities and graduate schools provide comprehensive research resources and academic environments that cultivate critical thinking and problem-solving at the highest level. During the application preparation phase, beyond achieving JLPT N2 or N1 proficiency, the focus shifts to intensive preparation for the Examination for Japanese University Admission for International Students (EJU), school-specific entrance exams (written tests and essays), and professor interviews. Through systematic application planning and expert guidance, students gain a precise understanding of each school's admissions criteria, sharpen their academic writing and logical reasoning, and maximize their chances of gaining entry to their target institution."
+      },
+      "process": {
+        "title": "Application Timeline",
+        "body": "To successfully gain admission to your target school, preparation for higher education typically needs to begin 8–12 months in advance:",
+        "list": {
+          "0": {
+            "title": "Summer–Autumn of the Year Before Enrollment (usually April)",
+            "desc": "Students must first achieve qualifying EJU or JLPT scores, then submit written application materials — including the admission application and research student form — during the autumn–winter period (4–6 months before enrollment)."
+          },
+          "1": {
+            "title": "After Passing Document Review and Entrance Exams",
+            "desc": "The school sends an acceptance letter 2–3 months before enrollment. After confirming enrollment and paying fees, students already in Japan apply to change their residence status; students applying directly from Taiwan follow the standard COE process to obtain a student visa."
+          },
+          "2": {
+            "title": "Approximately 3 Months Before the April Start Date",
+            "desc": "Arrange accommodation and flights — then head to Japan for the April enrollment."
+          }
+        }
+      },
+      "cost": {
+        "title": "Cost Reference",
+        "body": "Higher education programs typically run 2–4 years (vocational schools and graduate schools around 2 years; universities around 4 years). Budget estimates vary based on the type of institution:",
+        "list": {
+          "0": {
+            "title": "Tuition & Fees",
+            "desc": "National and public universities: approximately ¥500,000–800,000/year. Private universities or vocational schools: approximately ¥900,000–1,500,000/year (roughly NT$180,000–300,000; science and medical-related programs are typically higher)."
+          },
+          "1": {
+            "title": "Accommodation",
+            "desc": "Approximately ¥400,000–1,000,000/year (roughly NT$80,000–200,000)."
+          },
+          "2": {
+            "title": "Estimated Total",
+            "desc": "Including flights and basic living costs, an annual budget of roughly NT$500,000–850,000 (varies by institution type, city, and personal spending habits)."
+          }
+        }
+      },
+      "documents": {
+        "title": "Required Documents",
+        "body": "Japanese higher education institutions require a rigorous and complete set of written materials. For basic personal documents, students need a passport copy, compliant personal photo, application form, and a detailed statement of purpose. For academic and language credentials, original graduation certificates and transcripts from the highest level of completed education are required, along with recent language proficiency proof (JLPT certificate, EJU score report; some universities also require TOEFL or TOEIC scores). Graduate school applicants must additionally prepare a 'Research Proposal' and a letter of recommendation from a supervising professor; applicants to art or design vocational schools typically need to submit a portfolio. Financial proof (bank statements and the financial sponsor's employment certificate) is also a key document for both visa and admission review."
+      },
+      "reminder": {
+        "title": "Helpful Reminder",
+        "body": "The vast majority of Japanese universities and vocational schools begin in spring (April), and each school's application window is short and strictly enforced — typically falling in the autumn to winter of the year before enrollment. Since the process involves complex exam registration, research proposal writing, and school outreach, we recommend students contact our consultants 8–12 months before their intended enrollment, and confirm their target programs and eligibility requirements as early as possible, so we can build a solid, customized application strategy and timeline."
+      }
+    },
+    "schools": {
+      "title": "Recommended Schools",
+      "sub": "A curated selection of Haogaku's partner schools for higher education pathways",
+      "detail": "View Details →",
+      "viewAll": "View All Vocational Schools →"
     }
   },
   "hero_page": {
@@ -261,6 +945,19 @@
     "location": "Location:",
     "intake": "Enrollment Period:",
     "type": "School Type:",
+    "tel": "Tel",
+    "website": "Website",
+    "address": "Address",
+    "nearestStation": "Nearest station",
+    "morningClass": "Morning Session",
+    "afternoonClass": "Afternoon Session",
+    "classSchedule": "Class Schedule",
+    "daysPerWeek": "Days per Week",
+    "hoursPerWeek": "Hours per Week",
+    "applicationFee": "Application Fee",
+    "registrationFee": "Enrollment Fee",
+    "otherFees": "Other Fees",
+    "nationalityRatio": "Nationality Breakdown",
     "duration": "Course Duration:",
     "target": "Target Students:",
     "japaneseLevel": "Recommended Japanese Level:",
