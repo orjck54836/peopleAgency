@@ -194,7 +194,7 @@ function formatDate(dateStr?: string) {
   <section class="philosophy-section">
     <div class="philosophy-inner">
       <div class="philosophy-img-wrap" ref="imgRef">
-        <img src="/images/plane.png" :alt="$t('studyLanding.philosophy.headline')" class="philosophy-img" />
+        <img src="/images/haogaku-logo.svg" :alt="$t('studyLanding.philosophy.headline')" class="philosophy-img" />
       </div>
       <div class="philosophy-content" ref="contentRef">
         <h2 class="philosophy-headline text-center">
@@ -433,7 +433,7 @@ function formatDate(dateStr?: string) {
 .philosophy-img {
   width: 100%;
   aspect-ratio: 4/3;
-  object-fit: cover;
+  /* object-fit: cover; */
   display: block;
 }
 

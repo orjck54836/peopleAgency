@@ -1050,6 +1050,43 @@
       ]
     }
   },
+  "about": {
+    "hero": {
+      "title": "Turn Your Dream of Japan Into Your Life Story",
+      "sub": "FORMA provides complete study abroad support and on-the-ground assistance for Taiwanese students heading to Japan."
+    },
+    "story": {
+      "title": "About Us",
+      "imgAlt": "About FORMA",
+      "body": {
+        "0": "Studying or living abroad in Japan is a brave step outside your comfort zone — one that broadens your horizons and challenges you to grow. We understand the ultimate goal of this journey is finding the strength to build the life you truly want.",
+        "1": "You don't have to face the unknown alone on this path of self-discovery. We stand beside you, turning your vision of life in Japan into a clear, grounded starting point, step by step.",
+        "2": "We know every decision to move abroad carries both hope for the future and anxiety about the unknown.",
+        "3": "To ease that uncertainty, we offer warm, attentive one-on-one consultations that transform tangled paperwork and planning into a clear, reassuring path forward. With meticulous professionalism, we build real peace of mind for your life in Japan."
+      }
+    },
+    "values": {
+      "title": "Why Choose Haogaku?",
+      "0": { "title": "Transparent Fees — Zero Agency Charges", "desc": "No agency fees, ever. Every cost is clearly explained upfront so you can plan with complete confidence." },
+      "1": { "title": "Taiwan–Japan Dual Support", "desc": "Our Taiwan consultants guide you through every pre-departure application. Once you land, local partners in Japan help you open a bank account, get a phone plan, and find housing — you're never on your own." },
+      "2": { "title": "Expert Visa Guidance", "desc": "We provide one-on-one coaching for your study purpose statement and financial documentation — the two things that make or break a Certificate of Eligibility application." },
+      "3": { "title": "Precise School Matching", "desc": "Whether your goal is language learning, higher education, or cultural immersion, we match you to the right school from 40+ partner institutions across Tokyo, Kyoto, and Osaka." }
+    },
+    "company": {
+      "title": "Company Information",
+      "0": { "label": "Company Name (Chinese)", "value": "薪火相傳福爾摩沙國際有限公司" },
+      "1": { "label": "Company Name (English)", "value": "FORMA Global Co., Ltd." },
+      "2": { "label": "Founded", "value": "2013" },
+      "3": { "label": "Services", "value": "Japan Study Abroad Applications & School Matching" },
+      "4": { "label": "Markets", "value": "Taiwan, Japan" },
+      "5": { "label": "Address", "value": "Taichung, Taiwan" }
+    },
+    "cta": {
+      "title": "Ready to Take Your First Step Toward Japan?",
+      "sub": "Contact our consultants today for a free consultation and find the study plan that's right for you.",
+      "btn": "Free Consultation — Start Planning"
+    }
+  },
   "ourStoryTitle": "About us",
   "ourStory": "Company Profile",
   "stortText": "“Formosa” is more than just a place name — it's where we began. As a Taiwan-based recruitment agency, FORMA is dedicated to bridging cultural and geographic boundaries by connecting talents from Taiwan and Asia with Japanese companies seeking global growth. We specialize in study-abroad support, language school placement, and manpower services in Japan, offering comprehensive solutions from school applications and pre-departure guidance to local support and Specified Skilled Worker job matching. At FORMA, we believe that every step across borders opens the door to new possibilities.",

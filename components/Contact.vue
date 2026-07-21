@@ -7,6 +7,13 @@ import SectionTitle from "~/components/SectionTitle.vue";
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
+useSeoMeta({
+  title: t('seo.study.title'),
+  description: t('seo.study.description'),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
+})
+
 gsap.registerPlugin(ScrollTrigger);
 const showSuccess = ref(false)
 const showError = ref(false);

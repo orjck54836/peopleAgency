@@ -6,10 +6,10 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 
 const { t } = useI18n()
 useSeoMeta({
-  title: t('seo.faq.title'),
-  description: t('seo.faq.description'),
-  ogTitle: t('seo.faq.title'),
-  ogDescription: t('seo.faq.description'),
+  title: t('seo.study.title'),
+  description: t('seo.study.description'),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 // 只存 index，文字全由 i18n 提供

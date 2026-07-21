@@ -9,10 +9,10 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 const { t } = useI18n()
 
 useSeoMeta({
-  title: t('seo.longTerm.title'),
-  description: t('seo.longTerm.description'),
-  ogTitle: t('seo.longTerm.title'),
-  ogDescription: t('seo.longTerm.description'),
+  title: t('seo.study.title'),
+  description: t('seo.study.description'),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 const sectionMeta = [

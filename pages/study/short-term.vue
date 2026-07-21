@@ -9,10 +9,10 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 const { t } = useI18n()
 
 useSeoMeta({
-  title: t('seo.shortTerm.title'),
-  description: t('seo.shortTerm.description'),
-  ogTitle: t('seo.shortTerm.title'),
-  ogDescription: t('seo.shortTerm.description'),
+  title: t('seo.study.title'),
+  description: t('seo.study.description'),
+  ogTitle: t('seo.study.title'),
+  ogDescription: t('seo.study.description'),
 })
 
 // section 的 listCount 設定（不變的靜態資料）
