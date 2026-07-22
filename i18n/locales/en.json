@@ -157,9 +157,9 @@
     }
   },
   "trust": {
-    "headline": "The Problem with Study Abroad Agencies",
-    "subhead1": "Hidden fees, inflated prices, and zero support once you're overseas.",
-    "subhead2": "Our five commitments redefine what a study abroad agency should be.",
+    "headline": "Why Haogaku?",
+    "subhead1": "Zero agency fees. Tuition matched to official school prices. Support on both sides — Taiwan and Japan.",
+    "subhead2": "More than an agency. Your most reliable partner in Japan.",
     "promises": {
       "0": {
         "title": "Zero Agency Fees. Full Tuition Transparency.",
@@ -1067,19 +1067,49 @@
     },
     "values": {
       "title": "Why Choose Haogaku?",
-      "0": { "title": "Transparent Fees — Zero Agency Charges", "desc": "No agency fees, ever. Every cost is clearly explained upfront so you can plan with complete confidence." },
-      "1": { "title": "Taiwan–Japan Dual Support", "desc": "Our Taiwan consultants guide you through every pre-departure application. Once you land, local partners in Japan help you open a bank account, get a phone plan, and find housing — you're never on your own." },
-      "2": { "title": "Expert Visa Guidance", "desc": "We provide one-on-one coaching for your study purpose statement and financial documentation — the two things that make or break a Certificate of Eligibility application." },
-      "3": { "title": "Precise School Matching", "desc": "Whether your goal is language learning, higher education, or cultural immersion, we match you to the right school from 40+ partner institutions across Tokyo, Kyoto, and Osaka." }
+      "0": {
+        "title": "Transparent Fees — Zero Agency Charges",
+        "desc": "No agency fees, ever. Every cost is clearly explained upfront so you can plan with complete confidence."
+      },
+      "1": {
+        "title": "Taiwan–Japan Dual Support",
+        "desc": "Our Taiwan consultants guide you through every pre-departure application. Once you land, local partners in Japan help you open a bank account, get a phone plan, and find housing — you're never on your own."
+      },
+      "2": {
+        "title": "Expert Visa Guidance",
+        "desc": "We provide one-on-one coaching for your study purpose statement and financial documentation — the two things that make or break a Certificate of Eligibility application."
+      },
+      "3": {
+        "title": "Precise School Matching",
+        "desc": "Whether your goal is language learning, higher education, or cultural immersion, we match you to the right school from 40+ partner institutions across Tokyo, Kyoto, and Osaka."
+      }
     },
     "company": {
       "title": "Company Information",
-      "0": { "label": "Company Name (Chinese)", "value": "薪火相傳福爾摩沙國際有限公司" },
-      "1": { "label": "Company Name (English)", "value": "FORMA Global Co., Ltd." },
-      "2": { "label": "Founded", "value": "2013" },
-      "3": { "label": "Services", "value": "Japan Study Abroad Applications & School Matching" },
-      "4": { "label": "Markets", "value": "Taiwan, Japan" },
-      "5": { "label": "Address", "value": "Taichung, Taiwan" }
+      "0": {
+        "label": "Company Name (Chinese)",
+        "value": "薪火相傳福爾摩沙國際有限公司"
+      },
+      "1": {
+        "label": "Company Name (English)",
+        "value": "FORMA Global Co., Ltd."
+      },
+      "2": {
+        "label": "Founded",
+        "value": "2013"
+      },
+      "3": {
+        "label": "Services",
+        "value": "Japan Study Abroad Applications & School Matching"
+      },
+      "4": {
+        "label": "Markets",
+        "value": "Taiwan, Japan"
+      },
+      "5": {
+        "label": "Address",
+        "value": "Taichung, Taiwan"
+      }
     },
     "cta": {
       "title": "Ready to Take Your First Step Toward Japan?",

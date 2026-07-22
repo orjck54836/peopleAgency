@@ -114,14 +114,15 @@ export default defineNuxtConfig({
     },
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.json' },
-      { code: 'zh', iso: 'zh-TW', file: 'zh.json' },
+      { code: 'zh-TW', iso: 'zh-TW', file: 'zh.json' },
       { code: 'ja', iso: 'ja-JP', file: 'ja.json' }
     ],
-    defaultLocale: 'zh',
-    fallbackLocale: 'zh',
+    defaultLocale: 'zh-TW',
+    fallbackLocale: 'zh-TW',
     bundle: {
       optimizeTranslationDirective: false
     },
+    baseUrl: 'https://www.forma-global.com',
   },
   css: ["~/assets/css/style.css", "@/public/scss/styles.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
   ui: {

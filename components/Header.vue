@@ -54,7 +54,7 @@ const navItems = computed(() => (currentLine.value === 'work' ? workNavItems : s
 const availableLocales = computed(() =>
   locales.value.map((l) => ({
     code: l.code,
-    name: l.code === 'en' ? 'English' : l.code === 'zh' ? '繁體中文' : '日本語'
+    name: l.code === 'en' ? 'English' : l.code === 'zh-TW' ? '繁體中文' : '日本語'
   }))
 );
 

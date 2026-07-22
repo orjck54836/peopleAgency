@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const { locale } = useI18n()
 const route = useRoute()
+const baseUrl = 'https://www.forma-global.com'
 
 useHead({
   titleTemplate: '%s | 皓學',
@@ -11,6 +12,10 @@ useHead({
     { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
     { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicon.png' },
     { rel: 'apple-touch-icon', href: '/favicon.png' },
+    {
+      rel: 'canonical',
+      href: computed(() => `${baseUrl}${route.path}`)
+    }
   ],
   meta: [
     { name: 'theme-color', content: '#ffffff' }

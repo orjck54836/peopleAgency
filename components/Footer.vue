@@ -47,8 +47,7 @@ const resources = [
 
       <!-- 第一欄：品牌 + 聯絡資訊 + 社群 -->
       <div class="footer-col footer-col--brand">
-        <p class="footer-logo">皓學/FORMA</p>
-        <p class="footer-tagline">薪火相傳福爾摩沙國際有限公司<br>陪你把對日本的嚮往，變成真實的人生履歷。</p>
+        <p class="footer-tagline">陪你把對日本的嚮往，變成真實的人生履歷</p>
 
         <ul class="footer-contact">
           <li v-for="c in contactInfo" :key="c.label">
