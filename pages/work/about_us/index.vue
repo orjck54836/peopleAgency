@@ -7,7 +7,7 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 const { t } = useI18n()
 useSeoMeta({
     title: '關於我們｜FORMA 日本就職代辦',
-    description: '薪火相傳福爾摩沙國際有限公司（FORMA Global），提供台灣人赴日就職的專業媒合與簽證代辦服務，台日雙邊在地支援，陪你在日本找到屬於自己的位置。',
+    description: '新福爾摩莎國際有限公司（FORMA Global），提供台灣人赴日就職的專業媒合與簽證代辦服務，台日雙邊在地支援，陪你在日本找到屬於自己的位置。',
     ogTitle: t('seo.study.title'),
     ogDescription: t('seo.study.description'),
 })
@@ -24,8 +24,8 @@ const team = [
 ]
 
 const companyInfo = [
-    { label: '公司名稱', value: '薪火相傳福爾摩沙國際有限公司' },
-    { label: '英文名稱', value: 'FORMA Global Co., Ltd.' },
+    { label: '公司名稱', value: '新福爾摩莎國際有限公司' },
+    { label: '英文名稱', value: 'THE NEW PRECIOUS ISLAND LTD.' },
     { label: '成立年份', value: '2013 年' },
     { label: '服務項目', value: '日本就職媒合・簽證申請代辦' },
     { label: '主要市場', value: '台灣、日本' },

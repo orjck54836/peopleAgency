@@ -89,14 +89,14 @@
       }
     ],
     "philosophy": {
-      "headline": "About Haogaku",
+      "headline": "About HAOGAKU",
       "bodyCount": "6",
       "body": {
         "0": "Studying or living abroad in Japan is a brave step outside your comfort zone — one that broadens your horizons and challenges you to grow.",
         "1": "We understand the ultimate goal of this journey is finding the strength to build the life you truly want.",
-        "2": "You don't have to face the unknown alone on this path of self-discovery. Haogaku stands beside you, turning your vision of life in Japan into a clear, grounded starting point, step by step.",
+        "2": "You don't have to face the unknown alone on this path of self-discovery. HAOGAKU stands beside you, turning your vision of life in Japan into a clear, grounded starting point, step by step.",
         "3": "We know every decision to move abroad carries both hope for the future and anxiety about the unknown.",
-        "4": "To ease that uncertainty, Haogaku offers warm, one-on-one consultations that turn tangled paperwork and planning into a clear, reassuring path forward.",
+        "4": "To ease that uncertainty, HAOGAKU offers warm, one-on-one consultations that turn tangled paperwork and planning into a clear, reassuring path forward.",
         "5": "With meticulous professionalism, we build real peace of mind for your life in Japan."
       },
       "cta": "Start a Consultation →"
@@ -157,7 +157,7 @@
     }
   },
   "trust": {
-    "headline": "Why Haogaku?",
+    "headline": "Why HAOGAKU?",
     "subhead1": "Zero agency fees. Tuition matched to official school prices. Support on both sides — Taiwan and Japan.",
     "subhead2": "More than an agency. Your most reliable partner in Japan.",
     "promises": {
@@ -434,7 +434,7 @@
       },
       "3": {
         "q": "How are agency fees calculated? What costs should I prepare for?",
-        "a": "Haogaku's services are completely free for students — we charge zero agency fees. All tuition is paid directly to the Japanese school at their official rates, with no markups or hidden charges. The main costs you need to prepare for are:",
+        "a": "HAOGAKU's services are completely free for students — we charge zero agency fees. All tuition is paid directly to the Japanese school at their official rates, with no markups or hidden charges. The main costs you need to prepare for are:",
         "listCount": "2",
         "list": {
           "0": {
@@ -553,7 +553,7 @@
     },
     "schools": {
       "title": "Recommended Language Schools",
-      "sub": "A curated selection of Haogaku's partner schools for short-term study",
+      "sub": "A curated selection of HAOGAKU's partner schools for short-term study",
       "detail": "View Details →",
       "viewAll": "View All Language Schools →"
     }
@@ -661,13 +661,13 @@
         }
       },
       "howWeHelp": {
-        "title": "How Haogaku Supports You",
+        "title": "How HAOGAKU Supports You",
         "body": "Long-term language school programs in Japan primarily open each spring (April) and autumn (October), with some schools also accepting intake in January and July.\n\nSince long-term study requires applying for residence status with the Japanese government, the process involves considerable paperwork — and school spots and dormitories fill up quickly. We recommend reaching out to our consultants 4–6 months before your intended departure so we can map out the smoothest visa and enrollment timeline for you."
       }
     },
     "schools": {
       "title": "Recommended Language Schools",
-      "sub": "A curated selection of Haogaku's partner schools for long-term study",
+      "sub": "A curated selection of HAOGAKU's partner schools for long-term study",
       "detail": "View Details →",
       "viewAll": "View All Language Schools →"
     }
@@ -676,7 +676,7 @@
     "hero": {
       "tag": "Higher Education",
       "title": "Earn a Degree in Japan — Build the Foundation for Your Future Career",
-      "sub": "From language school to vocational school or university — Haogaku plans every step with you."
+      "sub": "From language school to vocational school or university — HAOGAKU plans every step with you."
     },
     "chips": {
       "0": "Earn a Japanese Degree",
@@ -763,7 +763,7 @@
     },
     "schools": {
       "title": "Recommended Schools",
-      "sub": "A curated selection of Haogaku's partner schools for higher education pathways",
+      "sub": "A curated selection of HAOGAKU's partner schools for higher education pathways",
       "detail": "View Details →",
       "viewAll": "View All Vocational Schools →"
     }
@@ -1053,11 +1053,11 @@
   "about": {
     "hero": {
       "title": "Turn Your Dream of Japan Into Your Life Story",
-      "sub": "FORMA provides complete study abroad support and on-the-ground assistance for Taiwanese students heading to Japan."
+      "sub": "HAOGAKU provides complete study abroad support and on-the-ground assistance for Taiwanese students heading to Japan."
     },
     "story": {
       "title": "About Us",
-      "imgAlt": "About FORMA",
+      "imgAlt": "About HAOGAKU",
       "body": {
         "0": "Studying or living abroad in Japan is a brave step outside your comfort zone — one that broadens your horizons and challenges you to grow. We understand the ultimate goal of this journey is finding the strength to build the life you truly want.",
         "1": "You don't have to face the unknown alone on this path of self-discovery. We stand beside you, turning your vision of life in Japan into a clear, grounded starting point, step by step.",
@@ -1066,7 +1066,7 @@
       }
     },
     "values": {
-      "title": "Why Choose Haogaku?",
+      "title": "Why Choose HAOGAKU?",
       "0": {
         "title": "Transparent Fees — Zero Agency Charges",
         "desc": "No agency fees, ever. Every cost is clearly explained upfront so you can plan with complete confidence."
@@ -1088,25 +1088,29 @@
       "title": "Company Information",
       "0": {
         "label": "Company Name (Chinese)",
-        "value": "薪火相傳福爾摩沙國際有限公司"
+        "value": "新福爾摩莎國際有限公司"
       },
       "1": {
         "label": "Company Name (English)",
-        "value": "FORMA Global Co., Ltd."
+        "value": "THE NEW PRECIOUS ISLAND LTD."
       },
       "2": {
-        "label": "Founded",
-        "value": "2013"
+        "label": "Representative",
+        "value": "李政南"
       },
       "3": {
+        "label": "Founded",
+        "value": "2015"
+      },
+      "4": {
         "label": "Services",
         "value": "Japan Study Abroad Applications & School Matching"
       },
-      "4": {
+      "5": {
         "label": "Markets",
         "value": "Taiwan, Japan"
       },
-      "5": {
+      "6": {
         "label": "Address",
         "value": "Taichung, Taiwan"
       }

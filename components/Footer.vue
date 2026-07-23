@@ -90,7 +90,7 @@ const resources = [
     </div>
 
     <div class="footer-bottom">
-      <p>Copyright © {{ new Date().getFullYear() }} FORMA Global Co., Ltd. All Rights Reserved.</p>
+      <p>Copyright © {{ new Date().getFullYear() }} THE NEW PRECIOUS ISLAND LTD. All Rights Reserved.</p>
     </div>
   </footer>
 </template>
