@@ -24,10 +24,10 @@ const team = [
 ]
 
 const companyInfo = [
-    { label: '公司名稱', value: '新福爾摩莎國際有限公司' },
+    { label: '公司名稱', value: '薪火相傳福爾摩莎國際有限公司' },
     { label: '英文名稱', value: 'THE NEW PRECIOUS ISLAND LTD.' },
-    { label: '成立年份', value: '2013 年' },
-    { label: '服務項目', value: '日本就職媒合・簽證申請代辦' },
+    { label: '成立年份', value: '2014年' },
+    { label: '服務項目', value: '就職媒合・簽證申請代辦' },
     { label: '主要市場', value: '台灣、日本' },
     { label: '聯絡地址', value: '台灣台中市' },
 ]

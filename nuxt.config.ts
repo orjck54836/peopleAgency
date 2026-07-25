@@ -34,7 +34,8 @@ export default defineNuxtConfig({
       siteUrl: 'https://www.forma-global.com/', // 可選，前端要用就放這
       PUBLIC_KEY: process.env.NUXT_PUBLIC_KEY,
       SERVICE_ID: process.env.NUXT_SERVICE_ID,
-      TEMPLATE_ID: process.env.NUXT_TEMPLATE_ID
+      TEMPLATE_ID: process.env.NUXT_TEMPLATE_ID,
+      gaId: "G-RKNCTYCV3V",
     }
   },
   compatibilityDate: "2024-11-01",
@@ -82,6 +83,7 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: 'https://www.forma-global.com/images/og-default.jpg' },
       ],
       link: [
+        { rel: 'icon', type: 'image/png', href: '/images/haogaku-logo.svg' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {
@@ -101,12 +103,26 @@ export default defineNuxtConfig({
         {
           src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",
         },
+        // GA4
+        {
+          src: 'https://www.googletagmanager.com/gtag/js?id=G-RKNCTYCV3V',
+          async: true,
+        },
+        {
+          innerHTML: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RKNCTYCV3V');
+    `,
+          type: 'text/javascript',
+        },
       ],
     },
   },
   i18n: {
     langDir: 'locales',
-    strategy: 'no_prefix',
+    strategy: 'prefix_except_default', // 從 no_prefix 改這裡
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
@@ -118,7 +134,7 @@ export default defineNuxtConfig({
       { code: 'ja', iso: 'ja-JP', file: 'ja.json' }
     ],
     defaultLocale: 'zh-TW',
-    fallbackLocale: 'zh-TW',
+    fallbackLocale: 'zh-TW', // 注意:這個在 @nuxtjs/i18n v9 已移除,之後確認一下版本
     bundle: {
       optimizeTranslationDirective: false
     },

@@ -2,16 +2,25 @@
 const { locale } = useI18n()
 const route = useRoute()
 const baseUrl = 'https://www.forma-global.com'
+const { applyHreflang } = useHreflang()
+applyHreflang()
+
+const { currentLine } = useBrandLine()
+
+const router = useRouter()
+const { trackPageview } = useGtag()
+
+router.afterEach((to) => {
+  trackPageview(to.fullPath)
+})
 
 useHead({
   titleTemplate: '%s | 皓學',
   htmlAttrs: {
     lang: locale,
+    class: computed(() => `line-${currentLine.value}`)
   },
   link: [
-    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-    { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicon.png' },
-    { rel: 'apple-touch-icon', href: '/favicon.png' },
     {
       rel: 'canonical',
       href: computed(() => `${baseUrl}${route.path}`)
@@ -33,12 +42,31 @@ useHead({
         gtag('config', 'G-RKNCTYCV3V');
       `,
     },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: '皓學/FORMA',
+        alternateName: ['HAOGAKU', 'FORMA Global', '新福爾摩沙國際有限公司'],
+        url: 'https://www.forma-global.com',
+        logo: 'https://www.forma-global.com/images/haogaku-logo.svg',
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer service',
+          availableLanguage: ['Chinese', 'Japanese', 'English'],
+          email: 'info@forma-global.com',
+        },
+        areaServed: ['TW', 'JP'],
+        serviceType: ['留學代辦', '語言學校媒合', '日本就職支援'],
+      }),
+    },
   ],
 })
 </script>
 
 <template>
-  <div class="page-wrapper" :class="route.path.startsWith('/work') ? 'line-work' : 'line-study'">
+  <div class="page-wrapper" :class="`line-${currentLine}`">
     <UApp>
       <NuxtRouteAnnouncer />
       <div class="global-background">

@@ -10,6 +10,7 @@ defineProps<{
   toggleNav: () => void;
 }>();
 
+const { currentLine } = useBrandLine()
 const { setLocale, locale, locales } = useI18n();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
@@ -17,11 +18,6 @@ const router = useRouter();
 const route = useRoute();
 
 const isContactPage = computed(() => route.path.includes('/contact'));
-
-// ---- 雙品牌線判斷：依路徑前綴決定目前所在品牌 ----
-const currentLine = computed<'study' | 'work'>(() =>
-  route.path.startsWith('/work') ? 'work' : 'study'
-);
 
 // 記住使用者選擇，供首頁重導使用
 const lineCookie = useCookie<'study' | 'work'>('forma-line', { default: () => 'study' });

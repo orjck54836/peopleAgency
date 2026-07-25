@@ -2,7 +2,7 @@
 const route = useRoute()
 const navOpen = ref(false)
 const toggleNav = () => { navOpen.value = !navOpen.value }
-
+const localePath = useLocalePath()
 const { data: article } = await useAsyncData(() =>
   queryCollection('content').path(`/information/study/${route.params.slug}`).first()
 )
@@ -23,9 +23,9 @@ useSeoMeta({
     <template v-if="article">
       <!-- 麵包屑 -->
       <nav class="article-breadcrumb" aria-label="breadcrumb">
-        <NuxtLink to="/study">首頁</NuxtLink>
+        <NuxtLink :to="localePath('/study')">首頁</NuxtLink>
         <span class="crumb-sep">›</span>
-        <NuxtLink to="/study/information">留學情報</NuxtLink>
+        <NuxtLink :to="localePath('/study/information')">留學情報</NuxtLink>
         <span class="crumb-sep">›</span>
         <span class="crumb-current">{{ article.title }}</span>
       </nav>

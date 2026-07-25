@@ -10,6 +10,7 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 const currentPage = ref(1)
 const pageSize = 6
 const schools = ref<any[]>([])
+const localePath = useLocalePath()
 
 const initialRegions = route.query.regions
   ? (route.query.regions as string).split(',')
@@ -94,14 +95,14 @@ const totalPages = computed(() =>
   Math.ceil(filteredSchools.value.length / pageSize)
 )
 
+function goToDetailPage(schoolName: string) {
+  router.push(localePath(`/study/${encodeURIComponent(schoolName)}`))
+}
+
 function clearFilters() {
   filters.value = { keyword: '', regions: [], intake: '', type: '', accommodation: '' }
   currentPage.value = 1
-  router.replace({ path: '/study/schools' })
-}
-
-function goToDetailPage(schoolName: string) {
-  router.push(`/study/${encodeURIComponent(schoolName)}`)
+  router.replace(localePath('/study/schools'))
 }
 
 async function fetchSchools() {
@@ -244,7 +245,7 @@ onMounted(fetchSchools)
             <h3 class="school-card-name">{{ school.name }}</h3>
             <p class="school-card-location">📍 {{ school.location }}</p>
             <p class="school-card-intake">
-              入學期間：{{ school.intake.join('月、') }}月
+              入學期間：{{ school.intake.join('、') }}
             </p>
             <p class="school-card-intro">{{ school.introduction }}</p>
             <span class="school-card-cta">{{ $t('schoolOverview.moreDetail') }} →</span>

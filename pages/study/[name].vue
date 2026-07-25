@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
@@ -18,12 +19,6 @@ function select(index: number) {
   carousel.value?.emblaApi?.scrollTo(index)
 }
 
-const items = [
-  'https://picsum.photos/640/640?random=1',
-  'https://picsum.photos/640/640?random=2',
-  'https://picsum.photos/640/640?random=3',
-]
-
 const schoolName = decodeURIComponent(route.params.name as string)
 
 const { data: allSchools } = await useAsyncData('schools-list', async () => {
@@ -34,6 +29,13 @@ const { data: allSchools } = await useAsyncData('schools-list', async () => {
 const school = computed(() =>
   (allSchools.value ?? []).find((s) => s.name === schoolName)
 )
+
+// 圖片來源：優先使用 images 陣列，沒有的話 fallback 用單張 image
+const items = computed<string[]>(() => {
+  if (school.value?.images?.length) return school.value.images
+  if (school.value?.image) return [school.value.image]
+  return []
+})
 
 const recommendedSchools = computed(() => {
   const others = (allSchools.value ?? []).filter((s) => s.name !== schoolName)
@@ -52,6 +54,37 @@ useSeoMeta({
       : t('seo.study.description')
   ),
 })
+
+/* ── 燈箱 Lightbox ── */
+const isLightboxOpen = ref(false)
+
+function openLightbox() {
+  if (!items.value.length) return
+  isLightboxOpen.value = true
+}
+function closeLightbox() {
+  isLightboxOpen.value = false
+}
+function nextImage() {
+  if (!items.value.length) return
+  activeIndex.value = (activeIndex.value + 1) % items.value.length
+  carousel.value?.emblaApi?.scrollTo(activeIndex.value)
+}
+function prevImage() {
+  if (!items.value.length) return
+  activeIndex.value = (activeIndex.value - 1 + items.value.length) % items.value.length
+  carousel.value?.emblaApi?.scrollTo(activeIndex.value)
+}
+
+function handleKeydown(e: KeyboardEvent) {
+  if (!isLightboxOpen.value) return
+  if (e.key === 'Escape') closeLightbox()
+  if (e.key === 'ArrowRight') nextImage()
+  if (e.key === 'ArrowLeft') prevImage()
+}
+
+onMounted(() => window.addEventListener('keydown', handleKeydown))
+onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 </script>
 
 <template>
@@ -61,7 +94,7 @@ useSeoMeta({
 
     <!-- 麵包屑 -->
     <nav class="breadcrumb-bar" aria-label="breadcrumb">
-      <NuxtLink to="/study/schools">{{ $t('schoolDetail.breadcrumb') }}</NuxtLink>
+      <NuxtLink :to="localePath('/study/schools')">{{ $t('schoolDetail.breadcrumb') }}</NuxtLink>
       <span class="crumb-sep">›</span>
       <span class="crumb-current">{{ school.name }}</span>
     </nav>
@@ -70,9 +103,14 @@ useSeoMeta({
     <section class="detail-hero">
       <div class="detail-gallery">
         <UCarousel ref="carousel" v-slot="{ item }" :items="items" class="gallery-carousel" @select="onSelect">
-          <img :src="item" class="gallery-img" :alt="`${school.name} 學校圖片`" />
+          <img
+            :src="item"
+            class="gallery-img"
+            :alt="`${school.name} 學校圖片`"
+            @click="openLightbox"
+          />
         </UCarousel>
-        <div class="gallery-thumbs">
+        <div v-if="items.length > 1" class="gallery-thumbs">
           <div v-for="(item, index) in items" :key="index" class="thumb" :class="{ active: activeIndex === index }"
             @click="select(index)">
             <img :src="item" :alt="`縮圖 ${index + 1}`" />
@@ -96,9 +134,6 @@ useSeoMeta({
           <NuxtLink to="/contact" class="consult-btn">
             {{ $t('schoolDetail.consultBtn') }}
           </NuxtLink>
-          <a href="#" class="download-btn">
-            下載學校簡章
-          </a>
         </div>
       </div>
     </section>
@@ -115,7 +150,7 @@ useSeoMeta({
             <li><span>{{ $t('schoolDetail.city') }}</span><span>{{ school.location }}</span></li>
             <li><span>{{ $t('schoolDetail.founded') }}</span><span>{{ school.founded }}</span></li>
             <li><span>{{ $t('schoolDetail.type') }}</span><span>{{ school.type }}</span></li>
-            <li><span>{{ $t('schoolDetail.intake') }}</span><span>{{ school.intake.join('月、') }}月</span></li>
+            <li><span>{{ $t('schoolDetail.intake') }}</span><span>{{ school.intake.join('、') }}</span></li>
             <li v-if="school.contact?.tel">
               <span>{{ $t('schoolDetail.tel') }}</span>
               <span>{{ school.contact.tel }}</span>
@@ -241,7 +276,7 @@ useSeoMeta({
       <div class="sidebar-col">
         <h3 class="sidebar-title">{{ $t('schoolDetail.moreSchools') }}</h3>
         <div v-for="(rec, i) in recommendedSchools" :key="i" class="rec-card">
-          <NuxtLink :to="`/study/${encodeURIComponent(rec.name)}`">
+          <NuxtLink :to="localePath(`/study/${encodeURIComponent(rec.name)}`)">
             <img :src="rec.image" :alt="`${rec.name} 推薦學校`" class="rec-img" />
             <div class="rec-body">
               <p class="rec-name">{{ rec.name }}</p>
@@ -273,6 +308,18 @@ useSeoMeta({
     </aside>
   </main>
 
+  <!-- 燈箱 Lightbox -->
+  <Teleport to="body">
+    <Transition name="fade">
+      <div v-if="isLightboxOpen" class="lightbox-overlay" @click.self="closeLightbox">
+        <button class="lightbox-close" @click="closeLightbox" aria-label="關閉">✕</button>
+        <button v-if="items.length > 1" class="lightbox-nav lightbox-prev" @click="prevImage" aria-label="上一張">‹</button>
+        <img :src="items[activeIndex]" class="lightbox-img" :alt="`${school?.name} 放大圖片`" />
+        <button v-if="items.length > 1" class="lightbox-nav lightbox-next" @click="nextImage" aria-label="下一張">›</button>
+      </div>
+    </Transition>
+  </Teleport>
+
   <Footer />
 </template>
 
@@ -298,7 +345,6 @@ useSeoMeta({
 }
 
 .pill {
-  
   background: var(--c-primary-muted);
   color: var(--c-primary-dark);
   padding: 0.25rem 0.7rem;
@@ -333,7 +379,6 @@ useSeoMeta({
 }
 
 .article-link-text {
-  
   color: var(--c-text);
   line-height: 1.5;
   display: -webkit-box;
@@ -345,7 +390,6 @@ useSeoMeta({
 .article-link-more {
   display: block;
   text-align: right;
-  
   font-weight: 700;
   color: var(--c-primary);
   text-decoration: none;
@@ -356,7 +400,6 @@ useSeoMeta({
   text-decoration: underline;
 }
 
-/* RWD：側欄在手機改成單欄 */
 @media (max-width: 900px) {
   .detail-page {
     width: 100%;
@@ -374,7 +417,6 @@ useSeoMeta({
 }
 
 .aside-intro {
-  
   color: var(--c-text-secondary);
   line-height: 2;
   margin: 0;
@@ -394,7 +436,6 @@ useSeoMeta({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
   gap: 0.5rem;
 }
 
@@ -424,7 +465,6 @@ useSeoMeta({
   padding: 0.8rem;
   border-radius: var(--radius-md);
   font-weight: 700;
-  
   text-decoration: none;
   transition: background var(--transition-fast), color var(--transition-fast);
 }
@@ -433,7 +473,6 @@ useSeoMeta({
   background: var(--c-primary-muted);
 }
 
-/* ── 麵包屑 ── */
 .breadcrumb-bar {
   display: flex;
   align-items: center;
@@ -441,7 +480,6 @@ useSeoMeta({
   padding: 1rem 0;
   border-bottom: 1px solid var(--c-border);
   margin-bottom: 2rem;
-  
 }
 
 .breadcrumb-bar a {
@@ -461,7 +499,6 @@ useSeoMeta({
   color: var(--c-text-muted);
 }
 
-/* ── Hero ── */
 .detail-hero {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -478,7 +515,6 @@ useSeoMeta({
 }
 
 .gallery-carousel {
-  /* border-radius: var(--radius-md); */
   overflow: hidden;
 }
 
@@ -488,6 +524,7 @@ useSeoMeta({
   max-height: 500px;
   object-fit: cover;
   display: block;
+  cursor: zoom-in;
 }
 
 .gallery-thumbs {
@@ -535,7 +572,6 @@ useSeoMeta({
   display: inline-block;
   background: var(--c-primary-muted);
   color: var(--c-primary-dark);
-  
   font-weight: 700;
   padding: 0.2rem 0.65rem;
   border-radius: var(--radius-sm);
@@ -552,7 +588,6 @@ useSeoMeta({
 }
 
 .detail-location {
-  
   color: var(--c-text-muted);
   margin: 0;
 }
@@ -566,7 +601,6 @@ useSeoMeta({
   padding: 0.85rem;
   border-radius: var(--radius-md);
   font-weight: 700;
-  
   text-decoration: none;
   margin-top: 0.5rem;
   transition: background var(--transition-fast);
@@ -577,7 +611,6 @@ useSeoMeta({
   color: var(--c-text-on-primary);
 }
 
-/* ── 主體 ── */
 .detail-body {
   display: flex;
   flex-direction: column;
@@ -616,7 +649,6 @@ useSeoMeta({
   border-bottom: 1px solid var(--c-border);
 }
 
-/* 資訊清單 */
 .info-list {
   list-style: none;
   padding: 0;
@@ -629,7 +661,6 @@ useSeoMeta({
   align-items: flex-start;
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--c-border);
-  
   gap: 1rem;
 }
 
@@ -640,7 +671,6 @@ useSeoMeta({
 .info-list li span:first-child {
   color: var(--c-text-muted);
   font-weight: 600;
-  
   flex-shrink: 0;
   padding-top: 2px;
   min-width: 80px;
@@ -659,20 +689,17 @@ useSeoMeta({
 }
 
 .detail-text {
-  
   color: var(--c-text-secondary);
   line-height: 1.85;
   margin: 0;
 }
 
 .detail-note {
-  
   color: var(--c-text-muted);
   margin: 0;
   line-height: 1.6;
 }
 
-/* 學費表 */
 .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -681,7 +708,6 @@ useSeoMeta({
 .tuition-table {
   width: 100%;
   border-collapse: collapse;
-  
   min-width: 480px;
 }
 
@@ -694,7 +720,6 @@ useSeoMeta({
   text-align: center;
   font-weight: 700;
   color: var(--c-primary-dark);
-  
   border-bottom: 1px solid var(--c-border);
   white-space: nowrap;
 }
@@ -704,7 +729,6 @@ useSeoMeta({
   text-align: center;
   color: var(--c-text-secondary);
   border-bottom: 1px solid var(--c-border);
-  
   white-space: nowrap;
 }
 
@@ -721,7 +745,6 @@ useSeoMeta({
   color: var(--c-primary-dark);
 }
 
-/* 國籍比例 */
 .ratio-list {
   list-style: none;
   padding: 0;
@@ -739,7 +762,6 @@ useSeoMeta({
 }
 
 .ratio-country {
-  
   font-weight: 600;
   color: var(--c-text);
 }
@@ -759,13 +781,11 @@ useSeoMeta({
 }
 
 .ratio-percent {
-  
   font-weight: 700;
   color: var(--c-primary-dark);
   text-align: right;
 }
 
-/* 特色 */
 .feature-list {
   list-style: none;
   padding: 0;
@@ -779,7 +799,6 @@ useSeoMeta({
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
-  
   color: var(--c-text-secondary);
   line-height: 1.6;
 }
@@ -793,7 +812,6 @@ useSeoMeta({
   margin-top: 6px;
 }
 
-/* 入學要件 */
 .req-list {
   padding-left: 1.2rem;
   margin: 0;
@@ -803,20 +821,16 @@ useSeoMeta({
 }
 
 .req-list li {
-  
   color: var(--c-text-secondary);
   line-height: 1.6;
 }
 
-/* ── 側欄 ── */
 .detail-sidebar {
   position: sticky;
   top: 80px;
 }
 
 .sidebar-title {
-  font-family: var(--font-heading);
-  font-size: var(--text-base);
   font-weight: 700;
   color: var(--c-primary-dark);
   margin: 0 0 0.75rem;
@@ -839,7 +853,6 @@ useSeoMeta({
   display: block;
 }
 
-/* 左側推薦學校改兩欄 */
 .sidebar-col:first-child {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -862,20 +875,17 @@ useSeoMeta({
 }
 
 .rec-name {
-  
   font-weight: 700;
   color: var(--c-text);
   margin: 0 0 0.2rem;
 }
 
 .rec-location {
-  
   color: var(--c-text-muted);
   margin: 0 0 0.35rem;
 }
 
 .rec-cta {
-  
   font-weight: 700;
   color: var(--c-primary);
 }
@@ -890,7 +900,6 @@ useSeoMeta({
 }
 
 .sidebar-cta p {
-  
   color: var(--c-text-secondary);
   margin: 0 0 0.6rem;
 }
@@ -899,13 +908,89 @@ useSeoMeta({
   display: inline-block;
   width: auto;
   padding: 0.6rem 1.4rem;
-  
   margin-top: 0;
 }
 
-/* ════════════════════════════════
-   RWD
-════════════════════════════════ */
+/* ── 燈箱 Lightbox ── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-prev {
+  left: 1.5rem;
+}
+
+.lightbox-next {
+  right: 1.5rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 @media (max-width: 1024px) {
   .detail-body {
     grid-template-columns: 1fr;
@@ -951,6 +1036,19 @@ useSeoMeta({
 
   .info-list li span:first-child {
     min-width: 64px;
+  }
+
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .lightbox-close {
+    width: 36px;
+    height: 36px;
+    top: 1rem;
+    right: 1rem;
   }
 }
 

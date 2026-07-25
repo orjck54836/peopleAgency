@@ -3,13 +3,99 @@ import { ref } from 'vue'
 
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
-
+const localePath = useLocalePath()
 const { t } = useI18n()
 useSeoMeta({
   title: t('seo.study.title'),
   description: t('seo.study.description'),
   ogTitle: t('seo.study.title'),
   ogDescription: t('seo.study.description'),
+})
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: '我沒有學過日文，可以去日本留學嗎？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '如果是選擇短期遊學（免簽入境），完全可以從零基礎（五十音）開始！但如果計畫申請6個月以上的長期留學（學生簽證），目前建議至少需具備日檢N5以上證書（或通過學校的日語面試評估）。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '短期遊學跟長期留學有什麼差別？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '短期遊學（2週～3個月）：不需申請留學簽證，持台灣護照觀光免簽90天即可出發，適合利用假期快速提升日語口說並體驗日本生活。長期留學（6個月～2年）：需申請留學在留資格（學生簽證），適合目標日語流利或計劃在日本升學、就職者，可合法兼職打工每週28小時以內。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '我該如何選擇適合自己的語言學校？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '選擇學校建議從三個維度評估：1. 教學風格（日常會話實用性 vs 升學日檢備考）；2. 城市與生活機能（東京大阪等大都市 vs 物價親民的地方城市）；3. 國籍比例（國際化環境 vs 華語圈互助環境）。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '代辦費用怎麼計算？有哪些費用需要準備？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '皓學提供免費代辦服務，不收取任何額外手續費，學費與日本學校官方收費標準完全同步，絕無隱藏費用。需準備的費用包含：學校規費（學費、報名費、入學金、教材費）以及生活開銷（住宿費、基本生活費、機票與海外保險）。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '宿舍費用包含在學費裡嗎？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '不包含，住宿費用需另外支付。日本各學校宿舍每月費用約3萬至9萬日圓，依城市區域與房型不同。皓學也有合作免保證人的日本當地租屋體系與學生公寓夥伴，顧問會在申請前根據您的預算詳細說明所有住宿選擇。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '申請簽證需要多久時間？過件率高嗎？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '日本留學簽證（COE）審查通常需要2至3個月，建議在預計入學日期的5到6個月前開始準備。過件關鍵在於留學理由書的撰寫邏輯與財力證明的資料完整度，配合顧問規劃依序準備，絕大多數學生都能順利取得簽證。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '留學期間生病怎麼辦？日本的健保費用高嗎？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '持長期留學簽證（6個月以上）的學生依法須加入日本國民健康保險，醫療費用通常只需自行負擔30%。留學生因剛到日本無前一年申報所得，保費通常大幅減免，每月約僅需1,000至2,000日圓。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '在日本就學期間可以打工嗎？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '可以。持長期留學簽證並申請「資格外活動許可」後即可合法打工，每週上限28小時（寒暑假每週40小時）。東京、大阪等大都市時薪約1,100至1,300日圓，地方城市約950至1,050日圓。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '語言學校畢業後可以留在日本工作嗎？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '可以，但需具備台灣大專院校以上學歷（或日本專門學校以上學位），且若職缺涉及與人溝通的業務並受僱於日本中小企業，申請工作簽證時需提交日檢N2（CEFR B2）以上的日語能力證明。',
+            },
+          },
+        ],
+      }),
+    },
+  ],
 })
 
 // 只存 index，文字全由 i18n 提供

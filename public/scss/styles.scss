@@ -74,6 +74,15 @@ Version: 1.0
   /* 過渡 */
   --transition-fast: 0.15s ease;
   --transition-base: 0.25s ease;
+
+  &.line-study {
+    --c-primary: 139, 26, 47;
+    --line-font: 'Playfair Display', serif;
+  }
+  &.line-work {
+    --c-primary: 27, 58, 107;
+    --line-font: 'Poppins', sans-serif;
+  }
 }
 
 /* ============================================================

@@ -6,6 +6,8 @@ const toggleNav = () => {
 const closeNav = () => {
   navOpen.value = false;
 };
+
+const localePath = useLocalePath()
 const { t } = useI18n()
 // 搜尋欄
 const searchQuery = ref("");
@@ -18,9 +20,10 @@ const { data: articles } = await useAsyncData("articles", () =>
 function toPagePath(contentPath: string): string {
   // /information/study/slug → /study/information/slug
   // /information/work/slug  → /work/information/slug
-  return contentPath
+  const path = contentPath
     .replace('/information/study/', '/study/information/')
     .replace('/information/work/', '/work/information/')
+  return localePath(path)   // ← 包一層 localePath
 }
 
 // 關鍵字篩選
