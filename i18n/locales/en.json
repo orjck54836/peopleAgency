@@ -896,6 +896,12 @@
     }
   },
   "schoolOverview": {
+    "tagsLabel": "課程性質",
+    "tag": {
+      "shortTerm": "Short Term",
+      "longTerm": "Long Term",
+      "academic": "Academic"
+    },
     "region": {
       "tokyo": "Tokyo",
       "osaka": "Osaka",
@@ -1112,7 +1118,7 @@
       },
       "6": {
         "label": "Address",
-        "value": "Taichung, Taiwan"
+        "value": "9F.-1, No. 39, Shifu Rd., Limin Vil., West Dist., Taichung City 40342, Taiwan (R.O.C.)"
       }
     },
     "cta": {

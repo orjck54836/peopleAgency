@@ -66,15 +66,17 @@ useHead({
 </script>
 
 <template>
-  <div class="page-wrapper" :class="`line-${currentLine}`">
-    <UApp>
-      <NuxtRouteAnnouncer />
-      <div class="global-background">
-        <NuxtPage :key="$route.fullPath" />
-      </div>
-      <LineFloatBtn />
-    </UApp>
-  </div>
+  <NuxtLayout>
+    <div class="page-wrapper" :class="`line-${currentLine}`">
+      <UApp>
+        <NuxtRouteAnnouncer />
+        <div class="global-background">
+          <NuxtPage :key="$route.fullPath" />
+        </div>
+        <LineFloatBtn />
+      </UApp>
+    </div>
+  </NuxtLayout>
 </template>
 
 <style scoped>

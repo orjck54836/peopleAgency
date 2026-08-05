@@ -12,36 +12,68 @@ const { t } = useI18n()
 // 搜尋欄
 const searchQuery = ref("");
 
+// 分頁設定
+const currentPage = ref(1);
+const perPage = 9;
+
 // 拿文章
 const { data: articles } = await useAsyncData("articles", () =>
   queryCollection("content").where("path", "LIKE", "/information/study/%").all()
 );
 
 function toPagePath(contentPath: string): string {
-  // /information/study/slug → /study/information/slug
-  // /information/work/slug  → /work/information/slug
   const path = contentPath
     .replace('/information/study/', '/study/information/')
     .replace('/information/work/', '/work/information/')
-  return localePath(path)   // ← 包一層 localePath
+  return localePath(path)
 }
 
-// 關鍵字篩選
+// 關鍵字篩選 + 依日期排序（新到舊）
 const filteredArticles = computed(() => {
   if (!articles.value) return [];
-  if (!searchQuery.value) return articles.value;
 
-  const keyword = searchQuery.value.toLowerCase();
-  return articles.value.filter(
-    (post) =>
-      post.title.toLowerCase().includes(keyword) ||
-      post.description?.toLowerCase().includes(keyword) ||
-      post.author?.toLowerCase().includes(keyword) ||
-      (post.tags || []).some((tag: string) =>
-        tag.toLowerCase().includes(keyword)
-      )
+  let result = articles.value;
+
+  if (searchQuery.value) {
+    const keyword = searchQuery.value.toLowerCase();
+    result = result.filter(
+      (post) =>
+        post.title.toLowerCase().includes(keyword) ||
+        post.description?.toLowerCase().includes(keyword) ||
+        post.author?.toLowerCase().includes(keyword) ||
+        (post.tags || []).some((tag: string) =>
+          tag.toLowerCase().includes(keyword)
+        )
+    );
+  }
+
+  return [...result].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 });
+
+// 總頁數
+const totalPages = computed(() =>
+  Math.ceil(filteredArticles.value.length / perPage)
+);
+
+// 目前頁面呈現的文章
+const paginatedArticles = computed(() => {
+  const start = (currentPage.value - 1) * perPage;
+  return filteredArticles.value.slice(start, start + perPage);
+});
+
+// 搜尋文字變動時，重置回第一頁
+watch(searchQuery, () => {
+  currentPage.value = 1;
+});
+
+function goToPage(page: number) {
+  if (page < 1 || page > totalPages.value) return;
+  currentPage.value = page;
+  // 換頁時捲動回文章區塊頂部
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
 useSeoMeta({
   title: t("seo.blog.title"),
@@ -69,8 +101,8 @@ useSeoMeta({
     </div>
 
     <!-- 卡片列表 -->
-    <div v-if="filteredArticles?.length" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <article v-for="post in filteredArticles" :key="post.path"
+    <div v-if="paginatedArticles?.length" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <article v-for="post in paginatedArticles" :key="post.path"
         class="article-card border rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all bg-white flex flex-col">
         <!-- 封面圖片 -->
         <NuxtLink :to="toPagePath(post.path)">
@@ -104,9 +136,37 @@ useSeoMeta({
     </div>
 
     <p v-else class="text-center text-gray-500">{{ $t('information.noResults') }}</p>
+
+    <!-- 分頁控制 -->
+    <div v-if="totalPages > 1" class="pagination flex justify-center items-center gap-2 mt-12">
+      <button
+        class="page-btn"
+        :disabled="currentPage === 1"
+        @click="goToPage(currentPage - 1)"
+      >
+        &laquo;
+      </button>
+
+      <button
+        v-for="page in totalPages"
+        :key="page"
+        class="page-btn"
+        :class="{ active: page === currentPage }"
+        @click="goToPage(page)"
+      >
+        {{ page }}
+      </button>
+
+      <button
+        class="page-btn"
+        :disabled="currentPage === totalPages"
+        @click="goToPage(currentPage + 1)"
+      >
+        &raquo;
+      </button>
+    </div>
   </section>
 
-  
   <Footer />
 </template>
 
@@ -169,5 +229,35 @@ useSeoMeta({
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* 分頁按鈕樣式 */
+.page-btn {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background: white;
+  color: #374151;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #a5b4fc;
+}
+
+.page-btn.active {
+  background: white;
+  color: black;
+  font-weight: 600;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 </style>

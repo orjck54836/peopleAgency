@@ -25,8 +25,13 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
+    adminPassword: process.env.NUXT_ADMIN_PASSWORD,
     awsRegion: 'ap-northeast-3',
-    ddb: { languageSchoolsTable: 'language_schools' },
+    ddb: {
+      languageSchoolsTable: 'language_schools',
+      schoolDetailsTable: 'haogaku_school_details', 
+      studentsTable: 'haogaku_students',           
+    },
     sesRegion: 'ap-northeast-3',
     mailFrom: 'info@forma-global.com',
     mailTo: 'info@forma-global.com',
@@ -58,6 +63,7 @@ export default defineNuxtConfig({
   },
   sitemap: {
     sitemaps: true,
+    exclude: ['/admin/**'],
   },
   app: {
     baseURL: '/',

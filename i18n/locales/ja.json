@@ -896,6 +896,12 @@
     }
   },
   "schoolOverview": {
+    "tagsLabel": "授業スタイル",
+    "tag": {
+      "shortTerm": "短期",
+      "longTerm": "長期",
+      "academic": "進学"
+    },
     "region": {
       "tokyo": "東京",
       "osaka": "大阪",
@@ -1112,7 +1118,7 @@
       },
       "6": {
         "label": "所在地",
-        "value": "台湾・台中市"
+        "value": "臺中市西區利民里市府路39號9樓之1"
       }
     },
     "cta": {

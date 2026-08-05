@@ -21,6 +21,7 @@ const filters = ref({
   regions: initialRegions as string[],
   intake: (route.query.intake as string) || '',
   type: (route.query.type as string) || '',
+  tags: [] as string[],
   accommodation: (route.query.accommodation as string) || ''
 })
 
@@ -55,6 +56,12 @@ const intakeOptions = [
   { value: "10", label: "10" },
 ]
 
+const tagOptions = [
+  { value: '短期', label: t('schoolOverview.tag.shortTerm') },
+  { value: '長期', label: t('schoolOverview.tag.longTerm') },
+  { value: '升學', label: t('schoolOverview.tag.academic') },
+]
+
 const sortOption = ref("")
 const sortOptions = computed(() => [
   { value: "",             label: t("schoolOverview.sort.default") },
@@ -69,10 +76,13 @@ const filteredSchools = computed(() => {
     const regionMatch =
       initialRegionLabels.value.length === 0 ||
       initialRegionLabels.value.includes(school.location)
-    const intakeMatch = !filters.value.intake || school.intake.includes(filters.value.intake)
+    const intakeMatch = !filters.value.intake || school.intake.some((m: string) => m.includes(filters.value.intake))
     const typeMatch = !filters.value.type || school.type === filters.value.type
+    const tagsMatch =
+      filters.value.tags.length === 0 ||
+      filters.value.tags.every((tag) => school.tags?.includes(tag))
     const accommodationMatch = !filters.value.accommodation || school.dormitory?.type === filters.value.accommodation
-    return keywordMatch && regionMatch && intakeMatch && typeMatch && accommodationMatch
+    return keywordMatch && regionMatch && intakeMatch && typeMatch && tagsMatch && accommodationMatch
   })
 })
 
@@ -95,12 +105,21 @@ const totalPages = computed(() =>
   Math.ceil(filteredSchools.value.length / pageSize)
 )
 
+function toggleTag(tag: string) {
+  const idx = filters.value.tags.indexOf(tag)
+  if (idx > -1) {
+    filters.value.tags.splice(idx, 1)
+  } else {
+    filters.value.tags.push(tag)
+  }
+}
+
 function goToDetailPage(schoolName: string) {
   router.push(localePath(`/study/${encodeURIComponent(schoolName)}`))
 }
 
 function clearFilters() {
-  filters.value = { keyword: '', regions: [], intake: '', type: '', accommodation: '' }
+  filters.value = { keyword: '', regions: [], intake: '', type: '', tags: [], accommodation: '' }
   currentPage.value = 1
   router.replace(localePath('/study/schools'))
 }
@@ -195,8 +214,25 @@ onMounted(fetchSchools)
           </select>
         </div>
 
-        <!-- 住宿類型 -->
+        <!-- 課程標籤（新增） -->
         <div class="filter-field">
+          <label>{{ $t('schoolOverview.tagsLabel') }}</label>
+          <div class="filter-tag-group">
+            <button
+              v-for="opt in tagOptions"
+              :key="opt.value"
+              type="button"
+              class="filter-tag-btn"
+              :class="{ active: filters.tags.includes(opt.value) }"
+              @click="toggleTag(opt.value)"
+            >
+              {{ opt.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 住宿類型 -->
+        <!-- <div class="filter-field">
           <label>{{ $t('schoolOverview.accommodationLabel') }}</label>
           <select v-model="filters.accommodation" class="filter-select">
             <option value="">{{ $t('schoolOverview.allAccommodations') }}</option>
@@ -204,7 +240,7 @@ onMounted(fetchSchools)
             <option value="寄宿家庭">{{ $t('schoolOverview.homestay') }}</option>
             <option value="自行租屋">{{ $t('schoolOverview.rent') }}</option>
           </select>
-        </div>
+        </div> -->
 
         <button class="filter-clear" @click="clearFilters">
           {{ $t('schoolOverview.clearFilters') }}
@@ -243,7 +279,12 @@ onMounted(fetchSchools)
           </div>
           <div class="school-card-body">
             <h3 class="school-card-name">{{ school.name }}</h3>
-            <p class="school-card-location">📍 {{ school.location }}</p>
+            <p class="school-card-location">{{ school.location }}</p>
+
+            <div v-if="school.tags?.length" class="school-card-tags">
+              <span v-for="tag in school.tags" :key="tag" class="tag-badge">{{ tag }}</span>
+            </div>
+
             <p class="school-card-intake">
               入學期間：{{ school.intake.join('、') }}
             </p>
@@ -289,7 +330,6 @@ onMounted(fetchSchools)
 .page-hero-inner { max-width: 640px; margin: 0 auto; }
 
 .page-hero-eyebrow {
-  
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -307,7 +347,6 @@ onMounted(fetchSchools)
 }
 
 .page-hero-sub {
-  
   color: rgba(255,255,255,0.82);
   margin: 0;
   line-height: 1.7;
@@ -347,7 +386,6 @@ onMounted(fetchSchools)
 }
 
 .filter-header p {
-  
   color: rgba(255,255,255,0.75);
   margin: 0;
 }
@@ -367,7 +405,6 @@ onMounted(fetchSchools)
 }
 
 .filter-field label {
-  
   font-weight: 700;
   color: var(--c-primary);
   letter-spacing: 0.04em;
@@ -379,7 +416,6 @@ onMounted(fetchSchools)
   padding: 0.6rem 0.8rem;
   border: 1px solid var(--c-border);
   border-radius: var(--radius-sm);
-  
   background: var(--c-bg);
   color: var(--c-text);
   transition: border-color var(--transition-fast);
@@ -392,7 +428,6 @@ onMounted(fetchSchools)
 }
 
 .filter-note {
-  
   color: var(--c-text-muted);
   margin: 0;
 }
@@ -403,7 +438,6 @@ onMounted(fetchSchools)
   border-radius: var(--radius-sm);
   background: transparent;
   color: var(--c-text-muted);
-  
   font-weight: 600;
   padding: 0.6rem;
   cursor: pointer;
@@ -414,6 +448,35 @@ onMounted(fetchSchools)
 .filter-clear:hover {
   border-color: var(--c-primary);
   color: var(--c-primary);
+}
+
+/* 課程標籤篩選按鈕群組 */
+.filter-tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.filter-tag-btn {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-full);
+  background: var(--c-surface);
+  color: var(--c-text-secondary);
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.filter-tag-btn:hover {
+  border-color: var(--c-primary);
+  color: var(--c-primary);
+}
+
+.filter-tag-btn.active {
+  background: var(--c-primary);
+  color: #fff;
+  border-color: var(--c-primary);
 }
 
 /* ── 右側主區 ── */
@@ -436,7 +499,6 @@ onMounted(fetchSchools)
 }
 
 .sort-label {
-  
   font-weight: 700;
   color: var(--c-text-muted);
 }
@@ -446,7 +508,6 @@ onMounted(fetchSchools)
   border-radius: var(--radius-sm);
   background: var(--c-surface);
   color: var(--c-text-secondary);
-  
   font-weight: 600;
   padding: 0.35rem 0.75rem;
   cursor: pointer;
@@ -466,7 +527,6 @@ onMounted(fetchSchools)
 
 .result-count {
   margin-left: auto;
-  
   color: var(--c-text-muted);
 }
 
@@ -516,7 +576,6 @@ onMounted(fetchSchools)
   left: 0.6rem;
   background: var(--c-primary);
   color: #fff;
-  
   font-weight: 700;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-sm);
@@ -539,19 +598,33 @@ onMounted(fetchSchools)
 }
 
 .school-card-location {
-  
   color: var(--c-text-muted);
   margin: 0;
 }
 
+/* 學校卡片上的課程標籤 */
+.school-card-tags {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin: 0.15rem 0;
+}
+
+.tag-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-primary-dark);
+  background: var(--c-primary-muted);
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-sm);
+}
+
 .school-card-intake {
-  
   color: var(--c-text-secondary);
   margin: 0;
 }
 
 .school-card-intro {
-  
   color: var(--c-text-secondary);
   line-height: 1.6;
   margin: 0.25rem 0 0;
@@ -562,7 +635,6 @@ onMounted(fetchSchools)
 }
 
 .school-card-cta {
-  
   font-weight: 700;
   color: var(--c-primary);
   margin-top: 0.5rem;
@@ -593,7 +665,6 @@ onMounted(fetchSchools)
   border-radius: var(--radius-sm);
   background: var(--c-surface);
   color: var(--c-text-secondary);
-  
   font-weight: 600;
   cursor: pointer;
   transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);

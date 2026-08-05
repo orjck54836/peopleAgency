@@ -25,7 +25,7 @@ const storyBody = computed(() =>
 )
 
 const companyInfo = computed(() =>
-  Array.from({ length: 6 }, (_, i) => ({
+  Array.from({ length: 7 }, (_, i) => ({
     label: t(`about.company.${i}.label`),
     value: t(`about.company.${i}.value`),
   }))
