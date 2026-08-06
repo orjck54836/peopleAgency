@@ -17,23 +17,23 @@ useSeoMeta({
 
 // section 的 listCount 設定（不變的靜態資料）
 const sectionMeta = [
-  { id: 'whatIs',    listCount: 0 },
-  { id: 'whoFor',    listCount: 4 },
-  { id: 'features',  listCount: 0 },
-  { id: 'cost',      listCount: 3 },
-  { id: 'reminder',  listCount: 0 },
+  { id: 'whatIs', listCount: 0 },
+  { id: 'whoFor', listCount: 4 },
+  { id: 'features', listCount: 0 },
+  { id: 'cost', listCount: 3 },
+  { id: 'reminder', listCount: 0 },
 ]
 
 const sections = computed(() =>
   sectionMeta.map((meta, i) => ({
     id: meta.id,
     title: t(`shortTerm.sections.${meta.id}.title`),
-    body:  t(`shortTerm.sections.${meta.id}.body`),
+    body: t(`shortTerm.sections.${meta.id}.body`),
     list: meta.listCount > 0
       ? Array.from({ length: meta.listCount }, (_, j) => ({
-          title: t(`shortTerm.sections.${meta.id}.list.${j}.title`),
-          desc:  t(`shortTerm.sections.${meta.id}.list.${j}.desc`),
-        }))
+        title: t(`shortTerm.sections.${meta.id}.list.${j}.title`),
+        desc: t(`shortTerm.sections.${meta.id}.list.${j}.desc`),
+      }))
       : null,
   }))
 )
@@ -50,7 +50,7 @@ async function fetchSchools() {
     const json = await res.json()
     if (json.success) {
       recommendedSchools.value = json.data
-        .filter((s: any) => s.type === '日本語學校')
+        .filter((s: any) => s.type === '語言學校')
         .slice(0, 3)
     }
   } catch (err) {
@@ -65,7 +65,7 @@ function goToSchool(name: string) {
 }
 
 function goToAllSchools() {
-  router.push({ path: '/study/schools', query: { type: '日本語學校' } })
+  router.push({ path: '/study/schools', query: { type: '語言學校', tags: ['短期'] } })
 }
 </script>
 
@@ -86,12 +86,8 @@ function goToAllSchools() {
     </div>
 
     <section class="mode-sections">
-      <div
-        v-for="(sec, i) in sections"
-        :key="sec.id"
-        class="mode-section"
-        :class="{ 'mode-section--alt': i % 2 === 1 }"
-      >
+      <div v-for="(sec, i) in sections" :key="sec.id" class="mode-section"
+        :class="{ 'mode-section--alt': i % 2 === 1 }">
         <div class="mode-section-text">
           <h2>{{ sec.title }}</h2>
           <p v-if="sec.body" style="white-space: pre-line">{{ sec.body }}</p>
@@ -108,12 +104,8 @@ function goToAllSchools() {
       <h2 class="mode-schools-title">{{ $t('shortTerm.schools.title') }}</h2>
       <p class="mode-schools-sub">{{ $t('shortTerm.schools.sub') }}</p>
       <div v-if="recommendedSchools.length" class="mode-schools-grid">
-        <div
-          v-for="school in recommendedSchools"
-          :key="school.name"
-          class="school-card"
-          @click="goToSchool(school.name)"
-        >
+        <div v-for="school in recommendedSchools" :key="school.name" class="school-card"
+          @click="goToSchool(school.name)">
           <img :src="school.image" :alt="school.name" class="school-card-img" />
           <div class="school-card-body">
             <h3>{{ school.name }}</h3>
@@ -134,7 +126,7 @@ function goToAllSchools() {
 
 <style scoped>
 .section-body {
-  white-space: pre-line; 
+  white-space: pre-line;
   line-height: 1.7;
   color: #4a4a4a;
 }
@@ -182,7 +174,7 @@ function goToAllSchools() {
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--radius-full);
   padding: 0.3rem 1rem;
-  
+
   font-weight: 600;
   margin-bottom: 1rem;
   color: #fff;
@@ -220,7 +212,7 @@ function goToAllSchools() {
 .chip {
   background: var(--c-primary-muted);
   color: var(--c-primary-dark);
-  
+
   font-weight: 600;
   padding: 0.4rem 1rem;
   border-radius: var(--radius-full);
@@ -327,13 +319,13 @@ function goToAllSchools() {
 }
 
 .school-card-body p {
-  
+
   color: var(--c-text-secondary);
   margin: 0 0 0.6rem;
 }
 
 .school-card-link {
-  
+
   font-weight: 600;
   color: var(--c-primary);
 }

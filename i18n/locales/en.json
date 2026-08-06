@@ -908,7 +908,9 @@
       "nagoya": "Nagoya",
       "fukuoka": "Fukuoka",
       "hokkaido": "Hokkaido",
-      "kanagawa": "Kanagawa"
+      "kanagawa": "Kanagawa",
+      "sendai": "Sendai",
+      "nagasaki": "Nagasaki"
     },
     "sort": {
       "default": "Default Sort",

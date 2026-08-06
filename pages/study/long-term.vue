@@ -51,7 +51,7 @@ async function fetchSchools() {
     const json = await res.json()
     if (json.success) {
       recommendedSchools.value = json.data
-        .filter((s: any) => s.type === '日本語學校' || s.type === '高等學校')
+        .filter((s: any) => s.type === '語言學校' || s.type === '高等學校')
         .slice(0, 3)
     }
   } catch (err) {
@@ -66,7 +66,7 @@ function goToSchool(name: string) {
 }
 
 function goToAllSchools() {
-  router.push({ path: '/study/schools', query: { type: '日本語學校' } })
+  router.push({ path: '/study/schools', query: { type: '語言學校', tags: ['長期'] } })
 }
 </script>
 

@@ -21,7 +21,11 @@ const filters = ref({
   regions: initialRegions as string[],
   intake: (route.query.intake as string) || '',
   type: (route.query.type as string) || '',
-  tags: [] as string[],
+  tags: route.query.tags
+  ? Array.isArray(route.query.tags)
+    ? route.query.tags as string[]
+    : [route.query.tags as string]
+  : [],
   accommodation: (route.query.accommodation as string) || ''
 })
 
@@ -41,6 +45,8 @@ const regionOptions = [
   { value: "fukuoka",  label: t("schoolOverview.region.fukuoka") },
   { value: "hokkaido", label: t("schoolOverview.region.hokkaido") },
   { value: "kanagawa", label: t("schoolOverview.region.kanagawa") },
+  { value: "sendai", label: t("schoolOverview.region.sendai") },
+  { value: "nagasaki", label: t("schoolOverview.region.nagasaki") },
 ]
 
 const initialRegionLabels = computed(() =>

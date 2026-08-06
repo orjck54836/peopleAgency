@@ -908,7 +908,9 @@
       "nagoya": "名古屋",
       "fukuoka": "福岡",
       "hokkaido": "北海道",
-      "kanagawa": "神奈川"
+      "kanagawa": "神奈川",
+      "sendai": "仙台",
+      "nagasaki": "長崎"
     },
     "sort": {
       "default": "デフォルト順",

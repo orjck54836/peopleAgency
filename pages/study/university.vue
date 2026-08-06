@@ -51,11 +51,11 @@ async function fetchSchools() {
     const json = await res.json()
     if (json.success) {
       recommendedSchools.value = json.data
-        .filter((s: any) => s.type === '專門學校' || s.type === '短期大學')
+        .filter((s: any) => s.type === '語言學校')
         .slice(0, 3)
       if (recommendedSchools.value.length < 3) {
         const extra = json.data
-          .filter((s: any) => s.type === '日本語學校')
+          .filter((s: any) => s.type === '語言學校')
           .slice(0, 3 - recommendedSchools.value.length)
         recommendedSchools.value = [...recommendedSchools.value, ...extra]
       }
@@ -72,7 +72,7 @@ function goToSchool(name: string) {
 }
 
 function goToAllSchools() {
-  router.push({ path: '/study/schools', query: { type: '專門學校' } })
+  router.push({ path: '/study/schools', query: { type: '語言學校', tags: ['升學'] } })
 }
 </script>
 
