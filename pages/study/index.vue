@@ -28,9 +28,9 @@ useSeoMeta({
 // ── 手動輪播橫幅 ──
 // 只放不受語言影響的資料（圖片、動作），文字全部由 i18n 提供
 const bannerMeta = [
-  { id: 'schools', bg: '/images/banner1.jpeg', action: () => router.push('/study/schools') },
-  { id: 'match', bg: '/images/banner2.jpeg', action: () => router.push('/study/schools') },
-  { id: 'support', bg: '/images/banner3.jpeg', action: () => router.push('/contact') },
+  { id: 'schools', bg: '/images/banner1.png', action: () => router.push('/study/schools') },
+  { id: 'match', bg: '/images/banner2.png', action: () => router.push('/study/schools') },
+  { id: 'support', bg: '/images/banner3.png', action: () => router.push('/contact') },
 ]
 
 const banners = computed(() =>
@@ -48,7 +48,7 @@ let bannerTimer: ReturnType<typeof setInterval> | null = null
 function startBannerTimer() {
   bannerTimer = setInterval(() => {
     currentBanner.value = (currentBanner.value + 1) % banners.value.length
-  }, 5000)
+  }, 50000)
 }
 
 function goToBanner(i: number) {
@@ -303,7 +303,7 @@ function formatDate(dateStr?: string) {
 .hero-slide {
   position: relative;
   width: 100%;
-  min-height: 560px;
+  min-height: 900px;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -317,7 +317,7 @@ function formatDate(dateStr?: string) {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(30,8,12,0.6) 0%, rgba(30,8,12,0.35) 100%);
+  /* background: linear-gradient(to right, rgba(30,8,12,0.6) 0%, rgba(30,8,12,0.35) 100%); */
   z-index: 1;
 }
 
@@ -488,11 +488,23 @@ function formatDate(dateStr?: string) {
 }
 
 /* RWD */
-@media (max-width: 768px) {
+@media (max-width: 1600px) {
+  .hero-slide {
+    min-height: 500px;
+  }
+}
+@media (max-width: 1200px) {
+  .hero-slide {
+    min-height: 400px;
+  }
+}
+@media (max-width: 900px) {
   .hero-slide {
     justify-content: center;
     padding: 3rem 1.5rem;
+    min-height: 300px;
     text-align: center;
+    background-repeat: no-repeat;
   }
 
   .hero-slide-content {
@@ -504,7 +516,7 @@ function formatDate(dateStr?: string) {
   .hero-slide::before {
     background: linear-gradient(
       to bottom,
-      rgba(30, 8, 12, 0.45),
+      rgba(30, 8, 12, 0.139),
       rgba(30, 8, 12, 0.55)
     );
   }
@@ -862,11 +874,11 @@ function formatDate(dateStr?: string) {
 /* 大手機（≤ 640px）：全面單欄 */
 @media (max-width: 640px) {
   .hero-slide {
-    min-height: 420px;
+    min-height: 200px;
     padding: 3rem 1.5rem;
   }
   .hero-slide::before {
-    background: linear-gradient(to right, rgba(30,8,12,0.6) 0%, rgba(30,8,12,0.35) 100%);
+    /* background: linear-gradient(to right, rgba(30,8,12,0.6) 0%, rgba(30,8,12,0.35) 100%); */
   }
 
   .hero-slide-content p {
