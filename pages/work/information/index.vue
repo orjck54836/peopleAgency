@@ -89,7 +89,7 @@ usePageSeo('workBlog', [
     <div class="title">
       <!-- 頁面標題 -->
       <h1>
-        {{ $t('informationTitle') }}
+        {{ $t('information.h1Work') }}
       </h1>
       <p class="subtitle">{{ $t('information.subtitle') }}</p>
     </div>

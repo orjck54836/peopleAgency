@@ -100,7 +100,7 @@ useBreadcrumbSchema([
     <div class="title">
       <!-- 頁面標題 -->
       <h1>
-        {{ $t('informationTitle') }}
+        {{ $t('information.h1Study') }}
       </h1>
       <p class="subtitle">{{ $t('information.subtitle') }}</p>
     </div>

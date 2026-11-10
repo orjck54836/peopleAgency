@@ -109,7 +109,9 @@ watchEffect(() => {
 
       <!-- 封面圖 -->
       <div v-if="meta.cover" class="article-cover">
-        <img :src="`${meta.cover}`" loading="lazy" decoding="async" :alt="String(article.title || '')" />
+        <!-- 封面是文章頁的 LCP：不延遲載入，並帶寬高預留空間 -->
+        <img :src="`${meta.cover}`" v-bind="imageDims(meta.cover)" fetchpriority="high" decoding="async"
+          :alt="String(article.title || '')" />
       </div>
 
       <!-- 目次 -->
@@ -216,6 +218,7 @@ watchEffect(() => {
 
 .article-cover img {
   width: 100%;
+  height: auto;
   max-height: 420px;
   object-fit: cover;
   display: block;

@@ -13,8 +13,13 @@ export function useHreflang() {
   const hreflangLinks = computed(() => {
     const links: { rel: string; hreflang: string; href: string }[] = []
 
+    // 情報文章目前只有中文內容：/ja、/en 底下同一篇的 canonical 已指回中文版，
+    // 所以不能再宣告「這篇有日文版、英文版」，否則和 canonical 互相矛盾。
+    const isArticle = /^\/(study|work)\/information\/[^/]+\/?$/.test(rawPath.value)
+
     locales.value.forEach((locale: any) => {
       const code = locale.code
+      if (isArticle && code !== defaultLocale) return
       const iso = locale.iso
       let href = ''
 
