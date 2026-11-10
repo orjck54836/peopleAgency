@@ -123,12 +123,10 @@ const checkMobile = () => {
   isMobile.value = window.innerWidth <= 768;
 };
 
-useSeoMeta({
-  title: t('seo.study.title'),
-  description: t('seo.study.description'),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
-});
+usePageSeo('taiwan', [
+  { name: '日本留遊學', path: '/study' },
+  { name: '台灣短期中文遊學', path: '/study/taiwan' },
+])
 
 onMounted(() => {
   checkMobile();

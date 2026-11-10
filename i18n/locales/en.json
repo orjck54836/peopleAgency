@@ -71,6 +71,7 @@
   "no": "No",
   "emergencyContact": "Emergency Contact",
   "studyLanding": {
+    "heroH1": "Study in Japan | Language school applications, student visa and local support",
     "banners": [
       {
         "title": "Turn the scenery you love into everyday life\nGive yourself the chance to live here",
@@ -360,17 +361,55 @@
     }
   },
   "seo": {
+    "pages": {
+      "shortTerm": {
+        "title": "Short-Term Study in Japan | 2-Week to 3-Month Language Courses",
+        "description": "Study Japanese in Japan for 2 weeks to 3 months. Taiwan passport holders enter visa-free and beginners are welcome. Haogaku arranges the school, housing and schedule with no agency fee."
+      },
+      "longTerm": {
+        "title": "Long-Term Study in Japan | Language School & Student Visa (6 Months–2 Years)",
+        "description": "Study at a Japanese language school for 6 months to 2 years. We handle school selection, the Certificate of Eligibility (COE) and student visa paperwork with no agency fee, plus housing and banking help after arrival."
+      },
+      "university": {
+        "title": "Higher Education in Japan | From Language School to College and University",
+        "description": "Want a degree in Japan? Haogaku plans your path from language school to vocational college, university or graduate school, with help on school choice, applications and interviews."
+      },
+      "schools": {
+        "title": "Japanese Language Schools | Partner Schools in Tokyo, Osaka, Fukuoka and More",
+        "description": "Browse Haogaku partner language schools in Japan. Filter by region — Tokyo, Osaka, Nagoya, Fukuoka, Hokkaido — and see what each school offers. Applying through Haogaku has no agency fee."
+      },
+      "studyFaq": {
+        "title": "Study in Japan FAQ | Costs, Visas, Japanese Level and Part-Time Work",
+        "description": "Answers to the most common questions before studying in Japan: agency fees, starting from zero Japanese, how early to prepare, the student visa process and part-time work rules."
+      },
+      "studyAbout": {
+        "title": "About Haogaku | A Study-in-Japan Agency Based in Taiwan and Japan",
+        "description": "Haogaku is the study-in-Japan brand of FORMA Global, with staff in both Taiwan and Japan. No agency fee and transparent pricing from application to life after arrival."
+      },
+      "taiwan": {
+        "title": "Short-Term Mandarin Study in Taiwan | Language Courses and Local Life",
+        "description": "Short-term study in Taiwan for Japanese students who want to learn Mandarin: language courses, housing and cultural experiences, supported by bilingual staff."
+      },
+      "workAbout": {
+        "title": "About FORMA | Careers in Japan and Cross-Border Talent Matching",
+        "description": "FORMA Global provides job matching and work visa support for careers in Japan, with on-the-ground help in both Taiwan and Japan."
+      },
+      "workBlog": {
+        "title": "Working in Japan Guides | Work Visas, Specified Skilled Worker and Workplace",
+        "description": "FORMA career guides: the difference between Specified Skilled Worker and Engineer/Humanities visas, requirements and process, job hunting in Japan and hiring overseas talent."
+      }
+    },
     "blog": {
       "title": "Study Abroad Insights | Language Schools, Visas & Life in Japan | Haogaku",
-      "description": "Haogaku's insight column covers everything you need to know before studying in Japan — from choosing a language school and navigating visa applications to budgeting, part-time work rules, and higher education pathways."
+      "description": "Haogaku study-in-Japan guides: choosing a language school, cost breakdowns, the student visa process, part-time work rules, housing and everyday Japanese."
     },
     "study": {
       "title": "Japan Study Abroad Agency | Language School Applications & Support | Haogaku",
-      "description": "Haogaku offers language school matching, study abroad application support, visa guidance, and on-the-ground assistance in both Taiwan and Japan. Zero agency fees, official school pricing, and full support from application through arrival."
+      "description": "Haogaku offers Japanese language school matching, application and visa paperwork, and on-the-ground support in Taiwan and Japan. No agency fee; tuition matches official school pricing."
     },
     "work": {
       "title": "Japan Employment & Specified Skilled Worker Visa | Taiwan–Japan Talent Placement | FORMA",
-      "description": "FORMA specializes in Japan's Specified Skilled Worker visa and cross-border talent placement, helping Taiwanese and Southeast Asian candidates work in Japan while supporting Japanese companies in building compliant, stable international teams."
+      "description": "FORMA provides job matching and work visa support for careers in Japan, specialising in Specified Skilled Worker and Engineer/Humanities visas, and helps Japanese companies hire overseas talent."
     }
   },
   "faq": {
@@ -1247,5 +1286,133 @@
         "desc": "Monitor employment status and provide support for language and daily issues."
       }
     ]
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Taiwan & Japan offices · Zero agency fees",
+      "h1": "Study and work in Japan starts here",
+      "lead": "HAOGAKU / FORMA is a study-abroad and employment agency operating on both sides of the Taiwan–Japan route. From language school applications and residence-status paperwork to housing, bank accounts and part-time work after you land, someone is there at both ends. We charge no agency fee, and tuition matches each school's official published rate exactly.",
+      "ctaStudy": "I want to study in Japan",
+      "ctaWork": "I want to work in Japan",
+      "note": "Not sure which path fits? Start with a free consultation — we'll advise based on your Japanese level, budget and timeline."
+    },
+    "lines": {
+      "heading": "Two services — pick your path",
+      "sub": "Studying and working in Japan run on entirely different rules, requirements and lead times. Decide the direction first.",
+      "study": {
+        "tag": "Study",
+        "title": "Study in Japan",
+        "desc": "Language school matching and full visa support — from two-week short programs to two-year long-term study, plus progression into vocational schools and universities.",
+        "b1": "Short-term study: 2 weeks–3 months (visa-free)",
+        "b2": "Long-term study: 6 months–2 years (student visa)",
+        "b3": "Progression to vocational schools and universities",
+        "b4": "Housing, banking and part-time support after arrival",
+        "cta": "Explore study services"
+      },
+      "work": {
+        "tag": "Work",
+        "title": "Work in Japan",
+        "desc": "Assessment and application for Specified Skilled Worker and Engineer/Specialist in Humanities visas, job matching, and résumé coaching. No placement fee for job seekers.",
+        "b1": "Work visa assessment and application",
+        "b2": "Job matching with employers in Japan",
+        "b3": "Japanese résumé and career-history coaching",
+        "b4": "Overseas hiring support for employers",
+        "cta": "Explore work services"
+      }
+    },
+    "why": {
+      "heading": "Why HAOGAKU / FORMA",
+      "i1t": "No agency fee",
+      "i1b": "Tuition matches each school's officially published figure. No agency fee, no markup, no hidden charges — every amount is itemised in writing before we file.",
+      "i2t": "We file in Taiwan, we meet you in Japan",
+      "i2b": "Before departure, our Taiwan consultants handle school selection and filing. After you arrive, our partners in Japan go with you to open a bank account, get a phone and find housing.",
+      "i3t": "The hard paperwork, handled",
+      "i3b": "Statements of purpose, proof of funding, Japanese career-history documents — the parts reviewers weigh most heavily and applicants most often get wrong, reviewed line by line."
+    },
+    "facts": {
+      "heading": "At a glance",
+      "k1": "2 weeks–2 years",
+      "v1": "Study lengths we arrange",
+      "k2": "Jan / Apr / Jul / Oct",
+      "v2": "Language school intakes",
+      "k3": "Chinese · Japanese · English",
+      "v3": "Languages we work in",
+      "k4": "Taiwan · Japan",
+      "v4": "Where we operate"
+    },
+    "flow": {
+      "heading": "Four steps, consultation to arrival",
+      "s1t": "Free consultation",
+      "s1b": "Tell us your goal, Japanese level, budget and when you can leave.",
+      "s2t": "Choose a school or role",
+      "s2b": "We shortlist options that fit and cost out your full first year.",
+      "s3t": "Documents and visa",
+      "s3b": "Application documents, residence status, interview prep — checked item by item.",
+      "s4t": "Support on the ground",
+      "s4b": "Housing, bank account, phone, part-time work and follow-up after you arrive."
+    },
+    "news": {
+      "heading": "Latest guides",
+      "sub": "Costs, visas, city comparisons and employment rules — what to know before you go.",
+      "readMore": "Read article",
+      "all": "All guides"
+    },
+    "faq": {
+      "heading": "Questions we get asked most",
+      "items": [
+        {
+          "q": "What do you charge?",
+          "a": "Neither HAOGAKU's study-abroad service nor FORMA's job matching charges individuals an agency or placement fee. Tuition matches each school's officially published figure with no markup. What you budget for is school costs (tuition, enrolment fee, materials) and living costs (housing, living expenses, flights, insurance)."
+        },
+        {
+          "q": "Can I go with no Japanese at all?",
+          "a": "For short-term study (2 weeks–3 months, visa-free) you can start from zero. Long-term study (6 months or more, student visa) normally requires JLPT N5 or above, or proof of roughly 150–200 hours of Japanese study. Self-study hours are not accepted — the certificate must come from a school or language institution."
+        },
+        {
+          "q": "How far ahead should I start?",
+          "a": "For long-term study, 8–10 months before your intended intake is the safe starting point; six months is the practical minimum. The Certificate of Eligibility (COE) review alone takes one to three months, and schools file for all applicants together before a fixed deadline. Short-term study needs no COE and one to two months is enough."
+        },
+        {
+          "q": "Can I work part-time while studying?",
+          "a": "Yes. Holders of a \"Student\" residence status must separately obtain Permission to Engage in Activity Other Than That Permitted, after which you may work up to 28 hours per week (relaxed to 8 hours a day and 40 hours a week during the school's official holidays). Multiple jobs count toward the same total, and adult-entertainment-related industries are prohibited outright."
+        },
+        {
+          "q": "Can I work in Japan without a university degree?",
+          "a": "Yes. The Specified Skilled Worker status does not require a degree; the requirements are a Japanese language test (JLPT N4 or JFT-Basic) and the skills assessment for your occupation. Note that Specified Skilled Worker (i) is capped at five years in total and does not permit dependants, so plan around whether you can progress to (ii)."
+        },
+        {
+          "q": "Can I stay and work in Japan after studying?",
+          "a": "A language school student visa cannot be converted directly into a work visa. There are two common routes: progress to a vocational school or university, earn a qualification, then apply for Engineer/Specialist in Humanities/International Services; or pass the required tests and move onto Specified Skilled Worker. Because HAOGAKU and FORMA run both sides, we can plan the whole path from the start."
+        }
+      ]
+    },
+    "cta": {
+      "heading": "Talk to us first, decide later",
+      "body": "Tell us your goal and where you stand, and we'll hand you a workable preparation timeline. No commitment needed.",
+      "btn": "Free consultation"
+    },
+    "seoTitle": "Japan Study Abroad & Work Visa Agency",
+    "seoDescription": "HAOGAKU / FORMA is a study-abroad and employment agency operating in both Taiwan and Japan. We handle Japanese language school matching, full student visa (Certificate of Eligibility) support, short-term study from two weeks to three months, progression into vocational schools and universities, and job matching for Specified Skilled Worker and other work visas. No agency fee, tuition matches each school's official rate, and we support housing, banking and part-time work after you arrive.",
+    "cities": {
+      "heading": "Which city will you call home?",
+      "sub": "Pace of life, living costs and part-time opportunities differ from city to city. We help you pick the one that fits your budget and goals.",
+      "cta": "See partner language schools",
+      "items": [
+        { "name": "Tokyo", "en": "TOKYO", "caption": "The capital, with the widest choice of schools and part-time jobs" },
+        { "name": "Osaka", "en": "OSAKA", "caption": "The lively heart of Kansai with friendlier living costs" },
+        { "name": "Fukuoka", "en": "FUKUOKA", "caption": "Gateway to Kyushu and the closest major city to Taiwan" },
+        { "name": "Hokkaido", "en": "HOKKAIDO", "caption": "Four distinct seasons and a quiet place to focus" },
+        { "name": "Nagoya", "en": "NAGOYA", "caption": "A manufacturing hub between Tokyo and Osaka" },
+        { "name": "Okayama", "en": "OKAYAMA", "caption": "Mild weather and an easygoing pace" }
+      ]
+    },
+    "links": {
+      "shortTerm": "Short-term study",
+      "longTerm": "Long-term study",
+      "schools": "Partner schools",
+      "faq": "FAQ",
+      "information": "Guides",
+      "about": "About us"
+    }
   }
 }

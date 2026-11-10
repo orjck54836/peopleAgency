@@ -31,12 +31,10 @@ const filters = ref({
 
 const { t } = useI18n()
 
-useSeoMeta({
-  title: t('seo.study.title'),
-  description: t('seo.study.description'),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
-})
+usePageSeo('schools', [
+  { name: '日本留遊學', path: '/study' },
+  { name: '合作語言學校', path: '/study/schools' },
+])
 
 const regionOptions = [
   { value: "tokyo",    label: t("schoolOverview.region.tokyo") },

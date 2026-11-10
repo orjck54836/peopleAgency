@@ -7,12 +7,10 @@ import SectionTitle from "~/components/SectionTitle.vue";
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
-useSeoMeta({
-  title: t('seo.study.title'),
-  description: t('seo.study.description'),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
-})
+// 這裡原本有 useSeoMeta()，但這是一個可重複使用的區塊元件，
+// 它會覆蓋掉任何引用它的頁面自己的 title / description
+// （/contact 的標題就被覆蓋成留學首頁的文案）。
+// SEO meta 應該由頁面層決定，所以移除。
 
 gsap.registerPlugin(ScrollTrigger);
 const showSuccess = ref(false)

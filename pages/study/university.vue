@@ -8,11 +8,18 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 
 const { t } = useI18n()
 
-useSeoMeta({
-  title: t('seo.study.title'),
-  description: t('seo.study.description'),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
+usePageSeo('university', [
+  { name: '日本留遊學', path: '/study' },
+  { name: '升學進修', path: '/study/university' },
+])
+
+useServiceSchema({
+  name: '日本升學進修規劃',
+  description:
+    '從語言學校銜接日本專門學校、大學與研究所的升學規劃：選校、出願文件與面試準備。',
+  path: '/study/university',
+  serviceType: ['日本升學', '專門學校申請', '大學申請規劃'],
+  freeOfCharge: true,
 })
 
 const sectionMeta = [

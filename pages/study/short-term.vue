@@ -8,11 +8,18 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 
 const { t } = useI18n()
 
-useSeoMeta({
-  title: t('seo.study.title'),
-  description: t('seo.study.description'),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
+usePageSeo('shortTerm', [
+  { name: '日本留遊學', path: '/study' },
+  { name: '短期遊學', path: '/study/short-term' },
+])
+
+useServiceSchema({
+  name: '日本短期遊學代辦（2 週～3 個月）',
+  description:
+    '2 週到 3 個月的日本短期遊學安排：語言學校選擇與報名、住宿與行程規劃。持台灣護照觀光免簽入境，不需申請留學簽證，日語零基礎可參加。代辦零手續費。',
+  path: '/study/short-term',
+  serviceType: ['日本短期遊學', '語言學校短期課程', '遊學行程安排'],
+  freeOfCharge: true,
 })
 
 // section 的 listCount 設定（不變的靜態資料）

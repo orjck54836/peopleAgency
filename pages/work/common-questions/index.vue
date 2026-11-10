@@ -8,11 +8,13 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 
 const { t } = useI18n()
 useSeoMeta({
-  title: '常見問題｜FORMA 留學・就職代辦',
-  description: '整理日本留學與赴日工作最常被詢問的問題，包含費用、簽證、申請流程、落地支援等，幫助你出發前做好充足準備。',
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
+  title: '赴日就職・留學常見問題｜工作簽證、特定技能、費用與流程全解答',
+  description: '整理日本留學與赴日工作最常被詢問的問題：特定技能與技術人文知識國際業務簽證的差別、日語能力門檻、日本薪資水準、需要準備的文件、家族滯在、永住申請年限，以及留學的費用、簽證審查時程與落地支援，一次看懂赴日的制度與準備步驟。',
+  ogTitle: '赴日就職・留學常見問題｜工作簽證、特定技能、費用與流程全解答',
+  ogDescription: '特定技能與白領工作簽證差在哪？日本薪資多少？要準備什麼文件？皓學／FORMA 完整解答赴日就職與留學的常見疑問。',
 })
+
+usePageUrlMeta()
 
 const studyFaqs = [
   {
@@ -86,6 +88,15 @@ const workFaqs = [
 
 // work line: fixed
 const faqs = workFaqs
+
+// FAQPage 結構化資料：直接用頁面上顯示的同一份問答，
+// Google 可能據此顯示展開式結果，AI 搜尋也最容易直接引用這個格式。
+useFaqSchema([...studyFaqs, ...workFaqs])
+
+useBreadcrumbSchema([
+  { name: '首頁', path: '/work' },
+  { name: '常見問題', path: '/work/common-questions' },
+])
 const openIndex = ref<number | null>(0)
 
 function toggle(i: number) {

@@ -8,11 +8,76 @@ const { data: article } = await useAsyncData(() =>
 )
 
 const { t } = useI18n()
+const articlePath = computed(() => `/work/information/${route.params.slug}`)
+
+// 文章目前只有中文內容：/ja、/en 底下同一篇文章顯示的是同樣的中文內文。
+// 讓這些網址的 canonical 指回中文版，避免被當成三份重複內容互相稀釋。
+const { locale: currentLocale, defaultLocale } = useI18n()
+useHead({
+  link: [
+    {
+      key: 'canonical',
+      rel: 'canonical',
+      href: () =>
+        currentLocale.value === defaultLocale
+          ? `https://www.forma-global.com${route.path}`
+          : `https://www.forma-global.com${articlePath.value}`,
+    },
+  ],
+})
+// content.config.ts 的 schema 欄位（date/author/cover/tags）是頂層欄位，
+// 不在 meta 底下。這裡統一取值，並保留 meta 作為後備。
+const meta = computed<any>(() => {
+  const a = article.value as any
+  if (!a) return {}
+  return {
+    date: a.date ?? a.meta?.date ?? null,
+    updated: a.updated ?? a.meta?.updated ?? null,
+    author: a.author ?? a.meta?.author ?? null,
+    cover: a.cover ?? a.meta?.cover ?? null,
+    tags: a.tags ?? a.meta?.tags ?? null,
+  }
+})
+
 useSeoMeta({
-  title: article.value?.title,
-  description: article.value?.description,
-  ogTitle: article.value?.title,
-  ogDescription: article.value?.description,
+  title: () => article.value?.title,
+  description: () => article.value?.description,
+  ogTitle: () => article.value?.title,
+  ogDescription: () => article.value?.description,
+  ogType: 'article',
+  ogUrl: () => absoluteUrl(articlePath.value),
+  ogImage: () => absoluteUrl(meta.value?.cover ?? '/images/og-default.png'),
+  twitterCard: 'summary_large_image',
+  twitterImage: () => absoluteUrl(meta.value?.cover ?? '/images/og-default.png'),
+  articlePublishedTime: () => (meta.value?.date ? String(meta.value.date) : undefined),
+  articleModifiedTime: () => {
+    const m = meta.value?.updated ?? meta.value?.date
+    return m ? String(m) : undefined
+  },
+  articleSection: '就職情報',
+  articleTag: () => meta.value?.tags ?? undefined,
+})
+
+// 結構化資料：讓 Google 產生文章卡片，也讓 AI 搜尋把這篇當成可引用的來源
+watchEffect(() => {
+  if (!article.value) return
+  useArticleSchema({
+    title: article.value.title,
+    description: article.value.description,
+    path: articlePath.value,
+    date: meta.value?.date ? String(meta.value.date) : null,
+    updated: meta.value?.updated ? String(meta.value.updated) : null,
+    author: meta.value?.author ?? '皓學/FORMA',
+    cover: meta.value?.cover ?? null,
+    tags: meta.value?.tags ?? null,
+    section: '就職情報',
+  })
+
+  useBreadcrumbSchema([
+    { name: '首頁', path: '/work' },
+    { name: '就職情報', path: '/work/information' },
+    { name: String(article.value.title ?? '') },
+  ])
 })
 </script>
 
@@ -34,17 +99,17 @@ useSeoMeta({
       <header class="article-header">
         <h1 class="article-title">{{ article.title }}</h1>
         <div class="article-meta">
-          <time v-if="article.meta?.date" :datetime="String(article.meta?.date || '')">
-            {{ article.meta?.date }}
+          <time v-if="meta.date" :datetime="String(meta.date || '')">
+            {{ meta.date }}
           </time>
-          <span v-if="article.meta?.author" class="meta-dot">·</span>
-          <span v-if="article.meta?.author">{{ article.meta?.author }}</span>
+          <span v-if="meta.author" class="meta-dot">·</span>
+          <span v-if="meta.author">{{ meta.author }}</span>
         </div>
       </header>
 
       <!-- 封面圖 -->
-      <div v-if="article.meta?.cover" class="article-cover">
-        <img :src="`${article.meta?.cover}`" :alt="String(article.title || '')" />
+      <div v-if="meta.cover" class="article-cover">
+        <img :src="`${meta.cover}`" loading="lazy" decoding="async" :alt="String(article.title || '')" />
       </div>
 
       <!-- 目次 -->

@@ -1,20 +1,21 @@
 <script lang="ts" setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 
 const swiperModules = [Navigation, Pagination, Autoplay]
 
-const router = useRouter()
+const localePath = useLocalePath()
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
 
 function toPagePath(contentPath: string): string {
-  return contentPath
-    .replace('/information/study/', '/study/information/')
-    .replace('/information/work/', '/work/information/')
+  return localePath(
+    contentPath
+      .replace('/information/study/', '/study/information/')
+      .replace('/information/work/', '/work/information/')
+  )
 }
 
 const { t, tm, locale } = useI18n()
@@ -25,12 +26,26 @@ useSeoMeta({
   ogDescription: t('seo.study.description'),
 })
 
-// ── 手動輪播橫幅 ──
-// 只放不受語言影響的資料（圖片、動作），文字全部由 i18n 提供
+usePageUrlMeta()
+
+// 服務的結構化資料：明確告訴搜尋引擎與 AI「誰提供什麼服務、服務哪裡、收費如何」
+useServiceSchema({
+  name: '日本留遊學代辦服務',
+  description:
+    '日本語言學校精準媒合、留學申請全程代辦、入管局簽證文件一對一指導，以及台日雙邊在地支援。服務涵蓋短期遊學（2 週～3 個月，觀光免簽）、長期留學（6 個月～2 年，學生簽證），以及語言學校銜接專門學校與大學的升學規劃。代辦零手續費，學費與日本學校官方收費完全同步。',
+  path: '/study',
+  serviceType: ['日本留學代辦', '語言學校媒合', '留學簽證申請協助', '短期遊學安排', '升學進修規劃'],
+  freeOfCharge: true,
+})
+
+useBreadcrumbSchema([{ name: '日本留遊學', path: '/study' }])
+
+// ── Hero 輪播橫幅 ──
+// 只放不受語言影響的資料（圖片、連結），文字全部由 i18n 提供
 const bannerMeta = [
-  { id: 'schools', bg: '/images/banner1.png', action: () => router.push('/study/schools') },
-  { id: 'match', bg: '/images/banner2.png', action: () => router.push('/study/schools') },
-  { id: 'support', bg: '/images/banner3.png', action: () => router.push('/contact') },
+  { id: 'schools', bg: '/images/home/hero-1.jpg', to: '/study/schools' },
+  { id: 'match', bg: '/images/home/study-hero-2.jpg', to: '/study/schools' },
+  { id: 'support', bg: '/images/home/study-hero-3.jpg', to: '/contact' },
 ]
 
 const banners = computed(() =>
@@ -42,42 +57,20 @@ const banners = computed(() =>
   }))
 )
 
-const currentBanner = ref(0)
-let bannerTimer: ReturnType<typeof setInterval> | null = null
+const {
+  index: currentBanner,
+  paused: bannerPaused,
+  go: goToBanner,
+  pause: pauseBanner,
+  resume: resumeBanner,
+} = useHeroSlider(bannerMeta.length, 7000)
 
-function startBannerTimer() {
-  bannerTimer = setInterval(() => {
-    currentBanner.value = (currentBanner.value + 1) % banners.value.length
-  }, 50000)
-}
+const { revealReady } = useScrollReveal('.study-lp')
 
-function goToBanner(i: number) {
-  currentBanner.value = i
-  if (bannerTimer) clearInterval(bannerTimer)
-  startBannerTimer()
-}
-
-const imgRef = ref<HTMLElement | null>(null)
-const contentRef = ref<HTMLElement | null>(null)
-
-onMounted(() => {
-  startBannerTimer()
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.2 }
-  )
-  if (imgRef.value) observer.observe(imgRef.value)
-  if (contentRef.value) observer.observe(contentRef.value)
+// LCP 是 hero 第一張圖：提早預載，不用等到解析到 <img> 才開始下載
+useHead({
+  link: [{ rel: 'preload', as: 'image', href: '/images/home/hero-1.jpg', fetchpriority: 'high' }],
 })
-onUnmounted(() => { if (bannerTimer) clearInterval(bannerTimer) })
 
 // 品牌理念段落文字（陣列，用 tm 取原始清單）
 const philosophyBody = computed(() => {
@@ -90,9 +83,9 @@ const philosophyBody = computed(() => {
 // ── 學習方式 ──
 // id 為固定英文 slug，用於路由判斷，不隨語言改變
 const studyModeMeta = [
-  { id: 'short-term', image: '/images/short-term-study.jpeg' },
-  { id: 'long-term', image: '/images/long-term-study.jpeg' },
-  { id: 'university', image: '/images/education.jpeg' },
+  { id: 'short-term', image: '/images/home/mode-short.jpg', to: '/study/short-term' },
+  { id: 'long-term', image: '/images/home/mode-long.jpg', to: '/study/long-term' },
+  { id: 'university', image: '/images/home/mode-univ.jpg', to: '/study/university' },
 ]
 
 const studyModes = computed(() =>
@@ -105,34 +98,7 @@ const studyModes = computed(() =>
   }))
 )
 
-function goToSchoolsByMode(modeId: string) {
-  const modeMap: Record<string, string> = {
-    'short-term': '/study/short-term',
-    'long-term': '/study/long-term',
-    'university': '/study/university',
-  }
-  router.push(modeMap[modeId] || '/study/schools')
-}
-
-function goToAllSchools() {
-  router.push('/study/schools')
-}
-
 const selectedZone = ref('')
-const featuredSchools = ref<any[]>([])
-
-async function fetchFeaturedSchools() {
-  try {
-    const res = await fetch('/api/schools')
-    const json = await res.json()
-    if (json.success) featuredSchools.value = json.data.slice(0, 3)
-  } catch (err) {
-    console.error('❌ 無法取得熱門學校資料：', err)
-  }
-}
-
-onMounted(fetchFeaturedSchools)
-
 // 佔位新聞資料（無真實文章時使用），文字改由 i18n 提供
 const placeholderNews = computed(() => {
   const dates = ['2026-05-01', '2026-04-18', '2026-03-30']
@@ -148,6 +114,8 @@ const placeholderNews = computed(() => {
 const { data: realNews } = await useAsyncData('study-latest-news', () =>
   queryCollection('content')
     .where('path', 'LIKE', '/information/study/%')
+    // 只取卡片需要的欄位：不 select 的話整篇文章內文都會被塞進頁面 payload
+    .select('path', 'title', 'description', 'date', 'cover')
     .order('date', 'DESC')
     .limit(8)
     .all()
@@ -169,802 +137,231 @@ function formatDate(dateStr?: string) {
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
 
-  <!-- 手動輪播橫幅 -->
-  <div class="hero-banner">
-    <transition name="banner-fade" mode="out-in">
-      <div :key="currentBanner" class="hero-slide" :style="{
-        backgroundImage: `url('${banners[currentBanner].bg}')`
-      }">
-        <div class="hero-slide-content">
-          <h1 class="hero-title">{{ banners[currentBanner].title }}</h1>
-          <p class="hero-sub">{{ banners[currentBanner].sub }}</p>
-          <button class="hero-cta" @click="banners[currentBanner].action()">
-            {{ banners[currentBanner].cta }}
-          </button>
+  <div class="lp study-lp" :class="{ 'reveal-on': revealReady }">
+    <!-- ── Hero：橫幅輪播（淡入淡出） ── -->
+    <section class="lp-hero lp-hero--zoom" style="--lp-hero-interval: 7s" @mouseenter="pauseBanner"
+      @mouseleave="resumeBanner">
+      <div class="lp-hero__slides" aria-hidden="true">
+        <div v-for="(banner, i) in banners" :key="banner.id" class="lp-hero__slide"
+          :class="{ 'is-active': currentBanner === i }">
+          <img :src="banner.bg" alt="" :loading="i === 0 ? 'eager' : 'lazy'"
+            :fetchpriority="i === 0 ? 'high' : 'low'" decoding="async" />
         </div>
       </div>
-    </transition>
-    <div class="banner-dots">
-      <button v-for="(_, i) in banners" :key="i" type="button" class="banner-dot"
-        :class="{ active: i === currentBanner }" @click="goToBanner(i)" />
-    </div>
+      <div class="lp-hero__shade" aria-hidden="true" />
+
+      <div class="lp-hero__inner">
+        <!-- h1 固定不隨輪播變動，放的是這一頁真正的主題（搜尋引擎與 AI 以它判斷頁面在講什麼）；
+             輪播的標語是視覺文案，用 <p> 呈現 -->
+        <h1 class="lp-hero__eyebrow study-hero__h1">{{ $t('studyLanding.heroH1') }}</h1>
+        <!-- key 換張時重新掛載，文字會重新播放進場動畫 -->
+        <div :key="currentBanner" class="lp-hero__content">
+          <p class="lp-hero__title">{{ banners[currentBanner].title }}</p>
+          <p class="lp-hero__lead">{{ banners[currentBanner].sub }}</p>
+          <div class="lp-hero__actions">
+            <NuxtLink :to="localePath(banners[currentBanner].to)" class="lp-btn lp-btn--ghost">
+              {{ banners[currentBanner].cta }}
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-hero__dots">
+        <button v-for="(banner, i) in banners" :key="banner.id" type="button" class="lp-hero__dot"
+          :class="{ 'is-active': currentBanner === i, 'is-paused': bannerPaused }"
+          :aria-label="`${i + 1} / ${banners.length}`" :aria-current="currentBanner === i ? 'true' : undefined"
+          @click="goToBanner(i)">
+          <span />
+        </button>
+      </div>
+    </section>
+
+    <!-- ── 品牌理念 ── -->
+    <section class="lp-section lp-section--alt philosophy">
+      <div class="lp-inner philosophy__inner">
+        <div class="philosophy__logo" data-reveal="left">
+          <img src="/images/haogaku-logo.svg" :alt="$t('studyLanding.philosophy.headline')" />
+        </div>
+        <div class="philosophy__content" data-reveal="right">
+          <h2 class="lp-heading lp-heading--left">{{ $t('studyLanding.philosophy.headline') }}</h2>
+          <div class="philosophy__body">
+            <p v-for="(line, i) in philosophyBody" :key="i">{{ line }}</p>
+          </div>
+          <NuxtLink :to="localePath('/contact')" class="lp-btn lp-btn--primary">
+            {{ $t('studyLanding.philosophy.cta') }}
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- 五大承諾（獨立元件） -->
+    <TrustSection />
+
+    <!-- ── 學習方式 ── -->
+    <section class="lp-section">
+      <div class="lp-inner">
+        <h2 class="lp-heading" data-reveal>{{ $t('studyLanding.modes.heading') }}</h2>
+        <div class="lp-card-grid">
+          <NuxtLink v-for="(mode, i) in studyModes" :key="mode.id" :to="localePath(mode.to)" class="lp-card"
+            data-reveal :style="`--d: ${i * 110}ms`">
+            <div class="lp-card__media">
+              <img :src="mode.image" :alt="mode.label" loading="lazy" decoding="async" />
+              <span class="lp-card__badge">{{ mode.sub }}</span>
+            </div>
+            <div class="lp-card__body">
+              <h3 class="lp-card__title">{{ mode.label }}</h3>
+              <p class="lp-card__desc">{{ mode.desc }}</p>
+              <div class="lp-card__tags">
+                <span v-for="tag in mode.tags" :key="tag" class="lp-card__tag">{{ tag }}</span>
+              </div>
+              <span class="lp-card__cta">{{ $t('studyLanding.modes.readMore') }}</span>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 地區選擇：日本地圖 ── -->
+    <section class="lp-section lp-section--alt">
+      <div class="lp-inner">
+        <h2 class="lp-heading" data-reveal>{{ $t('schoolOverview.regionLabel') }}</h2>
+        <div data-reveal>
+          <JapanZoneMap v-model="selectedZone" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 留學情報：輪播 ── -->
+    <section v-if="latestNews && latestNews.length" class="lp-section">
+      <div class="lp-inner">
+        <h2 class="lp-heading" data-reveal>{{ $t('studyLanding.news.heading') }}</h2>
+        <div class="lp-carousel" data-reveal>
+          <ClientOnly>
+            <Swiper :modules="swiperModules" :navigation="true" :pagination="{ clickable: true }"
+              :slides-per-view="1.1" :space-between="16" :breakpoints="{
+                640: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 3, spaceBetween: 24 }
+              }">
+              <SwiperSlide v-for="(article, i) in latestNews" :key="article.path + i">
+                <NuxtLink :to="toPagePath(article.path)" class="lp-news">
+                  <div class="lp-news__thumb">
+                    <img v-if="article.cover" :src="article.cover" :alt="article.title" loading="lazy"
+                      decoding="async" />
+                  </div>
+                  <div class="lp-news__body">
+                    <span class="lp-news__date">{{ formatDate(article.date) }}</span>
+                    <h3 class="lp-news__title">{{ article.title }}</h3>
+                    <p class="lp-news__desc">{{ article.description }}</p>
+                    <span class="lp-news__more">{{ $t('studyLanding.news.readMore') }}</span>
+                  </div>
+                </NuxtLink>
+              </SwiperSlide>
+            </Swiper>
+            <!-- 伺服器端輸出一般格狀清單：文章連結要留在初始 HTML 裡 -->
+            <template #fallback>
+              <div class="lp-news-grid">
+                <NuxtLink v-for="(article, i) in latestNews.slice(0, 3)" :key="article.path + i"
+                  :to="toPagePath(article.path)" class="lp-news">
+                  <div class="lp-news__thumb">
+                    <img v-if="article.cover" :src="article.cover" :alt="article.title" loading="lazy"
+                      decoding="async" />
+                  </div>
+                  <div class="lp-news__body">
+                    <span class="lp-news__date">{{ formatDate(article.date) }}</span>
+                    <h3 class="lp-news__title">{{ article.title }}</h3>
+                    <p class="lp-news__desc">{{ article.description }}</p>
+                    <span class="lp-news__more">{{ $t('studyLanding.news.readMore') }}</span>
+                  </div>
+                </NuxtLink>
+              </div>
+            </template>
+          </ClientOnly>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 結尾 CTA ── -->
+    <section class="lp-cta study-cta">
+      <div class="lp-cta__inner" data-reveal>
+        <h2 class="lp-cta__title">{{ $t('home.cta.heading') }}</h2>
+        <p class="lp-cta__body">{{ $t('home.cta.body') }}</p>
+        <NuxtLink :to="localePath('/contact')" class="lp-btn lp-btn--light">{{ $t('home.cta.btn') }}</NuxtLink>
+      </div>
+    </section>
   </div>
 
-  <!-- 品牌理念區 -->
-  <section class="philosophy-section">
-    <div class="philosophy-inner">
-      <div class="philosophy-img-wrap" ref="imgRef">
-        <img src="/images/haogaku-logo.svg" :alt="$t('studyLanding.philosophy.headline')" class="philosophy-img" />
-      </div>
-      <div class="philosophy-content" ref="contentRef">
-        <h2 class="philosophy-headline text-center">
-          {{ $t('studyLanding.philosophy.headline') }}
-        </h2>
-        <div class="philosophy-body">
-          <p v-for="(line, i) in philosophyBody" :key="i">{{ line }}</p>
-        </div>
-        <div class="d-flex justify-center">
-          <NuxtLink to="/contact" class="philosophy-cta">{{ $t('studyLanding.philosophy.cta') }}</NuxtLink>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 五大承諾（獨立元件） -->
-  <TrustSection />
-
-  <main class="study-landing-wrapper">
-    <!-- 學習方式卡片 -->
-    <section class="landing-section">
-      <h2 class="philosophy-headline">{{ $t('studyLanding.modes.heading') }}</h2>
-      <div class="mode-grid">
-        <div v-for="mode in studyModes" :key="mode.id" class="mode-card" @click="goToSchoolsByMode(mode.id)">
-          <div class="mode-card-img-wrap">
-            <img :src="mode.image" :alt="mode.label" class="mode-card-img" />
-            <span class="mode-card-badge">{{ mode.sub }}</span>
-          </div>
-          <div class="mode-card-body">
-            <h3 class="mode-card-title">{{ mode.label }}</h3>
-            <p class="mode-card-desc">{{ mode.desc }}</p>
-            <div class="mode-card-tags">
-              <span v-for="tag in mode.tags" :key="tag" class="mode-card-tag">{{ tag }}</span>
-            </div>
-          </div>
-          <div class="mode-card-footer">
-            <span class="mode-card-cta">{{ $t('studyLanding.modes.readMore') }}</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 地區選擇：日本地圖 -->
-    <section class="landing-section landing-section--alt">
-      <h2 class="philosophy-headline">{{ $t('schoolOverview.regionLabel') }}</h2>
-      <JapanZoneMap v-model="selectedZone" />
-    </section>
-
-    <!-- 留學情報 -->
-    <section v-if="latestNews && latestNews.length" class="landing-section">
-      <h2 class="philosophy-headline">{{ $t('studyLanding.news.heading') }}</h2>
-      <ClientOnly>
-        <Swiper :modules="swiperModules" :navigation="true" :slides-per-view="1" :space-between="16"
-          :loop="latestNews.length > 2" :breakpoints="{
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 }
-          }" class="news-swiper">
-          <SwiperSlide v-for="(article, i) in latestNews" :key="article.path + i">
-            <NuxtLink :to="toPagePath(article.path)" class="news-card">
-              <div class="news-card-img-wrap">
-                <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
-                <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
-              </div>
-              <div class="news-card-body">
-                <span class="news-card-date">{{ formatDate(article.date) }}</span>
-                <h3 class="news-card-title">{{ article.title }}</h3>
-                <p class="news-card-desc">{{ article.description }}</p>
-                <span class="news-card-cta">{{ $t('studyLanding.news.readMore') }}</span>
-              </div>
-            </NuxtLink>
-          </SwiperSlide>
-        </Swiper>
-        <template #fallback>
-          <div class="news-fallback-grid">
-            <NuxtLink v-for="(article, i) in latestNews.slice(0, 3)" :key="article.path + i"
-              :to="toPagePath(article.path)" class="news-card">
-              <div class="news-card-img-wrap">
-                <img v-if="article.cover" :src="article.cover" :alt="article.title" class="news-card-img" />
-                <div v-else class="news-card-img news-card-img--placeholder" aria-hidden="true" />
-              </div>
-              <div class="news-card-body">
-                <span class="news-card-date">{{ formatDate(article.date) }}</span>
-                <h3 class="news-card-title">{{ article.title }}</h3>
-                <p class="news-card-desc">{{ article.description }}</p>
-                <span class="news-card-cta">{{ $t('studyLanding.news.readMore') }}</span>
-              </div>
-            </NuxtLink>
-          </div>
-        </template>
-      </ClientOnly>
-    </section>
-  </main>
   <Footer />
 </template>
 
 <style scoped>
-/* ════════════════════════════════
-   手動輪播橫幅
-════════════════════════════════ */
-.hero-banner {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
+/* 共用的 lp-* 樣式在 assets/css/landing.css，這裡只放本頁專屬的部分 */
 
-.hero-slide {
-  position: relative;
-  width: 100%;
-  min-height: 900px;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;   /* 靠左 */
-  padding: 4rem 6%;
-}
-
-/* 左側輕微暗化，讓文字浮出（只暗左半邊）*/
-.hero-slide::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  /* background: linear-gradient(to right, rgba(30,8,12,0.6) 0%, rgba(30,8,12,0.35) 100%); */
-  z-index: 1;
-}
-
-.hero-slide-content {
-  position: relative;
-  z-index: 2;
-  max-width: 620px;
-  text-align: left;   /* 靠左 */
-}
-
-.hero-title {
-  color: #fff;
-  line-height: 1.05;
-  margin: 0 0 1.2rem;
-  white-space: pre-line;   /* 讓 \n 換行生效 */
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
-}
-
-.hero-sub {
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  color: rgba(255, 255, 255, 0.95);
+.study-hero__h1 {
+  font-family: var(--font-body);
   line-height: 1.6;
-  margin: 0 0 2rem;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+  border-radius: 1.2rem;
 }
 
-.hero-cta {
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  border-radius: var(--radius-full);
-  padding: 0.9rem 2.4rem;
-  font-weight: 700;
-  font-size: var(--text-base);
-  background: transparent;
-  color: #fff;
-  cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast);
-}
-
-.hero-cta:hover {
-  background: #fff;
-  color: var(--c-primary);
-}
-
-.banner-fade-enter-active,
-.banner-fade-leave-active {
-  transition: opacity 0.6s ease;
-}
-
-.banner-fade-enter-from,
-.banner-fade-leave-to {
-  opacity: 0;
-}
-
-.banner-dots {
-  position: absolute;
-  bottom: 1.2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.5rem;
-  z-index: 10;
-}
-
-.banner-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(248, 244, 236, 0.4);
-  cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast);
-  padding: 0;
-}
-
-.banner-dot.active {
-  background: #F8F4EC;
-  transform: scale(1.3);
-}
-
-/* ── 品牌理念區 ── */
-.philosophy-section {
-  padding: 6rem 2rem;
-  background: var(--c-bg-alt);
-  border-top: 1px solid var(--c-border);
-  border-bottom: 1px solid var(--c-border);
-  overflow: hidden;
-}
-
-.philosophy-inner {
-  max-width: 1000px;
-  margin: 0 auto;
+/* ── 品牌理念 ── */
+.philosophy__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 5fr 6fr;
   gap: 4rem;
   align-items: center;
 }
 
-/* ── 圖片側 ── */
-.philosophy-img-wrap {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  /* border: 1px solid var(--c-border); */
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+.philosophy__logo {
+  display: grid;
+  place-items: center;
 }
 
-.philosophy-img-wrap.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.philosophy-img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  /* object-fit: cover; */
+.philosophy__logo img {
+  width: min(100%, 380px);
+  aspect-ratio: 1;
   display: block;
+  filter: drop-shadow(0 18px 36px rgba(139, 26, 47, 0.14));
+  animation: logo-float 7s ease-in-out infinite;
 }
 
-/* ── 文字側 ── */
-.philosophy-content {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
+@keyframes logo-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
 }
 
-.philosophy-content.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.philosophy-headline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 800;
-  color: var(--c-text);
-  line-height: 1.3;
-  margin: 0 0 1.5rem;
-}
-
-.philosophy-body {
+.philosophy__body {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  margin-bottom: 2rem;
+  margin: 1.75rem 0 2.25rem;
 }
 
-.philosophy-body p {
-  line-height: 1.85;
+.philosophy__body p {
+  color: var(--c-text-secondary);
+  line-height: 1.9;
   margin: 0;
 }
 
-.philosophy-cta {
-  display: inline-block;
-  border: 1.5px solid var(--c-primary);
-  border-radius: var(--radius-full);
-  padding: 0.85rem 2.2rem;
-  
-  font-weight: 700;
-  color: var(--c-primary);
-  text-decoration: none;
-  transition: background var(--transition-fast), color var(--transition-fast);
+/* ── 結尾 CTA 背景 ── */
+.study-cta {
+  background-image:
+    linear-gradient(rgba(26, 10, 13, 0.55), rgba(26, 10, 13, 0.7)),
+    url('/images/home/cta.jpg');
 }
 
-.philosophy-cta:hover {
-  background: var(--c-primary);
-  color: var(--c-text-on-primary);
-}
-
-/* RWD */
-@media (max-width: 1600px) {
-  .hero-slide {
-    min-height: 500px;
-  }
-}
-@media (max-width: 1200px) {
-  .hero-slide {
-    min-height: 400px;
-  }
-}
 @media (max-width: 900px) {
-  .hero-slide {
-    justify-content: center;
-    padding: 3rem 1.5rem;
-    min-height: 300px;
-    text-align: center;
-    background-repeat: no-repeat;
-  }
-
-  .hero-slide-content {
-    max-width: 100%;
-    text-align: center;
-  }
-
-  /* 手機版遮罩改成整體均勻暗化（因為文字置中，不能只暗左邊）*/
-  .hero-slide::before {
-    background: linear-gradient(
-      to bottom,
-      rgba(30, 8, 12, 0.139),
-      rgba(30, 8, 12, 0.55)
-    );
-  }
-
-  /* CTA 按鈕置中 */
-  .hero-cta {
-    margin: 0 auto;
-  }
-  .philosophy-inner {
+  .philosophy__inner {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .philosophy-img-wrap {
-    transform: translateY(-20px);
-  }
-
-  .philosophy-img-wrap.is-visible {
-    transform: translateY(0);
-  }
-
-  .philosophy-content {
-    transform: translateY(20px);
-  }
-
-  .philosophy-content.is-visible {
-    transform: translateY(0);
+  .philosophy__logo img {
+    width: min(60%, 240px);
   }
 }
 
-/* ════════════════════════════════
-   Landing wrapper & Section
-════════════════════════════════ */
-.study-landing-wrapper {
-  max-width: 80%;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-}
-
-.landing-section {
-  text-align: center;
-  padding: 3rem 0;
-}
-
-.landing-section--alt {
-  /* background: var(--c-primary-muted); */
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-}
-
-.landing-section-title {
-  text-align: center;
-  font-family: var(--font-serif);
-  font-size: var(--text-2xl);
-  font-weight: 700;
-  color: var(--c-primary-dark);
-  margin-bottom: 2rem;
-}
-
-.landing-section-more {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-.btn-outline-primary {
-  border: 1px solid var(--c-primary);
-  border-radius: var(--radius-full);
-  background: transparent;
-  color: var(--c-primary);
-  
-  font-weight: 700;
-  padding: 0.9rem 2.2rem;
-  cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast);
-}
-
-.btn-outline-primary:hover {
-  background: var(--c-primary);
-  color: #fff;
-}
-
-/* ════════════════════════════════
-   學習方式卡片
-════════════════════════════════ */
-.mode-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.mode-card {
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transition: border-color var(--transition-fast);
-}
-
-.mode-card:hover {
-  border-color: var(--c-primary);
-}
-
-.mode-card:hover .mode-card-cta {
-  color: var(--c-primary-light);
-}
-
-.mode-card-img-wrap {
-  position: relative;
-}
-
-.mode-card-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-
-.mode-card-badge {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  background: var(--c-primary);
-  color: #fff;
-  
-  font-weight: 700;
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-sm);
-}
-
-.mode-card-body {
-  padding: 1.2rem 1.4rem;
-  flex: 1;
-}
-
-.mode-card-title {
-  font-weight: 700;
-  color: var(--c-primary-dark);
-  margin: 0 0 0.6rem;
-}
-
-.mode-card-desc {
-  text-align: left;
-  line-height: 1.7;
-  margin: 0 0 1rem;
-}
-
-.mode-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.mode-card-tag {
-  
-  font-weight: 600;
-  color: var(--c-primary-dark);
-  background: var(--c-primary-muted);
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-sm);
-}
-
-.mode-card-footer {
-  padding: 0.9rem 1.4rem;
-  border-top: 1px solid var(--c-border);
-}
-
-.mode-card-cta {
-  
-  font-weight: 700;
-  color: var(--c-primary);
-  transition: color var(--transition-fast);
-}
-
-/* ════════════════════════════════
-   留學情報
-════════════════════════════════ */
-/* 讓 Swiper 所有 slide 等高 */
-.news-swiper :deep(.swiper-slide) {
-  height: auto;
-  display: flex;
-}
-
-/* 卡片撐滿 slide 高度 */
-.news-swiper :deep(.swiper-slide) .news-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.news-swiper :deep(.swiper-button-next),
-.news-swiper :deep(.swiper-button-prev) {
-  color: var(--c-primary);
-  width: 36px;
-  height: 36px;
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.news-swiper :deep(.swiper-button-next)::after,
-.news-swiper :deep(.swiper-button-prev)::after {
-  font-size: var(--text-base);
-  font-weight: 700;
-}
-
-.news-swiper {
-  padding-bottom: 1rem;
-}
-
-.news-fallback-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.news-card {
-  display: block;
-  height: 100%;
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color var(--transition-fast);
-}
-
-.news-card:hover {
-  border-color: var(--c-primary);
-}
-
-.news-card-img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.news-card-img--placeholder {
-  background: var(--c-primary-muted);
-  height: 160px;
-}
-
-.news-card-body {
-  padding: 1.2rem;
-}
-
-.news-card-date {
-  
-  color: var(--c-primary);
-  font-weight: 600;
-}
-
-.news-card-title {
-  font-size: var(--text-base);
-  font-weight: 700;
-  margin: 0.4rem 0;
-  color: var(--c-text);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.news-card-desc {
-  
-  color: var(--c-text-secondary);
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* ════════════════════════════════
-   熱門學校推薦
-════════════════════════════════ */
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.featured-card {
-  display: block;
-  background: var(--c-bg-alt);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color var(--transition-fast);
-}
-
-.featured-card:hover {
-  border-color: var(--c-primary);
-}
-
-.featured-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.featured-card-body {
-  padding: 1rem;
-}
-
-.featured-card-body h3 {
-  font-size: var(--text-base);
-  font-weight: 700;
-  margin-bottom: 0.3rem;
-  color: var(--c-text);
-}
-
-.featured-card-body p {
-  
-  color: var(--c-text-secondary);
-  margin-bottom: 0.6rem;
-}
-
-.featured-card-link {
-  
-  font-weight: 600;
-  color: var(--c-primary);
-}
-
-/* ════════════════════════════════
-   RWD
-════════════════════════════════ */
-/* ════════════════════════════════
-   RWD
-════════════════════════════════ */
-
-/* 平板（≤ 900px）：三欄 → 兩欄 */
-@media (max-width: 900px) {
-  .mode-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .featured-grid,
-  .news-fallback-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .landing-section--alt {
-    padding: 1.5rem 1rem;
-  }
-}
-
-/* 大手機（≤ 640px）：全面單欄 */
-@media (max-width: 640px) {
-  .hero-slide {
-    min-height: 200px;
-    padding: 3rem 1.5rem;
-  }
-  .hero-slide::before {
-    /* background: linear-gradient(to right, rgba(30,8,12,0.6) 0%, rgba(30,8,12,0.35) 100%); */
-  }
-
-  .hero-slide-content p {
-    
-    margin-bottom: 1.2rem;
-  }
-
-  .hero-cta {
-    padding: 0.7rem 1.6rem;
-    
-  }
-
-  .study-landing-wrapper {
-    padding: 1.5rem 1rem 3rem;
-    max-width: 100%;
-  }
-
-  .landing-section {
-    padding: 2rem 0;
-  }
-
-  .landing-section--alt {
-    padding: 1.5rem 1rem;
-    border-radius: var(--radius-md);
-    margin: 0 -1rem;
-  }
-
-  .landing-section-title {
-    font-size: var(--text-xl);
-    margin-bottom: 1.2rem;
-  }
-
-  .landing-section-more {
-    margin-top: 1.2rem;
-  }
-
-  /* 學習方式：單欄 */
-  .mode-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .mode-card-img {
-    height: 160px;
-  }
-
-  .mode-card-body {
-    padding: 1rem 1.2rem;
-  }
-
-  .mode-card-footer {
-    padding: 0.75rem 1.2rem;
-  }
-
-  /* 學校推薦：單欄 */
-  .featured-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* 情報：fallback 單欄 */
-  .news-fallback-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .news-card-img {
-    height: 140px;
-  }
-
-}
-
-/* 小手機（≤ 480px） */
-@media (max-width: 480px) {
-  .hero-slide-content h1 {
-    font-size: 2rem;
-  }
-
-  .landing-section-title {
-    font-size: var(--text-lg);
-  }
-
-  .mode-card-img {
-    height: 130px;
-  }
-
-  .mode-card-badge {
-    font-size: 0.65rem;
-    padding: 0.2rem 0.5rem;
+@media (prefers-reduced-motion: reduce) {
+  .philosophy__logo img {
+    animation: none;
   }
 }
 </style>

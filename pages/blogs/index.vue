@@ -1,4 +1,10 @@
 <script setup lang="ts">
+// 這一頁還是建站用的範例內容（Web dev / HTML / CSS…），和日本留學無關。
+// 留著會被搜尋引擎收錄、稀釋整站的主題相關性，所以明確排除索引。
+useHead({
+  meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+})
+
 import logo from "/images/haogaku-logo.svg";
 const topics = [
   {

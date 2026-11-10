@@ -17,7 +17,7 @@ const localePath = useLocalePath()
             <div class="projcard-innerbox">
               <img 
                 class="projcard-img" 
-                src="/images/my-services/card_school.png" 
+                src="/images/my-services/card_school.jpg" 
                 :alt="$t('services.school.alt')" 
               />
               <div class="projcard-textbox">
@@ -45,7 +45,7 @@ const localePath = useLocalePath()
             <div class="projcard-innerbox">
               <img 
                 class="projcard-img" 
-                src="/images/my-services/card_work.png" 
+                src="/images/my-services/card_work.jpg" 
                 :alt="$t('services.work.alt')" 
               />
               <div class="projcard-textbox">
@@ -71,7 +71,7 @@ const localePath = useLocalePath()
             <div class="projcard-innerbox">
               <img 
                 class="projcard-img" 
-                src="/images/my-services/card_school.png" 
+                src="/images/my-services/card_school.jpg" 
                 :alt="$t('services.school.alt')" 
               />
               <div class="projcard-textbox">
@@ -101,7 +101,7 @@ const localePath = useLocalePath()
 .serviceType-section {
   text-align: center;
   padding: 5px;
-  background-image: url("../images/commonImage/title-background.png");
+  background-image: url("../images/commonImage/title-background.jpg");
   background-size: cover;
   border-radius: 20px;
   margin-bottom: 1.5rem;

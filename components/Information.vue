@@ -71,7 +71,7 @@
   .information-section {
     text-align: center;
     padding: 5px;
-    background-image: url("../images/commonImage/title-background.png");
+    background-image: url("../images/commonImage/title-background.jpg");
     background-size: cover;
     border-radius: 20px;
   }

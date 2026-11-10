@@ -6,12 +6,10 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 
 const { t } = useI18n()
 
-useSeoMeta({
-  title: t('seo.study.title'),
-  description: t('seo.study.description'),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
-})
+usePageSeo('studyAbout', [
+  { name: '日本留遊學', path: '/study' },
+  { name: '關於皓學', path: '/study/about_us' },
+])
 
 const values = computed(() =>
   Array.from({ length: 4 }, (_, i) => ({

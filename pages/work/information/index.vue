@@ -16,7 +16,11 @@ const perPage = 9;
 
 // 拿文章
 const { data: articles } = await useAsyncData("articles", () =>
-  queryCollection("content").where("path", "LIKE", "/information/work/%").all()
+  queryCollection("content")
+    .where("path", "LIKE", "/information/work/%")
+    // 列表只需要這些欄位；不 select 的話每篇文章的完整內文都會進到頁面 payload
+    .select("path", "title", "description", "date", "cover", "author", "tags")
+    .all()
 );
 
 function toPagePath(contentPath: string): string {
@@ -73,12 +77,10 @@ function goToPage(page: number) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-useSeoMeta({
-  title: t("seo.blog.title"),
-  description: t("seo.blog.description"),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
-});
+usePageSeo('workBlog', [
+  { name: '赴日就職', path: '/work' },
+  { name: '就職情報', path: '/work/information' },
+])
 </script>
 
 <template>

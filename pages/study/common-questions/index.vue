@@ -5,12 +5,10 @@ const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
 const localePath = useLocalePath()
 const { t } = useI18n()
-useSeoMeta({
-  title: t('seo.study.title'),
-  description: t('seo.study.description'),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
-})
+usePageSeo('studyFaq', [
+  { name: '日本留遊學', path: '/study' },
+  { name: '留學常見問題', path: '/study/common-questions' },
+])
 
 useHead({
   script: [

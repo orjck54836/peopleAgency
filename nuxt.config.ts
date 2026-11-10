@@ -43,6 +43,11 @@ export default defineNuxtConfig({
       gaId: "G-RKNCTYCV3V",
     }
   },
+  features: {
+    // 預設會把全部 CSS 內嵌進每一頁的 HTML（每頁約 900 KB，而且 Lambda 回應沒有壓縮）。
+    // 關掉後 CSS 走 /_nuxt/*.css：由 S3 + CloudFront 壓縮並長期快取，HTML 只剩幾十 KB。
+    inlineStyles: false,
+  },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   modules: [
@@ -53,7 +58,8 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     '@vesp/nuxt-fontawesome',
     '@nuxt/ui',
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt' 已移除：/sw.js 在 CloudFront 上會落到 Lambda 變成 404，
+    // Service Worker 從來沒有註冊成功過，只會在每次載入時多一筆失敗的請求。
     'vue3-carousel-nuxt',
     '@nuxt/content',
     '@nuxtjs/sitemap',
@@ -62,8 +68,14 @@ export default defineNuxtConfig({
     url: 'https://www.forma-global.com',
   },
   sitemap: {
-    sitemaps: true,
-    exclude: ['/admin/**'],
+    // 單一 sitemap.xml，和 robots.txt 的 Sitemap: 指向一致
+    exclude: ['/admin/**', '/blogs', '/*/blogs'],
+    // 補上 Markdown 文章等動態路由（見 server/api/__sitemap__/urls.ts）
+    sources: ['/api/__sitemap__/urls'],
+    defaults: {
+      changefreq: 'weekly',
+      priority: 0.7,
+    },
   },
   app: {
     baseURL: '/',
@@ -81,21 +93,22 @@ export default defineNuxtConfig({
         { property: 'og:site_name', content: '皓學/FORMA' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'zh_TW' },
-        { property: 'og:image', content: 'https://www.forma-global.com/images/og-default.jpg' },
+        { property: 'og:image', content: 'https://www.forma-global.com/images/og-default.png' },
+        { property: 'og:image:alt', content: '皓學/FORMA 日本留遊學・就職代辦' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         // Twitter Card
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:image', content: 'https://www.forma-global.com/images/og-default.jpg' },
+        { name: 'twitter:image', content: 'https://www.forma-global.com/images/og-default.png' },
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/images/haogaku-logo.svg' },
+        // 注意：CloudFront 只把 /images/* 與 /favicon.ico 導向 S3，
+        // 根目錄的 /favicon.png 會落到 Lambda 變成 404，所以走 /images/ 底下。
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/images/favicon.png' },
+        { rel: 'apple-touch-icon', href: '/images/favicon.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Pacifico&display=swap',
-        },
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Pacifico&display=swap',
@@ -108,21 +121,10 @@ export default defineNuxtConfig({
       script: [
         {
           src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",
+          // 放在 <head> 又沒有 defer 會擋住整頁繪製（拖慢 LCP）
+          defer: true,
         },
-        // GA4
-        {
-          src: 'https://www.googletagmanager.com/gtag/js?id=G-RKNCTYCV3V',
-          async: true,
-        },
-        {
-          innerHTML: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-RKNCTYCV3V');
-    `,
-          type: 'text/javascript',
-        },
+        // GA4 統一在 app.vue 註冊，這裡不要再放一份（會重複計算 pageview）
       ],
     },
   },
@@ -146,7 +148,7 @@ export default defineNuxtConfig({
     },
     baseUrl: 'https://www.forma-global.com',
   },
-  css: ["~/assets/css/style.css", "@/public/scss/styles.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
+  css: ["~/assets/css/style.css", "~/assets/css/landing.css","@/public/scss/styles.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
   ui: {
     colorMode: false
   },

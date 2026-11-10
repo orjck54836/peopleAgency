@@ -18,7 +18,11 @@ const perPage = 9;
 
 // 拿文章
 const { data: articles } = await useAsyncData("articles", () =>
-  queryCollection("content").where("path", "LIKE", "/information/study/%").all()
+  queryCollection("content")
+    .where("path", "LIKE", "/information/study/%")
+    // 列表只需要這些欄位；不 select 的話每篇文章的完整內文都會進到頁面 payload
+    .select("path", "title", "description", "date", "cover", "author", "tags")
+    .all()
 );
 
 function toPagePath(contentPath: string): string {
@@ -78,9 +82,16 @@ function goToPage(page: number) {
 useSeoMeta({
   title: t("seo.blog.title"),
   description: t("seo.blog.description"),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
+  ogTitle: t("seo.blog.title"),
+  ogDescription: t("seo.blog.description"),
 });
+
+usePageUrlMeta();
+
+useBreadcrumbSchema([
+  { name: "首頁", path: "/study" },
+  { name: "留學情報", path: "/study/information" },
+]);
 </script>
 
 <template>

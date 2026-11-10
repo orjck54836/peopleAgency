@@ -27,14 +27,14 @@ const zoneMeta = [
 ]
 
 const imageMap: Record<string, string> = {
-  hokkaido: '/images/prefecture/hokkaido.png',
+  hokkaido: '/images/prefecture/hokkaido.jpg',
   tohoku: '/images/prefecture/aomori.jpeg',
-  kanto: '/images/prefecture/tokyo.png',
+  kanto: '/images/prefecture/tokyo.jpg',
   chubu: '/images/prefecture/nagoya.jpg',
   kansai: '/images/prefecture/osaka.jpg',
   chugoku: '/images/prefecture/okayama.jpeg',
   shikoku: '/images/prefecture/ehime.jpeg',
-  kyushu: '/images/prefecture/fukuoka.png',
+  kyushu: '/images/prefecture/fukuoka.jpg',
 }
 
 // 文字全部從 i18n 取

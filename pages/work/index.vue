@@ -1,159 +1,260 @@
 <template>
   <Header :nav-open="navOpen" :toggle-nav="toggleNav" />
 
-  <!-- Hero 區塊 -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>{{ $t('hero.title') }}</h1>
-      <p>{{ $t('hero.subtitle') }}</p>
-    </div>
-  </section>
+  <div class="lp work-lp" :class="{ 'reveal-on': revealReady }">
+    <!-- ── Hero：全幅圖片輪播 ── -->
+    <section class="lp-hero lp-hero--zoom" @mouseenter="pauseHero" @mouseleave="resumeHero">
+      <div class="lp-hero__slides" aria-hidden="true">
+        <div v-for="(src, i) in heroSlides" :key="src" class="lp-hero__slide"
+          :class="{ 'is-active': heroIndex === i }">
+          <img :src="src" alt="" :loading="i === 0 ? 'eager' : 'lazy'"
+            :fetchpriority="i === 0 ? 'high' : 'low'" decoding="async" />
+        </div>
+      </div>
+      <div class="lp-hero__shade" aria-hidden="true" />
 
-  <main class="main-content">
-    <!-- 簽證類型 -->
-    <section class="visa-section">
-      <h2 class="section-title">{{ $t('visa.title') }}</h2>
-      <p class="section-subtitle">{{ $t('visa.subtitle') }}</p>
-
-      <div class="visa-list">
-        <!-- 特定技能簽證 -->
-        <div class="visa-item">
-          <img src="../../public/images/human_resource/specialskill.jpg" :alt="$t('visa.special.alt')"
-            class="visa-photo" />
-          <div class="visa-text">
-            <h3>{{ $t('visa.special.title') }}</h3>
-            <p>{{ $t('visa.special.desc') }}</p>
+      <div class="lp-hero__inner">
+        <div class="lp-hero__content">
+          <h1 class="lp-hero__title">{{ $t('hero.title') }}</h1>
+          <p class="lp-hero__lead">{{ $t('hero.subtitle') }}</p>
+          <div class="lp-hero__actions">
+            <NuxtLink :to="localePath('/contact')" class="lp-btn lp-btn--light">{{ $t('home.cta.btn') }}</NuxtLink>
+            <NuxtLink :to="localePath('/work/information')" class="lp-btn lp-btn--ghost">
+              {{ $t('home.links.information') }}
+            </NuxtLink>
           </div>
         </div>
+      </div>
 
-        <!-- 技人文簽證 -->
-        <div class="visa-item reverse">
-          <img src="../../public/images/human_resource/it.jpg" :alt="$t('visa.engineer.alt')" class="visa-photo" />
-          <div class="visa-text">
-            <h3>{{ $t('visa.engineer.title') }}</h3>
-            <p>{{ $t('visa.engineer.desc') }}</p>
-          </div>
-        </div>
-
-        <!-- 技能實習 -->
-        <div class="visa-item">
-          <img src="../../public/images/human_resource/internship.jpg" :alt="$t('visa.intern.alt')"
-            class="visa-photo" />
-          <div class="visa-text">
-            <h3>{{ $t('visa.intern.title') }}</h3>
-            <p>{{ $t('visa.intern.desc') }}</p>
-          </div>
-        </div>
+      <div class="lp-hero__dots">
+        <button v-for="(src, i) in heroSlides" :key="src" type="button" class="lp-hero__dot"
+          :class="{ 'is-active': heroIndex === i, 'is-paused': heroPaused }"
+          :aria-label="`${i + 1} / ${heroSlides.length}`" :aria-current="heroIndex === i ? 'true' : undefined"
+          @click="goHero(i)">
+          <span />
+        </button>
       </div>
     </section>
 
-    <!-- 合作邀請 -->
-    <section class="tree-radial">
-      <div class="p-4 mb-4">
-        <h2 class="tree-title">{{ $t('cooperation.title') }}</h2>
-        <h4>{{ $t('cooperation.q1') }}</h4>
-        <h4>{{ $t('cooperation.q2') }}</h4>
-      </div>
-      <div class="tree-wrapper">
-        <svg v-if="!isMobile" class="tree-lines" :width="width" :height="height">
-          <line v-for="(node, index) in nodes" :key="'line-' + index" :x1="center.x" :y1="center.y" :x2="node.x"
-            :y2="node.y" stroke="#d1d5db" stroke-width="2" />
-        </svg>
-        <div class="tree-core" :style="!isMobile ? { left: center.x + 'px', top: center.y + 'px' } : {}">
-          {{ $t('cooperation.core') }}
-        </div>
-        <div v-for="(node, index) in nodes" :key="'node-' + index" class="tree-node"
-          :style="!isMobile ? { left: node.x + 'px', top: node.y + 'px' } : {}">
-          <h4>{{ node.title }}</h4>
-          <p>{{ node.desc }}</p>
-        </div>
-      </div>
-    </section>
+    <!-- ── 簽證類型 ── -->
+    <section class="lp-section">
+      <div class="lp-inner">
+        <h2 class="lp-heading" data-reveal>{{ $t('visa.title') }}</h2>
+        <p class="lp-sub" data-reveal>{{ $t('visa.subtitle') }}</p>
 
-    <!-- 為何雇用外籍人士 -->
-    <section class="foreign-talent-section">
-      <div class="content-container">
-        <div class="text-block">
-          <h2>{{ $t('foreign.title') }}</h2>
-          <div class="visual-block">
-            <img src="../../public/images/human_resource/hire_reason.jpg" :alt="$t('foreign.imageAlt')" />
-          </div>
-          <div class="audience-container">
-            <div class="audience-block">
-              <h3>{{ $t('foreign.employer.title') }}</h3>
-              <ul class="benefits-list">
-                <li>{{ $t('foreign.employer.point1') }}</li>
-                <li>{{ $t('foreign.employer.point2') }}</li>
-                <li>{{ $t('foreign.employer.point3') }}</li>
-                <li>{{ $t('foreign.employer.point4') }}</li>
-              </ul>
+        <div class="visa-list">
+          <article v-for="(visa, i) in visas" :key="visa.key" class="visa-item"
+            :class="{ 'visa-item--reverse': i % 2 === 1 }">
+            <div class="visa-item__media" :data-reveal="i % 2 === 1 ? 'right' : 'left'">
+              <img :src="visa.img" :alt="$t(`visa.${visa.key}.alt`)" loading="lazy" decoding="async" />
             </div>
-            <div class="audience-block">
-              <h3>{{ $t('foreign.jobseeker.title') }}</h3>
-              <ul class="benefits-list">
-                <li>{{ $t('foreign.jobseeker.point1') }}</li>
-                <li>{{ $t('foreign.jobseeker.point2') }}</li>
-                <li>{{ $t('foreign.jobseeker.point3') }}</li>
-                <li>{{ $t('foreign.jobseeker.point4') }}</li>
+            <div class="visa-item__text" :data-reveal="i % 2 === 1 ? 'left' : 'right'">
+              <span class="visa-item__num" aria-hidden="true">0{{ i + 1 }}</span>
+              <h3 class="visa-item__title">{{ $t(`visa.${visa.key}.title`) }}</h3>
+              <p class="visa-item__desc">{{ $t(`visa.${visa.key}.desc`) }}</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 合作邀請：背景圖 + 五項優勢 ── -->
+    <section class="lp-band work-band">
+      <div class="lp-inner">
+        <h2 class="lp-heading lp-heading--light" data-reveal>{{ $t('cooperation.title') }}</h2>
+        <p class="lp-sub lp-sub--light" data-reveal>
+          {{ $t('cooperation.q1') }}<br />{{ $t('cooperation.q2') }}
+        </p>
+        <div class="lp-glass-grid strengths">
+          <div v-for="(node, i) in strengths" :key="i" class="lp-glass" data-reveal :style="`--d: ${i * 90}ms`">
+            <span class="lp-glass__num" aria-hidden="true">0{{ i + 1 }}</span>
+            <h3 class="lp-glass__title">{{ node.title }}</h3>
+            <p class="lp-glass__body">{{ node.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 為何雇用外籍人士 ── -->
+    <section class="lp-section">
+      <div class="lp-inner">
+        <h2 class="lp-heading" data-reveal>{{ $t('foreign.title') }}</h2>
+
+        <div class="talent">
+          <div class="talent__media" data-reveal>
+            <img src="/images/home/work-reason.jpg" :alt="$t('foreign.imageAlt')" loading="lazy" decoding="async" />
+          </div>
+          <div class="talent__cards">
+            <div v-for="(group, gi) in audiences" :key="group" class="talent__card" data-reveal
+              :style="`--d: ${gi * 120}ms`">
+              <h3 class="talent__title">{{ $t(`foreign.${group}.title`) }}</h3>
+              <ul class="talent__list">
+                <li v-for="n in 4" :key="n">{{ $t(`foreign.${group}.point${n}`) }}</li>
               </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- 合作流程 -->
-    <section class="flow-section">
-      <h2 class="section-title">{{ $t('flow.title') }}</h2>
-      <p class="section-subtitle">{{ $t('flow.subtitle') }}</p>
 
-      <div class="flow-steps">
-        <template v-for="(step, index) in flowSteps" :key="index">
-          <!-- 單一步驟 -->
-          <div class="flow-step">
-            <div class="step-circle">{{ index + 1 }}</div>
-            <h3>{{ step.title }}</h3>
-            <p>{{ step.desc }}</p>
-          </div>
-
-          <!-- 箭頭 (最後一個不要顯示) -->
-          <div v-if="index < flowSteps.length - 1" class="flow-arrow"></div>
-        </template>
+    <!-- ── 合作流程 ── -->
+    <section class="lp-section lp-section--alt">
+      <div class="lp-inner">
+        <h2 class="lp-heading" data-reveal>{{ $t('flow.title') }}</h2>
+        <p class="lp-sub" data-reveal>{{ $t('flow.subtitle') }}</p>
+        <ol class="lp-flow" :style="`--steps: ${flowSteps.length}`" data-reveal>
+          <li v-for="(step, index) in flowSteps" :key="index" class="lp-flow__step" :style="`--i: ${index}`">
+            <span class="lp-flow__num">{{ index + 1 }}</span>
+            <div>
+              <h3 class="lp-flow__title">{{ step.title }}</h3>
+              <p class="lp-flow__body">{{ step.desc }}</p>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
-  </main>
-  
+
+    <!-- ── 就職情報：輪播 ── -->
+    <section v-if="newsItems.length" class="lp-section">
+      <div class="lp-inner">
+        <h2 class="lp-heading" data-reveal>{{ $t('home.news.heading') }}</h2>
+        <div class="lp-carousel" data-reveal>
+          <ClientOnly>
+            <Swiper :modules="swiperModules" :navigation="true" :pagination="{ clickable: true }"
+              :slides-per-view="1.1" :space-between="16" :breakpoints="{
+                640: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 3, spaceBetween: 24 }
+              }">
+              <SwiperSlide v-for="article in newsItems" :key="article.path">
+                <NuxtLink :to="toPagePath(article.path)" class="lp-news">
+                  <div class="lp-news__thumb">
+                    <img v-if="article.cover" :src="String(article.cover)" :alt="String(article.title)"
+                      loading="lazy" decoding="async" />
+                  </div>
+                  <div class="lp-news__body">
+                    <time class="lp-news__date" :datetime="String(article.date)">{{ formatDate(article.date) }}</time>
+                    <h3 class="lp-news__title">{{ article.title }}</h3>
+                    <p class="lp-news__desc">{{ article.description }}</p>
+                    <span class="lp-news__more">
+                      {{ $t('home.news.readMore') }} <span class="lp-arrow" aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </NuxtLink>
+              </SwiperSlide>
+            </Swiper>
+            <!-- 伺服器端輸出一般格狀清單：文章連結要留在初始 HTML 裡 -->
+            <template #fallback>
+              <div class="lp-news-grid">
+                <NuxtLink v-for="article in newsItems" :key="article.path" :to="toPagePath(article.path)"
+                  class="lp-news">
+                  <div class="lp-news__thumb">
+                    <img v-if="article.cover" :src="String(article.cover)" :alt="String(article.title)"
+                      loading="lazy" decoding="async" />
+                  </div>
+                  <div class="lp-news__body">
+                    <time class="lp-news__date" :datetime="String(article.date)">{{ formatDate(article.date) }}</time>
+                    <h3 class="lp-news__title">{{ article.title }}</h3>
+                    <p class="lp-news__desc">{{ article.description }}</p>
+                  </div>
+                </NuxtLink>
+              </div>
+            </template>
+          </ClientOnly>
+        </div>
+        <div class="lp-more">
+          <NuxtLink :to="localePath('/work/information')" class="lp-link">
+            {{ $t('home.news.all') }} <span aria-hidden="true">→</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 結尾 CTA ── -->
+    <section class="lp-cta work-cta">
+      <div class="lp-cta__inner" data-reveal>
+        <h2 class="lp-cta__title">{{ $t('home.cta.heading') }}</h2>
+        <p class="lp-cta__body">{{ $t('home.cta.body') }}</p>
+        <NuxtLink :to="localePath('/contact')" class="lp-btn lp-btn--light">{{ $t('home.cta.btn') }}</NuxtLink>
+      </div>
+    </section>
+  </div>
+
   <Footer />
 </template>
 
 
 <script lang="ts" setup>
-import { reactive, ref, onMounted, onBeforeUnmount, computed } from "vue";
+import { ref, computed } from "vue";
 import { useI18n } from 'vue-i18n'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+
+const swiperModules = [Navigation, Pagination, Autoplay]
 
 const navOpen = ref(false);
 const toggleNav = () => (navOpen.value = !navOpen.value);
 const { t } = useI18n()
+const localePath = useLocalePath()
 useSeoMeta({
   title: t('seo.work.title'),
   description: t('seo.work.description'),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
+  // 原本這兩行誤用了 seo.study 的文案，分享出去的標題跟頁面不符
+  ogTitle: t('seo.work.title'),
+  ogDescription: t('seo.work.description'),
 })
 
-const width = 800;
-const height = 600;
-const center = { x: width / 2, y: height / 2, r: 250 };
+usePageUrlMeta()
 
+useServiceSchema({
+  name: '赴日就職・特定技能簽證媒合服務',
+  description:
+    'FORMA 專精日本特定技能簽證申請與跨國人才就業媒合，協助台灣與東南亞人才通過技能評量測試、取得合法工作簽證並進入日本職場。服務涵蓋職缺媒合、履歷與職務經歷書撰寫指導、簽證文件全程準備，以及抵日後的生活安頓支援；企業端則提供合規的海外人才引進與定著支援。求職者不收介紹費。',
+  path: '/work',
+  serviceType: ['日本就職支援', '特定技能簽證代辦', '台日人才媒合', '工作簽證申請協助', '企業海外人才引進'],
+  freeOfCharge: true,
+})
 
-const texts = computed(() => [
-  { title: t('cooperation.nodes.node1.title'), desc: t('cooperation.nodes.node1.desc') },
-  { title: t('cooperation.nodes.node2.title'), desc: t('cooperation.nodes.node2.desc') },
-  { title: t('cooperation.nodes.node3.title'), desc: t('cooperation.nodes.node3.desc') },
-  { title: t('cooperation.nodes.node4.title'), desc: t('cooperation.nodes.node4.desc') },
-  { title: t('cooperation.nodes.node5.title'), desc: t('cooperation.nodes.node5.desc') }
-])
+useBreadcrumbSchema([{ name: '赴日就職', path: '/work' }])
 
-// flowSteps 改成 computed，會隨語言切換更新
+// ── Hero 輪播 ──
+const heroSlides = [
+  '/images/home/work-hero-1.jpg',
+  '/images/home/hero-4.jpg',
+  '/images/home/work-hero-3.jpg',
+]
+const {
+  index: heroIndex,
+  paused: heroPaused,
+  go: goHero,
+  pause: pauseHero,
+  resume: resumeHero,
+} = useHeroSlider(heroSlides.length)
+
+const { revealReady } = useScrollReveal('.work-lp')
+
+// LCP 是 hero 第一張圖：提早預載，不用等到解析到 <img> 才開始下載
+useHead({
+  link: [{ rel: 'preload', as: 'image', href: '/images/home/work-hero-1.jpg', fetchpriority: 'high' }],
+})
+
+// ── 簽證類型 ──
+const visas = [
+  { key: 'special', img: '/images/home/visa-special.jpg' },
+  { key: 'engineer', img: '/images/home/visa-engineer.jpg' },
+  { key: 'intern', img: '/images/home/visa-intern.jpg' },
+]
+
+// ── 合作優勢 ──
+const strengths = computed(() =>
+  [1, 2, 3, 4, 5].map((n) => ({
+    title: t(`cooperation.nodes.node${n}.title`),
+    desc: t(`cooperation.nodes.node${n}.desc`),
+  }))
+)
+
+const audiences = ['employer', 'jobseeker']
+
+// flowSteps 用 computed，會隨語言切換更新
 const flowSteps = computed(() => [
   { title: t('flow.steps[0].title'), desc: t('flow.steps[0].desc') },
   { title: t('flow.steps[1].title'), desc: t('flow.steps[1].desc') },
@@ -162,327 +263,190 @@ const flowSteps = computed(() => [
   { title: t('flow.steps[4].title'), desc: t('flow.steps[4].desc') }
 ])
 
-watchEffect(() => {
-  console.log('flowSteps:', t('flow.steps', { returnObjects: true }))
-})
+// ── 就職情報 ──
+const { data: workArticles } = await useAsyncData('work-latest-news', () =>
+  queryCollection('content')
+    .where('path', 'LIKE', '/information/work/%')
+    // 只取卡片需要的欄位：不 select 的話整篇文章內文都會被塞進頁面 payload
+    .select('path', 'title', 'description', 'date', 'cover')
+    .all()
+)
 
-// 手機偵測
-const isMobile = ref(false);
-const checkMobile = () => {
-  isMobile.value = window.innerWidth <= 768;
-};
-onMounted(() => {
-  checkMobile();
-  window.addEventListener("resize", checkMobile);
-});
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", checkMobile);
-});
+const newsItems = computed(() =>
+  ((workArticles.value ?? []) as any[])
+    // 排除帶語言後綴的重複檔（foo.ja.md / foo.en.md）
+    .filter((a) => !/\.(ja|en)$/.test(String(a.path ?? '')))
+    .filter((a) => a.title && a.date)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 6)
+)
 
-const nodes = computed(() => {
-  if (isMobile.value) {
-    return texts.value.map(t => ({ ...t }))
-  } else {
-    return texts.value.map((t, i) => {
-      const angle = (-90 + i * (360 / texts.value.length)) * (Math.PI / 180)
-      return {
-        ...t,
-        x: center.x + center.r * Math.cos(angle),
-        y: center.y + center.r * Math.sin(angle),
-      }
-    })
-  }
-})
+function toPagePath(contentPath: string): string {
+  return localePath(contentPath.replace('/information/work/', '/work/information/'))
+}
+
+function formatDate(d?: string | null) {
+  if (!d) return ''
+  const date = new Date(d)
+  if (Number.isNaN(date.getTime())) return String(d)
+  return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`
+}
 </script>
 
 <style scoped>
-/* Hero */
-.hero {
-  background-image: url('../../public/images/human_resource/handshake.jpg');
-  background-size: cover;
-  background-position: center 50%;
-  color: #fff;
-  text-align: center;
-  padding: 6rem 2rem;
-}
+/* 共用的 lp-* 樣式在 assets/css/landing.css，這裡只放本頁專屬的部分 */
 
-.hero h1 {
-  font-size: var(--text-4xl);
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  margin-bottom: 2rem;
-  color: white;
-}
-
-/* Section 基本 */
-.main-content section {
-  padding: 1rem;
-}
-
-.main-content h2 {
-  text-align: center;
-  font-size: var(--text-3xl);
-  margin-bottom: 1.5rem;
-  color: #1f2937;
-}
-
-/* 簽證卡片 */
-.visa-section {
-  padding: 5rem 2rem;
-  text-align: center;
-}
-
-.visa-section {
-  padding: 5rem 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* 漸進淡入＋上移 */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 底線強調 */
-.section-title::after,
-.tree-title::after,
-.text-block h2::after {
-  content: "";
-  display: block;
-  width: 200px;
-  height: 2px;
-  background: linear-gradient(90deg, #e2942dad, #da9c1f9b);
-  margin: 0.5rem auto 0;
-  border-radius: 2px;
-  animation: growLine 1s ease forwards;
-  transform: scaleX(0);
-}
-
-/* 底線動畫 */
-@keyframes growLine {
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-/* 副標題 */
-.section-subtitle {
-  font-size: var(--text-lg);
-  color: #4b5563;
-  text-align: center;
-  margin-bottom: 3rem;
-  line-height: 1.6;
-  animation: fadeIn 1.2s ease forwards;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  100% {
-    opacity: 1;
-  }
-}
-
-/* list 容器 */
+/* ── 簽證類型：圖文左右交錯 ── */
 .visa-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  position: relative;
+  gap: 4rem;
 }
 
-/* 單一簽證塊 */
 .visa-item {
-  display: flex;
-  align-items: center;
-  background: #fdfcfb;
-  gap: 2rem;
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-left: 6px solid #dd240cae;
-  /* 左側強調線 */
-}
-
-.visa-photo {
-  width: 40%;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-.visa-item:nth-child(2) {
-  background: #fdfcfb;
-  border-left-color: #9333ea;
-}
-
-.visa-item:nth-child(3) {
-  background: #fdfcfb;
-  border-left-color: #06d9cb82;
-}
-
-.visa-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-}
-
-/* icon */
-.visa-icon {
-  font-size: var(--text-4xl);
-  flex-shrink: 0;
-  color: #2563eb;
-  margin-top: 0.3rem;
-  transition: transform 0.3s ease;
-}
-
-.visa-item:hover .visa-icon {
-  transform: scale(1.2);
-}
-
-/* 文字區 */
-.visa-text {
-  text-align: left;
-}
-
-.visa-text h3 {
-  font-size: var(--text-2xl);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #1f2937;
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 6px;
-
-  /* 日系官網感：淡背景 + 細邊框 */
-  background: #fdf7f2;
-  /* 柔和米白色 */
-  border: 1px solid #e5e7eb;
-  /* 細灰框 */
-  /* 加點層次 */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  /* 動態效果 */
-  transition: all 0.3s ease;
-}
-
-.visa-text p {
-  font-size: var(--text-base);
-  color: #374151;
-  line-height: 1.7;
-  max-width: 600px;
-}
-
-/* 左右交錯 */
-.visa-item.reverse {
-  flex-direction: row-reverse;
-  border-left: none;
-  border-right: 6px solid #dabd8c;
-}
-
-/* 手機版 */
-@media (max-width: 768px) {
-  .visa-photo {
-    width: 100%;
-  }
-
-  .visa-item,
-  .visa-item.reverse {
-    flex-direction: column;
-    text-align: left;
-    border-left: 4px solid #cb8112;
-    border-right: none;
-  }
-}
-
-/* 國籍範圍 */
-.foreign-talent-section {
-  padding: 5rem 0;
-}
-
-.content-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* 左側文字 */
-.text-block {
-  flex: 1;
-  padding: 2rem;
-  z-index: 2;
-}
-
-.text-block h2 {
-  font-size: var(--text-3xl);
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-
-.benefits-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: grid;
-  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.visa-item--reverse .visa-item__media {
+  order: 2;
+}
+
+.visa-item__media {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--c-primary-dark) 18%, transparent);
+}
+
+.visa-item__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.visa-item:hover .visa-item__media img {
+  transform: scale(1.06);
+}
+
+.visa-item__text {
   text-align: left;
 }
 
-.benefits-list li {
-  font-size: var(--text-base);
-  color: #4b5563;
-  line-height: 1.6;
+.visa-item__num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 3.2rem;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--c-primary);
+  opacity: 0.22;
 }
 
-/* 右側斜切背景 */
-.visual-block {
-  flex: 1;
-  background-size: cover;
-  border-radius: 5px;
-  min-height: 450px;
+.visa-item__title {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  font-weight: 800;
+  color: var(--c-primary-dark);
+  line-height: 1.4;
+  margin: 0.4rem 0 1rem;
+  padding-left: 1rem;
 }
 
-.audience-container {
-  display: flex;
-  justify-content: center;
+.visa-item__title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  bottom: 0.2em;
+  width: 4px;
+  border-radius: 4px;
+  background: var(--c-primary);
 }
 
-.audience-block {
-  margin: 2rem 0.5rem;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  text-align: left;
-  min-height: 250px;
+.visa-item__desc {
+  color: var(--c-text-secondary);
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* ── 合作優勢 ── */
+.work-band {
+  background-image:
+    linear-gradient(rgba(15, 35, 71, 0.86), rgba(10, 15, 26, 0.88)),
+    url('/images/human_resource/strengths_background.jpg');
+}
+
+.strengths {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.strengths .lp-glass {
+  grid-column: span 2;
+}
+
+/* 五張卡：上排三張、下排兩張置中 */
+.strengths .lp-glass:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+/* ── 為何雇用外籍人士 ── */
+/* 這張圖本身帶文字，維持原比例完整顯示，不裁切 */
+.talent {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  gap: 2rem;
 }
 
-.audience-block h3 {
+.talent__media {
+  width: min(100%, 880px);
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--c-primary-dark) 18%, transparent);
+}
+
+.talent__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.talent__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.talent__card {
+  flex: 1;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-top: 4px solid var(--c-primary);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.75rem 1.9rem;
+  text-align: left;
+}
+
+.talent__card:hover {
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--c-primary) 12%, transparent);
+}
+
+.talent__title {
+  font-family: var(--font-heading);
   font-size: var(--text-xl);
-  font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 1rem;
+  font-weight: 800;
+  color: var(--c-primary-dark);
+  margin: 0 0 1.1rem;
 }
 
-.audience-block ul {
+.talent__list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -490,391 +454,75 @@ const nodes = computed(() => {
   gap: 0.8rem;
 }
 
-.audience-block li {
-  font-size: var(--text-base);
-  color: #374151;
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  .audience-container {
-    flex-direction: column;
-  }
-
-  .audience-block {
-    flex-direction: column;
-    margin: 10px 0;
-  }
-
-  .content-container {
-    flex-direction: column-reverse;
-    /* 改為上下排列 */
-  }
-
-  .text-block {
-    padding: 1.5rem;
-    text-align: center;
-    /* 手機版文字置中 */
-  }
-
-  .text-block h2 {
-    font-size: var(--text-2xl);
-    /* 標題縮小 */
-  }
-
-  .benefits-list {
-    gap: 0.8rem;
-  }
-
-  .benefits-list li {
-    font-size: var(--text-base);
-    line-height: 1.5;
-  }
-
-  .visual-block {
-    width: 100%;
-    min-height: 200px;
-    margin-top: 2rem;
-  }
-}
-
-/* 流程時間軸 */
-.flow-section {
-  background-image: url('../../public/images/human_resource/flow_background.jpg');
-  background-size: contain;
-  padding: 8rem 2rem !important;
-  text-align: center;
-}
-
-.section-title {
-  font-size: var(--text-3xl);
-  font-weight: 800;
-  margin-bottom: 0.8rem;
-  padding: 0;
-}
-
-.section-subtitle {
-  font-size: var(--text-base);
-  color: #4b5563;
-  margin-bottom: 3rem;
-}
-
-/* Flow 橫向容器 */
-.flow-steps {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  min-width: 150px;
-  margin: 0 auto;
-  flex-wrap: nowrap;
-}
-
-/* 單一步驟 */
-.flow-step {
-  background: #fff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  width: 100%;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.flow-step:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
-}
-
-/* step number */
-.step-circle {
-  width: 40px;
-  height: 40px;
-  margin: 0 auto 0.8rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #f35d49, #e5af63);
-  color: #fff;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 標題 */
-.flow-step h3 {
-  font-size: var(--text-lg);
-  font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 0.5rem;
-}
-
-/* 內文 */
-.flow-step p {
-  
-  color: #374151;
-  line-height: 1.5;
-}
-
-/* 箭頭樣式（桌機） */
-.flow-arrow {
-  display: flex;
-  align-items: center;
-}
-
-.flow-arrow::after {
-  content: "→";
-  font-size: var(--text-2xl);
-  color: #9ca3af;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: auto 0;
-}
-
-/* 手機版：直排，箭頭改向下 */
-@media (max-width: 768px) {
-  .flow-steps {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .flow-arrow::after {
-    content: "↓";
-    margin: 0.5rem 0;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: var(--text-3xl);
-  }
-
-  .mission-block {
-    flex-direction: column;
-  }
-}
-
-/* 合作邀請區 */
-.partnership-section {
-  background: linear-gradient(135deg, #f9fafb, #ffffff);
-  padding: 5rem 2rem;
-}
-
-.partnership-container {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.partnership-text {
-  flex: 1.2;
-}
-
-.partnership-text h2 {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #1e3a8a;
-  margin-bottom: 1rem;
-}
-
-.partnership-text .intro {
-  font-size: var(--text-lg);
-  color: #374151;
-  margin-bottom: 2.5rem;
-  line-height: 1.8;
-}
-
-.why-title {
-  font-size: var(--text-3xl);
-  font-weight: 700;
-  color: #9333ea;
-  margin-bottom: 2rem;
+.talent__list li {
   position: relative;
-  display: inline-block;
+  padding-left: 1.9rem;
+  color: var(--c-text-secondary);
+  line-height: 1.7;
 }
 
-.why-title::after {
-  content: "";
-  display: block;
-  width: 50%;
-  height: 4px;
-  background: linear-gradient(135deg, #d97706, #fbbf24);
-  margin-top: 0.4rem;
-  border-radius: 2px;
-}
-
-.advantages-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.advantage-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1.2rem 1rem;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.advantage-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
-}
-
-.icon {
-  font-size: var(--text-3xl);
-  flex-shrink: 0;
-}
-
-.content h4 {
-  font-size: var(--text-lg);
-  font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 0.3rem;
-}
-
-.content p {
-  font-size: var(--text-base);
-  color: #4b5563;
-  line-height: 1.6;
-}
-
-.partnership-img {
-  flex: 1;
-  text-align: center;
-}
-
-.partnership-img img {
-  max-width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-/* 響應式 */
-@media (max-width: 900px) {
-  .partnership-container {
-    flex-direction: column;
-  }
-
-  .partnership-text {
-    text-align: center;
-  }
-
-  .advantage-item {
-    text-align: left;
-  }
-}
-
-.tree-radial {
-  background-image: url('../../public/images/human_resource/strengths_background.jpg');
-  background-size: cover;
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.tree-title {
-  font-size: var(--text-3xl);
-  font-weight: 800;
-  margin-bottom: 2rem;
-  color: #1e3a8a;
-}
-
-.tree-wrapper {
-  position: relative;
-  margin: 0 auto;
-  width: 800px;
-  height: 600px;
-}
-
-/* SVG */
-.tree-lines {
+/* 勾勾 */
+.talent__list li::before {
+  content: '';
   position: absolute;
-  top: 0;
   left: 0;
-  z-index: 1;
-}
-
-/* 中心 */
-.tree-core {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(135deg, #e8820e, #eabf33e7);
-  color: #fff;
-  font-weight: 700;
-  font-size: var(--text-xl);
-  padding: 1.2rem 2rem;
+  top: 0.3em;
+  width: 1.15rem;
+  height: 1.15rem;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  z-index: 2;
+  background: var(--c-primary-muted);
 }
 
-/* 節點 */
-.tree-node {
+.talent__list li::after {
+  content: '';
   position: absolute;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  border-radius: 12px;
-  padding: 1rem 1.2rem;
-  width: 200px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  text-align: left;
-  z-index: 2;
+  left: 0.4rem;
+  top: 0.52em;
+  width: 0.35rem;
+  height: 0.6rem;
+  border: solid var(--c-primary);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
-.tree-node h4 {
-  text-align: center;
-  font-size: var(--text-base);
-  font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 0.4rem;
+/* ── 結尾 CTA 背景 ── */
+.work-cta {
+  background-image:
+    linear-gradient(rgba(15, 35, 71, 0.8), rgba(10, 15, 26, 0.85)),
+    url('/images/home/band.jpg');
 }
 
-.tree-node p {
-  
-  color: #4b5563;
-  line-height: 1.4;
-}
+@media (max-width: 900px) {
+  .visa-list {
+    gap: 3rem;
+  }
 
-/* 手機版 */
-@media (max-width: 768px) {
-  .tree-wrapper {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .visa-item {
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    /* 增加間距 */
   }
 
-  .tree-core {
-    position: relative;
-    /* 清掉 absolute */
-    transform: none;
-    margin: 0 auto 1.5rem;
+  .visa-item--reverse .visa-item__media {
+    order: 0;
   }
 
-  .tree-node {
-    position: relative;
-    /* 清掉 absolute */
-    transform: none;
-    margin: 0 auto;
-    max-width: 320px;
-    width: 90%;
-    text-align: center;
+  .strengths {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .strengths .lp-glass,
+  .strengths .lp-glass:nth-child(4) {
+    grid-column: auto;
+  }
+
+  .talent__cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .strengths {
+    grid-template-columns: 1fr;
   }
 }
 </style>

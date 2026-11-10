@@ -8,11 +8,18 @@ const toggleNav = () => (navOpen.value = !navOpen.value)
 
 const { t } = useI18n()
 
-useSeoMeta({
-  title: t('seo.study.title'),
-  description: t('seo.study.description'),
-  ogTitle: t('seo.study.title'),
-  ogDescription: t('seo.study.description'),
+usePageSeo('longTerm', [
+  { name: '日本留遊學', path: '/study' },
+  { name: '長期留學', path: '/study/long-term' },
+])
+
+useServiceSchema({
+  name: '日本長期留學代辦（6 個月～2 年）',
+  description:
+    '6 個月到 2 年的日本語言學校長期留學：選校、在留資格認定證明書（COE）與留學簽證文件代辦，以及抵日後的租屋、開戶與打工支援。代辦零手續費，學費與學校官方收費同步。',
+  path: '/study/long-term',
+  serviceType: ['日本長期留學', '語言學校申請', '留學簽證申請協助'],
+  freeOfCharge: true,
 })
 
 const sectionMeta = [
