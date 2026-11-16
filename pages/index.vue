@@ -19,6 +19,9 @@ const navOpen = ref(false)
 const toggleNav = () => { navOpen.value = !navOpen.value }
 
 const localePath = useLocalePath()
+// 皓學日語 App 入口的點擊追蹤
+const { track: trackEvent } = useGtag()
+const trackAppPromo = (placement: string, from: string) => trackEvent('app_promo_click', { placement, from })
 const { t, tm, rt } = useI18n()
 
 // 首頁同時代表兩條線，視覺上固定用留學線的色票（酒紅），
@@ -289,6 +292,7 @@ useHead({
                 <NuxtLink :to="localePath('/study/long-term')">{{ $t('home.links.longTerm') }}</NuxtLink>
                 <NuxtLink :to="localePath('/study/schools')">{{ $t('home.links.schools') }}</NuxtLink>
                 <NuxtLink :to="localePath('/study/common-questions')">{{ $t('home.links.faq') }}</NuxtLink>
+                <NuxtLink :to="localePath('/study/app')" @click="trackAppPromo('home_links', '/')">{{ $t('appTitle') }}</NuxtLink>
               </div>
             </div>
           </div>

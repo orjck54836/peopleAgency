@@ -89,6 +89,12 @@
         "cta": "今すぐ相談する"
       }
     ],
+    "app": {
+      "eyebrow": "皓学日本語アプリ",
+      "heading": "出発の前に、スマホで一度練習しておこう",
+      "body": "日本の生活シーン83テーマ、約500レッスン。会話の練習相手になるAI日本語コーチ付き。レッスンはすべて無料、iPhoneで今すぐダウンロードできます。（アプリの表示は繁体字中国語です）",
+      "cta": "アプリを見る →"
+    },
     "philosophy": {
       "headline": "皓學について",
       "bodyCount": "6",
@@ -986,7 +992,15 @@
     "rent": "自分で賃貸",
     "clearFilters": "すべての条件をクリア",
     "intakeMonth": "入学時期",
-    "moreDetail": "もっと見る ➔"
+    "moreDetail": "もっと見る ➔",
+    "eyebrow": "日本語学校",
+    "statSchools": "提携校",
+    "statCities": "都市",
+    "statFee": "代行手数料",
+    "sortLabel": "並び替え：",
+    "resultCount": "全 {n} 校",
+    "noResult": "条件に合う学校が見つかりません。絞り込み条件を変更してください。",
+    "currentFilter": "現在の絞り込み："
   },
   "schoolDetail": {
     "breadcrumb": "学校一覧",
@@ -1034,7 +1048,13 @@
     "courseDuration": "コース期間：",
     "requirements": "出願資格",
     "moreSchools": "人気の学校一覧",
-    "viewMore": "もっと見る"
+    "viewMore": "もっと見る",
+    "officialSite": "学校公式サイトへ",
+    "zeroFee": "皓學経由のお申し込みは代行手数料0円。学費は学校公式サイトと同額です。",
+    "relatedInfo": "関連情報",
+    "allInfo": "留学情報をすべて見る",
+    "notFound": "この学校が見つかりません。掲載終了またはURLの誤りの可能性があります。",
+    "backToList": "学校一覧に戻る"
   },
   "taiwanStudy": {
     "hero": {
@@ -1182,6 +1202,16 @@
   "schoolTitle": "日本で留学する",
   "humanResourceTitle": "日本で仕事する",
   "studyTaiwanTitle": "台湾で留学する",
+  "appTitle": "日本語アプリ",
+  "appPromo": {
+    "badge": "アプリ公開",
+    "bar": "皓学日本語アプリ｜日本の生活シーン83テーマ＋AI会話コーチ、レッスンはすべて無料",
+    "barShort": "皓学日本語アプリ公開、レッスン無料",
+    "barCta": "アプリを見る",
+    "footerHeading": "皓学日本語アプリ",
+    "footerBody": "日本の生活シーン83テーマ、約500レッスン。会話の練習相手になるAI日本語コーチ付き。レッスンはすべて無料です。",
+    "footerCta": "アプリを見る →"
+  },
   "informationTitle": "インフォメーション",
   "commonQuestionTitle": "よくある質問",
   "learnMore": "詳しくはこちらへ",

@@ -89,6 +89,12 @@
         "cta": "Get a Free Consultation"
       }
     ],
+    "app": {
+      "eyebrow": "Haogaku Japanese App",
+      "heading": "Practice on your phone before you go",
+      "body": "83 real-life situations in Japan, nearly 500 lessons, and an AI Japanese coach you can actually speak with. All lessons are free, available now on iPhone. (The app interface is in Traditional Chinese.)",
+      "cta": "See the app →"
+    },
     "philosophy": {
       "headline": "About HAOGAKU",
       "bodyCount": "6",
@@ -986,7 +992,15 @@
     "rent": "Private Rental",
     "clearFilters": "Clear All Filters",
     "intakeMonth": "Intake",
-    "moreDetail": "See more ➔"
+    "moreDetail": "See more ➔",
+    "eyebrow": "Japanese Language Schools",
+    "statSchools": "Partner schools",
+    "statCities": "Cities",
+    "statFee": "Agency fee",
+    "sortLabel": "Sort:",
+    "resultCount": "{n} schools",
+    "noResult": "No schools match your filters. Try adjusting them.",
+    "currentFilter": "Filtering by: "
   },
   "schoolDetail": {
     "breadcrumb": "School Overview",
@@ -1034,7 +1048,13 @@
     "courseDuration": "Course Duration:",
     "requirements": "Admission Requirements",
     "moreSchools": "More Popular Schools",
-    "viewMore": "View More"
+    "viewMore": "View More",
+    "officialSite": "Visit school website",
+    "zeroFee": "Apply through Haogaku with no agency fee — tuition is the same as on the school’s official site.",
+    "relatedInfo": "Related articles",
+    "allInfo": "See all study-abroad articles",
+    "notFound": "We couldn’t find this school. It may have been removed, or the link is incorrect.",
+    "backToList": "Back to all schools"
   },
   "taiwanStudy": {
     "hero": {
@@ -1182,6 +1202,16 @@
   "schoolTitle": "Study in Japan",
   "humanResourceTitle": "Work in Japan",
   "studyTaiwanTitle": "Study in Taiwan",
+  "appTitle": "Japanese App",
+  "appPromo": {
+    "badge": "New app",
+    "bar": "Haogaku Japanese App: 83 real-life situations in Japan plus an AI speaking coach. All lessons free.",
+    "barShort": "Haogaku Japanese App is out. Lessons are free.",
+    "barCta": "See the app",
+    "footerHeading": "Haogaku Japanese App",
+    "footerBody": "83 real-life situations in Japan, nearly 500 lessons, and an AI Japanese coach you can speak with. All lessons are free.",
+    "footerCta": "See the app →"
+  },
   "informationTitle": "Information",
   "commonQuestionTitle": "Common Questions",
   "learnMore": "Learn more",

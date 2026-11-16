@@ -12,6 +12,10 @@ export default defineContentConfig({
         author: z.string().optional(),
         tags: z.array(z.string()).optional(),
         cover: z.string().optional(),
+        // 文章末尾的常見問題：畫面和 FAQ 結構化資料共用這一份
+        faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
+        // 對應皓學日語 App 裡的主題名稱；有填的文章會在文末顯示 App 的入口
+        appTopic: z.string().optional(),
       })
     })
   }

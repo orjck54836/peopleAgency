@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
+const route = useRoute()
+const { track } = useGtag()
+
 const socialLinks = [
   { name: 'Threads', href: 'https://www.threads.com/@forma_global_connect', icon: 'fa-brands fa-threads' },
   { name: 'Facebook', href: 'https://www.facebook.com/people/Forma%E4%BA%BA%E6%9D%90%E7%B4%B9%E4%BB%8B%E7%95%99%E5%AD%A6%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/61586054817873/', icon: 'fab fa-facebook-f' },
@@ -43,6 +47,18 @@ const resources = [
 
 <template>
   <footer class="site-footer">
+    <!-- 皓學日語 App 入口：全站頁尾都有 -->
+    <div class="footer-app">
+      <NuxtLink :to="localePath('/study/app')" class="footer-app__card" @click="track('app_promo_click', { placement: 'footer_card', from: route.path })">
+        <img src="/images/haogaku-logo.svg" alt="" class="footer-app__logo" width="64" height="64" loading="lazy" />
+        <span class="footer-app__text">
+          <strong>{{ $t('appPromo.footerHeading') }}</strong>
+          <span>{{ $t('appPromo.footerBody') }}</span>
+        </span>
+        <span class="footer-app__cta">{{ $t('appPromo.footerCta') }}</span>
+      </NuxtLink>
+    </div>
+
     <div class="footer-main">
 
       <!-- 第一欄：品牌 + 聯絡資訊 + 社群 -->
@@ -99,6 +115,82 @@ const resources = [
 .site-footer {
   background: var(--c-primary-dark);
   color: rgba(255,255,255,0.85);
+}
+
+/* ── 皓學日語 App 入口 ── */
+.footer-app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 0;
+}
+
+.footer-app__card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 28px;
+  background: #8A2432;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer-app__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.footer-app__logo {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  border-radius: 50%;
+}
+
+.footer-app__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.footer-app__text strong {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.footer-app__text span {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.footer-app__cta {
+  flex: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #8A2432;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .footer-app__card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .footer-app__cta {
+    align-self: stretch;
+    text-align: center;
+  }
 }
 
 /* ── 主要內容區 ── */

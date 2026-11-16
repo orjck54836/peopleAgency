@@ -7,6 +7,9 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 const swiperModules = [Navigation, Pagination, Autoplay]
 
 const localePath = useLocalePath()
+// 皓學日語 App 入口的點擊追蹤
+const { track: trackEvent } = useGtag()
+const trackAppPromo = (placement: string, from: string) => trackEvent('app_promo_click', { placement, from })
 const navOpen = ref(false)
 const toggleNav = () => (navOpen.value = !navOpen.value)
 
@@ -221,6 +224,23 @@ function formatDate(dateStr?: string) {
       </div>
     </section>
 
+    <!-- ── 皓學日語 App 入口 ── -->
+    <section class="lp-section app-promo">
+      <div class="lp-inner app-promo__inner">
+        <div class="app-promo__content" data-reveal="left">
+          <p class="app-promo__eyebrow">{{ $t('studyLanding.app.eyebrow') }}</p>
+          <h2 class="app-promo__heading">{{ $t('studyLanding.app.heading') }}</h2>
+          <p class="app-promo__body">{{ $t('studyLanding.app.body') }}</p>
+          <NuxtLink :to="localePath('/study/app')" class="lp-btn lp-btn--light" @click="trackAppPromo('study_home_section', '/study')">
+            {{ $t('studyLanding.app.cta') }}
+          </NuxtLink>
+        </div>
+        <NuxtLink :to="localePath('/study/app')" class="app-promo__phone" data-reveal="right" tabindex="-1" aria-hidden="true" @click="trackAppPromo('study_home_section', '/study')">
+          <img src="/images/haogaku-app/screen-home.jpg" alt="" width="598" height="1300" loading="lazy" decoding="async" />
+        </NuxtLink>
+      </div>
+    </section>
+
     <!-- ── 地區選擇：日本地圖 ── -->
     <section class="lp-section lp-section--alt">
       <div class="lp-inner">
@@ -341,6 +361,66 @@ function formatDate(dateStr?: string) {
   margin: 0;
 }
 
+/* ── 皓學日語 App 入口：用 App 自己的酒紅底，跟前後的白底區塊分開 ── */
+.app-promo {
+  background: #8A2432;
+  color: #fff;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.app-promo__inner {
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.app-promo__content {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.app-promo__eyebrow {
+  margin: 0 0 0.6rem;
+  color: #D9A441;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.app-promo__heading {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.app-promo__body {
+  margin: 1.25rem 0 2rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.9;
+  max-width: 34em;
+}
+
+/* 手機截圖：下半截藏在區塊底下 */
+.app-promo__phone {
+  display: block;
+  width: min(100%, 280px);
+  margin: 0 auto -150px;
+  aspect-ratio: 598 / 1300;
+  border-radius: 10.5% / 4.85%;
+  overflow: hidden;
+  background: #141012;
+  box-shadow: 0 0 0 7px #1c1215, 0 24px 60px rgba(20, 16, 18, 0.4);
+}
+
+.app-promo__phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* ── 結尾 CTA 背景 ── */
 .study-cta {
   background-image:
@@ -349,6 +429,16 @@ function formatDate(dateStr?: string) {
 }
 
 @media (max-width: 900px) {
+  .app-promo__inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .app-promo__phone {
+    width: min(64%, 240px);
+    margin-bottom: -220px;
+  }
+
   .philosophy__inner {
     grid-template-columns: 1fr;
     gap: 2rem;

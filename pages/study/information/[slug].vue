@@ -36,8 +36,14 @@ const meta = computed<any>(() => {
     author: a.author ?? a.meta?.author ?? null,
     cover: a.cover ?? a.meta?.cover ?? null,
     tags: a.tags ?? a.meta?.tags ?? null,
+    faq: a.faq ?? a.meta?.faq ?? null,
+    appTopic: a.appTopic ?? a.meta?.appTopic ?? null,
   }
 })
+
+// 文末皓學日語 App 入口的點擊：之後可以在 GA 看出哪一篇文章把人帶去 App 頁
+const { track } = useGtag()
+const trackAppCta = () => track('app_promo_click', { placement: 'article_cta', from: articlePath.value })
 
 useSeoMeta({
   title: () => article.value?.title,
@@ -72,6 +78,9 @@ watchEffect(() => {
     tags: meta.value?.tags ?? null,
     section: '留學情報',
   })
+
+  // 文章有填 faq 才輸出 FAQ 結構化資料
+  if (Array.isArray(meta.value?.faq) && meta.value.faq.length) useFaqSchema(meta.value.faq)
 
   useBreadcrumbSchema([
     { name: '首頁', path: '/study' },
@@ -136,6 +145,25 @@ watchEffect(() => {
       <article class="article-body">
         <ContentRenderer :value="article" />
       </article>
+
+      <!-- 常見問題（front matter 的 faq） -->
+      <section v-if="meta.faq?.length" class="article-faq">
+        <h2>常見問題</h2>
+        <div v-for="item in meta.faq" :key="item.q" class="article-faq__item">
+          <h3>{{ item.q }}</h3>
+          <p>{{ item.a }}</p>
+        </div>
+      </section>
+
+      <!-- 皓學日語 App 入口（front matter 有 appTopic 的文章才出現） -->
+      <NuxtLink v-if="meta.appTopic" :to="localePath('/study/app')" class="article-app" @click="trackAppCta">
+        <img src="/images/haogaku-logo.svg" alt="" width="64" height="64" loading="lazy" class="article-app__logo" />
+        <span class="article-app__text">
+          <strong>這些句子，先開口練過一次</strong>
+          <span>皓學日語 App 的「{{ meta.appTopic }}」主題裡，AI 會扮演對方跟你把整段對話走完，可以用說的。課程全部免費。</span>
+        </span>
+        <span class="article-app__cta">看看 App →</span>
+      </NuxtLink>
 
       <!-- 底部 CTA -->
       <div class="article-cta">
@@ -314,6 +342,117 @@ watchEffect(() => {
 .cta-btn:hover {
   background: var(--c-primary-light);
   color: var(--c-text-on-primary);
+}
+
+/* ── 常見問題 ── */
+.article-faq {
+  margin-top: 3.5rem;
+}
+
+.article-faq h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--c-text);
+  margin: 0 0 1.25rem;
+}
+
+.article-faq__item {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--c-bg-alt);
+}
+
+.article-faq__item + .article-faq__item {
+  margin-top: 0.75rem;
+}
+
+.article-faq__item h3 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0 0 0.5rem;
+}
+
+.article-faq__item p {
+  margin: 0;
+  color: var(--c-text-secondary);
+  line-height: 1.85;
+}
+
+/* ── 皓學日語 App 入口 ── */
+.article-app {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 28px;
+  background: #8A2432;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 18px 40px rgba(138, 36, 50, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-app:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 50px rgba(138, 36, 50, 0.32);
+  color: #fff;
+}
+
+.article-app__logo {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  border-radius: 50%;
+}
+
+.article-app__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.article-app__text strong {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.article-app__text span {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.article-app__cta {
+  flex: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #8A2432;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.article-app + .article-cta {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .article-app {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .article-app__cta {
+    align-self: stretch;
+    text-align: center;
+  }
 }
 
 .article-empty {

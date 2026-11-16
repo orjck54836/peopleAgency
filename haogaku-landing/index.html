@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>皓學日語｜給台灣人的日語 App，83 個日本生活情境＋AI 日語教練</title>
+  <meta name="description" content="從便利商店結帳到職場敬語，83 個日本生活情境、近 500 堂課，再加上隨時能陪你練口說的 AI 日語教練。課程全部免費，iOS 現已上架。">
+  <meta name="theme-color" content="#2B1017">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="皓學日語｜在日本用得到的日語">
+  <meta property="og:description" content="83 個日本生活情境、近 500 堂課，加上能陪你開口練習的 AI 日語教練。課程全部免費。">
+  <meta name="apple-itunes-app" content="app-id=6830791694">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 共用圖示 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5c0 4-3.6 7-8 7-1 0-2-.2-2.900-.5L5 19.500l1-3.300C4.700 15 4 13.300 4 11.500c0-4 3.600-7 8-7s8 3 8 7z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.500 11a6.500 6.500 0 0 0 13 0M12 17.500V21"/></symbol>
+  <symbol id="i-role" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.500 20c1-3.500 4-5.500 7.500-5.500s6.500 2 7.500 5.500"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h3l5 4V6L7 10H4zM16 9a4 4 0 0 1 0 6M18.500 6.500a8 8 0 0 1 0 11"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V4M19 20v-6"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.500"/><path d="M3.500 12h17M12 3.500c2.500 2.500 2.500 14.500 0 17M12 3.500c-2.500 2.500-2.500 14.500 0 17"/></symbol>
+  <symbol id="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"><rect x="3.500" y="3.500" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.010"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="皓學日語">
+      <img src="img/logo.svg" alt="" width="42" height="42">
+      <span><b>皓學日語</b><small>Haogaku</small></span>
+    </a>
+    <nav class="nav-links" aria-label="頁面導覽">
+      <a href="#themes">情境主題</a>
+      <a href="#coach">AI 教練</a>
+      <a href="#plans">方案</a>
+      <a href="#faq">常見問題</a>
+    </nav>
+    <a class="btn btn-white btn-sm" href="https://apps.apple.com/us/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id6830791694?l=zh-Hant-TW" target="_blank" rel="noopener">下載 App</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-text">
+        <p class="hero-eyebrow">給台灣人的日語 App</p>
+        <h1><span>在日本</span><span>用得到的日語</span></h1>
+        <p class="hero-ja ja" lang="ja">日本で、ちゃんと使える日本語。</p>
+        <p class="hero-lead">從便利商店結帳到職場敬語，83 個日本生活情境一次學會。想開口的時候，AI 日語教練隨時陪你練。</p>
+        <div class="hero-cta" id="hero-cta">
+          <a class="btn btn-white" href="https://apps.apple.com/us/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id6830791694?l=zh-Hant-TW" target="_blank" rel="noopener">
+            <svg><use href="#i-down"/></svg>App Store 免費下載
+          </a>
+          <a class="btn btn-ghost" href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener">
+            <svg><use href="#i-chat"/></svg>加 LINE 諮詢
+          </a>
+        </div>
+        <p class="hero-note">課程全部免費・目前支援 iPhone</p>
+      </div>
+      <div class="phone hero-phone">
+        <img src="img/screen-home.jpg" alt="皓學日語 App 首頁：接著上次的課程、五十音、AI 教練與單字複習" width="598" height="1300">
+      </div>
+      <ul class="hero-stats">
+        <li><b>83</b><span>個生活情境</span></li>
+        <li><b>498</b><span>堂課</span></li>
+        <li><b>41</b><span>篇原創讀物</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. 情境主題 -->
+  <section class="sec sec-cream" id="themes">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="ja" lang="ja">テーマ</span>
+        <h2>83 個真的會用到的主題</h2>
+        <p>不是照文法書的順序排，是照你在日本會遇到的場景排。要去旅遊就先學點餐和搭車，要打工度假就從租屋和面試開始。</p>
+      </header>
+
+      <div class="levels">
+        <div>
+          <h3>兩種程度，近 500 堂課</h3>
+          <p>在主題頁上方切換程度，內容就跟著變。同一個場景，初級先學會把話說出口，進階再學怎麼說得得體。</p>
+          <div class="level-pills">
+            <div class="level-pill"><b>初級</b><span>N5〜N4</span><strong>249<small>堂</small></strong></div>
+            <div class="level-pill"><b>進階</b><span>N3〜N2</span><strong>249<small>堂</small></strong></div>
+          </div>
+        </div>
+        <div class="phone">
+          <img src="img/screen-themes.jpg" alt="主題頁：居住分類下的飯店住宿、找房子、搬家與水電網路、垃圾分類" width="598" height="1300" loading="lazy">
+        </div>
+      </div>
+
+      <ul class="cats">
+        <li class="card cat"><span class="cat-glyph" lang="ja">食</span><div><h3>飲食</h3><p>餐廳點餐、居酒屋、便利商店結帳</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">交</span><div><h3>交通</h3><p>買票、轉車、問路、搭計程車</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">住</span><div><h3>居住</h3><p>飯店入住、找房子、垃圾分類</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">買</span><div><h3>購物</h3><p>問尺寸、免稅、退換貨</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">手</span><div><h3>生活手續</h3><p>區役所、銀行、郵局</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">医</span><div><h3>健康</h3><p>看病、藥局、緊急狀況</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">働</span><div><h3>工作</h3><p>打工、面試、職場溝通</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">敬</span><div><h3>敬語</h3><p>尊敬語、謙讓語、服務業敬語</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">友</span><div><h3>人際社交</h3><p>自我介紹、邀約、婉拒</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">遊</span><div><h3>休閒娛樂</h3><p>動漫、溫泉、演唱會</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">季</span><div><h3>季節文化</h3><p>賞花、祭典、過年</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">心</span><div><h3>情緒表達</h3><p>開心、抱怨、安慰人</p></div></li>
+        <li class="card cat"><span class="cat-glyph" lang="ja">話</span><div><h3>道地口語</h3><p>流行語、相槌、關西腔</p></div></li>
+        <li class="card cat cat-more"><b>13 大類</b><p>從落地第一天到在日本上班，會遇到的場景都排好了。</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. 學習路徑 -->
+  <section class="sec sec-white" id="path">
+    <div class="wrap path">
+      <div>
+        <header class="sec-head">
+          <span class="ja" lang="ja">まなびかた</span>
+          <h2>每個主題，四步學到能開口</h2>
+          <p>先學會說，再學說得像日本人，接著聽懂對方，最後真的講一次。</p>
+        </header>
+        <ol class="steps">
+          <li class="step">
+            <h3>基本說法</h3>
+            <p>這個場景一定會用到的句子，先把話說出口。</p>
+            <span class="ja" lang="ja">これをください。</span>
+          </li>
+          <li class="step">
+            <h3>道地說法</h3>
+            <p>日本人實際會怎麼講，以及對誰可以這樣講。</p>
+            <span class="ja" lang="ja">これ、お願いします。</span>
+          </li>
+          <li class="step">
+            <h3>情境練習</h3>
+            <p>聽懂對方說的話，選出最自然的回應。</p>
+            <span class="ja" lang="ja">「袋はご利用ですか？」</span>
+          </li>
+          <li class="step step-ai">
+            <h3>AI 實戰會話</h3>
+            <p>AI 扮演店員、房東或面試官，跟你把整段對話走完。</p>
+            <span class="ja" lang="ja">いらっしゃいませ。</span>
+          </li>
+        </ol>
+      </div>
+      <div class="phone path-phone">
+        <img src="img/screen-lesson.jpg" alt="道地說法課程：そうなんだ、なるほど、確かに的意思與用法差異" width="598" height="1300" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. AI 日語教練 -->
+  <section class="sec sec-shell" id="coach">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="ja" lang="ja">AI コーチ</span>
+        <h2>AI 日語教練</h2>
+        <p>背了很多句子，站到櫃檯前還是說不出口？那就先在這裡講過一次。</p>
+      </header>
+
+      <div class="ai-card">
+        <div>
+          <h3>可以開口說，<br>講錯也不尷尬</h3>
+          <p>教練會依照主題扮演情境裡的角色跟你對話。什麼時候想練都可以，一句話重講幾次也沒關係。</p>
+          <ul class="ai-points">
+            <li><svg><use href="#i-role"/></svg><div><b>扮演情境裡的角色</b><span>店員、房東、面試官，跟著你選的主題換。</span></div></li>
+            <li><svg><use href="#i-mic"/></svg><div><b>用說的就可以</b><span>語音輸入，不用打字，練的就是開口這件事。</span></div></li>
+            <li><svg><use href="#i-sound"/></svg><div><b>回覆會唸給你聽</b><span>自然的雲端語音，語速可以調慢。</span></div></li>
+          </ul>
+        </div>
+
+        <!-- 對話示意（之後可換成 App 實際會話截圖，建議尺寸 1206×2622） -->
+        <div class="chat" role="img" aria-label="AI 會話示意：在便利商店結帳時，店員詢問便當要不要加熱，以及袋子需要付費">
+          <div class="chat-top">
+            <b>便利商店結帳</b>
+            <span class="tag tag-gold">AI 實戰會話</span>
+          </div>
+          <p class="chat-who">店員</p>
+          <div class="bubble bubble-ai">
+            <span class="ja" lang="ja">いらっしゃいませ。お弁当は温めますか？</span>
+            <small>歡迎光臨。便當要加熱嗎？</small>
+          </div>
+          <p class="chat-who me">你</p>
+          <div class="bubble bubble-me">
+            <span class="ja" lang="ja">はい、お願いします。あと、袋もください。</span>
+            <small>好，麻煩你。另外也請給我袋子。</small>
+          </div>
+          <p class="chat-who">店員</p>
+          <div class="bubble bubble-ai">
+            <span class="ja" lang="ja">かしこまりました。袋は有料ですが、よろしいですか？</span>
+            <small>好的。袋子要收費，可以嗎？</small>
+          </div>
+          <div class="chat-bar">
+            <span class="chat-mic"><svg><use href="#i-mic"/></svg>按一下，用說的</span>
+            <span class="tag">語速 0.8×</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="report">
+        <div class="report-text">
+          <h3>講完之後，有一份會話分析</h3>
+          <p>不是只給一個分數。報告會告訴你哪裡講得好、哪裡可以更好，還會把這場會話值得記下來的句子整理給你。</p>
+          <ul class="report-list">
+            <li class="tag tag-glass">能力分析</li>
+            <li class="tag tag-glass">做得好的地方</li>
+            <li class="tag tag-glass">可以更好的地方</li>
+            <li class="tag tag-glass">這場會話要記的句子</li>
+          </ul>
+        </div>
+        <div class="phone">
+          <img src="img/screen-report.jpg" alt="會話分析報告：總分，以及文法、流暢度、禮貌程度、用詞四項能力分析" width="598" height="1300" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 讀物・單字本・五十音・流行語 -->
+  <section class="sec sec-gray" id="more">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="ja" lang="ja">まいにち</span>
+        <h2>每天打開，都有東西可以看</h2>
+        <p>上課之外，還有讀的、背的、寫的。這些全部免費。</p>
+      </header>
+      <ul class="extras">
+        <li class="card extra">
+          <div class="extra-shot"><img src="img/screen-reading.jpg" alt="日文小品〈拉麵店的暗號〉閱讀畫面" style="object-position: 50% 10%" loading="lazy"></div>
+          <div class="extra-body">
+            <span class="ja" lang="ja">よみもの</span>
+            <h3>日文小品</h3>
+            <p>41 篇原創讀物，小說、隨筆、文化、時事四類。寫的是現代日本人會寫的文字，每天推薦一篇。</p>
+          </div>
+        </li>
+        <li class="card extra">
+          <div class="extra-shot"><img src="img/screen-vocab.jpg" alt="單字本：自己加單字與收藏的單字列表" style="object-position: 50% 8%" loading="lazy"></div>
+          <div class="extra-body">
+            <span class="ja" lang="ja">ことば</span>
+            <h3>單字本＋間隔複習</h3>
+            <p>課程裡的單字一鍵收藏，App 照記憶曲線排複習時間。自己加單字也行，打中文也可以，AI 會補上讀音、意思和例句。</p>
+          </div>
+        </li>
+        <li class="card extra">
+          <div class="extra-shot"><img src="img/screen-kana.jpg" alt="五十音練習：か 的筆順示範" style="object-position: 50% 34%" loading="lazy"></div>
+          <div class="extra-body">
+            <span class="ja" lang="ja">ごじゅうおん</span>
+            <h3>五十音表</h3>
+            <p>點了就唸。あ行有筆順和手寫練習，完全沒學過也能從這裡開始。</p>
+          </div>
+        </li>
+        <li class="card extra">
+          <div class="extra-shot"><img src="img/screen-trends.jpg" alt="今日流行語：エモい，很有感覺、很觸動" style="object-position: 50% 76%" loading="lazy"></div>
+          <div class="extra-body">
+            <span class="ja" lang="ja">はやりことば</span>
+            <h3>每日流行語</h3>
+            <p>52 個日本年輕人真的在講的詞，每天輪一個，附例句和中文意思。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. 等級與排行榜 -->
+  <section class="sec sec-white" id="level">
+    <div class="wrap level-row">
+      <header class="sec-head">
+        <span class="ja" lang="ja">きょうの予定</span>
+        <h2>每天都有一點進度感</h2>
+        <p>首頁的今日計畫會直接告訴你今天要做的三件事。做完就有 XP，越難的練習給得越多，從 Lv.1 一路升到 Lv.10。想跟別人比一比可以加入排行榜，不想比也完全沒關係。還有每日提醒，幫你記得今天還沒練。</p>
+      </header>
+      <!-- 示意區塊（之後可換成等級／排行榜截圖，建議尺寸 1206×2622） -->
+      <div class="xp" role="img" aria-label="等級與今日計畫示意：等級 4，今日計畫包含一堂課、複習單字、一場 AI 會話">
+        <div class="xp-top"><b>Lv.4</b><span class="tag tag-gold">今日</span></div>
+        <div class="xp-bar"><i></i></div>
+        <div class="xp-meta"><span>距離 Lv.5</span><span>XP</span></div>
+        <ul class="today">
+          <li class="done">上一堂課</li>
+          <li class="done">複習單字</li>
+          <li>一場 AI 會話</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 方案 -->
+  <section class="sec sec-cream" id="plans">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="ja" lang="ja">プラン</span>
+        <h2>課程全部免費</h2>
+        <p>付費買的只有 AI 會話和雲端語音的用量。想多練口說的時候再升級就好。</p>
+      </header>
+
+      <div class="free-banner">
+        <h3>三種方案都包含全部內容</h3>
+        <p>83 個主題的所有課程、日文小品、五十音、單字本與複習、排行榜，不管哪個方案都能用。</p>
+      </div>
+
+      <div class="plans">
+        <article class="card plan">
+          <h3>免費版</h3>
+          <p class="plan-price">免費</p>
+          <p class="plan-tagline">先把課程學起來，AI 會話每天也能試幾句。</p>
+          <dl>
+            <div><dt>課程・讀物・五十音・單字本</dt><dd>全部</dd></div>
+            <div><dt>AI 會話</dt><dd>每天 5 次</dd></div>
+            <div><dt>雲端朗讀</dt><dd>每月約 100 句</dd></div>
+            <div><dt>會話分析</dt><dd>每天 1 份</dd></div>
+          </dl>
+        </article>
+
+        <article class="card plan plan-std">
+          <div class="plan-head"><h3>標準版</h3><span class="tag tag-gold">每天練一點</span></div>
+          <p class="plan-price">NT$150<small>／月</small></p>
+          <p class="plan-tagline">適合每天輕鬆練習對話的人來增加語感</p>
+          <dl>
+            <div><dt>課程・讀物・五十音・單字本</dt><dd>全部</dd></div>
+            <div><dt>AI 會話</dt><dd>每天 60 次<small>約 4〜6 場完整會話</small></dd></div>
+            <div><dt>雲端朗讀</dt><dd>每月約 1,330 句</dd></div>
+            <div><dt>會話分析</dt><dd>每天 10 份</dd></div>
+          </dl>
+        </article>
+
+        <article class="card plan plan-pro">
+          <h3>高級版</h3>
+          <p class="plan-price">NT$350<small>／月</small></p>
+          <p class="plan-tagline">適合想讓口說語感突飛猛進，提升自己的人</p>
+          <dl>
+            <div><dt>課程・讀物・五十音・單字本</dt><dd>全部</dd></div>
+            <div><dt>AI 會話</dt><dd>每天 150 次<small>約 12 場</small></dd></div>
+            <div><dt>雲端朗讀</dt><dd>每月約 3,330 句</dd></div>
+            <div><dt>會話分析</dt><dd>每天 20 份</dd></div>
+          </dl>
+        </article>
+      </div>
+      <p class="price-note">方案為月繳。實際價格以 App Store 顯示為準</p>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section class="sec sec-gray" id="faq">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="ja" lang="ja">よくある質問</span>
+        <h2>常見問題</h2>
+      </header>
+      <div class="faq">
+        <details open>
+          <summary>要不要錢？</summary>
+          <p>下載免費，所有課程、讀物、五十音、單字複習和排行榜也都免費。付費方案買的只有 AI 會話和雲端語音的用量，免費版每天也有 5 次 AI 會話可以用。</p>
+        </details>
+        <details>
+          <summary>適合什麼程度？</summary>
+          <p>從零開始到 N2 左右都適合。完全沒學過可以先從五十音表開始；初級課程對應 N5〜N4，進階課程對應 N3〜N2，在主題頁上方隨時可以切換。</p>
+        </details>
+        <details>
+          <summary>有 Android 版嗎？</summary>
+          <p>目前先上 iOS，請用 iPhone 從 App Store 下載。</p>
+        </details>
+        <details>
+          <summary>怎麼取消訂閱？</summary>
+          <p>訂閱由 Apple 管理，請在 iPhone 的「設定 → Apple 帳號 → 訂閱」裡選擇皓學日語後取消。取消後當期仍可用到期末。提醒一下，刪除 App 並不會自動取消訂閱。</p>
+        </details>
+        <details>
+          <summary>AI 的用量用完了會怎樣？</summary>
+          <p>AI 會話會暫停到隔天，用量重新計算後就能繼續。語音朗讀會自動改用手機內建的語音，音質普通一些，但課程照樣可以學。</p>
+        </details>
+        <details>
+          <summary>我只是要去日本玩幾天，用得到嗎？</summary>
+          <p>用得到。出發前挑飲食、交通、購物幾個主題，先學基本說法，再跟 AI 教練把點餐、問路走過一次，到了當地會比較敢開口。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. 結尾 CTA 與 Footer -->
+  <footer class="sec sec-shell end">
+    <div class="wrap">
+      <div class="end-card">
+        <img src="img/logo.svg" alt="" width="72" height="72" loading="lazy">
+        <h2>去日本之前，先練過一次</h2>
+        <p>課程全部免費，下載就能開始。</p>
+        <div class="hero-cta">
+          <a class="btn btn-white" href="https://apps.apple.com/us/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id6830791694?l=zh-Hant-TW" target="_blank" rel="noopener">
+            <svg><use href="#i-down"/></svg>App Store 免費下載
+          </a>
+          <a class="btn btn-ghost" href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener">
+            <svg><use href="#i-chat"/></svg>加 LINE 諮詢
+          </a>
+        </div>
+      </div>
+
+      <div class="links">
+        <a class="link-card" href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener">
+          <svg><use href="#i-chat"/></svg>
+          <div><b>LINE 官方帳號</b><span>問課程、問留學，真人回覆</span></div>
+        </a>
+        <a class="link-card" href="https://www.instagram.com/haogaku_japanese_agency/" target="_blank" rel="noopener">
+          <svg><use href="#i-photo"/></svg>
+          <div><b>Instagram</b><span>每日一句、日本生活與學員心得</span></div>
+        </a>
+        <a class="link-card" href="https://www.forma-global.com/study" target="_blank" rel="noopener">
+          <svg><use href="#i-globe"/></svg>
+          <div><b>皓學官網</b><span>實體課程、師資與留學代辦</span></div>
+        </a>
+      </div>
+
+      <div class="legal">
+        <span>© 皓學 Haogaku・Forma Global</span>
+        <nav aria-label="法務連結">
+          <a href="https://www.forma-global.com/study/terms">服務條款</a>
+          <a href="https://www.forma-global.com/study/privacy">隱私權政策</a>
+          <a href="https://www.forma-global.com/study/support">技術支援</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- 手機底部下載列：滑過 Hero 的按鈕後才出現 -->
+<div class="dock" id="dock" aria-hidden="true">
+  <div class="dock-brand">
+    <img src="img/logo.svg" alt="" width="38" height="38">
+    <div><b>皓學日語</b><span>課程全部免費</span></div>
+  </div>
+  <a class="btn btn-wine btn-sm" tabindex="-1" href="https://apps.apple.com/us/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id6830791694?l=zh-Hant-TW" target="_blank" rel="noopener">下載 App</a>
+</div>
+
+<script>
+  (function () {
+    var dock = document.getElementById('dock');
+    var heroCta = document.getElementById('hero-cta');
+    var end = document.querySelector('.end-card');
+    if (!dock || !heroCta || !('IntersectionObserver' in window)) return;
+    var pastHero = false, atEnd = false;
+    function update() {
+      var show = pastHero && !atEnd;
+      dock.classList.toggle('show', show);
+      dock.setAttribute('aria-hidden', show ? 'false' : 'true');
+      dock.querySelector('a').tabIndex = show ? 0 : -1;
+    }
+    new IntersectionObserver(function (e) {
+      pastHero = !e[0].isIntersecting && e[0].boundingClientRect.top < 0;
+      update();
+    }).observe(heroCta);
+    new IntersectionObserver(function (e) {
+      atEnd = e[0].isIntersecting;
+      update();
+    }).observe(end);
+  })();
+</script>
+</body>
+</html>

@@ -17,6 +17,10 @@ const switchLocalePath = useSwitchLocalePath();
 const router = useRouter();
 const route = useRoute();
 
+// 皓學日語 App 入口的點擊：placement 記錄是從哪個入口點的，from 記錄當下在哪一頁
+const { track } = useGtag();
+const trackAppPromo = (placement: string) => track('app_promo_click', { placement, from: route.path });
+
 const isContactPage = computed(() => route.path.includes('/contact'));
 
 // 記住使用者選擇，供首頁重導使用
@@ -32,6 +36,7 @@ const switchLine = (target: 'study' | 'work') => {
 const studyNavItems = [
   { text: 'schoolTitle', href: '/study' },
   { text: 'studyTaiwanTitle', href: '/study/taiwan' },
+  { text: 'appTitle', href: '/study/app' },
   { text: 'informationTitle', href: '/study/information' },
   { text: 'ourStoryTitle', href: '/study/about_us' },
   { text: 'commonQuestionTitle', href: '/study/common-questions' },
@@ -40,6 +45,7 @@ const studyNavItems = [
 const workNavItems = [
   { text: 'humanResourceTitle', href: '/work' },
   { text: 'informationTitle', href: '/work/information' },
+  { text: 'appTitle', href: '/study/app' },
   { text: 'ourStoryTitle', href: '/work/about_us' },
   { text: 'commonQuestionTitle', href: '/work/common-questions' },
 ];
@@ -107,6 +113,13 @@ onMounted(() => {
 
 <template>
   <header class="header" :class="`header--${currentLine}`">
+    <!-- 皓學日語 App 宣傳列：有 Header 的頁面都會出現，是全站通往 /study/app 的入口 -->
+    <NuxtLink :to="localePath('/study/app')" class="app-bar" @click="trackAppPromo('header_bar')">
+      <span class="app-bar__badge">{{ $t('appPromo.badge') }}</span>
+      <span class="app-bar__text app-bar__text--full">{{ $t('appPromo.bar') }}</span>
+      <span class="app-bar__text app-bar__text--short">{{ $t('appPromo.barShort') }}</span>
+      <span class="app-bar__cta">{{ $t('appPromo.barCta') }}<span aria-hidden="true"> →</span></span>
+    </NuxtLink>
     <div class="container-fluid d-flex align-items-center justify-content-between header-left">
       <div style="width: 100px; height: 80px; display: flex; align-items: center;">
         <!-- Logo -->
@@ -119,7 +132,7 @@ onMounted(() => {
       <nav class="main-nav d-none d-xl-flex">
         <ul>
           <li v-for="item in navItems" :key="item.href" class="nav-link">
-            <NuxtLink :to="localePath(item.href)">
+            <NuxtLink :to="localePath(item.href)" @click="item.href === '/study/app' && trackAppPromo('header_nav')">
               {{ $t(item.text) }}
             </NuxtLink>
           </li>
@@ -178,7 +191,7 @@ onMounted(() => {
         </div>
         <ul>
           <li v-for="item in navItems" :key="item.href" @click="toggleNav">
-            <NuxtLink :to="localePath(item.href)">
+            <NuxtLink :to="localePath(item.href)" @click="item.href === '/study/app' && trackAppPromo('header_nav_mobile')">
               {{ $t(item.text) }}
             </NuxtLink>
           </li>
@@ -228,6 +241,81 @@ onMounted(() => {
 
   img {
     max-width: 100%;
+  }
+
+  // ── 皓學日語 App 宣傳列（固定用 App 的酒紅，不跟著留學／就職線換色）──
+  .app-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: -14px 0 14px;
+    padding: 8px 16px;
+    background: #8A2432;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: #7A1F2C;
+      color: #fff;
+    }
+
+    &:hover .app-bar__cta {
+      transform: translateX(3px);
+    }
+  }
+
+  .app-bar__badge {
+    flex: none;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: #D9A441;
+    color: #141012;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .app-bar__text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .app-bar__text--short {
+    display: none;
+  }
+
+  .app-bar__cta {
+    flex: none;
+    padding: 3px 12px;
+    border-radius: 999px;
+    background: #fff;
+    color: #8A2432;
+    font-weight: 700;
+    font-size: 13px;
+    transition: transform 0.2s ease;
+  }
+
+  @media (max-width: 767px) {
+    .app-bar {
+      gap: 8px;
+      padding: 7px 12px;
+      font-size: 13px;
+    }
+
+    .app-bar__badge,
+    .app-bar__text--full {
+      display: none;
+    }
+
+    .app-bar__text--short {
+      display: block;
+    }
   }
 
   .main-nav {

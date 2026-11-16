@@ -16,10 +16,12 @@ export function useHreflang() {
     // 情報文章目前只有中文內容：/ja、/en 底下同一篇的 canonical 已指回中文版，
     // 所以不能再宣告「這篇有日文版、英文版」，否則和 canonical 互相矛盾。
     const isArticle = /^\/(study|work)\/information\/[^/]+\/?$/.test(rawPath.value)
+    // 皓學日語 App 宣傳頁同樣只有繁中內容
+    const isZhOnlyPage = /^\/study\/app\/?$/.test(rawPath.value)
 
     locales.value.forEach((locale: any) => {
       const code = locale.code
-      if (isArticle && code !== defaultLocale) return
+      if ((isArticle || isZhOnlyPage) && code !== defaultLocale) return
       const iso = locale.iso
       let href = ''
 

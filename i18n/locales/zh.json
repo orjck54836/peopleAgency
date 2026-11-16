@@ -89,6 +89,12 @@
         "cta": "立即諮詢"
       }
     ],
+    "app": {
+      "eyebrow": "皓學日語 App",
+      "heading": "出發之前，先在手機上練過一次",
+      "body": "83 個日本生活情境、近 500 堂課，加上能陪你開口練習的 AI 日語教練。課程全部免費，iPhone 現在就能下載。",
+      "cta": "看看 App →"
+    },
     "philosophy": {
       "headline": "關於皓學",
       "bodyCount": "6",
@@ -986,7 +992,15 @@
     "rent": "自行租屋",
     "clearFilters": "清除所有篩選條件",
     "intakeMonth": "入學月份",
-    "moreDetail": "查看更多 ➔"
+    "moreDetail": "查看更多 ➔",
+    "eyebrow": "日本語言學校",
+    "statSchools": "合作學校",
+    "statCities": "所在城市",
+    "statFee": "代辦費",
+    "sortLabel": "排序：",
+    "resultCount": "共 {n} 所學校",
+    "noResult": "找不到符合條件的學校，請調整篩選條件。",
+    "currentFilter": "目前篩選："
   },
   "schoolDetail": {
     "breadcrumb": "學校總覽",
@@ -1034,7 +1048,13 @@
     "applicationFee": "報名費",
     "registrationFee": "入學金",
     "otherFees": "其他學雜費",
-    "viewMore": "查看更多"
+    "viewMore": "查看更多",
+    "officialSite": "前往學校官網",
+    "zeroFee": "透過皓學申請零代辦費，學費與學校官網相同。",
+    "relatedInfo": "相關情報",
+    "allInfo": "查看所有留學情報",
+    "notFound": "找不到這間學校，可能已下架或網址有誤。",
+    "backToList": "回學校總覽"
   },
   "about": {
     "hero": {
@@ -1182,6 +1202,16 @@
   "schoolTitle": "關於留學",
   "humanResourceTitle": "關於工作",
   "studyTaiwanTitle": "台灣遊學",
+  "appTitle": "日語 App",
+  "appPromo": {
+    "badge": "App 上架",
+    "bar": "皓學日語 App｜83 個日本生活情境＋AI 口說教練，課程全部免費",
+    "barShort": "皓學日語 App 上架，課程全部免費",
+    "barCta": "看看 App",
+    "footerHeading": "皓學日語 App",
+    "footerBody": "83 個日本生活情境、近 500 堂課，加上能陪你開口練習的 AI 日語教練。課程全部免費。",
+    "footerCta": "看看 App →"
+  },
   "informationTitle": "情報專欄",
   "commonQuestionTitle": "常見問題",
   "learnMore": "查看更多",
