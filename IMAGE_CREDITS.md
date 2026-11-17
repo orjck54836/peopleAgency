@@ -44,6 +44,22 @@
 - 郵局那張是大阪平野一帶鐵道旁的紅色郵筒，正面有日本郵便的標誌和「郵便 POST」字樣（郵筒本身的樣子，避不掉），還貼著郵局的徵人公告。已裁成 16:9。
 - 剪頭髮那張是美髮工具車（吹風機、梳子、噴瓶、剪刀）的特寫，不是日本的場景照；右側邊緣有一個人的腿，看不出是誰。已裁成 16:9。
 
+## 工作情報專欄（/work/information）
+
+同樣來自 Unsplash、採用 Unsplash License。
+
+| 文章 | 檔案 | 攝影者 | 原圖 |
+|------|------|--------|------|
+| 日本薪水實拿多少 | `public/images/information/japan-salary-take-home/1.jpg` | Senad Palic | https://unsplash.com/photos/hqSIdyrFAT0 |
+| 日本雇用契約怎麼看 | `public/images/information/japan-employment-contract-guide/1.jpg` | Shutter Speed | https://unsplash.com/photos/rz_0EzMAmis |
+| 日文面試常見問題 | `public/images/information/japan-interview-japanese-phrases/1.jpg` | Resume Genius | https://unsplash.com/photos/9si2noVCVH8 |
+
+備註：
+
+- 薪水那張是手掌上的一圓與五圓硬幣特寫，取「手取り」的意象。已裁成 16:9。
+- 雇用契約那張是黑白的鋼筆簽字特寫，只拍到手，文件內容看不清楚；不是日本的場景照。
+- 面試那張是面試官拿著履歷、對面應徵者雙手交握的畫面，沒有拍到臉。履歷是英文的範例履歷（上面的姓名是範例用的假名），不是日本的履歷書格式。
+
 ## 學校總覽頁（/study/schools）
 
 同樣來自 Unsplash、採用 Unsplash License。
