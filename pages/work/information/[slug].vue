@@ -15,6 +15,8 @@ const articlePath = computed(() => `/work/information/${route.params.slug}`)
 // 讓這些網址的 canonical 指回中文版，避免被當成三份重複內容互相稀釋。
 const { locale: currentLocale, defaultLocale } = useI18n()
 useHead({
+  // iPhone Safari 會在頁面頂端顯示皓學日語 App 的「取得／打開」橫幅（系統原生，不佔版面）
+  meta: [{ key: 'apple-itunes-app', name: 'apple-itunes-app', content: `app-id=${APP_STORE_ID}` }],
   link: [
     {
       key: 'canonical',
@@ -144,7 +146,7 @@ watchEffect(() => {
       </article>
 
       <!-- 皓學日語 App 入口（front matter 有 appTopic 的文章才出現） -->
-      <NuxtLink v-if="meta.appTopic" :to="localePath('/study/app')" class="article-app" @click="trackAppCta">
+      <NuxtLink v-if="meta.appTopic" :to="{ path: localePath('/study/app'), query: { from: String(route.params.slug) } }" class="article-app" @click="trackAppCta">
         <img src="/images/haogaku-logo.svg" alt="" width="64" height="64" loading="lazy" class="article-app__logo" />
         <span class="article-app__text">
           <strong>上班前，先用日文練一次</strong>

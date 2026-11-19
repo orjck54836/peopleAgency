@@ -14,7 +14,17 @@ const { track } = useGtag()
 const PAGE_PATH = '/study/app'
 const PAGE_URL = absoluteUrl(PAGE_PATH)
 const OG_IMAGE = absoluteUrl('/images/haogaku-app/og.jpg')
-const APP_STORE_URL = 'https://apps.apple.com/us/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id6830791694?l=zh-Hant-TW'
+// 結構化資料用乾淨的商店網址；頁面上的下載按鈕用 storeHref（可能帶行銷活動參數）
+const APP_STORE_URL = appStoreUrl()
+const route = useRoute()
+// 從文章的 App 入口點進來時網址會帶 ?from=<文章 slug>，下載連結就用它當行銷活動代碼，
+// 在 App Store Connect 看得到是哪一篇文章帶來的下載。
+// 在 onMounted 才換掉：伺服器端的 HTML 可能被 CloudFront 快取，不能讓某一篇的代碼被別人共用。
+const storeHref = ref(appStoreUrl())
+onMounted(() => {
+  const from = typeof route.query.from === 'string' ? route.query.from : ''
+  if (from) storeHref.value = appStoreUrl(from)
+})
 
 const title = '皓學日語 App｜學日文 App：83 個日本生活情境＋AI 口說教練'
 const description = '給台灣人的日語學習 App。從便利商店結帳到職場敬語，83 個日本生活情境、近 500 堂課（N5〜N2），加上能用說的練會話的 AI 日語教練。課程全部免費，iPhone 現已上架。'
@@ -39,7 +49,7 @@ useSeoMeta({
 useHead({
   meta: [
     // iPhone Safari 會在頁面頂端顯示「在 App Store 開啟」的橫幅
-    { name: 'apple-itunes-app', content: 'app-id=6830791694' },
+    { name: 'apple-itunes-app', content: `app-id=${APP_STORE_ID}` },
   ],
   link: [
     // 這一頁只有繁中內容：/ja、/en 底下看到的是同一份中文，
@@ -274,7 +284,7 @@ onBeforeUnmount(() => observers.forEach((o) => o.disconnect()))
           <a href="#plans">方案</a>
           <a href="#faq">常見問題</a>
         </nav>
-        <a class="hg-btn hg-btn-white hg-btn-sm" href="https://apps.apple.com/us/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id6830791694?l=zh-Hant-TW" target="_blank" rel="noopener">下載 App</a>
+        <a class="hg-btn hg-btn-white hg-btn-sm" :href="storeHref" target="_blank" rel="noopener">下載 App</a>
       </div>
     </header>
 
@@ -289,7 +299,7 @@ onBeforeUnmount(() => observers.forEach((o) => o.disconnect()))
             <p class="hg-hero-ja hg-ja" lang="ja">日本で、ちゃんと使える日本語。</p>
             <p class="hg-hero-lead">從便利商店結帳到職場敬語，83 個日本生活情境一次學會。想開口的時候，AI 日語教練隨時陪你練。</p>
             <div ref="heroCta" class="hg-hero-cta">
-              <a class="hg-btn hg-btn-white" href="https://apps.apple.com/us/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id6830791694?l=zh-Hant-TW" target="_blank" rel="noopener">
+              <a class="hg-btn hg-btn-white" :href="storeHref" target="_blank" rel="noopener">
                 <svg><use href="#i-down"/></svg>App Store 免費下載
               </a>
               <a class="hg-btn hg-btn-ghost" href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener">
@@ -608,7 +618,7 @@ onBeforeUnmount(() => observers.forEach((o) => o.disconnect()))
             <h2>去日本之前，先練過一次</h2>
             <p>課程全部免費，下載就能開始。</p>
             <div class="hg-hero-cta">
-              <a class="hg-btn hg-btn-white" href="https://apps.apple.com/us/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id6830791694?l=zh-Hant-TW" target="_blank" rel="noopener">
+              <a class="hg-btn hg-btn-white" :href="storeHref" target="_blank" rel="noopener">
                 <svg><use href="#i-down"/></svg>App Store 免費下載
               </a>
               <a class="hg-btn hg-btn-ghost" href="https://line.me/R/ti/p/@forma_global" target="_blank" rel="noopener">
@@ -651,7 +661,7 @@ onBeforeUnmount(() => observers.forEach((o) => o.disconnect()))
         <img src="/images/haogaku-logo.svg" alt="" width="38" height="38">
         <div><b>皓學日語</b><span>課程全部免費</span></div>
       </div>
-      <a class="hg-btn hg-btn-wine hg-btn-sm" :tabindex="dockVisible ? 0 : -1" href="https://apps.apple.com/us/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id6830791694?l=zh-Hant-TW" target="_blank" rel="noopener">下載 App</a>
+      <a class="hg-btn hg-btn-wine hg-btn-sm" :tabindex="dockVisible ? 0 : -1" :href="storeHref" target="_blank" rel="noopener">下載 App</a>
     </div>
   </div>
 </template>

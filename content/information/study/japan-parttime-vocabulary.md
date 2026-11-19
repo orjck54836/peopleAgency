@@ -6,6 +6,7 @@ author: "皓學日本留遊學"
 cover: "/images/information/japan-parttime-vocabulary/1.jpg"
 tags: ["日文學習","日本打工","留學準備","職場日文"]
 
+appTopic: "打工日常"
 ---
 
 在日本留學期間，打工不只是賺生活費的方式——更是練習日文、融入日本社會最直接的機會。

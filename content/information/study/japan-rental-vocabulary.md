@@ -5,6 +5,7 @@ date: 2026-07-22
 author: "皓學日本留遊學"
 cover: "/images/information/japan-rental-vocabulary/1.jpg"
 tags: ["日文學習","日文學習","日本租屋","留學準備","生活日文"]
+appTopic: "找房子"
 ---
 
 決定去日本留學之後，找房子是最讓人頭痛的事之一。
