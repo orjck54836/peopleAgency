@@ -70,7 +70,8 @@ export default defineNuxtConfig({
   sitemap: {
     // 單一 sitemap.xml，和 robots.txt 的 Sitemap: 指向一致
     // /en/study/app、/ja/study/app 顯示的是同一份繁中內容，canonical 已指回 /study/app
-    exclude: ['/admin/**', '/blogs', '/*/blogs', '/en/study/app', '/ja/study/app'],
+    // /partners 只有日文版：/partners、/en/partners 會 301 到 /ja/partners
+    exclude: ['/admin/**', '/blogs', '/*/blogs', '/en/study/app', '/ja/study/app', '/partners', '/en/partners'],
     // 補上 Markdown 文章等動態路由（見 server/api/__sitemap__/urls.ts）
     sources: ['/api/__sitemap__/urls'],
     defaults: {

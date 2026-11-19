@@ -72,6 +72,11 @@ const resources = [
           </li>
         </ul>
 
+        <!-- 給日本學校・企業的合作入口：中文頁也放，日本人從搜尋進到中文頁時才找得到 -->
+        <NuxtLink to="/ja/partners" class="footer-partners" lang="ja">
+          日本の学校・企業の皆さまへ →
+        </NuxtLink>
+
         <div class="footer-social">
           <a
             v-for="s in socialLinks"
@@ -239,6 +244,19 @@ const resources = [
   gap: 0.5rem;
   
 }
+
+.footer-partners {
+  display: inline-block;
+  margin: 0 0 1.5rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.5;
+}
+.footer-partners:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
 .contact-icon {  flex-shrink: 0; }
 

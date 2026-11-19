@@ -18,6 +18,15 @@ export function useHreflang() {
     const isArticle = /^\/(study|work)\/information\/[^/]+\/?$/.test(rawPath.value)
     // 皓學日語 App 宣傳頁同樣只有繁中內容
     const isZhOnlyPage = /^\/study\/app\/?$/.test(rawPath.value)
+    // 給日本學校・企業的合作頁只有日文版，/partners、/en/partners 會 301 到 /ja/partners
+    const isJaOnlyPage = /^\/partners\/?$/.test(rawPath.value)
+    if (isJaOnlyPage) {
+      const href = `${siteUrl}/ja/partners`
+      return [
+        { rel: 'alternate', hreflang: 'ja-JP', href },
+        { rel: 'alternate', hreflang: 'x-default', href },
+      ]
+    }
 
     locales.value.forEach((locale: any) => {
       const code = locale.code

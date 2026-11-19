@@ -50,7 +50,12 @@ const workNavItems = [
   { text: 'commonQuestionTitle', href: '/work/common-questions' },
 ];
 
-const navItems = computed(() => (currentLine.value === 'work' ? workNavItems : studyNavItems));
+// 日文介面多一個給日本學校・企業的合作入口（/ja/partners 只有日文版，其他語系不放）
+const partnersNavItem = { text: 'partnersTitle', href: '/partners' };
+const navItems = computed(() => {
+  const items = currentLine.value === 'work' ? workNavItems : studyNavItems;
+  return locale.value === 'ja' ? [...items, partnersNavItem] : items;
+});
 
 // ---- i18n 語言切換 ----
 const availableLocales = computed(() =>

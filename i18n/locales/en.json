@@ -1,4 +1,5 @@
 {
+  "partnersTitle": "For Partners",
   "companyName": "Company Name",
   "name": "Name",
   "phone": "Phone",
@@ -368,6 +369,10 @@
   },
   "seo": {
     "pages": {
+      "partners": {
+        "title": "Partnerships for Japanese Schools and Businesses",
+        "description": "Partnership information for Japanese schools and businesses (in Japanese)."
+      },
       "shortTerm": {
         "title": "Short-Term Study in Japan | 2-Week to 3-Month Language Courses",
         "description": "Study Japanese in Japan for 2 weeks to 3 months. Taiwan passport holders enter visa-free and beginners are welcome. Haogaku arranges the school, housing and schedule with no agency fee."
