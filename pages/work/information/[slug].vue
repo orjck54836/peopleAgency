@@ -2,6 +2,7 @@
 const route = useRoute()
 const navOpen = ref(false)
 const toggleNav = () => { navOpen.value = !navOpen.value }
+const localePath = useLocalePath()
 
 const { data: article } = await useAsyncData(() =>
   queryCollection('content').path(`/information/work/${route.params.slug}`).first()
@@ -36,8 +37,13 @@ const meta = computed<any>(() => {
     author: a.author ?? a.meta?.author ?? null,
     cover: a.cover ?? a.meta?.cover ?? null,
     tags: a.tags ?? a.meta?.tags ?? null,
+    appTopic: a.appTopic ?? a.meta?.appTopic ?? null,
   }
 })
+
+// 文末皓學日語 App 入口的點擊：和留學文章用同一個事件，用 from 區分是哪一篇
+const { track } = useGtag()
+const trackAppCta = () => track('app_promo_click', { placement: 'article_cta', from: articlePath.value })
 
 useSeoMeta({
   title: () => article.value?.title,
@@ -136,6 +142,16 @@ watchEffect(() => {
       <article class="article-body">
         <ContentRenderer :value="article" />
       </article>
+
+      <!-- 皓學日語 App 入口（front matter 有 appTopic 的文章才出現） -->
+      <NuxtLink v-if="meta.appTopic" :to="localePath('/study/app')" class="article-app" @click="trackAppCta">
+        <img src="/images/haogaku-logo.svg" alt="" width="64" height="64" loading="lazy" class="article-app__logo" />
+        <span class="article-app__text">
+          <strong>上班前，先用日文練一次</strong>
+          <span>皓學日語 App 的「{{ meta.appTopic }}」主題裡，AI 會扮演對方跟你把整段對話走完，可以用說的。課程全部免費。</span>
+        </span>
+        <span class="article-app__cta">看看 App →</span>
+      </NuxtLink>
 
       <!-- 底部 CTA -->
       <div class="article-cta">
@@ -314,6 +330,81 @@ watchEffect(() => {
 .cta-btn:hover {
   background: var(--c-primary-light);
   color: var(--c-text-on-primary);
+}
+
+/* ── 皓學日語 App 入口（樣式和留學文章頁相同，App 的品牌色） ── */
+.article-app {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 28px;
+  background: #8A2432;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 18px 40px rgba(138, 36, 50, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-app:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 50px rgba(138, 36, 50, 0.32);
+  color: #fff;
+}
+
+.article-app__logo {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  border-radius: 50%;
+}
+
+.article-app__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.article-app__text strong {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.article-app__text span {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.article-app__cta {
+  flex: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #8A2432;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.article-app + .article-cta {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .article-app {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .article-app__cta {
+    align-self: stretch;
+    text-align: center;
+  }
 }
 
 .article-empty {

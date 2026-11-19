@@ -28,6 +28,9 @@
 | 買衣服日文 | `public/images/information/japanese-clothing-shopping/1.jpg` | Parker Burchfield | https://unsplash.com/photos/tvG4WvjgsEY |
 | 郵局與宅配日文 | `public/images/information/japanese-post-office-delivery/1.jpg` | Kamaruld Salleh | https://unsplash.com/photos/n2lpfqwPIDg |
 | 剪頭髮日文 | `public/images/information/japanese-hair-salon/1.jpg` | Babak Eshaghian | https://unsplash.com/photos/sLMppPKdmkU |
+| 區役所日文 | `public/images/information/japanese-city-hall-procedures/1.jpg` | Olena Kholina | https://unsplash.com/photos/MhqUBTxQ3Hw |
+| 銀行開戶日文 | `public/images/information/japanese-bank-account-opening/1.jpg` | Gizem Nikomedi | https://unsplash.com/photos/BCP6GrzZ9gk |
+| 辦手機門號日文 | `public/images/information/japanese-mobile-phone-plan/1.jpg` | User_Pascal | https://unsplash.com/photos/7qlXFeFNv14 |
 
 備註：
 
@@ -43,6 +46,9 @@
 - 買衣服那張是衣架上一排 T 恤的特寫，不是日本的場景照，當作中性的物品照使用。
 - 郵局那張是大阪平野一帶鐵道旁的紅色郵筒，正面有日本郵便的標誌和「郵便 POST」字樣（郵筒本身的樣子，避不掉），還貼著郵局的徵人公告。已裁成 16:9。
 - 剪頭髮那張是美髮工具車（吹風機、梳子、噴瓶、剪刀）的特寫，不是日本的場景照；右側邊緣有一個人的腿，看不出是誰。已裁成 16:9。
+- 區役所那張是兩個人在桌上核對申請表格，只拍到手和身體，沒有臉；表格是英文的，不是日本的區役所文件。找不到沒有人臉、看得出是日本區役所的照片。
+- 銀行開戶那張是 ATM 數字鍵盤的特寫，不是日本的 ATM。
+- 辦手機門號那張是 SIM 卡與轉接卡座的特寫，黑底的物品照。
 
 ## 工作情報專欄（/work/information）
 
@@ -53,12 +59,18 @@
 | 日本薪水實拿多少 | `public/images/information/japan-salary-take-home/1.jpg` | Senad Palic | https://unsplash.com/photos/hqSIdyrFAT0 |
 | 日本雇用契約怎麼看 | `public/images/information/japan-employment-contract-guide/1.jpg` | Shutter Speed | https://unsplash.com/photos/rz_0EzMAmis |
 | 日文面試常見問題 | `public/images/information/japan-interview-japanese-phrases/1.jpg` | Resume Genius | https://unsplash.com/photos/9si2noVCVH8 |
+| 報連相 | `public/images/information/japanese-horenso/1.jpg` | Paymo | https://unsplash.com/photos/JXyY3jRV9oI |
+| 商務電話日文 | `public/images/information/japanese-business-phone/1.jpg` | Petr | https://unsplash.com/photos/V6GChIKrriU |
+| 商務郵件 | `public/images/information/japanese-business-email/1.jpg` | Glenn Carstens-Peters | https://unsplash.com/photos/npxXWgQ33ZQ |
 
 備註：
 
 - 薪水那張是手掌上的一圓與五圓硬幣特寫，取「手取り」的意象。已裁成 16:9。
 - 雇用契約那張是黑白的鋼筆簽字特寫，只拍到手，文件內容看不清楚；不是日本的場景照。
 - 面試那張是面試官拿著履歷、對面應徵者雙手交握的畫面，沒有拍到臉。履歷是英文的範例履歷（上面的姓名是範例用的假名），不是日本的履歷書格式。
+- 報連相那張是白板上的看板式便利貼（進度管理），沒有人。攝影者帳號 Paymo 是一家專案管理軟體公司，畫面裡沒有它的商標。
+- 商務電話那張是會議室桌上的桌上型 IP 電話，沒有人；電話上有很小的廠牌字樣。
+- 商務郵件那張是用筆電打字的手部特寫，沒有拍到臉。
 
 ## 學校總覽頁（/study/schools）
 

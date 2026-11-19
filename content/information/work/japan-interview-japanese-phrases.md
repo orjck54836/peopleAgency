@@ -5,6 +5,7 @@ date: "2026-11-17"
 author: "皓學日本留遊學"
 tags: ["日文面試", "日本面試", "自我介紹", "志望動機", "赴日工作"]
 cover: "/images/information/japan-interview-japanese-phrases/1.jpg"
+appTopic: "日商面試"
 ---
 
 日本企業的面試，問題大致是固定的。
