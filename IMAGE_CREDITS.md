@@ -102,3 +102,26 @@
 - 升學頁用的是東京大學的實景，皓學並沒有和東大合作；照片只當「日本的大學」意象，上面沒有標示校名。若覺得會讓人誤會，換成不特定學校的校園照即可。
 - 長期留學「課程特色」那張教室不是實拍，是 3D 繪製的圖；找不到沒有人臉、看得出是日本的教室實拍照。
 - 找「日本的大學校園」時有兩張看不出是不是在日本（銀杏樹下的洋樓、有鐘塔的校門），沒有採用。
+
+## 皓學日語 App 相關文章
+
+這三張沿用皓學日語 App 的主題照片（來源與挑選紀錄在 App 專案的 `assets/topics/CREDITS.md`），Pexels License，可免費商用、免署名。
+
+| 文章 | 檔案 | 原圖 |
+|------|------|------|
+| 學日文 App 怎麼選 | `public/images/information/learn-japanese-app-guide/1.jpg`（桌上螢幕空白的手機，裁成橫幅） | https://www.pexels.com/photo/6611962/ |
+| 五十音怎麼背 | `public/images/information/how-to-learn-gojuon/1.jpg`（白紙上的毛筆假名） | https://www.pexels.com/photo/9785146/ |
+| 一個人怎麼練日文口說 | `public/images/information/japanese-speaking-practice-ai/1.jpg`（桌上的耳機） | https://www.pexels.com/photo/5269735/ |
+
+## 2026-11-22 新增的六篇（沿用皓學日語 App 主題照片）
+
+同樣是 Pexels License，從 App 的主題照片置中裁成 1000×563 橫幅。
+
+| 文章 | 檔案 | 原圖 |
+|------|------|------|
+| 日本垃圾分類 | `public/images/information/japan-garbage-sorting/1.jpg`（打包成捆的回收紙） | https://www.pexels.com/photo/2967770/ |
+| 在日本遇到地震 | `public/images/information/japan-earthquake-guide/1.jpg`（熊本地震後石垣崩落的熊本城櫓） | https://www.pexels.com/photo/10042298/ |
+| 日本打工面試 | `public/images/information/japan-parttime-interview/1.jpg`（掛在磁磚牆上的圍裙） | https://www.pexels.com/photo/5461640/ |
+| 日文開會用語 | `public/images/information/japanese-business-meeting/1.jpg`（無人的會議室長桌） | https://www.pexels.com/photo/3767172/ |
+| 日本公司聚餐 | `public/images/information/japanese-nomikai/1.jpg`（宴會和室，長桌座墊排開） | https://www.pexels.com/photo/37067835/ |
+| 日文敬語入門 | `public/images/information/japanese-keigo-basics/1.jpg`（毛筆、硯台與習字紙） | https://www.pexels.com/photo/9478265/ |

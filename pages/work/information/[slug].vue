@@ -39,6 +39,7 @@ const meta = computed<any>(() => {
     author: a.author ?? a.meta?.author ?? null,
     cover: a.cover ?? a.meta?.cover ?? null,
     tags: a.tags ?? a.meta?.tags ?? null,
+    faq: a.faq ?? a.meta?.faq ?? null,
     appTopic: a.appTopic ?? a.meta?.appTopic ?? null,
   }
 })
@@ -80,6 +81,9 @@ watchEffect(() => {
     tags: meta.value?.tags ?? null,
     section: '就職情報',
   })
+
+  // 文章有填 faq 才輸出 FAQ 結構化資料（和留學文章頁同一套）
+  if (Array.isArray(meta.value?.faq) && meta.value.faq.length) useFaqSchema(meta.value.faq)
 
   useBreadcrumbSchema([
     { name: '首頁', path: '/work' },
@@ -144,6 +148,15 @@ watchEffect(() => {
       <article class="article-body">
         <ContentRenderer :value="article" />
       </article>
+
+      <!-- 常見問題（front matter 的 faq） -->
+      <section v-if="meta.faq?.length" class="article-faq">
+        <h2>常見問題</h2>
+        <div v-for="item in meta.faq" :key="item.q" class="article-faq__item">
+          <h3>{{ item.q }}</h3>
+          <p>{{ item.a }}</p>
+        </div>
+      </section>
 
       <!-- 皓學日語 App 入口（front matter 有 appTopic 的文章才出現） -->
       <NuxtLink v-if="meta.appTopic" :to="{ path: localePath('/study/app'), query: { from: String(route.params.slug) } }" class="article-app" @click="trackAppCta">
@@ -332,6 +345,42 @@ watchEffect(() => {
 .cta-btn:hover {
   background: var(--c-primary-light);
   color: var(--c-text-on-primary);
+}
+
+/* ── 常見問題（樣式和留學文章頁相同） ── */
+.article-faq {
+  margin-top: 3.5rem;
+}
+
+.article-faq h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--c-text);
+  margin: 0 0 1.25rem;
+}
+
+.article-faq__item {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--c-bg-alt);
+}
+
+.article-faq__item + .article-faq__item {
+  margin-top: 0.75rem;
+}
+
+.article-faq__item h3 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0 0 0.5rem;
+}
+
+.article-faq__item p {
+  margin: 0;
+  color: var(--c-text-secondary);
+  line-height: 1.85;
 }
 
 /* ── 皓學日語 App 入口（樣式和留學文章頁相同，App 的品牌色） ── */
