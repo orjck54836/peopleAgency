@@ -52,6 +52,7 @@ export default defineSitemapEventHandler(async (event) => {
     ['/', 1.0],
     ['/study', 0.9],
     ['/work', 0.9],
+    ['/study/app', 0.9],
     ['/study/schools', 0.9],
     ['/study/short-term', 0.9],
     ['/study/long-term', 0.9],

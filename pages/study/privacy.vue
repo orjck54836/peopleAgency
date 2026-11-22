@@ -49,11 +49,11 @@ useSeoMeta({
     <h2>二、裝置權限</h2>
     <p>以下權限都是在你第一次使用對應功能時才詢問，拒絕後 App 其餘功能仍可正常使用。</p>
     <table>
-    <tr><th>權限</th><th>用途</th></tr>
+    <tbody><tr><th>權限</th><th>用途</th></tr>
     <tr><td>麥克風</td><td>讓你用說的方式和 AI 練習日語會話。</td></tr>
     <tr><td>語音辨識</td><td>把你說的日語轉成文字，交給 AI 回覆。辨識由作業系統提供的服務處理。</td></tr>
     <tr><td>相簿</td><td>只在你主動挑選大頭照時讀取你選中的那一張照片，不會掃描或上傳其他內容。</td></tr>
-    <tr><td>通知</td><td>排定本機的每日學習提醒。提醒完全在你的裝置上產生，我們不會取得推播權杖，也不會從伺服器推送訊息。</td></tr>
+    <tr><td>通知</td><td>排定本機的每日學習提醒。提醒完全在你的裝置上產生，我們不會取得推播權杖，也不會從伺服器推送訊息。</td></tr></tbody>
     </table>
 
     <h2>三、我們為什麼需要這些資料</h2>
@@ -68,7 +68,7 @@ useSeoMeta({
     <h2>四、資料交給哪些服務處理</h2>
     <p>為了提供服務，以下第三方會處理你的部分資料。它們依各自的隱私權政策處理，我們不授權它們將你的資料用於其他目的。</p>
     <table>
-    <tr><th>服務</th><th>處理的資料</th><th>目的</th></tr>
+    <tbody><tr><th>服務</th><th>處理的資料</th><th>目的</th></tr>
     <tr>
       <td>Google Firebase（Authentication、Firestore、Storage、Cloud Functions）<br><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">政策</a></td>
       <td>帳號識別資料、個人檔案、學習進度、用量統計、大頭照</td>
@@ -88,7 +88,7 @@ useSeoMeta({
       <td>Apple / Google 登入</td>
       <td>由你授權提供的識別碼與電子郵件</td>
       <td>登入驗證</td>
-    </tr>
+    </tr></tbody>
     </table>
     <p>上述服務的伺服器可能位於台灣以外（包含美國與亞洲其他地區），使用本 App 即表示你瞭解資料會進行跨境傳輸。</p>
     <p><strong>我們不會販售你的個人資料，也不會為了行銷目的將其提供給第三方。</strong>僅在法律要求或為了保護服務與使用者安全的必要範圍內，我們才會依法揭露。</p>

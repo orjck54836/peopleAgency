@@ -133,6 +133,20 @@ const faqs = [
     q: '我只是要去日本玩幾天，用得到嗎？',
     a: '用得到。出發前挑飲食、交通、購物幾個主題，先學基本說法，再跟 AI 教練把點餐、問路走過一次，到了當地會比較敢開口。',
   },
+  {
+    // 「學日文 App 推薦」是這一頁最想排上的搜尋字，用問答把差異講清楚，AI 搜尋也最常直接引用這種段落
+    q: '跟其他學日文 App 有什麼不同？',
+    a: '多數學日文 App 練的是單字和選擇題；皓學日語是照在日本真的會遇到的 83 個生活情境排的，每個主題最後都會跟 AI 教練用說的把對話走完，練的是開口。介面和解說全部是繁體中文。如果目標只有日檢考試，它沒有模擬考題庫，建議再搭配日檢題庫。',
+  },
+]
+
+// FAQ 下方的延伸閱讀：讓搜尋引擎從 App 頁走到對應的教學文章，文章那邊也都連回這一頁
+const guides = [
+  { title: '學日文 App 怎麼選？台灣人自學日語的 5 個挑選重點', path: '/study/information/learn-japanese-app-guide' },
+  { title: '五十音怎麼背最快？平假名、片假名兩週背完的方法', path: '/study/information/how-to-learn-gojuon' },
+  { title: '一個人怎麼練日文口說？用 AI 練日文會話的方法與限制', path: '/study/information/japanese-speaking-practice-ai' },
+  { title: '日本便利商店結帳日文：店員會問的 7 句話', path: '/study/information/japanese-konbini-checkout' },
+  { title: '日檢 N5 到 N2 要讀多久？台灣人的 JLPT 讀書計畫', path: '/study/information/jlpt-study-plan' },
 ]
 
 useFaqSchema(faqs)
@@ -510,7 +524,7 @@ onBeforeUnmount(() => observers.forEach((o) => o.disconnect()))
               <div class="hg-extra-body">
                 <span class="hg-ja" lang="ja">はやりことば</span>
                 <h3>每日流行語</h3>
-                <p>52 個日本年輕人真的在講的詞，每天輪一個，附例句和中文意思。</p>
+                <p>100 個日本年輕人真的在講的詞，每天輪一個，附例句和中文意思。</p>
               </div>
             </li>
           </ul>
@@ -607,6 +621,12 @@ onBeforeUnmount(() => observers.forEach((o) => o.disconnect()))
               <p>{{ faq.a }}</p>
             </details>
           </div>
+          <nav class="hg-guides" aria-label="日語學習指南" data-rv>
+            <h3>日語學習指南</h3>
+            <ul>
+              <li v-for="g in guides" :key="g.path"><NuxtLink :to="localePath(g.path)">{{ g.title }}</NuxtLink></li>
+            </ul>
+          </nav>
         </div>
       </section>
 
@@ -994,6 +1014,11 @@ onBeforeUnmount(() => observers.forEach((o) => o.disconnect()))
 
 /* ── FAQ ── */
 .hg-app .hg-faq { display: grid; gap: 12px; max-width: 800px; }
+/* 延伸閱讀：放在 FAQ 底下的一般文字連結，視覺上要比 FAQ 卡片輕，不搶下載按鈕 */
+.hg-app .hg-guides { max-width: 800px; margin-top: 36px; }
+.hg-app .hg-guides h3 { font-weight: 800; font-size: 17px; letter-spacing: -0.2px; margin: 0 0 12px; }
+.hg-app .hg-guides ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hg-app .hg-guides a { color: var(--wine); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 .hg-app .hg-faq details { background: var(--white); border-radius: var(--r-card); box-shadow: var(--shadow); }
 .hg-app .hg-faq summary {
   list-style: none; cursor: pointer;
@@ -1311,5 +1336,5 @@ onBeforeUnmount(() => observers.forEach((o) => o.disconnect()))
 }
 
 /* 這一頁自己有 LINE 諮詢按鈕和底部下載列，官網右下角的浮動 LINE 按鈕會疊在上面，所以在這頁收起來 */
-html:has(.hg-app) .line-stack { display: none; }
+html:has(.hg-app) .fab-stack { display: none; }
 </style>

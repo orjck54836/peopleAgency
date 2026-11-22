@@ -16,6 +16,8 @@ export default defineContentConfig({
         faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
         // 對應皓學日語 App 裡的主題名稱；有填的文章會在文末顯示 App 的入口
         appTopic: z.string().optional(),
+        // 不是單一主題的文章（例如 App 挑選指南、五十音）用這個自訂 App 入口的說明文字；有填也會顯示入口
+        appPitch: z.string().optional(),
       })
     })
   }

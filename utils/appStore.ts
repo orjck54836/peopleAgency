@@ -9,8 +9,8 @@
  */
 export const APP_STORE_ID = '6830791694'
 
-// TODO: 從 App Store Connect 複製 pt 的值貼進來（只有數字，不是機密，本來就會出現在公開連結裡）
-export const APP_STORE_PROVIDER_TOKEN = ''
+// App Store Connect 的供應商代碼（不是機密，本來就會出現在公開連結裡）
+export const APP_STORE_PROVIDER_TOKEN = '128517967'
 
 const BASE_URL = `https://apps.apple.com/tw/app/%E7%9A%93%E5%AD%B8%E6%97%A5%E8%AA%9E/id${APP_STORE_ID}`
 

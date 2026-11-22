@@ -40,6 +40,7 @@ const meta = computed<any>(() => {
     tags: a.tags ?? a.meta?.tags ?? null,
     faq: a.faq ?? a.meta?.faq ?? null,
     appTopic: a.appTopic ?? a.meta?.appTopic ?? null,
+    appPitch: a.appPitch ?? a.meta?.appPitch ?? null,
   }
 })
 
@@ -157,12 +158,13 @@ watchEffect(() => {
         </div>
       </section>
 
-      <!-- 皓學日語 App 入口（front matter 有 appTopic 的文章才出現） -->
-      <NuxtLink v-if="meta.appTopic" :to="{ path: localePath('/study/app'), query: { from: String(route.params.slug) } }" class="article-app" @click="trackAppCta">
+      <!-- 皓學日語 App 入口（front matter 有 appTopic 或 appPitch 的文章才出現） -->
+      <NuxtLink v-if="meta.appTopic || meta.appPitch" :to="{ path: localePath('/study/app'), query: { from: String(route.params.slug) } }" class="article-app" @click="trackAppCta">
         <img src="/images/haogaku-logo.svg" alt="" width="64" height="64" loading="lazy" class="article-app__logo" />
         <span class="article-app__text">
-          <strong>這些句子，先開口練過一次</strong>
-          <span>皓學日語 App 的「{{ meta.appTopic }}」主題裡，AI 會扮演對方跟你把整段對話走完，可以用說的。課程全部免費。</span>
+          <strong>{{ meta.appPitch ? '用皓學日語 App 練' : '這些句子，先開口練過一次' }}</strong>
+          <span v-if="meta.appPitch">{{ meta.appPitch }}</span>
+          <span v-else>皓學日語 App 的「{{ meta.appTopic }}」主題裡，AI 會扮演對方跟你把整段對話走完，可以用說的。課程全部免費。</span>
         </span>
         <span class="article-app__cta">看看 App →</span>
       </NuxtLink>
