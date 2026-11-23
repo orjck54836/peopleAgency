@@ -125,3 +125,24 @@
 | 日文開會用語 | `public/images/information/japanese-business-meeting/1.jpg`（無人的會議室長桌） | https://www.pexels.com/photo/3767172/ |
 | 日本公司聚餐 | `public/images/information/japanese-nomikai/1.jpg`（宴會和室，長桌座墊排開） | https://www.pexels.com/photo/37067835/ |
 | 日文敬語入門 | `public/images/information/japanese-keigo-basics/1.jpg`（毛筆、硯台與習字紙） | https://www.pexels.com/photo/9478265/ |
+
+## 2026-11-24 新增的六篇
+
+回到 Unsplash（Unsplash License，可免費商用、不強制標示作者），一樣只挑沒有可辨識人臉、沒有明顯品牌商標的照片。寬度統一抓 1600px。
+
+| 文章 | 檔案 | 攝影者 | 原圖 |
+|------|------|--------|------|
+| 日文自我介紹 | `public/images/information/japanese-self-introduction/1.jpg`（木造教室，課桌椅與黑板） | urusy | https://unsplash.com/photos/wooden-classroom-with-rows-of-desks-vfRkE_9wuPo |
+| 語言學校面試 | `public/images/information/japan-language-school-interview/1.jpg`（螢幕關著的筆電、筆記本與咖啡） | Unsplash | https://unsplash.com/photos/turned-off-macbook-pro-between-cup-of-coffee-iphone-notebook-and-pen-NuFUbftUu_s |
+| 日本年末年始 | `public/images/information/japan-new-year-holidays/1.jpg`（神社掛滿御神籤的木架） | LIM ENG | https://unsplash.com/photos/many-japanese-prayer-slips-hang-on-a-wooden-structure-rzcEQoSHN48 |
+| 服務業接客敬語 | `public/images/information/japanese-customer-service-keigo/1.jpg`（木質吧台與飲料桶，店內無人） | Yanhao Fang | https://unsplash.com/photos/beverage-dispensers-on-wooden-cafe-counter-T_VcTVjFY78 |
+| 在日本離職 | `public/images/information/japan-resignation-guide/1.jpg`（無人的會議室，長桌與辦公椅） | Brusk Dede | https://unsplash.com/photos/five-black-rolling-chars-front-of-desk-tjd5CfdDPRA |
+| 年末調整 | `public/images/information/japan-nenmatsu-chosei/1.jpg`（攤開的帳票上放著計算機與筆） | FIN | https://unsplash.com/photos/a-calculator-sitting-on-top-of-a-pile-of-papers-741iShluYhk |
+
+備註：
+
+- 年末年始與年末調整兩張原圖是直式，下載時用 `fit=crop` 裁成 1600×1000 的橫幅。
+- 年末年始那張畫面右下角有一個背光的人影剪影，看不出長相。
+- 年末調整那張的計算機上有很小的 CASIO 字樣，是商品本身的標示，不是店家招牌。
+- 語言學校面試那張的筆電螢幕是關著的，看不到 Apple 標誌；照片本身不是日本的場景，是中性的桌面照（做法同「看醫生」那篇）。
+- 離職那張也不是日本實拍，是中性的會議室照；找不到沒有人臉、看得出是日本辦公室的照片。
