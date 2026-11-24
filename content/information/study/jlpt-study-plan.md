@@ -4,7 +4,8 @@ description: "JLPT 各級別需要多少學習時數、台灣人因為漢字優�
 date: "2026-11-10"
 author: "皓學日本留遊學"
 tags: ["JLPT", "日檢", "N5", "N2", "日語學習計畫"]
-cover: "/images/information/japan-study-cost/2.jpg"
+cover: "/images/information/jlpt-study-plan/1.jpg"
+appPitch: "用皓學日語 App 照 N5〜N2 的程度分級練，順便補口說"
 ---
 
 「我要讀多久才考得到 N2？」

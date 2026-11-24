@@ -6,6 +6,7 @@ updated: "2026-11-11"
 author: "皓學日本留遊學"
 tags: ["日本留學費用", "語言學校學費", "日本生活費", "留學預算", "留學存款證明"]
 cover: "/images/information/japan-study-cost/1.jpg"
+appPitch: "出發前先把日文練起來，落地後少走很多冤枉路"
 ---
 
 「去日本留學要花多少錢？」

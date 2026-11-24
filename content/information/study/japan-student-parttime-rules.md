@@ -5,6 +5,7 @@ date: "2026-11-10"
 author: "皓學日本留遊學"
 tags: ["日本打工", "資格外活動許可", "28小時", "留學生打工", "日本時薪"]
 cover: "/images/information/japan-parttime-vocabulary/1.jpg"
+appPitch: "應徵打工的電話和面試，先用說的練一次"
 ---
 
 「去日本留學可以打工嗎？打工能賺回學費嗎？」

@@ -146,3 +146,32 @@
 - 年末調整那張的計算機上有很小的 CASIO 字樣，是商品本身的標示，不是店家招牌。
 - 語言學校面試那張的筆電螢幕是關著的，看不到 Apple 標誌；照片本身不是日本的場景，是中性的桌面照（做法同「看醫生」那篇）。
 - 離職那張也不是日本實拍，是中性的會議室照；找不到沒有人臉、看得出是日本辦公室的照片。
+
+## 2026-11-25 新增的六篇＋兩張修復
+
+Unsplash License（可免費商用、不強制標示作者）。這批特別確認過**不是 Unsplash+**：挑圖時有三張原本看上的是 `plus.unsplash.com` 的付費圖（講堂、會議室投影幕、桌上月曆），已全部換掉。
+
+| 文章 | 檔案 | 攝影者 | 原圖 |
+|------|------|--------|------|
+| 日文邀約與婉拒 | `public/images/information/japanese-invitation-refusal/1.jpg`（桌上兩杯咖啡，兩人只入鏡到手與身體） | Priscilla Du Preez | https://unsplash.com/photos/two-mugs-with-coffee-on-table-g86airJZ4Gs |
+| 語言學校畢業後升學 | `public/images/information/japan-further-education-after-language-school/1.jpg`（無人的階梯講堂） | Nathan Dumlao | https://unsplash.com/photos/empty-chairs-in-theater-ewGMqs2tmJI |
+| 日本冬天生活 | `public/images/information/japan-winter-living/1.jpg`（積雪的住宅區街道與電線桿） | Natalie Su | https://unsplash.com/photos/a-snow-covered-street-with-power-lines-above-it-nDBbMBUQ99o |
+| 職場請假日文 | `public/images/information/japan-work-leave-phrases/1.jpg`（攤開的月曆手帳與筆） | Renáta-Adrienn | https://unsplash.com/photos/grey-and-black-pen-on-calendar-book-ebvCsRypmxM |
+| 名片交換 | `public/images/information/japanese-business-card-meishi/1.jpg`（高樓辦公室裡兩隻手交換名片） | Van Tay Media | https://unsplash.com/photos/hands-exchanging-business-card-in-office-chyT9XPAdcg |
+| 社會保險四種 | `public/images/information/japan-shakai-hoken/1.jpg`（桌上手寫的文件與螢光筆） | Yen Vu - 烟雨 | https://unsplash.com/photos/a-desk-with-papers-pens-and-a-highlighter-3Hcz2zvPqBI |
+
+### 修復兩張失效的封面
+
+`4a40668`（1120 改版）刪掉了五張沒用到的 `2.jpg`，但其中兩張其實還被文章的 front matter 指著，本地已經是 404（線上因為 S3 沒有跟著刪才還看得到）。這次各補一張自己的圖。
+
+| 文章 | 原本指向（已不存在） | 現在 | 攝影者 | 原圖 |
+|------|------|------|--------|------|
+| 日檢讀書計畫 | `/images/information/japan-study-cost/2.jpg` | `public/images/information/jlpt-study-plan/1.jpg`（夜晚的書桌，攤開的筆記與參考書） | Yen Vu - 烟雨 | https://unsplash.com/photos/desk-with-open-book-laptop-and-study-materials-HNjWq8WPyoY |
+| 語言學校申請時間表 | `/images/information/japan-visa-guide/2.jpg` | `public/images/information/japan-language-school-application-timeline/1.jpg`（年度計畫表與金色原子筆） | Jess Bailey | https://unsplash.com/photos/white-and-black-yearly-planner-notebook-mexeVPlTB6k |
+
+備註：
+
+- 職場請假、日檢、申請時間表三張原圖是直式，用 `fit=crop` 裁成 1600×1000 的橫幅。
+- 邀約那張有兩個人入鏡，但只拍到手和身體，臉在畫面外。
+- 名片交換那張只有兩隻手和背景的都市景，沒有臉也沒有商標；名片是空白的。
+- 升學那張的階梯講堂不是日本實拍，是中性的場景照。

@@ -5,6 +5,7 @@ date: "2026-11-10"
 author: "皓學日本留遊學"
 tags: ["日本就職", "履歷書", "職務經歷書", "日本面試", "赴日工作"]
 cover: "/images/information/taiwan-talent/rapid.jpg"
+appPitch: "日文面試和自我介紹，先跟 AI 面試官走一次"
 ---
 
 日本的求職流程和台灣差異很大，而且差的不是細節，是整套邏輯。

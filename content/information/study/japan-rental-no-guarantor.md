@@ -5,7 +5,7 @@ date: 2026-07-24
 author: "皓學日本留遊學"
 cover: "/images/information/japan-rental-no-guarantor/1.jpg"
 tags: ["日本租屋", "留學準備", "免保證人", "落地支援"]
-
+appPitch: "看房、問租金、簽約的日文，先跟 AI 房仲練一次"
 ---
 
 「我在日本沒有認識的人，要怎麼找到願意租給我的房東？」
