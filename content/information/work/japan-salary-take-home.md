@@ -5,6 +5,7 @@ date: "2026-11-17"
 author: "皓學日本留遊學"
 tags: ["日本薪水", "手取り", "日本社會保險", "住民稅", "赴日工作"]
 cover: "/images/information/japan-salary-take-home/1.jpg"
+appPitch: "跟人事、區役所確認薪資與保險，先用說的練一次"
 ---
 
 日本求人票上寫的「月給 30 万円」，不是你每個月會領到的錢。

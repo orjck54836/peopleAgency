@@ -5,6 +5,7 @@ date: "2026-11-10"
 author: "皓學日本留遊學"
 tags: ["日本語言學校", "留學申請時間", "在留資格認定", "留學準備流程", "日本留學"]
 cover: "/images/information/japan-language-school-application-timeline/1.jpg"
+appPitch: "等入學許可的這幾個月，先把生活會話練起來"
 ---
 
 「我想明年四月去日本念語言學校，現在開始來得及嗎？」

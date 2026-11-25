@@ -175,3 +175,23 @@ Unsplash License（可免費商用、不強制標示作者）。這批特別確�
 - 邀約那張有兩個人入鏡，但只拍到手和身體，臉在畫面外。
 - 名片交換那張只有兩隻手和背景的都市景，沒有臉也沒有商標；名片是空白的。
 - 升學那張的階梯講堂不是日本實拍，是中性的場景照。
+
+## 2026-11-26 新增的六篇
+
+全部取自 Unsplash（免費授權，非 Unsplash+），下載時以 `w=1600&h=1000&fit=crop` 統一裁成 1600×1000。
+
+| 文章 | 檔案 | 攝影者 | 原圖 |
+|------|------|--------|------|
+| 腳踏車手續 | `public/images/information/japan-bicycle-registration/1.jpg`（停在路邊的淑女車） | Johnny Ho | https://unsplash.com/photos/a-bicycle-with-a-basket-parked-on-a-sidewalk-AFAj2gyVBe0 |
+| 語言學校第一天 | `public/images/information/japan-language-school-first-day/1.jpg`（陽光灑進來的空教室） | Allen Y | https://unsplash.com/photos/empty-classroom-with-desks-and-chairs-by-windows-rkH8YVmjQ4w |
+| 跟日本人閒聊 | `public/images/information/japanese-small-talk/1.jpg`（兩人隔著桌子端著馬克杯） | Priscilla Du Preez | https://unsplash.com/photos/two-people-holding-gray-mugs-at-table-K8XYGbw4Ahg |
+| 職場道歉 | `public/images/information/japanese-workplace-apology/1.jpg`（辦公桌上的商用話機） | Julian Hochgesang | https://unsplash.com/photos/black-ip-desk-phone-on-black-wooden-table-Dkn8-zPIbwo |
+| 加班規定 | `public/images/information/japan-overtime-rules/1.jpg`（夜裡還亮著燈的辦公大樓） | Fumiaki Hayashi | https://unsplash.com/photos/a-very-tall-building-with-lots-of-windows-at-night-Ou7drGcrGKs |
+| 確定申告 | `public/images/information/japan-kakutei-shinkoku/1.jpg`（計算機、報表與筆電） | Jakub Żerdzicki | https://unsplash.com/photos/a-calculator-sitting-on-top-of-a-table-next-to-a-laptop-8wLZi9OhsWU |
+
+備註：
+
+- 閒聊那張有兩個人入鏡，但只拍到手和身體，臉在畫面外。
+- 教室那張不是日本實拍，是中性的空教室場景；桌椅形式與日本語言學校不同。
+- 確定申告刻意避開任何國家的實際稅表（尤其是美國表格），用中性的計算機與報表照，避免內容誤導。
+- 加班那張是日本實拍的夜間辦公大樓，無可辨識人臉；招牌文字極小，不構成品牌識別。

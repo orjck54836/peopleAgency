@@ -5,6 +5,7 @@ date: "2026-11-10"
 author: "皓學日本留遊學"
 tags: ["日本留學獎學金", "JASSO", "文部科學省獎學金", "學費減免", "留學補助"]
 cover: "/images/information/japan-school-fee-breakdown/1.jpg"
+appPitch: "獎學金面試和校內申請都要日文，先用說的練一次"
 ---
 
 「日本留學有獎學金可以申請嗎？」

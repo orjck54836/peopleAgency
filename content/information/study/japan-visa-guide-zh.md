@@ -6,6 +6,7 @@ updated: "2026-11-11"
 author: "皓學日本留遊學"
 tags: ["日本留學簽證", "在留資格認定", "COE", "留學理由書", "財力證明"]
 cover: "/images/information/japan-visa-guide/1.jpg"
+appPitch: "簽證下來之後，出發前先把生活日文練起來"
 ---
 
 日本留學的第一道關卡，是向出入國在留管理廳申請「在留資格認定證明書」（Certificate of Eligibility，簡稱 COE）。

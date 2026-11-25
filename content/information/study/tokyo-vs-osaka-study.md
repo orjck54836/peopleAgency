@@ -5,6 +5,7 @@ date: "2026-11-10"
 author: "皓學日本留遊學"
 tags: ["東京留學", "大阪留學", "日本留學城市", "語言學校選擇", "城市比較"]
 cover: "/images/information/study-city-compare/tokyo.jpg"
+appPitch: "不管選哪個城市，落地要用的日文是同一套"
 ---
 
 東京和大阪是台灣留學生最常拿來比較的兩個城市。

@@ -5,6 +5,7 @@ date: "2026-11-10"
 author: "皓學日本留遊學"
 tags: ["日本工作簽證", "特定技能", "技術人文知識國際業務", "在留資格", "赴日就職"]
 cover: "/images/information/visa-guide/engineer.jpg"
+appPitch: "赴日工作要用的職場日文，先用說的練一次"
 ---
 
 日本沒有一種叫「工作簽證」的東西。

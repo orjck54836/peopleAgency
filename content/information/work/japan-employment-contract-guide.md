@@ -5,6 +5,7 @@ date: "2026-11-17"
 author: "皓學日本留遊學"
 tags: ["日本雇用契約", "勞動條件通知書", "正社員", "契約社員", "赴日工作"]
 cover: "/images/information/japan-employment-contract-guide/1.jpg"
+appPitch: "面談時該問的問題，先用日文練一次"
 ---
 
 拿到內定之後，公司會給你一份**勞動條件通知書（労働条件通知書）**或雇用契約書。很多人只看了月薪就簽名。

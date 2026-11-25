@@ -6,6 +6,7 @@ author: 皓學編輯部
 cover: "/images/information/japan-school-fee-breakdown/1.jpg"
 tags: ["日本留學", "語言學校", "費用規劃", "留學準備"]
 
+appPitch: "學費之外最值得先投資的是日文，課程全部免費"
 ---
 
 「去日本念語言學校要多少錢？」
